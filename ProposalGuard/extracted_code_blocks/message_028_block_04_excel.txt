@@ -1,0 +1,1 @@
+=IF(U2>=12,"High Priority",IF(U2>=9,"Medium Priority","Low Priority"))

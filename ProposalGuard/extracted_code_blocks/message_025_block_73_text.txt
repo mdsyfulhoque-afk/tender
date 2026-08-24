@@ -1,0 +1,17 @@
+1. Understanding of the assignment
+The assignment requires strengthening secondary education data systems through diagnostic review, stakeholder consultation, institutional assessment, roadmap development, and capacity building.
+
+2. Technical approach
+The proposed approach combines education system analysis, data governance review, institutional process mapping, M&E framework assessment, and costed roadmap development.
+
+3. Workstream 1: Inception and diagnostic framework
+Confirm scope, stakeholders, data sources, deliverable expectations, and assessment tools.
+
+4. Workstream 2: Education data system diagnostic
+Review existing data flows, reporting systems, institutional responsibilities, data quality, and bottlenecks.
+
+5. Workstream 3: Roadmap and capacity-building plan
+Develop phased recommendations, training modules, governance actions, and implementation roadmap.
+
+6. Quality assurance
+Use document review, stakeholder validation, internal peer review, and deliverable quality checklist.

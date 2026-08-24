@@ -1,0 +1,3 @@
+T001,Strategic Fit,20%,4,=C2*D2,Matches education/CBA expertise,None,Pursue,Positive,
+T001,Deadline Feasibility,15%,3,=C3*D3,14 days remaining,Tight but possible,Proceed only with fast intake,Medium risk,
+T001,CV/Team Fit,15%,3,=C4*D4,Most CVs available,M&E expert weak,Rewrite or replace,Medium risk,

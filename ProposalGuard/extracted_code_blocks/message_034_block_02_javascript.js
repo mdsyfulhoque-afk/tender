@@ -1,0 +1,1 @@
+resetTenderProofScriptProperties_WARNING_ONLY()

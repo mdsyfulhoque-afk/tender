@@ -1,0 +1,1 @@
+=IF(SUM(E2:E11)>=4,"Pursue",IF(SUM(E2:E11)>=3.25,"Pursue with fixes",IF(SUM(E2:E11)>=2.5,"Only with partner or reduced role","Reject")))

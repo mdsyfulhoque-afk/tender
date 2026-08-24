@@ -1,0 +1,1 @@
+=COUNTIFS('Leads CRM'!AA:AA,"Yes",'Leads CRM'!X:X,">="&A2,'Leads CRM'!X:X,"<="&B2)

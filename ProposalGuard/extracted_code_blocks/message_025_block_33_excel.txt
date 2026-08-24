@@ -1,0 +1,1 @@
+=SUMIFS('Pricing Tracker'!K:K,'Pricing Tracker'!N:N,"Yes",'Pricing Tracker'!B:B,">="&A2,'Pricing Tracker'!B:B,"<="&B2)

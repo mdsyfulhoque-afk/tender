@@ -1,0 +1,19 @@
+Subject: TenderProof Rapid Bid Diagnostic — [Tender Title]
+
+Dear [Name],
+
+Please find attached the TenderProof Rapid Bid Diagnostic for [Tender Title].
+
+The package includes:
+- diagnostic report
+- compliance matrix
+- CV/expert match summary
+- bid/no-bid scorecard
+- risk register
+
+The main recommendation is: [Pursue / Pursue with fixes / Pursue as partner/sub / Reject].
+
+I suggest we review the findings in a [45/60]-minute call. Please share two suitable time slots.
+
+Best,
+Syful

@@ -1,0 +1,16 @@
+[ ] Donor/client identified
+[ ] Deadline confirmed
+[ ] Submission type confirmed
+[ ] Mandatory requirements extracted
+[ ] Evaluation criteria extracted
+[ ] Expert roles extracted
+[ ] CVs matched against expert roles
+[ ] Compliance risks marked
+[ ] Bid/no-bid score calculated
+[ ] Methodology outline specific to ToR
+[ ] Top risks ranked
+[ ] Recommendation is explicit
+[ ] No fabricated claims
+[ ] Upsell paragraph included only if appropriate
+[ ] Files named correctly
+[ ] IP capture updated

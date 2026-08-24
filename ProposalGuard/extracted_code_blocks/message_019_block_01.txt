@@ -1,0 +1,9 @@
+Client_Project/
+01_ToR_and_Client_Inputs
+02_ToR_Extraction
+03_Compliance_Matrix
+04_CV_Matching
+05_Methodology_Outline
+06_Risk_Assessment
+07_Final_Delivery
+08_IP_Capture_Anonymized

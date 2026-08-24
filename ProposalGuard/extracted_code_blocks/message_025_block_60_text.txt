@@ -1,0 +1,13 @@
+Call Date:
+Lead Name:
+Organization:
+Role:
+Buyer Type:
+Relationship Strength:
+Tender/Opportunity:
+Donor:
+Deadline:
+Submission Type:
+Bidding Role:
+Decision Maker Present? Yes/No
+Budget Approved? Yes/No/Unknown

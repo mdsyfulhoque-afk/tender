@@ -1,0 +1,126 @@
+Excellent. Now stop planning and build the actual TenderProof OS launch assets.
+
+Use the Launch Command Center you just created as binding direction. Do not repeat strategy. Do not explain the business again. Produce the first operational asset pack I can use immediately today.
+
+Create the following in ready-to-copy format:
+
+1. ONE-PAGE OFFER PDF
+Write the final polished one-page PDF text for “TenderProof Rapid Bid Diagnostic.”
+Make it concise, professional, and client-facing.
+Include:
+- headline
+- pain statement
+- what the diagnostic does
+- deliverables
+- 48-hour and 72-hour options
+- pricing range
+- required documents
+- why Syful
+- call-to-action
+- contact block
+
+2. LINKEDIN LAUNCH KIT
+Create:
+- final LinkedIn headline
+- final LinkedIn About section
+- first launch post
+- shorter second post for 3 days later
+- featured section text
+- connection request note
+- follow-up message after someone accepts
+
+3. GOOGLE SHEET TEMPLATE STRUCTURE
+Create ready-to-copy tab structures for:
+- Leads CRM
+- Tender Tracker
+- Client Intake
+- ToR Extraction
+- Compliance Matrix
+- CV Matcher
+- Bid/No-Bid Scorecard
+- Risk Register
+- Pricing Tracker
+- IP Capture Database
+- Weekly Dashboard
+
+For each tab, give the exact column headers in CSV-style comma-separated format.
+
+4. CLIENT INTAKE FORM
+Create the exact Google Form questions for the first client intake form.
+Include:
+- section title
+- question text
+- response type
+- whether required or optional
+
+5. FIRST OUTREACH BATCH
+Create the first 30 outreach messages:
+- 10 warm network messages
+- 10 Bangladesh consulting firm messages
+- 5 international firm messages
+- 5 senior consultant/team leader messages
+
+Each message must be short enough for LinkedIn or WhatsApp and must ask one clear question.
+
+6. EMAIL TEMPLATES
+Create:
+- initial cold email
+- warm reactivation email
+- proposal manager email
+- international firm email
+- follow-up 1
+- follow-up 2
+- final follow-up
+- referral ask
+- “send me the ToR” reply
+- “here are the payment terms” reply
+
+7. SALES CALL ASSET
+Create:
+- 20-minute discovery call agenda
+- exact opening script
+- 15 diagnostic questions
+- urgency detection checklist
+- closing script
+- price objection responses
+- document request message after the call
+
+8. DELIVERY DOCUMENTS
+Create the exact structure for the first diagnostic report:
+- cover page
+- executive summary
+- opportunity overview
+- bid/no-bid recommendation
+- compliance matrix summary
+- CV/expert fit summary
+- methodology outline
+- top risks
+- next-step recommendation
+- upsell section
+
+9. FIRST PAID CLIENT CLOSE KIT
+Create:
+- invoice description text
+- engagement terms
+- scope boundary
+- no-refund clause
+- confidentiality note
+- full proposal upsell paragraph
+
+10. DAY-1 EXECUTION CHECKLIST
+Give me a strict checklist for today only:
+- what to update
+- what to create
+- who to message
+- what to send
+- what to track
+- what result counts as success today
+
+Rules:
+- No new ideas.
+- No SaaS building yet.
+- No dashboards beyond the simple Google Sheet dashboard.
+- No inspirational language.
+- No theory.
+- Everything must be ready to copy into LinkedIn, Gmail, WhatsApp, Google Sheets, Google Forms, or a client PDF.
+- Use placeholders where needed: [Name], [Firm], [Email], [Phone], [LinkedIn], [Deadline].

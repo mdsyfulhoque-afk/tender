@@ -1,0 +1,1312 @@
+{
+  "metadata": {
+    "archive_note": "Visible user, assistant, and tool text from the shared ChatGPT conversation. Internal system/model_editable_context/thought artifacts are intentionally excluded from the readable transcript.",
+    "source_url": "https://chatgpt.com/share/6a25199c-8f54-83a3-9b07-30bb0b41aa01",
+    "title": "AI Millionaire Tasks",
+    "shared_conversation_id": "6a25199c-8f54-83a3-9b07-30bb0b41aa01",
+    "backing_conversation_id": "6a24880d-d9c0-83ab-b090-bc9ccbc310fe",
+    "created_unix": 1780816284.611532,
+    "updated_unix": 1780816314.089444,
+    "archived_at_utc": "2026-06-07T07:23:16.343Z",
+    "total_linear_messages": 83,
+    "visible_text_messages": 34
+  },
+  "code_blocks": [
+    {
+      "file": "extracted_code_blocks/message_019_block_01.txt",
+      "message_number": 19,
+      "linear_index": 42,
+      "role": "assistant",
+      "language": null,
+      "extension": "txt",
+      "character_count": 180
+    },
+    {
+      "file": "extracted_code_blocks/message_021_block_01_text.txt",
+      "message_number": 21,
+      "linear_index": 46,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 3250
+    },
+    {
+      "file": "extracted_code_blocks/message_023_block_01_csv.csv",
+      "message_number": 23,
+      "linear_index": 50,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 369
+    },
+    {
+      "file": "extracted_code_blocks/message_023_block_02_csv.csv",
+      "message_number": 23,
+      "linear_index": 50,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 300
+    },
+    {
+      "file": "extracted_code_blocks/message_023_block_03_csv.csv",
+      "message_number": 23,
+      "linear_index": 50,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 369
+    },
+    {
+      "file": "extracted_code_blocks/message_023_block_04_csv.csv",
+      "message_number": 23,
+      "linear_index": 50,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 279
+    },
+    {
+      "file": "extracted_code_blocks/message_023_block_05_csv.csv",
+      "message_number": 23,
+      "linear_index": 50,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 221
+    },
+    {
+      "file": "extracted_code_blocks/message_023_block_06_csv.csv",
+      "message_number": 23,
+      "linear_index": 50,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 339
+    },
+    {
+      "file": "extracted_code_blocks/message_023_block_07_csv.csv",
+      "message_number": 23,
+      "linear_index": 50,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 110
+    },
+    {
+      "file": "extracted_code_blocks/message_023_block_08_csv.csv",
+      "message_number": 23,
+      "linear_index": 50,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 165
+    },
+    {
+      "file": "extracted_code_blocks/message_023_block_09_csv.csv",
+      "message_number": 23,
+      "linear_index": 50,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 248
+    },
+    {
+      "file": "extracted_code_blocks/message_023_block_10_csv.csv",
+      "message_number": 23,
+      "linear_index": 50,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 264
+    },
+    {
+      "file": "extracted_code_blocks/message_023_block_11_csv.csv",
+      "message_number": 23,
+      "linear_index": 50,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 361
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_01_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 146
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_02_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 373
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_03_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 790
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_04_excel.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 10
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_05_excel.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 28
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_06_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 317
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_07_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 743
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_08_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 356
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_09_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 606
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_10_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 265
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_11_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 585
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_12_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 206
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_13_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 570
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_14_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 321
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_15_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 695
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_16_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 106
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_17_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 302
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_18_excel.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 13
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_19_excel.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 130
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_20_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 158
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_21_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 551
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_22_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 201
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_23_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 399
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_24_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 257
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_25_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 712
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_26_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 361
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_27_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 506
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_28_excel.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 59
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_29_excel.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 81
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_30_excel.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 83
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_31_excel.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 83
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_32_excel.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 83
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_33_excel.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 119
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_34_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 518
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_35_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 478
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_36_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 459
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_37_csv.csv",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 1098
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_38_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 357
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_39_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 282
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_40_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 249
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_41_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 241
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_42_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 182
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_43_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 244
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_44_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 261
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_45_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 221
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_46_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 260
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_47_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 350
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_48_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 345
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_49_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 310
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_50_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 223
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_51_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 287
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_52_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 350
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_53_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 229
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_54_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 205
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_55_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 273
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_56_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 193
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_57_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 128
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_58_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 90
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_59_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 141
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_60_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 208
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_61_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 203
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_62_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 497
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_63_excel.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 13
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_64_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 274
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_65_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 125
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_66_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 483
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_67_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 203
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_68_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 436
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_69_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 239
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_70_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 492
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_71_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 483
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_72_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 532
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_73_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 1003
+    },
+    {
+      "file": "extracted_code_blocks/message_025_block_74_text.txt",
+      "message_number": 25,
+      "linear_index": 54,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 115
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_01_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 523
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_02_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 937
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_03_excel.txt",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 10
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_04_excel.txt",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 71
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_05_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 317
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_06_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 889
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_07_excel.txt",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 12
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_08_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 356
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_09_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 749
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_10_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 265
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_11_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 582
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_12_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 206
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_13_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 622
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_14_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 321
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_15_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 799
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_16_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 106
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_17_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 348
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_18_excel.txt",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 7
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_19_excel.txt",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 13
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_20_excel.txt",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "excel",
+      "extension": "txt",
+      "character_count": 137
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_21_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 158
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_22_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 586
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_23_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 227
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_24_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 565
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_25_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 257
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_26_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 774
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_27_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 387
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_28_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 1319
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_29_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 196
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_30_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 607
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_31_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 295
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_32_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 766
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_33_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 96
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_34_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 333
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_35_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 148
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_36_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 571
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_37_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 257
+    },
+    {
+      "file": "extracted_code_blocks/message_028_block_38_csv.csv",
+      "message_number": 28,
+      "linear_index": 60,
+      "role": "assistant",
+      "language": "csv",
+      "extension": "csv",
+      "character_count": 774
+    },
+    {
+      "file": "extracted_code_blocks/message_031_block_01_javascript_id_tenderproof-build-.txt",
+      "message_number": 31,
+      "linear_index": 72,
+      "role": "assistant",
+      "language": "javascript id=\"tenderproof-build-kit\"",
+      "extension": "txt",
+      "character_count": 58436
+    },
+    {
+      "file": "extracted_code_blocks/message_031_block_02_text.txt",
+      "message_number": 31,
+      "linear_index": 72,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 23
+    },
+    {
+      "file": "extracted_code_blocks/message_031_block_03_text.txt",
+      "message_number": 31,
+      "linear_index": 72,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 114
+    },
+    {
+      "file": "extracted_code_blocks/message_031_block_04_text.txt",
+      "message_number": 31,
+      "linear_index": 72,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 102
+    },
+    {
+      "file": "extracted_code_blocks/message_031_block_05_text.txt",
+      "message_number": 31,
+      "linear_index": 72,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 145
+    },
+    {
+      "file": "extracted_code_blocks/message_031_block_06_text.txt",
+      "message_number": 31,
+      "linear_index": 72,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 33
+    },
+    {
+      "file": "extracted_code_blocks/message_031_block_07_text.txt",
+      "message_number": 31,
+      "linear_index": 72,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 171
+    },
+    {
+      "file": "extracted_code_blocks/message_031_block_08_text.txt",
+      "message_number": 31,
+      "linear_index": 72,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 54
+    },
+    {
+      "file": "extracted_code_blocks/message_031_block_09_text.txt",
+      "message_number": 31,
+      "linear_index": 72,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 130
+    },
+    {
+      "file": "extracted_code_blocks/message_031_block_10_text.txt",
+      "message_number": 31,
+      "linear_index": 72,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 28
+    },
+    {
+      "file": "extracted_code_blocks/message_031_block_11_text.txt",
+      "message_number": 31,
+      "linear_index": 72,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 348
+    },
+    {
+      "file": "extracted_code_blocks/message_031_block_12_text.txt",
+      "message_number": 31,
+      "linear_index": 72,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 363
+    },
+    {
+      "file": "extracted_code_blocks/message_034_block_01_javascript.js",
+      "message_number": 34,
+      "linear_index": 83,
+      "role": "assistant",
+      "language": "javascript",
+      "extension": "js",
+      "character_count": 67615
+    },
+    {
+      "file": "extracted_code_blocks/message_034_block_02_javascript.js",
+      "message_number": 34,
+      "linear_index": 83,
+      "role": "assistant",
+      "language": "javascript",
+      "extension": "js",
+      "character_count": 48
+    },
+    {
+      "file": "extracted_code_blocks/message_034_block_03_javascript.js",
+      "message_number": 34,
+      "linear_index": 83,
+      "role": "assistant",
+      "language": "javascript",
+      "extension": "js",
+      "character_count": 28
+    },
+    {
+      "file": "extracted_code_blocks/message_034_block_04_text.txt",
+      "message_number": 34,
+      "linear_index": 83,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 13
+    },
+    {
+      "file": "extracted_code_blocks/message_034_block_05_text.txt",
+      "message_number": 34,
+      "linear_index": 83,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 82
+    },
+    {
+      "file": "extracted_code_blocks/message_034_block_06_text.txt",
+      "message_number": 34,
+      "linear_index": 83,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 26
+    },
+    {
+      "file": "extracted_code_blocks/message_034_block_07_text.txt",
+      "message_number": 34,
+      "linear_index": 83,
+      "role": "assistant",
+      "language": "text",
+      "extension": "txt",
+      "character_count": 348
+    }
+  ]
+}

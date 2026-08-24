@@ -1,0 +1,10 @@
+ClientName_TenderShortName/
+01_Client_Inputs
+02_ToR_Extraction
+03_Compliance_Matrix
+04_CV_Matcher
+05_Bid_NoBid_Scorecard
+06_Risk_Register
+07_Diagnostic_Report
+08_Client_Delivery
+09_IP_Capture_Anonymized

@@ -1,0 +1,6 @@
+[ ] Send document request
+[ ] Send one-page offer
+[ ] Send quote
+[ ] Send payment terms
+[ ] Schedule follow-up
+[ ] Park lead

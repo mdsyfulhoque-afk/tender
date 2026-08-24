@@ -1,0 +1,1332 @@
+const TP = {
+  cockpitName: "TenderProof OS Execution Cockpit",
+  rootFolderName: "TenderProof_OS",
+  sampleClientFolder: "ClientName_TenderShortName"
+};
+
+/**
+ * RUN THIS FIRST if you want everything created.
+ */
+function runAllTenderProofSetup() {
+  const ss = buildCockpit();
+  const root = buildDriveFolders();
+  buildDocsTemplates();
+  buildIntakeForm();
+
+  Logger.log("TenderProof setup complete.");
+  Logger.log("Cockpit URL: " + ss.getUrl());
+  Logger.log("Drive root folder URL: " + root.getUrl());
+}
+
+/**
+ * 1. GOOGLE SHEETS — COCKPIT BUILDER
+ */
+function buildCockpit() {
+  const ss = SpreadsheetApp.create(TP.cockpitName);
+  PropertiesService.getScriptProperties().setProperty("COCKPIT_ID", ss.getId());
+
+  const definitions = getSheetDefinitions_();
+  const defaultSheet = ss.getSheets()[0];
+
+  definitions.forEach((def, i) => {
+    const sh = i === 0 ? defaultSheet.setName(def.name) : ss.insertSheet(def.name);
+    sh.clear();
+
+    sh.getRange(1, 1, 1, def.headers.length).setValues([def.headers]);
+
+    if (def.sampleRows.length > 0) {
+      sh.getRange(2, 1, def.sampleRows.length, def.headers.length).setValues(def.sampleRows);
+    }
+
+    formatSheet_(sh, def.headers.length);
+    applyValidations_(sh, def.headers, def.validations || {});
+  });
+
+  applyCockpitFormulas_(ss);
+  SpreadsheetApp.flush();
+
+  return ss;
+}
+
+function getSheetDefinitions_() {
+  const today = new Date();
+  const d2 = addDays_(today, 2);
+  const d14 = addDays_(today, 14);
+  const d21 = addDays_(today, 21);
+  const d23 = addDays_(today, 23);
+
+  const sheets = [];
+
+  // 1. Leads CRM
+  let headers = [
+    "Lead ID","Date Added","Name","Organization","Role","Buyer Type","Country","Sector","Donor Focus","Email",
+    "LinkedIn","WhatsApp","Relationship Strength","Lead Source","Current Tender Signal","Likely Pain",
+    "Offer Fit Score","Urgency Score","Ability to Pay Score","Decision Maker","Lead Score","Status",
+    "Message Sent Date","Last Contact Date","Next Follow-Up Date","Follow-Up 1 Sent Date","Follow-Up 2 Sent Date",
+    "Final Follow-Up Sent Date","Reply Received","Reply Date","Call Booked","Call Date","Call Completed",
+    "Call Completed Date","Quote Sent","Quote Date","Paid","Payment Date","Notes","Next Action"
+  ];
+
+  sheets.push({
+    name: "Leads CRM",
+    headers,
+    sampleRows: [
+      row_(headers, {
+        "Lead ID":"L001","Date Added":today,"Name":"Sample Name 1","Organization":"Sample Consulting Ltd",
+        "Role":"Managing Director","Buyer Type":"Bangladesh Consulting Firm","Country":"Bangladesh","Sector":"Education",
+        "Donor Focus":"ADB","Email":"[Email]","LinkedIn":"[LinkedIn]","WhatsApp":"[Phone]",
+        "Relationship Strength":"Warm","Lead Source":"Personal Network","Current Tender Signal":"Unknown",
+        "Likely Pain":"May need proposal support","Offer Fit Score":4,"Urgency Score":3,"Ability to Pay Score":4,
+        "Decision Maker":"Yes","Status":"Message Sent","Message Sent Date":today,"Last Contact Date":today,
+        "Next Follow-Up Date":d2,"Reply Received":"No","Call Booked":"No","Call Completed":"No",
+        "Quote Sent":"No","Paid":"No","Notes":"Warm contact","Next Action":"Follow up Day 3"
+      }),
+      row_(headers, {
+        "Lead ID":"L002","Date Added":today,"Name":"Sample Name 2","Organization":"Global Advisory Ltd",
+        "Role":"Proposal Manager","Buyer Type":"Proposal Manager","Country":"Bangladesh","Sector":"Governance",
+        "Donor Focus":"EU GIZ","Email":"[Email]","LinkedIn":"[LinkedIn]","WhatsApp":"[Phone]",
+        "Relationship Strength":"Cold","Lead Source":"LinkedIn Search","Current Tender Signal":"Active Tender",
+        "Likely Pain":"Deadline pressure","Offer Fit Score":5,"Urgency Score":5,"Ability to Pay Score":4,
+        "Decision Maker":"Possible","Status":"To Message","Reply Received":"No","Call Booked":"No",
+        "Call Completed":"No","Quote Sent":"No","Paid":"No","Notes":"Potential high urgency","Next Action":"Send LinkedIn message"
+      }),
+      row_(headers, {
+        "Lead ID":"L003","Date Added":today,"Name":"Sample Name 3","Organization":"Independent Consultant",
+        "Role":"Team Leader","Buyer Type":"Senior Consultant","Country":"Bangladesh","Sector":"CBA Policy",
+        "Donor Focus":"World Bank","Email":"[Email]","LinkedIn":"[LinkedIn]","WhatsApp":"[Phone]",
+        "Relationship Strength":"Warm","Lead Source":"Referral","Current Tender Signal":"Considering Expert Role",
+        "Likely Pain":"CV ToR fit","Offer Fit Score":4,"Urgency Score":4,"Ability to Pay Score":3,
+        "Decision Maker":"Yes","Status":"Message Sent","Message Sent Date":today,"Last Contact Date":today,
+        "Next Follow-Up Date":d2,"Reply Received":"No","Call Booked":"No","Call Completed":"No",
+        "Quote Sent":"No","Paid":"No","Notes":"Possible CV diagnostic","Next Action":"Follow up"
+      })
+    ],
+    validations: {
+      "Buyer Type":["Warm Network","Bangladesh Consulting Firm","International Firm","Proposal Manager","NGO/Think Tank","Senior Consultant","Team Leader","Research/Evaluation Firm","Engineering Firm"],
+      "Relationship Strength":["Warm","Cold","Referred","Hot"],
+      "Current Tender Signal":["Unknown","No Tender","Active Tender","Shortlisted","Deadline Soon","Future Pipeline","Considering Expert Role"],
+      "Decision Maker":["Yes","No","Possible"],
+      "Status":["To Message","Message Sent","Replied","Call Booked","Documents Requested","Documents Received","Quote Sent","Paid","Delivered","Lost","Parked"],
+      "Reply Received":["Yes","No"],
+      "Call Booked":["Yes","No"],
+      "Call Completed":["Yes","No"],
+      "Quote Sent":["Yes","No"],
+      "Paid":["Yes","No"]
+    }
+  });
+
+  // 2. Tender Tracker
+  headers = [
+    "Tender ID","Date Added","Tender Title","Donor/Client","Country","Sector","Submission Type","Deadline",
+    "Days Remaining","Estimated Contract Value","Source Link","Potential Client/Firm","Potential Role",
+    "Eligibility Requirements","Expert Requirements","Evaluation Criteria","Required Forms","Opportunity Fit Score",
+    "Deadline Risk","Status","Notes","Next Action"
+  ];
+
+  sheets.push({
+    name: "Tender Tracker",
+    headers,
+    sampleRows: [
+      row_(headers, {
+        "Tender ID":"T001","Date Added":today,"Tender Title":"Education Data System TA","Donor/Client":"ADB",
+        "Country":"Bangladesh","Sector":"Education","Submission Type":"Technical Proposal","Deadline":d14,
+        "Estimated Contract Value":"Unknown","Source Link":"[Link]","Potential Client/Firm":"Sample Consulting Ltd",
+        "Potential Role":"Bid Diagnostic","Eligibility Requirements":"Similar assignments required",
+        "Expert Requirements":"Team Leader Education Expert","Evaluation Criteria":"Technical 80 Financial 20",
+        "Required Forms":"ADB Forms","Opportunity Fit Score":4,"Deadline Risk":"Medium","Status":"Tracking",
+        "Notes":"Potential education fit","Next Action":"Identify contact"
+      }),
+      row_(headers, {
+        "Tender ID":"T002","Date Added":today,"Tender Title":"Governance Reform Evaluation","Donor/Client":"World Bank",
+        "Country":"Bangladesh","Sector":"Governance","Submission Type":"EOI","Deadline":addDays_(today, 11),
+        "Estimated Contract Value":"Unknown","Source Link":"[Link]","Potential Client/Firm":"Research Firm Ltd",
+        "Potential Role":"EOI Support","Eligibility Requirements":"Relevant evaluation experience",
+        "Expert Requirements":"M&E Expert Governance Expert","Evaluation Criteria":"CV and firm experience",
+        "Required Forms":"EOI Template","Opportunity Fit Score":5,"Deadline Risk":"High","Status":"Potential",
+        "Notes":"Good methodology fit","Next Action":"Contact firm"
+      }),
+      row_(headers, {
+        "Tender ID":"T003","Date Added":today,"Tender Title":"Climate Finance Advisory","Donor/Client":"EU",
+        "Country":"Bangladesh","Sector":"Climate","Submission Type":"RFP","Deadline":d23,
+        "Estimated Contract Value":"Unknown","Source Link":"[Link]","Potential Client/Firm":"International Firm Ltd",
+        "Potential Role":"Proposal QA","Eligibility Requirements":"Consortium eligibility",
+        "Expert Requirements":"Climate Finance Expert","Evaluation Criteria":"Methodology weighted",
+        "Required Forms":"EU Forms","Opportunity Fit Score":4,"Deadline Risk":"Low","Status":"Tracking",
+        "Notes":"International lead possible","Next Action":"Track and message"
+      })
+    ],
+    validations: {
+      "Submission Type":["EOI","REOI","RFP","Technical Proposal","Financial Proposal","Individual Consultant","Other"],
+      "Deadline Risk":["Low","Medium","High","Critical"],
+      "Status":["Tracking","Potential","Contacted","Active","Rejected","Submitted","Closed"]
+    }
+  });
+
+  // 3. Client Intake
+  headers = [
+    "Client ID","Date","Client Name","Organization","Contact Person","Email","WhatsApp","Tender Title",
+    "Donor/Client","Country","Sector","Submission Deadline","Submission Type","Bidding Role","Main Concern",
+    "CVs Available","Past References Available","Forms/Templates Available","Existing Draft","Preferred Diagnostic",
+    "Budget Approved","Payment Status","Documents Received","Confidentiality Required","Notes"
+  ];
+
+  sheets.push({
+    name: "Client Intake",
+    headers,
+    sampleRows: [
+      row_(headers, {
+        "Client ID":"C001","Date":today,"Client Name":"Sample Client 1","Organization":"Sample Consulting Ltd",
+        "Contact Person":"Sample Person","Email":"[Email]","WhatsApp":"[Phone]","Tender Title":"Education Data System TA",
+        "Donor/Client":"ADB","Country":"Bangladesh","Sector":"Education","Submission Deadline":d14,
+        "Submission Type":"Technical Proposal","Bidding Role":"Lead","Main Concern":"Need compliance and CV fit",
+        "CVs Available":"Yes","Past References Available":"Yes","Forms/Templates Available":"Yes","Existing Draft":"No",
+        "Preferred Diagnostic":"72h","Budget Approved":"Yes","Payment Status":"Pending","Documents Received":"Partial",
+        "Confidentiality Required":"Yes","Notes":"Awaiting payment"
+      }),
+      row_(headers, {
+        "Client ID":"C002","Date":today,"Client Name":"Sample Client 2","Organization":"Research Firm Ltd",
+        "Contact Person":"Sample Person","Email":"[Email]","WhatsApp":"[Phone]","Tender Title":"Governance Reform Evaluation",
+        "Donor/Client":"World Bank","Country":"Bangladesh","Sector":"Governance","Submission Deadline":addDays_(today, 11),
+        "Submission Type":"EOI","Bidding Role":"Partner","Main Concern":"Need bid decision",
+        "CVs Available":"Partial","Past References Available":"Yes","Forms/Templates Available":"No","Existing Draft":"No",
+        "Preferred Diagnostic":"48h","Budget Approved":"Need Approval","Payment Status":"Pending","Documents Received":"To Receive",
+        "Confidentiality Required":"No","Notes":"Send reminder"
+      }),
+      row_(headers, {
+        "Client ID":"C003","Date":today,"Client Name":"Sample Client 3","Organization":"International Firm Ltd",
+        "Contact Person":"Sample Person","Email":"[Email]","WhatsApp":"[Phone]","Tender Title":"Climate Finance Advisory",
+        "Donor/Client":"EU","Country":"Bangladesh","Sector":"Climate","Submission Deadline":d23,
+        "Submission Type":"RFP","Bidding Role":"Sub-consultant","Main Concern":"Need methodology support",
+        "CVs Available":"Yes","Past References Available":"Partial","Forms/Templates Available":"Yes","Existing Draft":"Yes",
+        "Preferred Diagnostic":"72h","Budget Approved":"Yes","Payment Status":"Pending","Documents Received":"Partial",
+        "Confidentiality Required":"Yes","Notes":"Quote pending"
+      })
+    ],
+    validations: {
+      "Submission Type":["EOI","REOI","RFP","Technical Proposal","Financial Proposal","Individual Consultant","Other"],
+      "Bidding Role":["Lead","Partner","Sub-consultant","Consortium Member","Individual Expert","Not Sure"],
+      "CVs Available":["Yes","No","Partial","Not Sure"],
+      "Past References Available":["Yes","No","Partial","Not Sure"],
+      "Forms/Templates Available":["Yes","No","Partial","Not Sure"],
+      "Existing Draft":["Yes","No","Partial","Not Sure"],
+      "Preferred Diagnostic":["48h","72h","Not Sure"],
+      "Budget Approved":["Yes","No","Need Approval"],
+      "Payment Status":["Pending","Invoice Sent","Paid","Delayed","Cancelled"],
+      "Documents Received":["No","Partial","Complete","To Receive"],
+      "Confidentiality Required":["Yes","No"]
+    }
+  });
+
+  // 4. ToR Extraction
+  headers = [
+    "Requirement ID","Tender ID","ToR Section/Page","Requirement Category","Requirement Text","Mandatory",
+    "Interpretation","Evidence Needed","Proposal Section Affected","Expert Role Affected","Deliverable Affected",
+    "Evaluation Weight","Form/Annex Required","Clarification Needed","Risk Level","Notes"
+  ];
+
+  sheets.push({
+    name: "ToR Extraction",
+    headers,
+    sampleRows: [
+      row_(headers, {
+        "Requirement ID":"R001","Tender ID":"T001","ToR Section/Page":"Section 3 Page 7",
+        "Requirement Category":"Expert Requirement","Requirement Text":"Team Leader must have 15 years relevant experience",
+        "Mandatory":"Yes","Interpretation":"Senior expert required","Evidence Needed":"CV evidence",
+        "Proposal Section Affected":"Team Composition","Expert Role Affected":"Team Leader","Deliverable Affected":"None",
+        "Evaluation Weight":"High","Form/Annex Required":"No","Clarification Needed":"No","Risk Level":"Medium","Notes":"Need CV check"
+      }),
+      row_(headers, {
+        "Requirement ID":"R002","Tender ID":"T001","ToR Section/Page":"Section 4 Page 9",
+        "Requirement Category":"Deliverable","Requirement Text":"Inception report due within 2 weeks",
+        "Mandatory":"Yes","Interpretation":"Fast mobilization needed","Evidence Needed":"Workplan",
+        "Proposal Section Affected":"Methodology","Expert Role Affected":"None","Deliverable Affected":"Inception Report",
+        "Evaluation Weight":"Medium","Form/Annex Required":"No","Clarification Needed":"No","Risk Level":"Low","Notes":"Reflect in workplan"
+      }),
+      row_(headers, {
+        "Requirement ID":"R003","Tender ID":"T001","ToR Section/Page":"Section 5 Page 12",
+        "Requirement Category":"Submission Instruction","Requirement Text":"Technical proposal maximum 30 pages",
+        "Mandatory":"Yes","Interpretation":"Strict page control needed","Evidence Needed":"Formatted proposal",
+        "Proposal Section Affected":"All Sections","Expert Role Affected":"None","Deliverable Affected":"None",
+        "Evaluation Weight":"High","Form/Annex Required":"Yes","Clarification Needed":"No","Risk Level":"High","Notes":"Create page budget"
+      })
+    ],
+    validations: {
+      "Requirement Category":["Eligibility","Expert Requirement","Deliverable","Methodology","Evaluation Criteria","Form","Submission Instruction","Timeline","Budget","Other"],
+      "Mandatory":["Yes","No","Unclear"],
+      "Clarification Needed":["Yes","No"],
+      "Risk Level":["Low","Medium","High","Critical"]
+    }
+  });
+
+  // 5. Compliance Matrix
+  headers = [
+    "Requirement ID","Tender ID","ToR Section/Page","Requirement Text","Mandatory","Evidence Needed",
+    "Available Evidence","Gap","Proposal Location","Responsible Person","Status","Risk Level",
+    "Action Required","Deadline","Final Check","Notes"
+  ];
+
+  sheets.push({
+    name: "Compliance Matrix",
+    headers,
+    sampleRows: [
+      row_(headers, {
+        "Requirement ID":"R001","Tender ID":"T001","ToR Section/Page":"Section 3 Page 7",
+        "Requirement Text":"Team Leader must have 15 years relevant experience","Mandatory":"Yes",
+        "Evidence Needed":"CV showing 15 years","Available Evidence":"Available CV","Gap":"Needs stronger relevant wording",
+        "Proposal Location":"Key Experts Section","Responsible Person":"Syful","Status":"Partial","Risk Level":"Medium",
+        "Action Required":"Rewrite CV summary","Deadline":addDays_(today, 3),"Final Check":"No","Notes":"Check donor wording"
+      }),
+      row_(headers, {
+        "Requirement ID":"R002","Tender ID":"T001","ToR Section/Page":"Section 4 Page 9",
+        "Requirement Text":"Inception report due within 2 weeks","Mandatory":"Yes","Evidence Needed":"Workplan activity",
+        "Available Evidence":"None","Gap":"Add workplan row","Proposal Location":"Methodology Workplan",
+        "Responsible Person":"Syful","Status":"Gap","Risk Level":"High","Action Required":"Add inception timeline",
+        "Deadline":addDays_(today, 3),"Final Check":"No","Notes":"High priority"
+      }),
+      row_(headers, {
+        "Requirement ID":"R003","Tender ID":"T001","ToR Section/Page":"Section 5 Page 12",
+        "Requirement Text":"Technical proposal max 30 pages","Mandatory":"Yes","Evidence Needed":"Page controlled draft",
+        "Available Evidence":"None","Gap":"Need page plan","Proposal Location":"All Proposal","Responsible Person":"Syful",
+        "Status":"Gap","Risk Level":"High","Action Required":"Create page budget","Deadline":addDays_(today, 3),
+        "Final Check":"No","Notes":"Must control length"
+      })
+    ],
+    validations: {
+      "Mandatory":["Yes","No","Unclear"],
+      "Status":["Met","Partial","Gap","Not Applicable"],
+      "Risk Level":["Low","Medium","High","Critical"],
+      "Final Check":["Yes","No"]
+    }
+  });
+
+  // 6. CV Matcher
+  headers = [
+    "Expert Match ID","Tender ID","Expert Role","Candidate Name","ToR Requirement","Required Qualification",
+    "Required Years","Required Specific Experience","Required Country/Region Experience","Required Donor Experience",
+    "Required Language/Tools","CV Evidence","Match Score","Gap","Rewrite Needed","Suggested CV Language",
+    "Replace Candidate","Risk Level","Notes"
+  ];
+
+  sheets.push({
+    name: "CV Matcher",
+    headers,
+    sampleRows: [
+      row_(headers, {
+        "Expert Match ID":"CV001","Tender ID":"T001","Expert Role":"Team Leader","Candidate Name":"Sample Candidate A",
+        "ToR Requirement":"15 years relevant experience","Required Qualification":"Masters Degree","Required Years":15,
+        "Required Specific Experience":"Education sector reform","Required Country/Region Experience":"Bangladesh",
+        "Required Donor Experience":"ADB World Bank","Required Language/Tools":"English",
+        "CV Evidence":"Relevant projects listed","Match Score":4,"Gap":"Needs stronger donor language",
+        "Rewrite Needed":"Yes","Suggested CV Language":"Led donor funded education reform assignments in Bangladesh",
+        "Replace Candidate":"No","Risk Level":"Medium","Notes":"Rewrite summary"
+      }),
+      row_(headers, {
+        "Expert Match ID":"CV002","Tender ID":"T001","Expert Role":"CBA Expert","Candidate Name":"Sample Candidate B",
+        "ToR Requirement":"CBA and economic analysis","Required Qualification":"Economics Degree","Required Years":10,
+        "Required Specific Experience":"CBA for public projects","Required Country/Region Experience":"South Asia",
+        "Required Donor Experience":"ADB World Bank","Required Language/Tools":"Excel Stata",
+        "CV Evidence":"Strong CBA experience","Match Score":5,"Gap":"None","Rewrite Needed":"No",
+        "Replace Candidate":"No","Risk Level":"Low","Notes":"Strong fit"
+      }),
+      row_(headers, {
+        "Expert Match ID":"CV003","Tender ID":"T001","Expert Role":"Monitoring Expert","Candidate Name":"Sample Candidate C",
+        "ToR Requirement":"M&E system design","Required Qualification":"Social Science Degree","Required Years":8,
+        "Required Specific Experience":"Results framework and surveys","Required Country/Region Experience":"Bangladesh",
+        "Required Donor Experience":"Donor projects","Required Language/Tools":"ODK Stata",
+        "CV Evidence":"Survey experience listed","Match Score":3,"Gap":"Weak impact evaluation evidence",
+        "Rewrite Needed":"Yes","Suggested CV Language":"Supported results monitoring and survey based evaluation",
+        "Replace Candidate":"Maybe","Risk Level":"High","Notes":"May need backup"
+      })
+    ],
+    validations: {
+      "Match Score":["1","2","3","4","5"],
+      "Rewrite Needed":["Yes","No"],
+      "Replace Candidate":["Yes","No","Maybe"],
+      "Risk Level":["Low","Medium","High","Critical"]
+    }
+  });
+
+  // 7. Bid/No-Bid Scorecard
+  headers = [
+    "Tender ID","Criterion","Weight","Score","Weighted Score","Evidence","Concern",
+    "Recommended Action","Decision Impact","Notes"
+  ];
+
+  sheets.push({
+    name: "Bid/No-Bid Scorecard",
+    headers,
+    sampleRows: [
+      row_(headers, {
+        "Tender ID":"T001","Criterion":"Strategic Fit","Weight":0.20,"Score":5,
+        "Evidence":"Strong education and CBA fit","Concern":"None","Recommended Action":"Pursue",
+        "Decision Impact":"Positive","Notes":"Strong fit"
+      }),
+      row_(headers, {
+        "Tender ID":"T001","Criterion":"Deadline Feasibility","Weight":0.15,"Score":3,
+        "Evidence":"14 days remaining","Concern":"Tight but possible","Recommended Action":"Proceed only with fast intake",
+        "Decision Impact":"Medium Risk","Notes":"Needs rapid action"
+      }),
+      row_(headers, {
+        "Tender ID":"T001","Criterion":"CV Team Fit","Weight":0.15,"Score":3,
+        "Evidence":"Most CVs available","Concern":"M&E expert weak","Recommended Action":"Rewrite or replace",
+        "Decision Impact":"Medium Risk","Notes":"Check CV details"
+      })
+    ],
+    validations: {
+      "Criterion":["Strategic Fit","Technical Fit","CV Team Fit","Past Experience Fit","Deadline Feasibility","Compliance Risk","Client Seriousness","Proposal Value","Repeat Potential","Reusability"],
+      "Score":["1","2","3","4","5"],
+      "Decision Impact":["Positive","Medium Risk","High Risk","Negative"]
+    }
+  });
+
+  // 8. Risk Register
+  headers = [
+    "Risk ID","Tender ID","Risk Category","Risk Description","Severity","Probability","Impact",
+    "Detection Evidence","Mitigation Action","Owner","Status","Resolved","Reusable Lesson","Notes"
+  ];
+
+  sheets.push({
+    name: "Risk Register",
+    headers,
+    sampleRows: [
+      row_(headers, {
+        "Risk ID":"RK001","Tender ID":"T001","Risk Category":"CV Risk",
+        "Risk Description":"Team Leader CV does not clearly show 15 years donor experience",
+        "Severity":"High","Probability":"Medium","Impact":"High","Detection Evidence":"CV review",
+        "Mitigation Action":"Rewrite CV summary and project bullets","Owner":"Syful","Status":"Open","Resolved":"No",
+        "Reusable Lesson":"Always map years and donor experience","Notes":"High priority"
+      }),
+      row_(headers, {
+        "Risk ID":"RK002","Tender ID":"T001","Risk Category":"Deadline Risk",
+        "Risk Description":"Only 14 days remaining for full technical proposal",
+        "Severity":"Medium","Probability":"High","Impact":"High","Detection Evidence":"Deadline",
+        "Mitigation Action":"Use 72h diagnostic then sprint","Owner":"Syful","Status":"Open","Resolved":"No",
+        "Reusable Lesson":"Deadline under 2 weeks needs rush scope","Notes":"Watch closely"
+      }),
+      row_(headers, {
+        "Risk ID":"RK003","Tender ID":"T001","Risk Category":"Compliance Risk",
+        "Risk Description":"Page limit may be exceeded","Severity":"High","Probability":"Medium","Impact":"High",
+        "Detection Evidence":"ToR page limit","Mitigation Action":"Create page budget","Owner":"Syful","Status":"Open",
+        "Resolved":"No","Reusable Lesson":"Every proposal needs page budget","Notes":"Control from start"
+      })
+    ],
+    validations: {
+      "Risk Category":["Eligibility","CV Risk","Deadline Risk","Compliance Risk","Methodology Risk","Evidence Risk","Partner Risk","Budget Risk","Ethical Risk","Submission Risk"],
+      "Severity":["Low","Medium","High","Critical"],
+      "Probability":["Low","Medium","High","Critical"],
+      "Impact":["Low","Medium","High","Critical"],
+      "Status":["Open","In Progress","Resolved","Accepted"],
+      "Resolved":["Yes","No"]
+    }
+  });
+
+  // 9. Pricing Tracker
+  headers = [
+    "Quote ID","Date","Client Name","Organization","Client Type","Country","Package","Price Quoted",
+    "Currency","Discount Offered","Final Price","Payment Terms","Invoice Sent","Invoice Date",
+    "Payment Received","Payment Date","Objection","Outcome","Follow-Up Date","Notes"
+  ];
+
+  sheets.push({
+    name: "Pricing Tracker",
+    headers,
+    sampleRows: [
+      row_(headers, {
+        "Quote ID":"Q001","Date":today,"Client Name":"Sample Client 1","Organization":"Sample Consulting Ltd",
+        "Client Type":"Bangladesh Firm","Country":"Bangladesh","Package":"72h Diagnostic","Price Quoted":150000,
+        "Currency":"BDT","Discount Offered":"No","Final Price":150000,"Payment Terms":"100 percent upfront",
+        "Invoice Sent":"No","Payment Received":"No","Objection":"None","Outcome":"Pending",
+        "Follow-Up Date":addDays_(today, 1),"Notes":"Awaiting confirmation"
+      }),
+      row_(headers, {
+        "Quote ID":"Q002","Date":today,"Client Name":"Sample Client 2","Organization":"International Firm Ltd",
+        "Client Type":"International Firm","Country":"UK","Package":"48h Diagnostic","Price Quoted":1500,
+        "Currency":"USD","Discount Offered":"No","Final Price":1500,"Payment Terms":"100 percent upfront",
+        "Invoice Sent":"No","Payment Received":"No","Objection":"None","Outcome":"Pending",
+        "Follow-Up Date":addDays_(today, 1),"Notes":"Awaiting ToR"
+      }),
+      row_(headers, {
+        "Quote ID":"Q003","Date":today,"Client Name":"Sample Client 3","Organization":"Independent Consultant",
+        "Client Type":"Senior Consultant","Country":"Bangladesh","Package":"CV ToR Diagnostic","Price Quoted":50000,
+        "Currency":"BDT","Discount Offered":"No","Final Price":50000,"Payment Terms":"100 percent upfront",
+        "Invoice Sent":"No","Payment Received":"No","Objection":"Price high","Outcome":"Negotiating",
+        "Follow-Up Date":addDays_(today, 1),"Notes":"May reduce scope"
+      })
+    ],
+    validations: {
+      "Package":["48h Diagnostic","72h Diagnostic","Full Proposal Sprint","Monthly Bid Desk","CV ToR Diagnostic"],
+      "Currency":["BDT","USD","EUR"],
+      "Discount Offered":["Yes","No"],
+      "Invoice Sent":["Yes","No"],
+      "Payment Received":["Yes","No"],
+      "Outcome":["Pending","Accepted","Rejected","Negotiating","Paid","Lost"]
+    }
+  });
+
+  // 10. IP Capture Database
+  headers = [
+    "IP ID","Date Captured","Project/Tender ID","Donor","Sector","Country","Pattern Type","Pattern Description",
+    "Expert Requirement","Evaluation Criteria","Methodology Module","Compliance Risk","CV Language Pattern",
+    "QA Failure","Pricing Signal","Win/Loss Lesson","Reusable Asset Created","Notes"
+  ];
+
+  sheets.push({
+    name: "IP Capture Database",
+    headers,
+    sampleRows: [
+      row_(headers, {
+        "IP ID":"IP001","Date Captured":today,"Project/Tender ID":"T001","Donor":"ADB","Sector":"Education",
+        "Country":"Bangladesh","Pattern Type":"Expert Pattern",
+        "Pattern Description":"Team Leader requires 15 years and donor education reform experience",
+        "Expert Requirement":"Team Leader 15 years","Evaluation Criteria":"High technical score",
+        "Methodology Module":"Education reform methodology","Compliance Risk":"CV donor language weak",
+        "CV Language Pattern":"Led donor funded education reform","QA Failure":"None",
+        "Pricing Signal":"BDT 150k quote","Win/Loss Lesson":"Pending","Reusable Asset Created":"Yes",
+        "Notes":"Add to CV matcher"
+      }),
+      row_(headers, {
+        "IP ID":"IP002","Date Captured":today,"Project/Tender ID":"T001","Donor":"ADB","Sector":"Education",
+        "Country":"Bangladesh","Pattern Type":"Compliance Risk",
+        "Pattern Description":"Strict 30 page technical proposal limit","Expert Requirement":"None",
+        "Evaluation Criteria":"Page control","Methodology Module":"Page budget module",
+        "Compliance Risk":"Page limit risk","CV Language Pattern":"None","QA Failure":"Potential over length",
+        "Pricing Signal":"None","Win/Loss Lesson":"Pending","Reusable Asset Created":"Yes",
+        "Notes":"Add page budget template"
+      }),
+      row_(headers, {
+        "IP ID":"IP003","Date Captured":today,"Project/Tender ID":"T001","Donor":"ADB","Sector":"Education",
+        "Country":"Bangladesh","Pattern Type":"Methodology Module",
+        "Pattern Description":"Needs inception diagnostic validation finalization sequence",
+        "Expert Requirement":"None","Evaluation Criteria":"Methodology quality",
+        "Methodology Module":"Education TA workstream module","Compliance Risk":"None",
+        "CV Language Pattern":"None","QA Failure":"None","Pricing Signal":"None","Win/Loss Lesson":"Pending",
+        "Reusable Asset Created":"Yes","Notes":"Add methodology bank entry"
+      })
+    ],
+    validations: {
+      "Pattern Type":["Donor Pattern","Expert Pattern","Evaluation Criteria","Methodology Module","Compliance Risk","CV Language","QA Failure","Pricing Signal","Win/Loss Lesson"],
+      "Reusable Asset Created":["Yes","No"]
+    }
+  });
+
+  // 11. Weekly Dashboard
+  headers = [
+    "Week Start Date","Week End Date","New Leads Added","Messages Sent","Follow-Ups Sent","Replies Received",
+    "Calls Booked","Calls Completed","Quotes Sent","Paid Diagnostics Sold","Revenue Collected BDT",
+    "Revenue Collected USD","Diagnostics Delivered","Full Proposal Upsells Offered","Retainer Conversations",
+    "Templates Improved","Methodology Modules Added","IP Entries Captured","Top Objection","Main Learning","Next Week Priority"
+  ];
+
+  sheets.push({
+    name: "Weekly Dashboard",
+    headers,
+    sampleRows: [
+      row_(headers, {
+        "Week Start Date":today,"Week End Date":addDays_(today, 6),
+        "Diagnostics Delivered":0,"Full Proposal Upsells Offered":0,"Retainer Conversations":0,
+        "Templates Improved":0,"Methodology Modules Added":0,"Top Objection":"Price high",
+        "Main Learning":"Test warm contacts","Next Week Priority":"Focus warm leads"
+      }),
+      row_(headers, {
+        "Week Start Date":addDays_(today, 7),"Week End Date":addDays_(today, 13)
+      }),
+      row_(headers, {
+        "Week Start Date":addDays_(today, 14),"Week End Date":addDays_(today, 20)
+      })
+    ],
+    validations: {}
+  });
+
+  return sheets;
+}
+
+function applyCockpitFormulas_(ss) {
+  const leadSheet = ss.getSheetByName("Leads CRM");
+  leadSheet.getRange("U2:U501").setFormulaR1C1('=IF(COUNTA(RC[-4]:RC[-2])=0,"",SUM(RC[-4]:RC[-2]))');
+
+  const tenderSheet = ss.getSheetByName("Tender Tracker");
+  tenderSheet.getRange("I2:I501").setFormulaR1C1('=IF(RC[-1]="","",RC[-1]-TODAY())');
+
+  const scoreSheet = ss.getSheetByName("Bid/No-Bid Scorecard");
+  scoreSheet.getRange("E2:E501").setFormulaR1C1('=IF(OR(RC[-2]="",RC[-1]=""),"",RC[-2]*RC[-1])');
+
+  const dash = ss.getSheetByName("Weekly Dashboard");
+
+  for (let r = 2; r <= 20; r++) {
+    dash.getRange(r, 3).setFormula(`=COUNTIFS('Leads CRM'!B:B,">="&A${r},'Leads CRM'!B:B,"<="&B${r})`);
+    dash.getRange(r, 4).setFormula(`=COUNTIFS('Leads CRM'!W:W,">="&A${r},'Leads CRM'!W:W,"<="&B${r})`);
+    dash.getRange(r, 5).setFormula(`=COUNTIFS('Leads CRM'!Z:Z,">="&A${r},'Leads CRM'!Z:Z,"<="&B${r})+COUNTIFS('Leads CRM'!AA:AA,">="&A${r},'Leads CRM'!AA:AA,"<="&B${r})+COUNTIFS('Leads CRM'!AB:AB,">="&A${r},'Leads CRM'!AB:AB,"<="&B${r})`);
+    dash.getRange(r, 6).setFormula(`=COUNTIFS('Leads CRM'!AC:AC,"Yes",'Leads CRM'!AD:AD,">="&A${r},'Leads CRM'!AD:AD,"<="&B${r})`);
+    dash.getRange(r, 7).setFormula(`=COUNTIFS('Leads CRM'!AE:AE,"Yes",'Leads CRM'!AF:AF,">="&A${r},'Leads CRM'!AF:AF,"<="&B${r})`);
+    dash.getRange(r, 8).setFormula(`=COUNTIFS('Leads CRM'!AG:AG,"Yes",'Leads CRM'!AH:AH,">="&A${r},'Leads CRM'!AH:AH,"<="&B${r})`);
+    dash.getRange(r, 9).setFormula(`=COUNTIFS('Leads CRM'!AI:AI,"Yes",'Leads CRM'!AJ:AJ,">="&A${r},'Leads CRM'!AJ:AJ,"<="&B${r})`);
+    dash.getRange(r, 10).setFormula(`=COUNTIFS('Pricing Tracker'!G:G,"*Diagnostic*",'Pricing Tracker'!O:O,"Yes",'Pricing Tracker'!P:P,">="&A${r},'Pricing Tracker'!P:P,"<="&B${r})`);
+    dash.getRange(r, 11).setFormula(`=SUMIFS('Pricing Tracker'!K:K,'Pricing Tracker'!I:I,"BDT",'Pricing Tracker'!O:O,"Yes",'Pricing Tracker'!P:P,">="&A${r},'Pricing Tracker'!P:P,"<="&B${r})`);
+    dash.getRange(r, 12).setFormula(`=SUMIFS('Pricing Tracker'!K:K,'Pricing Tracker'!I:I,"USD",'Pricing Tracker'!O:O,"Yes",'Pricing Tracker'!P:P,">="&A${r},'Pricing Tracker'!P:P,"<="&B${r})`);
+    dash.getRange(r, 18).setFormula(`=COUNTIFS('IP Capture Database'!B:B,">="&A${r},'IP Capture Database'!B:B,"<="&B${r})`);
+  }
+}
+
+function formatSheet_(sh, lastCol) {
+  sh.setFrozenRows(1);
+  sh.getRange(1, 1, 1, lastCol)
+    .setFontWeight("bold")
+    .setBackground("#1f4e78")
+    .setFontColor("#ffffff")
+    .setWrap(true);
+
+  sh.getDataRange().setWrap(true);
+  sh.autoResizeColumns(1, lastCol);
+
+  try {
+    sh.getRange(1, 1, Math.max(1, sh.getLastRow()), lastCol).createFilter();
+  } catch (e) {}
+
+  sh.setRowHeight(1, 40);
+}
+
+function applyValidations_(sh, headers, validations) {
+  Object.keys(validations).forEach(header => {
+    const col = headers.indexOf(header) + 1;
+    if (col <= 0) return;
+
+    const rule = SpreadsheetApp.newDataValidation()
+      .requireValueInList(validations[header], true)
+      .setAllowInvalid(false)
+      .build();
+
+    sh.getRange(2, col, 500, 1).setDataValidation(rule);
+  });
+}
+
+function row_(headers, obj) {
+  return headers.map(h => obj[h] !== undefined ? obj[h] : "");
+}
+
+function addDays_(date, days) {
+  const d = new Date(date);
+  d.setDate(d.getDate() + days);
+  return d;
+}
+
+/**
+ * 2. GOOGLE FORM BUILDER SCRIPT
+ */
+function buildIntakeForm() {
+  const form = FormApp.create("TenderProof Rapid Bid Diagnostic — Client Intake Form");
+  PropertiesService.getScriptProperties().setProperty("INTAKE_FORM_ID", form.getId());
+
+  form.setDescription(
+    "Please complete this form to request a 48–72 hour diagnostic for a donor-funded tender or proposal opportunity. " +
+    "The diagnostic may include ToR analysis, bid/no-bid recommendation, compliance matrix, CV/expert matching, methodology outline, and proposal risk flags. " +
+    "Full proposal writing is separate and quoted after the diagnostic or after scope review.\n\n" +
+    "Work begins only after scope confirmation, payment, and receipt of required documents."
+  );
+
+  form.setConfirmationMessage(
+    "Thank you. Your TenderProof Rapid Bid Diagnostic request has been received. " +
+    "Please also send the ToR and deadline directly to [Email] or WhatsApp [Phone] if not uploaded here. " +
+    "I will review the scope and confirm the package, price, timeline, and payment terms before work begins."
+  );
+
+  // Section 1
+  form.addSectionHeaderItem().setTitle("Section 1: Client information");
+  form.addTextItem().setTitle("Name").setRequired(true).setHelpText("Your full name.");
+  form.addTextItem().setTitle("Organization").setRequired(true).setHelpText("Firm, NGO, think tank, or individual consultant name.");
+  form.addTextItem().setTitle("Role/designation").setRequired(true).setHelpText("Example: Managing Director, Proposal Manager, Team Leader.");
+  form.addTextItem().setTitle("Email").setRequired(true).setHelpText("Use the email for follow-up and documents.");
+  form.addTextItem().setTitle("WhatsApp/phone").setRequired(true).setHelpText("Include country code if outside Bangladesh.");
+
+  // Section 2
+  form.addPageBreakItem().setTitle("Section 2: Tender information");
+  form.addTextItem().setTitle("Tender title").setRequired(true).setHelpText("Copy the title from the ToR/RFP.");
+  form.addTextItem().setTitle("Donor/client").setRequired(true).setHelpText("Example: ADB, World Bank, EU, GIZ, USAID, UN.");
+  form.addTextItem().setTitle("Country/region").setRequired(true).setHelpText("Country or region of assignment.");
+  form.addListItem()
+    .setTitle("Sector")
+    .setChoiceValues(["Education","Governance","Climate","Infrastructure","Private Sector Development","Evaluation/M&E","Public Finance","CBA/Economics","Other"])
+    .setRequired(true);
+  form.addDateItem().setTitle("Submission deadline").setRequired(true).setHelpText("Final submission deadline.");
+  form.addMultipleChoiceItem()
+    .setTitle("Submission type")
+    .setChoiceValues(["EOI","REOI","RFP","Technical Proposal","Financial Proposal","Individual Consultant","Other"])
+    .setRequired(true);
+
+  // Section 3
+  form.addPageBreakItem().setTitle("Section 3: Bidding role and concern");
+  form.addMultipleChoiceItem()
+    .setTitle("Are you bidding as lead, partner, sub-consultant, consortium member, or individual expert?")
+    .setChoiceValues(["Lead","Partner","Sub-consultant","Consortium Member","Individual Expert","Not Sure"])
+    .setRequired(true);
+  form.addParagraphTextItem()
+    .setTitle("What is your main concern about this opportunity?")
+    .setRequired(true)
+    .setHelpText("Example: compliance, CV fit, methodology, deadline, expert gaps, bid/no-bid decision.");
+  form.addTextItem()
+    .setTitle("Who will decide whether to proceed with this diagnostic?")
+    .setRequired(true)
+    .setHelpText("Name or role of decision-maker.");
+
+  // Section 4
+  form.addPageBreakItem().setTitle("Section 4: Available documents");
+  form.addMultipleChoiceItem()
+    .setTitle("Do you have the ToR/RFP/EOI document?")
+    .setChoiceValues(["Yes","No"])
+    .setRequired(true)
+    .setHelpText("If no, complete the remaining questions and send the ToR when available.");
+
+  addFileUploadOrFallback_(form, "Upload ToR/RFP/EOI document", true, "Upload PDF or Word document. If upload is unavailable, paste a Drive link.");
+  form.addMultipleChoiceItem().setTitle("Do you have CVs ready?").setChoiceValues(["Yes","No","Partially"]).setRequired(true);
+  addFileUploadOrFallback_(form, "Upload available CVs", false, "Upload CVs if available. If upload is unavailable, paste a Drive link.");
+  form.addMultipleChoiceItem().setTitle("Do you have past project references?").setChoiceValues(["Yes","No","Partially"]).setRequired(true);
+  addFileUploadOrFallback_(form, "Upload past project references", false, "Upload Word, Excel, or PDF if available. If upload is unavailable, paste a Drive link.");
+  form.addMultipleChoiceItem().setTitle("Do you have donor/client forms or templates?").setChoiceValues(["Yes","No","Not Sure"]).setRequired(true);
+  addFileUploadOrFallback_(form, "Upload donor/client forms/templates", false, "Upload technical proposal form, CV format, EOI form, etc. If upload is unavailable, paste a Drive link.");
+
+  // Section 5
+  form.addPageBreakItem().setTitle("Section 5: Existing work and package");
+  form.addMultipleChoiceItem().setTitle("Do you already have a draft proposal?").setChoiceValues(["Yes","No"]).setRequired(true);
+  addFileUploadOrFallback_(form, "Upload existing draft", false, "Upload draft if available. If upload is unavailable, paste a Drive link.");
+  form.addMultipleChoiceItem()
+    .setTitle("Which diagnostic do you need?")
+    .setChoiceValues(["48-hour Rapid Diagnostic","72-hour Deep Diagnostic","Not Sure"])
+    .setRequired(true);
+  form.addMultipleChoiceItem()
+    .setTitle("Is budget approved for this diagnostic?")
+    .setChoiceValues(["Yes","No","Need Approval"])
+    .setRequired(true);
+  form.addTextItem().setTitle("Preferred payment method").setRequired(false).setHelpText("Bank transfer, mobile banking, international transfer, etc.");
+  form.addMultipleChoiceItem().setTitle("Do you require a confidentiality note/NDA?").setChoiceValues(["Yes","No"]).setRequired(true);
+  form.addParagraphTextItem().setTitle("Any other instruction or concern?").setRequired(false);
+
+  // Section 6
+  form.addPageBreakItem().setTitle("Section 6: No ToR available yet");
+  form.addTextItem().setTitle("When do you expect the ToR/RFP to be available?").setRequired(false).setHelpText("Provide expected date if known.");
+  form.addMultipleChoiceItem()
+    .setTitle("Would you like to receive the one-page TenderProof offer note for future use?")
+    .setChoiceValues(["Yes","No"])
+    .setRequired(false);
+
+  const cockpitId = PropertiesService.getScriptProperties().getProperty("COCKPIT_ID");
+  if (cockpitId) {
+    form.setDestination(FormApp.DestinationType.SPREADSHEET, cockpitId);
+  }
+
+  deleteTriggersByHandler_("onIntakeFormSubmit");
+  ScriptApp.newTrigger("onIntakeFormSubmit").forForm(form).onFormSubmit().create();
+
+  Logger.log("Intake form URL: " + form.getEditUrl());
+  Logger.log("Public form URL: " + form.getPublishedUrl());
+
+  return form;
+}
+
+function addFileUploadOrFallback_(form, title, required, helpText) {
+  try {
+    return form.addFileUploadItem().setTitle(title).setRequired(required).setHelpText(helpText);
+  } catch (e) {
+    return form.addParagraphTextItem()
+      .setTitle(title + " — Drive link")
+      .setRequired(required)
+      .setHelpText("File upload could not be added by script. Paste a Google Drive link here. " + helpText);
+  }
+}
+
+function onIntakeFormSubmit(e) {
+  const cockpitId = PropertiesService.getScriptProperties().getProperty("COCKPIT_ID");
+  if (!cockpitId) return;
+
+  const ss = SpreadsheetApp.openById(cockpitId);
+  const sh = ss.getSheetByName("Client Intake");
+  if (!sh) return;
+
+  const answers = {};
+  e.response.getItemResponses().forEach(ir => {
+    answers[ir.getItem().getTitle()] = ir.getResponse();
+  });
+
+  const now = new Date();
+  const clientId = "C" + Utilities.formatDate(now, Session.getScriptTimeZone(), "yyyyMMddHHmmss");
+
+  const row = [
+    clientId,
+    now,
+    answers["Name"] || "",
+    answers["Organization"] || "",
+    answers["Name"] || "",
+    answers["Email"] || "",
+    answers["WhatsApp/phone"] || "",
+    answers["Tender title"] || "",
+    answers["Donor/client"] || "",
+    answers["Country/region"] || "",
+    answers["Sector"] || "",
+    answers["Submission deadline"] || "",
+    answers["Submission type"] || "",
+    answers["Are you bidding as lead, partner, sub-consultant, consortium member, or individual expert?"] || "",
+    answers["What is your main concern about this opportunity?"] || "",
+    answers["Do you have CVs ready?"] || "",
+    answers["Do you have past project references?"] || "",
+    answers["Do you have donor/client forms or templates?"] || "",
+    answers["Do you already have a draft proposal?"] || "",
+    answers["Which diagnostic do you need?"] || "",
+    answers["Is budget approved for this diagnostic?"] || "",
+    "Pending",
+    answers["Do you have the ToR/RFP/EOI document?"] === "Yes" ? "Partial" : "No",
+    answers["Do you require a confidentiality note/NDA?"] || "",
+    "Submitted via Google Form"
+  ];
+
+  sh.appendRow(row);
+
+  const email = answers["Email"];
+  const name = answers["Name"] || "";
+  if (email) {
+    GmailApp.sendEmail(
+      email,
+      "TenderProof Rapid Bid Diagnostic — Intake Received",
+      "Dear " + name + ",\n\n" +
+      "Thank you for submitting the TenderProof Rapid Bid Diagnostic intake form.\n\n" +
+      "I will review the information and confirm the appropriate diagnostic package, price, timeline, and required next steps.\n\n" +
+      "Please ensure that the following documents are shared:\n\n" +
+      "- ToR / RFP / EOI document\n" +
+      "- Submission deadline\n" +
+      "- Available CVs\n" +
+      "- Past project references\n" +
+      "- Donor/client forms or templates\n" +
+      "- Existing draft, if any\n" +
+      "- Intended bidding role\n\n" +
+      "Work begins only after scope confirmation, payment, and receipt of required documents.\n\n" +
+      "Best,\n" +
+      "Syful\n" +
+      "Founder, TenderProof OS / ProposalGuard\n" +
+      "[Email] | [Phone] | [LinkedIn]"
+    );
+  }
+}
+
+function deleteTriggersByHandler_(handlerName) {
+  ScriptApp.getProjectTriggers().forEach(t => {
+    if (t.getHandlerFunction() === handlerName) {
+      ScriptApp.deleteTrigger(t);
+    }
+  });
+}
+
+/**
+ * 3. GOOGLE DRIVE FOLDER BUILDER
+ */
+function buildDriveFolders() {
+  const root = getOrCreateFolder_(DriveApp, TP.rootFolderName);
+  PropertiesService.getScriptProperties().setProperty("ROOT_FOLDER_ID", root.getId());
+
+  [
+    "01_Leads_CRM",
+    "02_Offer_PDF",
+    "03_Client_Intake",
+    "04_Active_Diagnostics",
+    "05_Templates",
+    "06_Delivery_Reports",
+    "07_IP_Capture",
+    "08_Invoices_Terms"
+  ].forEach(name => getOrCreateFolder_(root, name));
+
+  const active = getOrCreateFolder_(root, "04_Active_Diagnostics");
+  const clientFolder = getOrCreateFolder_(active, TP.sampleClientFolder);
+
+  [
+    "01_Client_Inputs",
+    "02_ToR_Extraction",
+    "03_Compliance_Matrix",
+    "04_CV_Matcher",
+    "05_Bid_NoBid_Scorecard",
+    "06_Risk_Register",
+    "07_Diagnostic_Report",
+    "08_Client_Delivery",
+    "09_IP_Capture_Anonymized"
+  ].forEach(name => getOrCreateFolder_(clientFolder, name));
+
+  Logger.log("Drive root folder URL: " + root.getUrl());
+  return root;
+}
+
+function getOrCreateFolder_(parentOrDriveApp, name) {
+  const folders = parentOrDriveApp.getFoldersByName(name);
+  if (folders.hasNext()) return folders.next();
+  return parentOrDriveApp.createFolder(name);
+}
+
+/**
+ * 4. GOOGLE DOCS TEMPLATE BUILDER
+ */
+function buildDocsTemplates() {
+  const root = buildDriveFolders();
+  const templatesFolder = getOrCreateFolder_(root, "05_Templates");
+  const invoiceFolder = getOrCreateFolder_(root, "08_Invoices_Terms");
+
+  createDocFromText_(
+    "TenderProof Rapid Bid Diagnostic — One Page Offer",
+    getOnePageOfferText_(),
+    templatesFolder
+  );
+
+  createDocFromText_(
+    "TenderProof Sales Call Sheet",
+    getSalesCallSheetText_(),
+    templatesFolder
+  );
+
+  createDocFromText_(
+    "TenderProof Client Quote Template",
+    getQuoteTemplateText_(),
+    invoiceFolder
+  );
+
+  createDocFromText_(
+    "TenderProof Engagement Terms",
+    getEngagementTermsText_(),
+    invoiceFolder
+  );
+
+  createDocFromText_(
+    "TenderProof First Diagnostic Report Template",
+    getDiagnosticReportTemplateText_(),
+    templatesFolder
+  );
+
+  createDocFromText_(
+    "TenderProof Post Delivery Upsell Email Template",
+    getPostDeliveryUpsellText_(),
+    templatesFolder
+  );
+
+  Logger.log("Docs templates created in: " + templatesFolder.getUrl());
+}
+
+function createDocFromText_(title, text, folder) {
+  const doc = DocumentApp.create(title);
+  const body = doc.getBody();
+  body.clear();
+  body.setText(text);
+  doc.saveAndClose();
+
+  const file = DriveApp.getFileById(doc.getId());
+  file.moveTo(folder);
+  return doc;
+}
+
+function getOnePageOfferText_() {
+  return `TenderProof Rapid Bid Diagnostic
+48–72 Hour ToR, Compliance, CV Match & Bid Strategy Review for Donor-Funded Proposals
+
+Donor-funded tenders are often lost before the full proposal is written. The ToR is complex, compliance requirements are scattered, CVs may not fully match the expert criteria, and teams often commit time before making a disciplined bid decision.
+
+TenderProof Rapid Bid Diagnostic gives your team a structured, fast, and commercially practical review before full proposal preparation begins.
+
+What you receive
+
+Within 48–72 hours, you receive a diagnostic package covering:
+- ToR opportunity summary
+- Bid/no-bid recommendation
+- Compliance matrix
+- Expert and CV matching review
+- CV gap analysis
+- Proposal skeleton
+- Methodology outline
+- Key risk flags
+- Clarification question suggestions
+- 45–60 minute bid strategy call
+
+Delivery options
+
+48-Hour Rapid Diagnostic: urgent bid/no-bid and risk snapshot.
+72-Hour Deep Diagnostic: serious bidders preparing for technical proposal support.
+
+Pricing
+
+Bangladesh/local clients: BDT 50,000–150,000+
+International clients: USD 750–2,500
+Urgent delivery: rush premium may apply.
+
+Final price depends on ToR complexity, number of CVs, deadline, and required depth.
+
+Required documents
+
+Please send:
+- ToR / RFP / EOI / REOI document
+- Submission deadline
+- Available CVs
+- Past project references
+- Donor/client forms or templates
+- Evaluation criteria, if separate
+- Consortium or partner information
+- Intended bidding role
+- Existing draft, if available
+
+Boundary
+
+This diagnostic does not include full technical proposal writing, financial proposal preparation, donor portal submission, or guaranteed tender success. Full proposal support can be quoted separately after the diagnostic.
+
+Why Syful
+
+Mohammad Syful Hoque combines donor-funded consulting, economic analysis, CBA, policy research, education, climate, governance, private-sector development, evaluation, and Bangladesh / Global South experience. TenderProof OS helps bidders turn complex ToRs into structured, compliant, and competitive proposal systems.
+
+Call to action
+
+Send the ToR and deadline to request a diagnostic quote.
+
+Mohammad Syful Hoque
+Founder, TenderProof OS / ProposalGuard
+Email: [Email]
+WhatsApp: [Phone]
+LinkedIn: [LinkedIn]`;
+}
+
+function getSalesCallSheetText_() {
+  return `TenderProof Sales Call Sheet
+
+Opening script
+
+Thanks for taking the time, [Name]. I will keep this practical. I want to understand the tender, deadline, available documents, and whether a 48–72 hour TenderProof Rapid Bid Diagnostic would genuinely help. If it is not a fit, I will say so directly.
+
+12 questions
+
+1. Which donor/client issued the ToR?
+2. What is the submission deadline?
+3. What stage is this: EOI, RFP, technical, financial, or expert role?
+4. Are you bidding as lead, partner, sub-consultant, consortium member, or individual expert?
+5. What is the main concern right now?
+6. Do you already meet the eligibility requirements?
+7. Do you have CVs ready?
+8. Do you have relevant past project references?
+9. Has a compliance matrix been prepared?
+10. Has the methodology section been drafted?
+11. Who will decide whether to proceed?
+12. Is budget already approved for bid support?
+
+Urgency checklist
+
+[ ] Deadline within 2 weeks
+[ ] No compliance matrix
+[ ] CVs not aligned
+[ ] Methodology not drafted
+[ ] Expert gap exists
+[ ] Shortlisted already
+[ ] International partner needs local input
+[ ] Proposal team overloaded
+[ ] Similar bid lost before
+[ ] Decision-maker involved
+
+Scoring table
+
+Urgency: ___ / 5
+Buyer authority: ___ / 5
+Ability to pay: ___ / 5
+ToR/document readiness: ___ / 5
+Sector fit: ___ / 5
+Repeat potential: ___ / 5
+Total: ___ / 30
+
+Close probability rule
+
+24–30: High — ask for documents and quote.
+18–23: Medium — send offer note and follow up.
+12–17: Low — nurture.
+Below 12: Park.
+
+Recommended offer rule
+
+Deadline very close: 48-hour diagnostic.
+Serious bid with enough documents: 72-hour diagnostic.
+They ask for whole proposal: diagnostic first, then proposal sprint.
+Individual expert role: CV-ToR diagnostic.
+No active tender: keep on list and ask for referral.
+
+Close script
+
+Based on what you shared, the right first step is the TenderProof Rapid Bid Diagnostic.
+
+I will review the ToR and your available documents, then deliver a bid/no-bid recommendation, compliance matrix, CV/expert fit review, proposal skeleton, methodology outline, and risk flags.
+
+For this opportunity, I recommend the [48-hour / 72-hour] version.
+
+Please send the ToR, deadline, CVs, past references, and forms. Once I confirm the scope and payment, I can start.
+
+Post-call follow-up email
+
+Subject: Next step — TenderProof Rapid Bid Diagnostic
+
+Dear [Name],
+
+Thank you for the call.
+
+Based on our discussion, the next step is to review the ToR and available documents and confirm the diagnostic scope.
+
+Please send:
+- ToR/RFP/EOI document
+- submission deadline
+- available CVs
+- past project references
+- donor forms/templates
+- evaluation criteria, if separate
+- existing draft, if any
+- intended bidding role
+
+After reviewing the documents, I will confirm whether the 48-hour or 72-hour diagnostic is appropriate and share the exact quote and payment terms.
+
+Best,
+Syful`;
+}
+
+function getQuoteTemplateText_() {
+  return `TenderProof Client Quote Template
+
+Dear [Name],
+
+Thank you for sharing the ToR and related information.
+
+Based on the scope, I recommend:
+
+Package: [48-hour Rapid Diagnostic / 72-hour Deep Diagnostic]
+Fee: [Amount]
+Timeline: [48/72 hours] from payment confirmation and receipt of complete documents.
+
+The diagnostic will include:
+- ToR opportunity summary
+- bid/no-bid recommendation
+- compliance matrix
+- CV/expert matching review
+- proposal skeleton
+- methodology outline
+- key risk flags
+- diagnostic call
+
+Full proposal writing is separate and can be quoted after the diagnostic.
+
+Please confirm if I should proceed, and I will share payment details.
+
+Best,
+Syful
+
+Invoice description
+
+TenderProof Rapid Bid Diagnostic
+48–72 hour ToR, compliance, CV/expert match, methodology outline, bid/no-bid, and proposal risk diagnostic for [Tender Title].
+
+Client: [Client/Firm]
+Package: [48-hour / 72-hour]
+Fee: [Amount]
+Timeline: [48/72 hours] from payment confirmation and receipt of complete documents.`;
+}
+
+function getEngagementTermsText_() {
+  return `TenderProof Engagement Terms
+
+1. Work starts after payment confirmation and receipt of required documents.
+2. Diagnostic fees are paid 100% upfront for first-time clients.
+3. Delivery timeline begins only after all required documents are received.
+4. The diagnostic includes only the deliverables agreed under the selected package.
+5. Full technical proposal writing is not included unless separately contracted.
+6. Client is responsible for final submission to the donor/client.
+7. TenderProof OS does not guarantee tender success.
+8. Additional work beyond agreed scope will be quoted separately.
+9. Urgent delivery may include a rush premium.
+10. Client is responsible for accuracy of submitted CVs, references, credentials, and organizational information.
+
+Scope boundary
+
+The diagnostic includes:
+- ToR review
+- bid/no-bid assessment
+- compliance matrix
+- CV/expert match review
+- methodology outline
+- proposal skeleton
+- risk flags
+- one diagnostic call
+
+The diagnostic does not include:
+- full technical proposal drafting
+- financial proposal preparation
+- full CV rewriting
+- graphic design/formatting
+- donor portal submission
+- partner negotiation
+- guaranteed tender success
+- fabricated credentials or experience
+
+No-refund clause
+
+Because the diagnostic is time-sensitive knowledge work, no refund applies after work has started. Work is considered started once the ToR, CVs, or supporting documents have been reviewed.
+
+Refund may be considered only if the client cancels before document review begins.
+
+Confidentiality note
+
+All client documents, ToRs, CVs, proposal drafts, project references, and internal discussions will be treated as confidential. TenderProof OS will not share client documents externally without written permission.
+
+Anonymized learning may be captured internally to improve templates, compliance checklists, and proposal quality systems, without disclosing client identity or confidential project information.
+
+Ethical boundary
+
+TenderProof OS does not fabricate credentials, project experience, CV claims, eligibility information, donor references, contract values, or institutional experience. All proposal content must be based on accurate and verifiable information provided by the client.`;
+}
+
+function getDiagnosticReportTemplateText_() {
+  return `TenderProof Rapid Bid Diagnostic
+[Tender Title]
+
+Prepared for: [Client/Firm]
+Donor/Client: [Donor/Client]
+Country/Sector: [Country/Sector]
+Submission deadline: [Deadline]
+Prepared by: Mohammad Syful Hoque, TenderProof OS / ProposalGuard
+Date: [Date]
+
+1. Executive summary
+
+Overall recommendation: [Pursue / Pursue with fixes / Pursue as partner or sub-consultant / Reject]
+
+Reason for recommendation:
+[Write 3–5 concise sentences.]
+
+Top strengths
+1. [Strength 1]
+2. [Strength 2]
+3. [Strength 3]
+
+Top gaps
+1. [Gap 1]
+2. [Gap 2]
+3. [Gap 3]
+
+Immediate next action:
+[Action]
+
+2. Opportunity overview
+
+Tender title: [Title]
+Donor/client: [Donor]
+Country: [Country]
+Sector: [Sector]
+Submission type: [EOI/RFP/Technical/etc.]
+Deadline: [Deadline]
+Bidding role: [Lead/Partner/Sub/Expert]
+Main deliverables: [Summary]
+Required experts: [Summary]
+Key evaluation criteria: [Summary]
+
+3. Bid/no-bid recommendation
+
+Criterion | Score 1–5 | Comment
+Strategic fit | [Score] | [Comment]
+Technical fit | [Score] | [Comment]
+CV/team fit | [Score] | [Comment]
+Past experience fit | [Score] | [Comment]
+Deadline feasibility | [Score] | [Comment]
+Compliance risk | [Score] | [Comment]
+Proposal value | [Score] | [Comment]
+Reusability/repeat value | [Score] | [Comment]
+
+Final recommendation: [Decision]
+
+Explanation:
+[Short explanation.]
+
+4. Compliance matrix summary
+
+Requirement | Status | Risk | Action needed
+[Requirement] | [Met/Partial/Gap] | [Low/Medium/High] | [Action]
+
+Main compliance concern:
+[Text]
+
+5. CV/expert fit summary
+
+Expert role | Available candidate | Match score | Main gap | Action
+[Role] | [Name] | [1–5] | [Gap] | [Rewrite/Replace/Strengthen]
+
+Main CV/team concern:
+[Text]
+
+6. Methodology outline
+
+6.1 Understanding of the assignment
+[Text]
+
+6.2 Proposed technical approach
+[Text]
+
+6.3 Suggested workstreams
+- Workstream 1: [Title]
+- Workstream 2: [Title]
+- Workstream 3: [Title]
+
+6.4 Data/evidence approach
+[Text]
+
+6.5 Stakeholder engagement
+[Text]
+
+6.6 Quality assurance
+[Text]
+
+6.7 Deliverable logic
+[Text]
+
+7. Risk register
+
+Risk | Severity | Why it matters | Mitigation
+[Risk] | [High/Medium/Low] | [Reason] | [Action]
+
+8. Next-step recommendation
+
+Recommended next step:
+- [Proceed to full proposal support]
+- [Strengthen CVs first]
+- [Find partner/sub-consultant]
+- [Ask clarification questions]
+- [Reject opportunity]
+
+Immediate actions within 24 hours:
+1. [Action]
+2. [Action]
+3. [Action]
+
+9. Full proposal support option
+
+Based on this diagnostic, the main areas requiring further support are:
+- [Methodology drafting]
+- [CV rewriting]
+- [Compliance completion]
+- [Past experience mapping]
+- [Full technical proposal preparation]
+- [Final proposal QA]
+
+TenderProof OS can support the next stage through a Technical Proposal Sprint covering full proposal structure, methodology, workplan, CV alignment, past experience matrix, and final QA before submission.`;
+}
+
+function getPostDeliveryUpsellText_() {
+  return `Subject: Next step after diagnostic — [Tender Title]
+
+Dear [Name],
+
+Following the diagnostic, the main areas requiring further work are:
+
+1. [Gap 1]
+2. [Gap 2]
+3. [Gap 3]
+
+If you decide to proceed with the bid, I can support the next stage through a Technical Proposal Sprint covering:
+- full technical proposal structure
+- methodology drafting
+- workplan logic
+- CV alignment
+- past experience matrix
+- compliance completion
+- final proposal QA
+
+If useful, I can send a separate scope and fee for the proposal sprint.
+
+Best,
+Syful`;
+}

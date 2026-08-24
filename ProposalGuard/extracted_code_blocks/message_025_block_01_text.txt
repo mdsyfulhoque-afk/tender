@@ -1,0 +1,9 @@
+TenderProof_OS/
+01_Leads_CRM
+02_Offer_PDF
+03_Client_Intake
+04_Active_Diagnostics
+05_Templates
+06_Delivery_Reports
+07_IP_Capture
+08_Invoices_Terms

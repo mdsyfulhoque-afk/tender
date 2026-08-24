@@ -1,0 +1,11 @@
+Leads CRM
+Tender Tracker
+Client Intake
+ToR Extraction
+Compliance Matrix
+CV Matcher
+Bid/No-Bid Scorecard
+Risk Register
+Pricing Tracker
+IP Capture Database
+Weekly Dashboard

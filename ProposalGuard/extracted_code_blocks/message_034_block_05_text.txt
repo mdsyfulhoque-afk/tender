@@ -1,0 +1,5 @@
+FULL SETUP COMPLETE.
+Cockpit URL:
+Drive Root URL:
+Form Edit URL:
+Form Public URL:

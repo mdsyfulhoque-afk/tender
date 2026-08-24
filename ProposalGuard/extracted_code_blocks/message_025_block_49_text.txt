@@ -1,0 +1,3 @@
+I can share the structure of the diagnostic output, but I do not provide unpaid ToR reviews because the analysis itself is the core work.
+
+The diagnostic normally includes: opportunity summary, bid/no-bid score, compliance matrix, CV match table, methodology outline, risk flags, and next-step recommendation.

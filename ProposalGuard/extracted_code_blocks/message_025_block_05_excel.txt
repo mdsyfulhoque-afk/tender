@@ -1,0 +1,1 @@
+=IF(U2>=12,"High","Normal")
