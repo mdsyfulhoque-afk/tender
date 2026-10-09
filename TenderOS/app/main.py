@@ -1,4 +1,4 @@
-"""TenderOS local pilot: source-aware bid decision intelligence, not autonomous bidding.
+"""TenderOS private pilot: source-aware bid decision intelligence, not autonomous bidding.
 Run with: uvicorn app.main:app --host 127.0.0.1 --port 8000
 """
 import csv
@@ -14,22 +14,26 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Literal, Optional
 
-from fastapi import FastAPI, HTTPException, UploadFile, File, Form
-from fastapi.responses import FileResponse, StreamingResponse, Response
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Request
+from fastapi.responses import FileResponse, StreamingResponse, Response, JSONResponse
 from pydantic import BaseModel, Field
 from pypdf import PdfReader
 from docx import Document
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill
+from .hosting import (HOSTED, MAX_UPLOAD_BYTES, HostingConfigurationError, hosted_configuration,
+                      authenticate_basic, authenticated_actor, principal, request_origin, csrf_valid)
 
 BASE = Path(__file__).resolve().parent
 DATA_DIR = Path(os.environ.get('TENDEROS_DATA_DIR', str(BASE.parent / 'data'))).resolve()
-DATA_DIR.mkdir(parents=True, exist_ok=True)
 DB = DATA_DIR / 'tenderos.sqlite3'
 STORAGE = DATA_DIR / 'private_uploads'
-STORAGE.mkdir(exist_ok=True)
+if not HOSTED:
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    STORAGE.mkdir(exist_ok=True)
 
-app = FastAPI(title='TenderOS Local Pilot', version='0.1.0', docs_url='/api/docs', redoc_url=None)
+app = FastAPI(title='TenderOS Private Pilot' if HOSTED else 'TenderOS Local Pilot',
+              version='0.2.0', docs_url='/api/docs', redoc_url=None)
 
 SCHEMA = '''
 PRAGMA foreign_keys=ON;
@@ -88,6 +92,17 @@ def now():
 
 @contextmanager
 def conn():
+    if HOSTED:
+        from .database import postgres_connection, ConfigurationError, StorageUnavailable, WriteConflict
+        try:
+            config = hosted_configuration()
+            with postgres_connection(config.database_url) as db:
+                yield db
+        except (HostingConfigurationError, ConfigurationError, StorageUnavailable):
+            raise HTTPException(503, 'Durable database is unavailable; retry later') from None
+        except WriteConflict:
+            raise HTTPException(409, 'Database write conflicted; refresh the workspace and retry') from None
+        return
     db = sqlite3.connect(DB, timeout=15)
     db.row_factory = sqlite3.Row
     db.execute('PRAGMA foreign_keys=ON')
@@ -101,8 +116,9 @@ def conn():
     finally:
         db.close()
 
-with conn() as db:
-    db.executescript(SCHEMA)
+if not HOSTED:
+    with conn() as db:
+        db.executescript(SCHEMA)
 
 
 def require(db, table, id):
@@ -115,6 +131,7 @@ def require(db, table, id):
 
 
 def log(db, tender_id, action, payload, actor='local-operator'):
+    actor = authenticated_actor(actor)
     db.execute('INSERT INTO audit_events(tender_id,actor,action,payload,created_at) VALUES(?,?,?,?,?)',
                (tender_id, actor[:100], action, json.dumps(payload, ensure_ascii=False), now()))
 
@@ -282,20 +299,52 @@ def get_snapshot(db, tender_id):
             'source_scope_attestation':source_scope_attestation}
 
 @app.middleware('http')
-async def local_security_headers(request, call_next):
-    # Local development only. Production must add OIDC, CSRF and tenant authorization.
-    origin = request.headers.get('origin')
-    if origin:
-        from urllib.parse import urlparse
-        host = urlparse(origin).hostname
-        if host not in ('localhost', '127.0.0.1'):
-            return Response(status_code=403, content='Cross-origin requests blocked')
-    response = await call_next(request)
+async def pilot_security(request, call_next):
+    token = None
+    response = None
+    if HOSTED:
+        from .database import validate_database_url, ConfigurationError
+        from .private_storage import validate_private_storage_config, PrivateStorageError
+        try:
+            config = hosted_configuration()
+            validate_database_url(config.database_url)
+            validate_private_storage_config()
+        except (HostingConfigurationError, ConfigurationError, PrivateStorageError):
+            response = JSONResponse(status_code=503, content={'detail':'Private pilot configuration is incomplete'})
+        if response is None:
+            try:
+                origin = request_origin(request, config)
+            except HostingConfigurationError:
+                response = JSONResponse(status_code=403, content={'detail':'Use the configured HTTPS workspace origin'})
+        if response is None and not authenticate_basic(request.headers.get('authorization'), config):
+            response = JSONResponse(status_code=401, content={'detail':'Private pilot authentication required'},
+                                    headers={'WWW-Authenticate':'Basic realm="TenderOS private pilot", charset="UTF-8"'})
+        if response is None and request.method not in ('GET', 'HEAD', 'OPTIONS') and not csrf_valid(request, config, origin):
+            response = JSONResponse(status_code=403, content={'detail':'Same-origin request and workspace CSRF token required'})
+        if response is None:
+            request.state.hosted_config = config
+            request.state.workspace_origin = origin
+            token = principal.set(config.username)
+    else:
+        origin = request.headers.get('origin')
+        if origin:
+            from urllib.parse import urlparse
+            host = urlparse(origin).hostname
+            if host not in ('localhost', '127.0.0.1'):
+                response = JSONResponse(status_code=403, content={'detail':'Cross-origin requests blocked'})
+    try:
+        if response is None:
+            response = await call_next(request)
+    finally:
+        if token is not None:
+            principal.reset(token)
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['Referrer-Policy'] = 'no-referrer'
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['Content-Security-Policy'] = "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'"
     response.headers['Cache-Control'] = 'no-store'
+    if HOSTED:
+        response.headers['Strict-Transport-Security'] = 'max-age=31536000'
     return response
 
 @app.get('/')
@@ -309,7 +358,17 @@ def static(name: str):
     return FileResponse(BASE / 'static' / name)
 
 @app.get('/api/health')
-def health():
+def health(request: Request):
+    if HOSTED:
+        # Readiness verifies the migrated database is reachable without any startup DDL.
+        with conn() as db:
+            db.execute('SELECT id FROM organizations LIMIT 1').fetchone()
+        config = request.state.hosted_config
+        return {'status':'ok', 'mode':'PRIVATE_PILOT', 'external_model_calls':False,
+                'database':'managed_postgresql', 'file_storage':'private_vercel_blob',
+                'authentication':'single_owner_basic', 'principal':config.username,
+                'max_upload_bytes':MAX_UPLOAD_BYTES,
+                'csrf_token':config.csrf_token(request.state.workspace_origin)}
     return {'status':'ok', 'mode':'LOCAL_PILOT', 'external_model_calls':False}
 
 @app.get('/api/organizations')
@@ -404,17 +463,19 @@ def attest_source_scope(tender_id:int,item:SourceScopeIn):
     if not item.checked_full_document_set:
         raise HTTPException(422,'Reviewer must confirm they checked all known tender documents, annexes and amendments')
     with conn() as db:
+        reviewer = authenticated_actor(item.reviewer.strip())
         snap=get_snapshot(db,tender_id)
         if not snap['requirements'] or any(not r['reviewed'] or r['mandatory'] is None for r in snap['requirements']):
             raise HTTPException(422,'Review every registered requirement before attesting source coverage')
         db.execute('''UPDATE tenders SET source_scope_reviewer=?,source_scope_note=?,source_scope_at=?,source_scope_fingerprint=? WHERE id=?''',
-          (item.reviewer.strip(),item.note.strip(),now(),snap['source_scope_fingerprint'],tender_id))
-        log(db,tender_id,'human_source_scope_attested',{'reviewer':item.reviewer.strip(),'scope_hash':snap['source_scope_fingerprint']},item.reviewer.strip())
+          (reviewer,item.note.strip(),now(),snap['source_scope_fingerprint'],tender_id))
+        log(db,tender_id,'human_source_scope_attested',{'reviewer':reviewer,'scope_hash':snap['source_scope_fingerprint']},reviewer)
         return {'attested':True,'scope_fingerprint':snap['source_scope_fingerprint']}
 
 @app.post('/api/tenders/{tender_id}/decisions',status_code=201)
 def decide(tender_id:int,item:DecisionIn):
     with conn() as db:
+        reviewer = authenticated_actor(item.reviewer.strip())
         snapshot=get_snapshot(db,tender_id)
         if item.decision=='BID' and snapshot['compliance']!='READY_FOR_HUMAN_DECISION':
             raise HTTPException(409,'BID cannot be approved: mandatory compliance is blocked or unresolved')
@@ -423,8 +484,8 @@ def decide(tender_id:int,item:DecisionIn):
             'fingerprint':snapshot['fingerprint'],'scope_hash':snapshot['source_scope_fingerprint'],'currency_version':1,
             'scope_attestation':snapshot['source_scope_attestation']}
         cur=db.execute('INSERT INTO decisions(tender_id,decision,reviewer,rationale,decision_snapshot,created_at) VALUES(?,?,?,?,?,?)',
-           (tender_id,item.decision,item.reviewer.strip(),item.rationale.strip(),json.dumps(decision_data),now()))
-        log(db,tender_id,'human_decision',{'id':cur.lastrowid,'decision':item.decision,'reviewer':item.reviewer.strip() },item.reviewer.strip())
+           (tender_id,item.decision,reviewer,item.rationale.strip(),json.dumps(decision_data),now()))
+        log(db,tender_id,'human_decision',{'id':cur.lastrowid,'decision':item.decision,'reviewer':reviewer },reviewer)
         return {'id':cur.lastrowid,'decision':item.decision}
 
 @app.post('/api/tenders/{tender_id}/metrics')
@@ -461,15 +522,15 @@ def extract_candidates(text, page):
 async def upload_pdf(tender_id:int, file:UploadFile=File(...)):
     with conn() as db:
         require(db,'tenders',tender_id)
-    data=await file.read(10*1024*1024+1)
-    if len(data)>10*1024*1024:
-        raise HTTPException(413,'PDF limit is 10 MB')
+    data=await file.read(MAX_UPLOAD_BYTES+1)
+    if len(data)>MAX_UPLOAD_BYTES:
+        raise HTTPException(413,f'PDF limit is {MAX_UPLOAD_BYTES // (1024 * 1024)} MB')
     if not data.startswith(b'%PDF-') or not (file.filename or '').lower().endswith('.pdf'):
         raise HTTPException(415,'Only valid PDF files are allowed')
     try:
         reader=PdfReader(io.BytesIO(data), strict=True)
         if reader.is_encrypted or len(reader.pages)>150:
-            raise HTTPException(422,'Encrypted or >150-page PDF is not supported in local pilot')
+            raise HTTPException(422,'Encrypted or >150-page PDF is not supported in this pilot')
         pages=[]
         for i,page in enumerate(reader.pages,1):
             pages.append(extract_candidates(page.extract_text() or '',i))
@@ -478,9 +539,18 @@ async def upload_pdf(tender_id:int, file:UploadFile=File(...)):
     except Exception:
         raise HTTPException(422,'PDF could not be safely extracted; enter requirements manually')
     sha=hashlib.sha256(data).hexdigest()
-    private_name=f'{uuid.uuid4().hex}.pdf'
-    path=STORAGE/private_name
-    path.write_bytes(data)
+    path = None
+    if HOSTED:
+        from .private_storage import store_private_pdf, PrivateStorageError
+        from starlette.concurrency import run_in_threadpool
+        try:
+            private_name = await run_in_threadpool(store_private_pdf, data, file.filename or 'source.pdf')
+        except PrivateStorageError:
+            raise HTTPException(503, 'Private file storage is unavailable; retry later') from None
+    else:
+        private_name=f'{uuid.uuid4().hex}.pdf'
+        path=STORAGE/private_name
+        path.write_bytes(data)
     try:
         with conn() as db:
             cur=db.execute('INSERT INTO sources(tender_id,name,sha256,bytes,private_path,pages,uploaded_at) VALUES(?,?,?,?,?,?,?)',
@@ -498,7 +568,10 @@ async def upload_pdf(tender_id:int, file:UploadFile=File(...)):
             log(db,tender_id,'pdf_uploaded_candidates_unreviewed',{'source_id':sid,'sha256':sha,'pages':len(pages),'candidates':count})
         return {'source_id':sid,'sha256':sha,'pages':len(pages),'candidates':count,'review_required':True}
     except Exception:
-        path.unlink(missing_ok=True)
+        # A hosted commit failure may occur after commit succeeded. Retain the private
+        # object rather than deleting a possibly committed source; reconcile orphans later.
+        if path is not None:
+            path.unlink(missing_ok=True)
         raise
 
 

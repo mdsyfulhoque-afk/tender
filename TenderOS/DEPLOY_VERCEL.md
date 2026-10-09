@@ -2,14 +2,12 @@
 
 ## Deployment target
 
-The user authorized a persistent pilot on their Vercel account using a managed
-database and private file storage. This commit prepares packaging; it does not
-implement those services or establish an account connection or deployment URL.
-
-**The current local SQLite application cannot be deployed unchanged.** Import
-creates a database and uploads inside the application package. Vercel functions
-do not provide durable writable application storage. `TENDEROS_DATA_DIR=/tmp/...`
-would create disposable instance state and is not configured here.
+The target is a **private, single-owner pilot** on the user's Vercel account with
+managed PostgreSQL and a native private Vercel Blob store. It is not a customer
+or multi-tenant service. Hosted mode requires durable services and authenticated
+access; local mode retains SQLite. `TENDEROS_DATA_DIR=/tmp/...` is not a hosted
+storage fallback. Application packaging does not create those resources or
+establish an account connection or deployment URL.
 
 ## Project settings
 
@@ -28,35 +26,60 @@ would create disposable instance state and is not configured here.
 The native runtime discovers the entrypoint and routes `/`, `/static/*`, `/api/*`
 and `/api/docs`. Confirm resolved Python/dependency versions in the actual build.
 
-## Prerequisites for the persistent pilot
+## Environment and services
 
-Before creating a usable deployment, integrate and independently verify:
+Create the managed database and a **private** Vercel Blob store, then configure
+these variables in the intended Preview and Production environments:
 
-1. A managed database adapter and migrations preserving state across function
-   instances, immutable decisions and attestations. A URL alone does not adapt
-   the current `sqlite3` calls.
-2. Private PDF object storage preserving SHA-256 and provenance; database-only
-   persistence leaves the current local uploads volatile.
-3. Authentication and authorization on every data/document/decision/export
-   endpoint. The current app has neither. Enable and verify Vercel Deployment
-   Protection where available for the intended environment.
-4. Exact hosted origin/CSRF handling. Current localhost-only Origin validation
-   rejects hosted browser mutations with 403.
-5. Uploads compatible with actual Vercel ingress/execution limits. The local
-   10 MiB PDF limit does not raise the host request limit. Prefer authenticated
-   private-storage direct uploads with verified ownership, size, type and hash.
+| Variable | Purpose |
+| --- | --- |
+| `TENDEROS_DATABASE_URL` | Managed PostgreSQL URL with `sslmode=require`, `verify-ca` or `verify-full` |
+| `BLOB_READ_WRITE_TOKEN` | Token provided by the native private Vercel Blob store |
+| `TENDEROS_BLOB_ACCESS` | Must be `private` |
+| `TENDEROS_PILOT_USERNAME` | Operator identity: 2–100 characters, no colon or whitespace |
+| `TENDEROS_PILOT_PASSWORD` | Random secret of at least 32 characters |
+| `TENDEROS_APP_ORIGIN` | Exact HTTPS application origin, without a path/query |
 
-Configure the implemented adapters' actual secrets in Vercel Environment
-Variables; provider choices and variable names are not invented here. Keep
-credentials, customer PDFs and databases out of source/deployment files. Hosted
-startup must fail when persistent services or authentication are unavailable.
+Vercel supplies `VERCEL=1` and deployment hostname variables; local hosted-mode
+verification uses `TENDEROS_HOSTED=1`. Set separate managed resources and secrets
+where Preview should not share Production state. Keep secrets out of Git,
+deployment files, command arguments and output. Enable Vercel Deployment
+Protection where available and verify its coverage; application authentication
+is also required.
+
+`TENDEROS_DATABASE_URL` takes precedence over the optional `DATABASE_URL` alias.
+Private storage defaults to `vercel_blob`; `TENDEROS_PRIVATE_STORAGE` may select
+that same value explicitly. The runtime dependency manifest includes `psycopg`.
+
+Hosted requests use single-owner HTTP Basic authentication on every route and
+exact trusted origins. Authenticated `/api/health` supplies the per-origin token
+required as `X-TenderOS-CSRF` on unsafe API requests; the UI handles this header.
+The hosted PDF payload cap is **4 MiB**, versus **10 MiB** in
+local mode; multipart overhead must also fit the actual Vercel ingress limit.
+No automatic remote schema creation, local database copy or `/tmp` fallback is
+permitted. Missing service/authentication configuration must fail closed.
 
 ## File boundaries
 
-`.vercelignore` allows CLI uploads of the current module, three static assets,
-dependencies and configuration only. Add new runtime files explicitly. Knowledge,
-receipts, tests, databases, uploads, logs, dotenv and Vercel local state are
-excluded by default; `vercel.json` also excludes them from the function bundle.
+`.vercelignore` allows `app/main.py`, `app/hosting.py`, `app/database.py`,
+`app/private_storage.py`, the three static assets, dependencies and configuration.
+Add new runtime files explicitly. Knowledge, receipts, tests, databases, uploads,
+logs, dotenv and Vercel local state are excluded by default; `vercel.json` also
+excludes them from the function bundle. `scripts/migrate_postgres.py` and
+`scripts/postgres_schema.sql` are operator migration tools, not runtime upload
+files; execute them from the trusted source checkout before deployment.
+
+With the managed database URL already configured securely in the operator's
+environment, apply the idempotent schema migration explicitly:
+
+```bash
+cd TenderOS
+python -m pip install -r requirements.txt
+python scripts/migrate_postgres.py --apply
+```
+
+This uses a transaction/advisory lock and migration digest marker; function
+startup never applies DDL. It does not import SQLite or customer data.
 
 Git integration can clone the private repository for its build; a CLI ignore
 file does not prevent that. Root Directory limits the application build, and
@@ -72,8 +95,9 @@ TenderOS build root; never copy local account state into deployment artifacts.
 1. Connect the actual account/team/project. Import the private repository with
    Root Directory `TenderOS` and the reviewed integration branch; deployment
    does not require merging the draft PR.
-2. Configure managed-service/authentication variables and protection, then
-   deploy a Preview from the reviewed commit.
+2. Configure the environment above and apply the managed database schema once
+   from the trusted operator environment. Do not import the archived SQLite
+   database or customer uploads. Deploy a Preview from the reviewed commit.
 3. Check authenticated UI, static assets, health, APIs/exports, unauthorized
    requests, hosted mutations and uploads. Verify synthetic records and private
    PDFs survive new function instances and redeployment, with authorized access.
@@ -102,5 +126,6 @@ Configuration is based on the current official Vercel source inspected on
 - [Function configuration schema](https://github.com/vercel/vercel/blob/c628be7835e03a965b93e9cf9e2bd5ac2acbf5eb/packages/build-utils/src/schemas.ts)
 - [FastAPI deployment documentation](https://vercel.com/docs/frameworks/backend/fastapi)
 
-Only static configuration and source inspection were performed for this
-packaging step. No application tests, Vercel build, login or deployment were run.
+This packaging agent performed static inspection only, with no application
+tests, Vercel build, login or deployment. The final frozen application and its
+actual managed services require independent verification before deployment.

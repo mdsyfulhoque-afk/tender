@@ -4,6 +4,9 @@
 !app/
 app/*
 !app/main.py
+!app/hosting.py
+!app/database.py
+!app/private_storage.py
 !app/static/
 app/static/*
 !app/static/index.html
