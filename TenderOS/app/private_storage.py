@@ -7,6 +7,9 @@ be bound to the project. This module never publishes URLs, read credentials,
 or browser upload tokens and never deletes an object after an ambiguous commit.
 """
 import json
+import hashlib
+import hmac
+from http.client import HTTPException as HTTPProtocolError
 import os
 import re
 import uuid
@@ -18,6 +21,8 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 MAX_PRIVATE_PDF_BYTES = 4 * 1024 * 1024
 _BLOB_API = 'https://vercel.com/api/blob/'
 _KEY_PREFIX = 'tenderos/private-pdf/'
+_KEY_FORMAT = re.compile(r'^tenderos/private-pdf/[a-f0-9]{32}\.pdf$')
+_HASH_FORMAT = re.compile(r'^[a-f0-9]{64}$')
 _TOKEN_FORMAT = re.compile(r'^vercel_blob_rw_([A-Za-z0-9]+)_[A-Za-z0-9_-]+$')
 _STORE_ID_FORMAT = re.compile(r'^[A-Za-z0-9]+$')
 _OIDC_FORMAT = re.compile(r'^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$')
@@ -25,6 +30,10 @@ _OIDC_FORMAT = re.compile(r'^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$')
 
 class PrivateStorageError(RuntimeError):
     """A private storage configuration or operation failed safely."""
+
+
+class PrivateFileNotFound(PrivateStorageError):
+    """The authorized stored PDF no longer exists in the private store."""
 
 
 class _NoRedirects(HTTPRedirectHandler):
@@ -109,6 +118,57 @@ def store_private_pdf(data: bytes, name: str) -> str:
             raise PrivateStorageError('Private storage upload could not be confirmed')
     except PrivateStorageError:
         raise
-    except (HTTPError, URLError, OSError, ValueError, TypeError):
+    except (HTTPError, URLError, HTTPProtocolError, OSError, ValueError, TypeError):
         raise PrivateStorageError('Private storage is temporarily unavailable') from None
     return key
+
+
+def read_private_pdf(key: str, max_bytes: int, expected_sha256: str) -> bytes:
+    """Fetch only an authorized DB-owned opaque key and verify bounded PDF bytes.
+
+    The caller must load the key/hash from the authorized source/evidence row.
+    Client-supplied URLs or paths are never accepted. The fixed private store
+    URL and bearer GET protocol follow the already inspected official
+    vercel/storage packages/blob/src/get.ts. No provider URL/token is returned.
+    """
+    if (not isinstance(key, str) or not _KEY_FORMAT.fullmatch(key)
+            or type(max_bytes) is not int or not 0 < max_bytes <= MAX_PRIVATE_PDF_BYTES
+            or not isinstance(expected_sha256, str) or not _HASH_FORMAT.fullmatch(expected_sha256)):
+        raise PrivateStorageError('Stored private PDF metadata is invalid')
+    token, store_id = _configuration()
+    request = Request(
+        'https://' + store_id.lower() + '.private.blob.vercel-storage.com/' + key + '?cache=0',
+        method='GET', headers={'Authorization': 'Bearer ' + token},
+    )
+    try:
+        with build_opener(_NoRedirects()).open(request, timeout=25) as response:
+            if response.status != 200:
+                raise PrivateStorageError('Private PDF could not be retrieved')
+            media_type = (response.headers.get('Content-Type') or '').split(';', 1)[0].strip().lower()
+            content_length = response.headers.get('Content-Length')
+            if media_type != 'application/pdf':
+                raise PrivateStorageError('Private PDF content could not be verified')
+            if content_length is not None and not 0 < int(content_length) <= max_bytes:
+                raise PrivateStorageError('Private PDF exceeds its stored size limit')
+            data = response.read(max_bytes + 1)
+        if not data.startswith(b'%PDF-') or len(data) > max_bytes:
+            raise PrivateStorageError('Private PDF content could not be verified')
+        if not hmac.compare_digest(hashlib.sha256(data).hexdigest(), expected_sha256):
+            raise PrivateStorageError('Private PDF content could not be verified')
+    except HTTPError as error:
+        if error.code == 404:
+            raise PrivateFileNotFound('Private PDF file is unavailable') from None
+        raise PrivateStorageError('Private file storage is temporarily unavailable') from None
+    except PrivateStorageError:
+        raise
+    except (URLError, HTTPProtocolError, OSError, ValueError, TypeError):
+        raise PrivateStorageError('Private file storage is temporarily unavailable') from None
+    return data
+
+
+def fetch_private_pdf(key: str, expected_sha256: str, expected_bytes: int) -> bytes:
+    """Read a stored PDF and additionally require its exact recorded byte size."""
+    data = read_private_pdf(key, expected_bytes, expected_sha256)
+    if len(data) != expected_bytes:
+        raise PrivateStorageError('Private PDF content could not be verified')
+    return data

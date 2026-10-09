@@ -1,10 +1,12 @@
 """PostgreSQL persistence for the hosted pilot; SQLite remains a local choice.
 
-This module never creates tables or changes schema. Run the explicit migration
-command before deploying. All route reads and writes share one serializable
+Hosted connections never create tables or change schema. Run the explicit
+PostgreSQL migration command before deploying. Local SQLite extensions have a
+separate, idempotent initializer. Route reads and writes share one serializable
 transaction so approval checks and their saved decision cannot diverge.
 """
 from contextlib import contextmanager
+import hashlib
 import ipaddress
 import re
 from urllib.parse import parse_qsl, urlsplit
@@ -25,6 +27,7 @@ class WriteConflict(RuntimeError):
 _INSERT_ID_TABLES = frozenset({
     'organizations', 'tenders', 'sources', 'requirements', 'evidence',
     'decisions', 'audit_events',
+    'tender_inventory_items', 'evidence_files',
 })
 _INSERT_TABLE = re.compile(r'^\s*INSERT\s+INTO\s+([a-z_][a-z_0-9]*)\s*\(', re.I)
 _FORBIDDEN_QUERY_OPTIONS = frozenset({
@@ -32,6 +35,88 @@ _FORBIDDEN_QUERY_OPTIONS = frozenset({
     'servicefile', 'sslcert', 'sslkey', 'sslpassword', 'sslrootcert',
     'sslcrl', 'sslcrldir', 'options', 'passfile', 'sslnegotiation',
 })
+
+
+_LOCAL_EXTENSION_STATEMENTS = (
+    '''CREATE UNIQUE INDEX IF NOT EXISTS idx_source_identity_tender
+       ON sources(id,tender_id)''',
+    '''CREATE TABLE IF NOT EXISTS tender_inventory_items (
+       id INTEGER PRIMARY KEY,
+       tender_id INTEGER NOT NULL REFERENCES tenders(id),
+       title TEXT NOT NULL CHECK (length(trim(title)) > 0),
+       document_type TEXT NOT NULL, publication_date TEXT,
+       language TEXT NOT NULL DEFAULT '', version_label TEXT NOT NULL DEFAULT '',
+       supersedes_item_id INTEGER, source_id INTEGER,
+       availability TEXT NOT NULL CHECK (availability IN ('AVAILABLE','MISSING')),
+       notes TEXT NOT NULL DEFAULT '', created_at TEXT NOT NULL, updated_at TEXT NOT NULL,
+       UNIQUE (id,tender_id),
+       FOREIGN KEY (source_id,tender_id) REFERENCES sources(id,tender_id),
+       FOREIGN KEY (supersedes_item_id,tender_id) REFERENCES tender_inventory_items(id,tender_id),
+       CHECK (supersedes_item_id IS NULL OR supersedes_item_id <> id),
+       CHECK ((availability='AVAILABLE' AND source_id IS NOT NULL)
+           OR (availability='MISSING' AND source_id IS NULL))
+    )''',
+    '''CREATE INDEX IF NOT EXISTS idx_inventory_tender ON tender_inventory_items(tender_id)''',
+    '''CREATE INDEX IF NOT EXISTS idx_inventory_source ON tender_inventory_items(source_id)''',
+    '''CREATE INDEX IF NOT EXISTS idx_inventory_supersedes ON tender_inventory_items(supersedes_item_id)''',
+    '''CREATE TABLE IF NOT EXISTS evidence_files (
+       id INTEGER PRIMARY KEY, evidence_id INTEGER NOT NULL REFERENCES evidence(id),
+       private_path TEXT NOT NULL UNIQUE,
+       sha256 TEXT NOT NULL CHECK (length(sha256)=64 AND sha256 NOT GLOB '*[^0-9a-f]*'),
+       bytes INTEGER NOT NULL CHECK (bytes > 0),
+       filename TEXT NOT NULL CHECK (length(trim(filename)) > 0),
+       uploaded_at TEXT NOT NULL
+    )''',
+    '''CREATE INDEX IF NOT EXISTS idx_evidence_file_record ON evidence_files(evidence_id)''',
+    '''CREATE TRIGGER IF NOT EXISTS evidence_files_no_update BEFORE UPDATE ON evidence_files
+       BEGIN SELECT RAISE(ABORT,'Evidence file records are immutable'); END''',
+    '''CREATE TRIGGER IF NOT EXISTS evidence_files_no_delete BEFORE DELETE ON evidence_files
+       BEGIN SELECT RAISE(ABORT,'Evidence file records are immutable'); END''',
+)
+_LOCAL_EXTENSION_ID = 'tenderos_document_registry_v2'
+
+
+def initialize_local_extensions(database):
+    """Add document registries to a local SQLite DB without rewriting legacy rows.
+
+    Call after the existing local core schema is initialized. This function is
+    explicitly restricted to SQLite; it cannot run DDL through a hosted adapter.
+    A savepoint makes all extension DDL and its digest marker atomic even when
+    the caller already has an active transaction. No source/evidence records,
+    hashes, attestations or historical approvals are invented or backfilled.
+    """
+    import sqlite3
+    if not isinstance(database, sqlite3.Connection):
+        raise ConfigurationError('Local extensions require a SQLite connection')
+    digest = hashlib.sha256('\n'.join(_LOCAL_EXTENSION_STATEMENTS).encode('utf-8')).hexdigest()
+    database.execute('SAVEPOINT tenderos_local_extensions')
+    try:
+        database.execute('''CREATE TABLE IF NOT EXISTS tenderos_local_schema_migrations (
+            migration_id TEXT PRIMARY KEY, schema_sha256 TEXT NOT NULL,
+            applied_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now'))
+        )''')
+        prior = database.execute(
+            'SELECT schema_sha256 FROM tenderos_local_schema_migrations WHERE migration_id=?',
+            (_LOCAL_EXTENSION_ID,),
+        ).fetchone()
+        if prior and prior[0] != digest:
+            raise ConfigurationError('Local schema digest differs; an explicit migration is required')
+        if not prior:
+            existing = database.execute('''SELECT name FROM sqlite_master
+                WHERE type='table' AND name IN ('tender_inventory_items','evidence_files')''').fetchone()
+            if existing:
+                raise ConfigurationError('Unversioned document registry tables require explicit migration')
+            for statement in _LOCAL_EXTENSION_STATEMENTS:
+                database.execute(statement)
+            database.execute(
+                'INSERT INTO tenderos_local_schema_migrations(migration_id,schema_sha256) VALUES(?,?)',
+                (_LOCAL_EXTENSION_ID, digest),
+            )
+        database.execute('RELEASE SAVEPOINT tenderos_local_extensions')
+    except Exception:
+        database.execute('ROLLBACK TO SAVEPOINT tenderos_local_extensions')
+        database.execute('RELEASE SAVEPOINT tenderos_local_extensions')
+        raise
 
 
 def validate_database_url(database_url):
