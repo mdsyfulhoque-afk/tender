@@ -4,6 +4,7 @@ import sqlite3
 from datetime import date, timedelta
 import pytest
 from fastapi.testclient import TestClient
+from openpyxl.cell.cell import ERROR_CODES
 from app import main
 
 @pytest.fixture
@@ -420,3 +421,83 @@ def test_spreadsheet_export_escapes_stored_leading_whitespace(client):
     for cell in ['B2','C2']:
         item=book['Decision History'][cell]
         assert item.value=="'"+literal and item.data_type!='f'
+
+@pytest.mark.parametrize('metadata_case',[
+    'float_event_id','string_event_id','null_event_id','missing_event_id',
+    'extra_key','missing_reviewer','missing_note','missing_at','missing_scope_hash',
+    'boolean_reviewer','null_note','numeric_at','object_scope_hash','array_attestation'
+])
+def test_attestation_metadata_requires_exact_shape_and_types(client,metadata_case):
+    org,t,r,ev=ready_bid(client)
+    with sqlite3.connect(main.DB) as db:
+        row=db.execute('SELECT id,decision_snapshot FROM decisions WHERE tender_id=? ORDER BY id DESC',(t,)).fetchone()
+        past=json.loads(row[1]);metadata=past['scope_attestation']
+        if metadata_case=='float_event_id':
+            metadata['event_id']=float(metadata['event_id'])
+        elif metadata_case=='string_event_id':
+            metadata['event_id']=str(metadata['event_id'])
+        elif metadata_case=='null_event_id':
+            metadata['event_id']=None
+        elif metadata_case.startswith('missing_'):
+            metadata.pop(metadata_case.removeprefix('missing_'))
+        elif metadata_case=='extra_key':
+            metadata['unexpected']=None
+        elif metadata_case=='boolean_reviewer':
+            metadata['reviewer']=True
+        elif metadata_case=='null_note':
+            metadata['note']=None
+        elif metadata_case=='numeric_at':
+            metadata['at']=123
+        elif metadata_case=='object_scope_hash':
+            metadata['scope_hash']={'hash':metadata['scope_hash']}
+        else:
+            past['scope_attestation']=list(metadata.values())
+        db.execute('UPDATE decisions SET decision_snapshot=? WHERE id=?',(json.dumps(past),row[0]))
+    history=stored_decisions(t)
+    after=client.get(f'/api/tenders/{t}').json()
+    assert after['compliance']=='READY_FOR_HUMAN_DECISION'
+    assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+    assert stored_decisions(t)==history
+
+def test_boolean_attestation_event_id_cannot_match_integer_one(client):
+    org,t,r,ev=ready_bid(client)
+    with sqlite3.connect(main.DB) as db:
+        # Make the fixture attestation's real event ID 1, where True == 1 in Python.
+        db.execute('DELETE FROM audit_events WHERE id=1')
+        db.execute("UPDATE audit_events SET id=1 WHERE tender_id=? AND action='human_source_scope_attested'",(t,))
+    assert verdict(client,t).status_code==201
+    with sqlite3.connect(main.DB) as db:
+        row=db.execute('SELECT id,decision_snapshot FROM decisions WHERE tender_id=? ORDER BY id DESC',(t,)).fetchone()
+        past=json.loads(row[1]);assert past['scope_attestation']['event_id']==1
+        past['scope_attestation']['event_id']=True
+        db.execute('UPDATE decisions SET decision_snapshot=? WHERE id=?',(json.dumps(past),row[0]))
+    history=stored_decisions(t)
+    after=client.get(f'/api/tenders/{t}').json()
+    assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+    assert stored_decisions(t)==history
+
+@pytest.mark.parametrize('literal',[*ERROR_CODES,'00123','123.45','1E10'])
+def test_spreadsheet_error_codes_and_numeric_looking_text_are_strings(client,literal):
+    from openpyxl import load_workbook
+    org,t,r,ev=ready_bid(client)
+    with sqlite3.connect(main.DB) as db:
+        db.execute('UPDATE tenders SET title=? WHERE id=?',(literal,t))
+        db.execute('UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?',(literal,literal,literal,r))
+        db.execute('UPDATE evidence SET label=? WHERE id=?',(literal,ev))
+        db.execute('UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?',(literal,literal,t))
+    book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+    for cell in ['B2','E8','G8','H8','I8']:
+        item=book['Compliance Matrix'][cell]
+        assert item.value==literal and item.data_type=='s'
+    for cell in ['B2','C2']:
+        item=book['Decision History'][cell]
+        assert item.value==literal and item.data_type=='s'
+    for sheet in book:
+        for row in sheet.iter_rows():
+            for cell in row:
+                if isinstance(cell.value,str):
+                    assert cell.data_type=='s'
+    assert book['Compliance Matrix']['A8'].value==r
+    assert book['Compliance Matrix']['A8'].data_type=='n'
+    assert book['Compliance Matrix']['F8'].value==2
+    assert book['Compliance Matrix']['F8'].data_type=='n'

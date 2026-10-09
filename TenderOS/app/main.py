@@ -261,10 +261,15 @@ def get_snapshot(db, tender_id):
             past=json.loads(decision['decision_snapshot'])
         except (TypeError, ValueError):
             past={}
+        past_attestation=past.get('scope_attestation') if isinstance(past,dict) else None
+        attestation_matches=(isinstance(past_attestation,dict)
+            and past_attestation.keys()==source_scope_attestation.keys()
+            and all(type(past_attestation[k]) is type(v) and past_attestation[k]==v
+                for k,v in source_scope_attestation.items()))
         # Legacy/incomplete snapshots remain historical; never rewrite stored approvals.
         decision['is_current']=(i==0 and isinstance(past,dict) and type(past.get('currency_version')) is int and past.get('currency_version')==1
             and past.get('fingerprint')==fingerprint and past.get('scope_hash')==source_scope_fingerprint
-            and past.get('scope_attestation')==source_scope_attestation
+            and attestation_matches
             and (decision['decision']!='BID' or compliance=='READY_FOR_HUMAN_DECISION'))
     return {'tender': tender, 'requirements': reqs, 'counts': counts,
             'mandatory_total': mandatory, 'mandatory_verified': all_verified,
@@ -551,6 +556,12 @@ def export_xlsx(tender_id:int):
     ws2.append(['Decision','Reviewer','Rationale','At','Snapshot'])
     for d in snap['decisions']:
         ws2.append([spreadsheet_literal(d[k]) for k in ('decision','reviewer','rationale','created_at','decision_snapshot')])
+    # Excel error tokens such as #N/A must also remain literal text.
+    for sheet in wb:
+        for row in sheet.iter_rows():
+            for cell in row:
+                if isinstance(cell.value,str):
+                    cell.data_type='s'
     buf=io.BytesIO(); wb.save(buf);buf.seek(0)
     return StreamingResponse(buf,media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           headers={'Content-Disposition':f'attachment; filename="tenderos_{tender_id}.xlsx"'})
