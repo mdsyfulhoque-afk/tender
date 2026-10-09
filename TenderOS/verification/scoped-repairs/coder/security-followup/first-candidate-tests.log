@@ -1,0 +1,267 @@
+....................................................F.............FFFFFF [ 93%]
+FF...                                                                    [100%]
+=================================== FAILURES ===================================
+___ test_attestation_metadata_requires_exact_shape_and_types[float_event_id] ___
+
+client = <starlette.testclient.TestClient object at 0x7f1142300200>
+metadata_case = 'float_event_id'
+
+    @pytest.mark.parametrize('metadata_case',[
+        'float_event_id','string_event_id','null_event_id','missing_event_id',
+        'extra_key','missing_reviewer','missing_note','missing_at','missing_scope_hash',
+        'boolean_reviewer','null_note','numeric_at','object_scope_hash','array_attestation'
+    ])
+    def test_attestation_metadata_requires_exact_shape_and_types(client,metadata_case):
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            row=db.execute('SELECT id,decision_snapshot FROM decisions WHERE tender_id=? ORDER BY id DESC',(t,)).fetchone()
+            past=json.loads(row[1]);metadata=past['scope_attestation']
+            if metadata_case=='float_event_id':
+                metadata['event_id']=float(metadata['event_id'])
+            elif metadata_case=='string_event_id':
+                metadata['event_id']=str(metadata['event_id'])
+            elif metadata_case=='null_event_id':
+                metadata['event_id']=None
+            elif metadata_case.startswith('missing_'):
+                metadata.pop(metadata_case.removeprefix('missing_'))
+            elif metadata_case=='extra_key':
+                metadata['unexpected']=None
+            elif metadata_case=='boolean_reviewer':
+                metadata['reviewer']=True
+            elif metadata_case=='null_note':
+                metadata['note']=None
+            elif metadata_case=='numeric_at':
+                metadata['at']=123
+            elif metadata_case=='object_scope_hash':
+                metadata['scope_hash']={'hash':metadata['scope_hash']}
+            else:
+                past['scope_attestation']=list(metadata.values())
+            db.execute('UPDATE decisions SET decision_snapshot=? WHERE id=?',(json.dumps(past),row[0]))
+        history=stored_decisions(t)
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['compliance']=='READY_FOR_HUMAN_DECISION'
+>       assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+E       AssertionError: assert ('BID' is None)
+
+regression_tests/test_workflows.py:459: AssertionError
+__________ test_boolean_attestation_event_id_cannot_match_integer_one __________
+
+client = <starlette.testclient.TestClient object at 0x7f114231dac0>
+
+    def test_boolean_attestation_event_id_cannot_match_integer_one(client):
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            # Make the fixture attestation's real event ID 1, where True == 1 in Python.
+            db.execute('DELETE FROM audit_events WHERE id=1')
+            db.execute("UPDATE audit_events SET id=1 WHERE tender_id=? AND action='human_source_scope_attested'",(t,))
+        assert verdict(client,t).status_code==201
+        with sqlite3.connect(main.DB) as db:
+            row=db.execute('SELECT id,decision_snapshot FROM decisions WHERE tender_id=? ORDER BY id DESC',(t,)).fetchone()
+            past=json.loads(row[1]);assert past['scope_attestation']['event_id']==1
+            past['scope_attestation']['event_id']=True
+            db.execute('UPDATE decisions SET decision_snapshot=? WHERE id=?',(json.dumps(past),row[0]))
+        history=stored_decisions(t)
+        after=client.get(f'/api/tenders/{t}').json()
+>       assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+E       AssertionError: assert ('BID' is None)
+
+regression_tests/test_workflows.py:476: AssertionError
+__ test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#NULL!] ___
+
+client = <starlette.testclient.TestClient object at 0x7f114235f710>
+literal = '#NULL!'
+
+    @pytest.mark.parametrize('literal',[*ERROR_CODES,'00123','123.45','1E10'])
+    def test_spreadsheet_error_codes_and_numeric_looking_text_are_strings(client,literal):
+        from openpyxl import load_workbook
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            db.execute('UPDATE tenders SET title=? WHERE id=?',(literal,t))
+            db.execute('UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?',(literal,literal,literal,r))
+            db.execute('UPDATE evidence SET label=? WHERE id=?',(literal,ev))
+            db.execute('UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?',(literal,literal,t))
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+>           assert item.value==literal and item.data_type=='s'
+E           AssertionError: assert ('#NULL!' == '#NULL!'
+E             
+E               #NULL! and 'e' == 's'
+E             
+E             - s
+E             + e)
+
+regression_tests/test_workflows.py:491: AssertionError
+__ test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#DIV/0!] __
+
+client = <starlette.testclient.TestClient object at 0x7f114231e990>
+literal = '#DIV/0!'
+
+    @pytest.mark.parametrize('literal',[*ERROR_CODES,'00123','123.45','1E10'])
+    def test_spreadsheet_error_codes_and_numeric_looking_text_are_strings(client,literal):
+        from openpyxl import load_workbook
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            db.execute('UPDATE tenders SET title=? WHERE id=?',(literal,t))
+            db.execute('UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?',(literal,literal,literal,r))
+            db.execute('UPDATE evidence SET label=? WHERE id=?',(literal,ev))
+            db.execute('UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?',(literal,literal,t))
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+>           assert item.value==literal and item.data_type=='s'
+E           AssertionError: assert ('#DIV/0!' == '#DIV/0!'
+E             
+E               #DIV/0! and 'e' == 's'
+E             
+E             - s
+E             + e)
+
+regression_tests/test_workflows.py:491: AssertionError
+__ test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#VALUE!] __
+
+client = <starlette.testclient.TestClient object at 0x7f114234b500>
+literal = '#VALUE!'
+
+    @pytest.mark.parametrize('literal',[*ERROR_CODES,'00123','123.45','1E10'])
+    def test_spreadsheet_error_codes_and_numeric_looking_text_are_strings(client,literal):
+        from openpyxl import load_workbook
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            db.execute('UPDATE tenders SET title=? WHERE id=?',(literal,t))
+            db.execute('UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?',(literal,literal,literal,r))
+            db.execute('UPDATE evidence SET label=? WHERE id=?',(literal,ev))
+            db.execute('UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?',(literal,literal,t))
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+>           assert item.value==literal and item.data_type=='s'
+E           AssertionError: assert ('#VALUE!' == '#VALUE!'
+E             
+E               #VALUE! and 'e' == 's'
+E             
+E             - s
+E             + e)
+
+regression_tests/test_workflows.py:491: AssertionError
+___ test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#REF!] ___
+
+client = <starlette.testclient.TestClient object at 0x7f11423037a0>
+literal = '#REF!'
+
+    @pytest.mark.parametrize('literal',[*ERROR_CODES,'00123','123.45','1E10'])
+    def test_spreadsheet_error_codes_and_numeric_looking_text_are_strings(client,literal):
+        from openpyxl import load_workbook
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            db.execute('UPDATE tenders SET title=? WHERE id=?',(literal,t))
+            db.execute('UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?',(literal,literal,literal,r))
+            db.execute('UPDATE evidence SET label=? WHERE id=?',(literal,ev))
+            db.execute('UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?',(literal,literal,t))
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+>           assert item.value==literal and item.data_type=='s'
+E           AssertionError: assert ('#REF!' == '#REF!'
+E             
+E               #REF! and 'e' == 's'
+E             
+E             - s
+E             + e)
+
+regression_tests/test_workflows.py:491: AssertionError
+__ test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#NAME?] ___
+
+client = <starlette.testclient.TestClient object at 0x7f11422ce9f0>
+literal = '#NAME?'
+
+    @pytest.mark.parametrize('literal',[*ERROR_CODES,'00123','123.45','1E10'])
+    def test_spreadsheet_error_codes_and_numeric_looking_text_are_strings(client,literal):
+        from openpyxl import load_workbook
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            db.execute('UPDATE tenders SET title=? WHERE id=?',(literal,t))
+            db.execute('UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?',(literal,literal,literal,r))
+            db.execute('UPDATE evidence SET label=? WHERE id=?',(literal,ev))
+            db.execute('UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?',(literal,literal,t))
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+>           assert item.value==literal and item.data_type=='s'
+E           AssertionError: assert ('#NAME?' == '#NAME?'
+E             
+E               #NAME? and 'e' == 's'
+E             
+E             - s
+E             + e)
+
+regression_tests/test_workflows.py:491: AssertionError
+___ test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#NUM!] ___
+
+client = <starlette.testclient.TestClient object at 0x7f11421782f0>
+literal = '#NUM!'
+
+    @pytest.mark.parametrize('literal',[*ERROR_CODES,'00123','123.45','1E10'])
+    def test_spreadsheet_error_codes_and_numeric_looking_text_are_strings(client,literal):
+        from openpyxl import load_workbook
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            db.execute('UPDATE tenders SET title=? WHERE id=?',(literal,t))
+            db.execute('UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?',(literal,literal,literal,r))
+            db.execute('UPDATE evidence SET label=? WHERE id=?',(literal,ev))
+            db.execute('UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?',(literal,literal,t))
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+>           assert item.value==literal and item.data_type=='s'
+E           AssertionError: assert ('#NUM!' == '#NUM!'
+E             
+E               #NUM! and 'e' == 's'
+E             
+E             - s
+E             + e)
+
+regression_tests/test_workflows.py:491: AssertionError
+___ test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#N/A] ____
+
+client = <starlette.testclient.TestClient object at 0x7f11422b6bd0>
+literal = '#N/A'
+
+    @pytest.mark.parametrize('literal',[*ERROR_CODES,'00123','123.45','1E10'])
+    def test_spreadsheet_error_codes_and_numeric_looking_text_are_strings(client,literal):
+        from openpyxl import load_workbook
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            db.execute('UPDATE tenders SET title=? WHERE id=?',(literal,t))
+            db.execute('UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?',(literal,literal,literal,r))
+            db.execute('UPDATE evidence SET label=? WHERE id=?',(literal,ev))
+            db.execute('UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?',(literal,literal,t))
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+>           assert item.value==literal and item.data_type=='s'
+E           AssertionError: assert ('#N/A' == '#N/A'
+E             
+E               #N/A and 'e' == 's'
+E             
+E             - s
+E             + e)
+
+regression_tests/test_workflows.py:491: AssertionError
+=============================== warnings summary ===============================
+../../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /workspace/.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED regression_tests/test_workflows.py::test_attestation_metadata_requires_exact_shape_and_types[float_event_id]
+FAILED regression_tests/test_workflows.py::test_boolean_attestation_event_id_cannot_match_integer_one
+FAILED regression_tests/test_workflows.py::test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#NULL!]
+FAILED regression_tests/test_workflows.py::test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#DIV/0!]
+FAILED regression_tests/test_workflows.py::test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#VALUE!]
+FAILED regression_tests/test_workflows.py::test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#REF!]
+FAILED regression_tests/test_workflows.py::test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#NAME?]
+FAILED regression_tests/test_workflows.py::test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#NUM!]
+FAILED regression_tests/test_workflows.py::test_spreadsheet_error_codes_and_numeric_looking_text_are_strings[#N/A]
+9 failed, 68 passed, 1 warning in 4.88s

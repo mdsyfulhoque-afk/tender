@@ -1,0 +1,118 @@
+{
+  "all_passed": true,
+  "application_source_modified": false,
+  "canonical_agent_id": "/root/tenderos_patch_qa",
+  "commit_push_merge_deploy": false,
+  "data": "synthetic only",
+  "delegation_tool": "collaboration.spawn_agent",
+  "dependencies": {
+    "fastapi": "0.143.0",
+    "httpx": "0.28.1",
+    "openpyxl": "3.1.5",
+    "pydantic": "2.14.0",
+    "pypdf": "6.20.0",
+    "pytest": "9.1.1",
+    "reportlab": "5.0.1",
+    "starlette": "1.7.0"
+  },
+  "end_utc": "2026-10-09T16:39:37.649458Z",
+  "environment_overrides": {
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TENDEROS_DATA_DIR": "/workspace/tenderos-independent-qa/candidate-b8d99aa-original/original-import-data",
+    "TENDEROS_QA_REQUEST_TRACE": "/workspace/tenderos-independent-qa/candidate-b8d99aa-original/request-trace.json",
+    "TENDEROS_QA_SOURCE": "/workspace/tenderos-fix/TenderOS"
+  },
+  "execution_response_chunk": "Available to parent after this process finishes; not invented here",
+  "existing_customer_database_read": false,
+  "external_model_api_calls": false,
+  "external_network_calls": false,
+  "opaque_run_id": null,
+  "opaque_run_id_status": "No separate opaque runtime run ID is exposed; no ID invented",
+  "preparation_execution_chunks": [
+    "6704b6",
+    "289b62",
+    "664a73",
+    "25be70",
+    "05a42c"
+  ],
+  "preparation_observed_utc": "2026-10-09T16:22:24Z",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "qa_harness_sha256": "840f3438973fdd4d18579c44ca3fcab98276fe0f7ec49ada131e8493289b752d",
+  "qa_runner_sha256": "92d29f67fc84c8a253f292bb67e5e79cdf38647f63635c072fdff3e979b20cd2",
+  "runtime": "Codex collaboration spawned subagent",
+  "source": "/workspace/tenderos-fix/TenderOS",
+  "source_commit": "b8d99aa32abab9e46147eaac7ce93cdbb32307d4",
+  "source_hashes_after": {
+    "app/main.py": "816183fdbd34acbeff18c3a08061adaeef43191b0e9615f1df4dd2c2f82609e0",
+    "app/static/index.html": "fbe6e399da5cfdf6fdae3eec0248061ab90e5482b4c98cb0a68643909f67fd51",
+    "app/static/style.css": "fe6211ffdd50ee909fbd1639e35f4daaf31297c17fb312917093210f7bf74596",
+    "app/static/ui.js": "cfb6cd9fe496337134ac1f5fdf1defd27f9c4a136ea0334344b2cf4e0892ce00",
+    "tests/conftest.py": "2ec1e36f1f476a733e93d6b9a3404eaea6bd7d3d10c868f6cdc77828f68b30be",
+    "tests/test_workflows.py": "087dfc61ffedcee1ea5c89a43416f27f70317152de93e28bd07125e899001d38"
+  },
+  "source_hashes_before": {
+    "app/main.py": "816183fdbd34acbeff18c3a08061adaeef43191b0e9615f1df4dd2c2f82609e0",
+    "app/static/index.html": "fbe6e399da5cfdf6fdae3eec0248061ab90e5482b4c98cb0a68643909f67fd51",
+    "app/static/style.css": "fe6211ffdd50ee909fbd1639e35f4daaf31297c17fb312917093210f7bf74596",
+    "app/static/ui.js": "cfb6cd9fe496337134ac1f5fdf1defd27f9c4a136ea0334344b2cf4e0892ce00",
+    "tests/conftest.py": "2ec1e36f1f476a733e93d6b9a3404eaea6bd7d3d10c868f6cdc77828f68b30be",
+    "tests/test_workflows.py": "087dfc61ffedcee1ea5c89a43416f27f70317152de93e28bd07125e899001d38"
+  },
+  "source_unchanged": true,
+  "start_utc": "2026-10-09T16:39:28.649719Z",
+  "suites": [
+    {
+      "command_argv": [
+        "/workspace/.venvs/tenderos-baseline/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "/workspace/tenderos-fix/TenderOS/tests",
+        "--basetemp=/workspace/tenderos-independent-qa/candidate-b8d99aa-original/repository-tmp",
+        "--junitxml=/workspace/tenderos-independent-qa/candidate-b8d99aa-original/repository.xml"
+      ],
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "tests": 77
+      },
+      "cwd": "/workspace/tenderos-fix/TenderOS",
+      "end_utc": "2026-10-09T16:39:34.837647Z",
+      "exit_code": 0,
+      "failures": [],
+      "start_utc": "2026-10-09T16:39:28.652595Z",
+      "suite": "repository"
+    },
+    {
+      "command_argv": [
+        "/workspace/.venvs/tenderos-baseline/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "/workspace/tenderos-independent-qa/test_independent_repairs.py",
+        "--basetemp=/workspace/tenderos-independent-qa/candidate-b8d99aa-original/independent-tmp",
+        "--junitxml=/workspace/tenderos-independent-qa/candidate-b8d99aa-original/independent.xml"
+      ],
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "tests": 33
+      },
+      "cwd": "/workspace/tenderos-fix/TenderOS",
+      "end_utc": "2026-10-09T16:39:37.644240Z",
+      "exit_code": 0,
+      "failures": [],
+      "start_utc": "2026-10-09T16:39:34.837680Z",
+      "suite": "independent"
+    }
+  ],
+  "task_id": "T-004",
+  "tool_traces_location": "Codex conversation tool trace for canonical task /root/tenderos_patch_qa; external command evidence in this report directory"
+}

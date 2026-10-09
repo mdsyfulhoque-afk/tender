@@ -1,0 +1,10 @@
+{
+  "independent.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "independent.stdout.txt": "f29fee626ea40660a32b2ea3d9257785392340be6bb07028167a8502245580da",
+  "independent.xml": "bdc34e482dccae14b0532f1f1a50f9d254c3bcacb8f01fc045fd4a672a85ed24",
+  "repository.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "repository.stdout.txt": "2f305b03d4b00bfe6b35928f59a69c13ffc4480b47becb910e215be53e84e46f",
+  "repository.xml": "288fbe1d517ffeca957f2a32483c70010ba8388c2054ebf6fd9f3fcb7f688b4e",
+  "request-trace.json": "8999f4831b6b81f2445ea3e2e63585df44fc0de575980d1eee40855bd964ad6f",
+  "result.json": "132643dfecc9483e788936c80f411f4e176fe8c6f7c516ed5fc0d06b0d65f4ed"
+}

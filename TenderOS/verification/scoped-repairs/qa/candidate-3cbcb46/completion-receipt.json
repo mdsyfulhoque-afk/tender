@@ -1,0 +1,83 @@
+{
+  "actual_suite_argv": [
+    [
+      "/workspace/.venvs/tenderos-baseline/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "/workspace/tenderos-fix/TenderOS/tests",
+      "--basetemp=/workspace/tenderos-independent-qa/candidate-3cbcb46/repository-tmp",
+      "--junitxml=/workspace/tenderos-independent-qa/candidate-3cbcb46/repository.xml"
+    ],
+    [
+      "/workspace/.venvs/tenderos-baseline/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "/workspace/tenderos-independent-qa/test_independent_repairs.py",
+      "--basetemp=/workspace/tenderos-independent-qa/candidate-3cbcb46/independent-tmp",
+      "--junitxml=/workspace/tenderos-independent-qa/candidate-3cbcb46/independent.xml"
+    ]
+  ],
+  "application_source_modified": false,
+  "baseline_independent": {
+    "errors": 0,
+    "failures": 12,
+    "skipped": 0,
+    "tests": 33
+  },
+  "branch_or_worktree": "/workspace/tenderos-fix; tenderos/fix-readiness-exports",
+  "candidate_independent": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "tests": 33
+  },
+  "candidate_repository": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "tests": 52
+  },
+  "candidate_total_passed": 85,
+  "canonical_agent_id": "/root/tenderos_patch_qa",
+  "commit_push_merge_deploy": false,
+  "completion_utc": "2026-10-09T16:32:12.194536Z",
+  "customer_database_read": false,
+  "data_egress": "None: synthetic in-process TestClient data only",
+  "delegation_tool": "collaboration.spawn_agent",
+  "execution_end_utc": "2026-10-09T16:30:41.872544Z",
+  "execution_start_utc": "2026-10-09T16:30:32.506111Z",
+  "harness_frozen_before_candidate": true,
+  "harness_sha256": "840f3438973fdd4d18579c44ca3fcab98276fe0f7ec49ada131e8493289b752d",
+  "head_unchanged_after_execution": true,
+  "history_preservation_checks_passed": true,
+  "limitations": [
+    "No opaque runtime run ID exposed",
+    "Not a production release or security-gate approval",
+    "Starlette/httpx test dependency emitted a deprecation warning"
+  ],
+  "network_and_external_model_calls": false,
+  "opaque_run_id": null,
+  "opaque_run_id_status": "Runtime exposes canonical task identity and tool traces, not a separate opaque run ID",
+  "qa_passed": true,
+  "qa_report_sha256": "80cdd37a6e5f3ffcfee28c9c5f55438349c8da8f534379fe00f5f646374220ed",
+  "result_json_sha256": "a095545c2d70df63e93d24978ebf554eae569494cc376716fdca57c944061ecf",
+  "resumption_tool": "collaboration.followup_task",
+  "scope": "Independent verification of bounded stale-decision and XLSX literal repairs",
+  "source_commit": "3cbcb46acd1ceb17d937d9c2bbc913ed44817485",
+  "source_unchanged": true,
+  "task_id": "T-004",
+  "tool_execution_chunks": [
+    "d29583",
+    "e54647",
+    "e48b33",
+    "102b9a",
+    "a8bf59"
+  ],
+  "worktree_clean_after_execution": true
+}

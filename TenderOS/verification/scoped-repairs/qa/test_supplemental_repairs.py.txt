@@ -1,0 +1,193 @@
+"""Independent supplemental QA after strict-types/Excel error-cell findings.
+
+Kept separate from the frozen initial 33-case harness and first-candidate
+receipts. Application source is read only; all data is synthetic and external.
+"""
+from __future__ import annotations
+
+import hashlib
+import importlib.util
+import io
+import json
+import os
+from pathlib import Path
+import sqlite3
+import time
+
+import pytest
+from fastapi.testclient import TestClient
+from openpyxl import load_workbook
+from openpyxl.cell.cell import ERROR_CODES
+
+
+ROOT = Path(__file__).resolve().parent
+SOURCE = Path(os.environ["TENDEROS_QA_SOURCE"])
+os.environ["TENDEROS_DATA_DIR"] = str(ROOT / "supplemental-import-data")
+spec = importlib.util.spec_from_file_location("independent_supplemental_tenderos_app", SOURCE / "app/main.py")
+main = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(main)
+SOURCE_SHA256 = hashlib.sha256((SOURCE / "app/main.py").read_bytes()).hexdigest()
+REQUEST_LOG = []
+
+
+@pytest.fixture
+def pilot(tmp_path, monkeypatch, request):
+    database = tmp_path / "synthetic.sqlite3"
+    uploads = tmp_path / "uploads"
+    uploads.mkdir()
+    monkeypatch.setattr(main, "DB", database)
+    monkeypatch.setattr(main, "STORAGE", uploads)
+    with sqlite3.connect(database) as connection:
+        connection.executescript(main.SCHEMA)
+    REQUEST_LOG.append({"event": "test_started", "test": request.node.nodeid, "utc_epoch_seconds": time.time()})
+    with TestClient(main.app) as client:
+        yield client
+    REQUEST_LOG.append({"event": "test_finished", "test": request.node.nodeid, "utc_epoch_seconds": time.time()})
+    Path(os.environ["TENDEROS_QA_REQUEST_TRACE"]).write_text(json.dumps(REQUEST_LOG, indent=2) + "\n")
+    assert hashlib.sha256((SOURCE / "app/main.py").read_bytes()).hexdigest() == SOURCE_SHA256
+
+
+def call(client, method, path, expected=200, **kwargs):
+    response = getattr(client, method)(path, **kwargs)
+    REQUEST_LOG.append({"event": "request", "method": method.upper(), "path": path,
+                        "expected_status": expected, "actual_status": response.status_code,
+                        "response_sha256": hashlib.sha256(response.content).hexdigest()})
+    assert response.status_code == expected, (method, path, response.status_code, response.text[:300])
+    return response
+
+
+def rows(sql, args=()):
+    with sqlite3.connect(main.DB) as connection:
+        connection.row_factory = sqlite3.Row
+        return [dict(row) for row in connection.execute(sql, args)]
+
+
+def mutate(sql, args=()):
+    with sqlite3.connect(main.DB) as connection:
+        connection.execute(sql, args)
+
+
+def history(tender):
+    return rows("SELECT * FROM decisions WHERE tender_id=? ORDER BY id", (tender,))
+
+
+def detail(client, tender):
+    return call(client, "get", f"/api/tenders/{tender}").json()
+
+
+def make_ready(client):
+    org = call(client, "post", "/api/organizations", 201,
+               json={"name": "Supplemental Synthetic Organization"}).json()["id"]
+    tender = call(client, "post", "/api/tenders", 201, json={
+        "organization_id": org, "title": "Supplemental synthetic QA tender",
+    }).json()["id"]
+    text = "Three synthetic projects must be documented"
+    requirement = call(client, "post", f"/api/tenders/{tender}/requirements", 201, json={
+        "text": text, "source_page": 1, "source_quote": text,
+    }).json()["id"]
+    call(client, "put", f"/api/requirements/{requirement}/review", json={
+        "text": text, "source_page": 1, "source_quote": text, "mandatory": True,
+    })
+    evidence = call(client, "post", "/api/evidence", 201, json={
+        "organization_id": org, "label": "Supplemental synthetic certificate",
+        "reference": "SUPPLEMENTAL-SYNTHETIC-001", "verified": True,
+        "verification_note": "Checked synthetic certificate for QA only",
+    }).json()["id"]
+    call(client, "put", f"/api/requirements/{requirement}/status", json={
+        "status": "VERIFIED", "evidence_id": evidence, "notes": "Synthetic reviewed evidence",
+    })
+    # Use real attestation flow but reset only this synthetic DB's audit rows so
+    # the actual latest attestation has ID 1. This exposes Python True == 1.
+    mutate("DELETE FROM audit_events")
+    call(client, "post", f"/api/tenders/{tender}/attest-source-scope", json={
+        "reviewer": "Supplemental Synthetic Reviewer", "checked_full_document_set": True,
+        "note": "Reviewed complete synthetic document inventory for independent QA only",
+    })
+    call(client, "post", f"/api/tenders/{tender}/decisions", 201, json={
+        "decision": "BID", "reviewer": "Supplemental Synthetic Reviewer",
+        "rationale": "Reviewed complete synthetic evidence and source inventory for QA only",
+    })
+    current = detail(client, tender)
+    assert current["compliance"] == "READY_FOR_HUMAN_DECISION"
+    assert current["current_decision"] == "BID"
+    assert current["source_scope_attestation"]["event_id"] == 1
+    return {"org": org, "tender": tender, "req": requirement, "evidence": evidence}
+
+
+ATTESTATION_MUTATIONS = [
+    "event_float", "event_true", "event_false", "event_string", "event_null", "event_dict", "event_list",
+    "event_missing", "nested_extra", "reviewer_missing", "note_missing", "at_missing", "scope_hash_missing",
+    "nested_null", "nested_list", "nested_string", "nested_bool", "nested_float", "attestation_missing",
+]
+
+
+@pytest.mark.parametrize("mutation", ATTESTATION_MUTATIONS)
+def test_attestation_snapshot_requires_exact_nested_types_and_complete_shape(pilot, mutation):
+    case = make_ready(pilot)
+    decision = history(case["tender"])[0]
+    snapshot = json.loads(decision["decision_snapshot"])
+    attestation = snapshot["scope_attestation"]
+    if mutation.startswith("event_"):
+        replacement = {"event_float": 1.0, "event_true": True, "event_false": False,
+                       "event_string": "1", "event_null": None, "event_dict": {"value": 1}, "event_list": [1]}
+        if mutation == "event_missing":
+            attestation.pop("event_id")
+        else:
+            attestation["event_id"] = replacement[mutation]
+    elif mutation == "nested_extra":
+        attestation["unexpected_key"] = "synthetic surplus snapshot metadata"
+    elif mutation.endswith("_missing") and mutation != "attestation_missing":
+        attestation.pop(mutation.removesuffix("_missing"))
+    elif mutation == "attestation_missing":
+        snapshot.pop("scope_attestation")
+    else:
+        snapshot["scope_attestation"] = {"nested_null": None, "nested_list": [], "nested_string": "1",
+                                         "nested_bool": True, "nested_float": 1.0}[mutation]
+    mutate("UPDATE decisions SET decision_snapshot=? WHERE id=?", (json.dumps(snapshot), decision["id"]))
+    stored = history(case["tender"])
+    result = detail(pilot, case["tender"])
+    assert result["compliance"] == "READY_FOR_HUMAN_DECISION"
+    assert result["current_decision"] is None
+    assert result["decisions"][0]["is_current"] is False
+    assert history(case["tender"]) == stored
+    for extension in ("xlsx", "docx", "csv"):
+        response = call(pilot, "get", f"/api/tenders/{case['tender']}/export.{extension}")
+        assert len(response.content) > 70
+    assert history(case["tender"]) == stored
+
+
+# Include every error recognized by the installed workbook library and newer
+# Excel codes even when openpyxl currently treats those newer codes as text.
+EXCEL_ERROR_STRINGS = tuple(dict.fromkeys((*ERROR_CODES, "#GETTING_DATA", "#SPILL!", "#CALC!", "#FIELD!",
+                                        "#BLOCKED!", "#UNKNOWN!", "#CONNECT!", "#BUSY!")))
+PLAIN_STRING_VALUES = ("00123", "12345", "1e3", "1.25", "0.0",
+                       "সিন্থেটিক দরপত্র—যোগ্যতার প্রমাণ", "Synthetic ✅ evidence", "دليل اختبار اصطناعي",
+                       "Literal text contains =1+1 in its middle")
+
+
+@pytest.mark.parametrize("value", EXCEL_ERROR_STRINGS + PLAIN_STRING_VALUES)
+def test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings(pilot, value):
+    case = make_ready(pilot)
+    # Existing imported/legacy persisted strings can be shorter than today's
+    # API length limits. Exercise export semantics directly with synthetic rows.
+    mutate("UPDATE tenders SET title=? WHERE id=?", (value, case["tender"]))
+    mutate("UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?", (value, value, value, case["req"]))
+    mutate("UPDATE evidence SET label=? WHERE id=?", (value, case["evidence"]))
+    mutate("UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?", (value, value, case["tender"]))
+    stored = history(case["tender"])
+    response = call(pilot, "get", f"/api/tenders/{case['tender']}/export.xlsx")
+    workbook = load_workbook(io.BytesIO(response.content), data_only=False)
+    fields = [("Compliance Matrix", coordinate) for coordinate in ("B2", "E8", "G8", "H8", "I8")]
+    fields += [("Decision History", coordinate) for coordinate in ("B2", "C2")]
+    for sheet, coordinate in fields:
+        cell = workbook[sheet][coordinate]
+        assert cell.data_type == "s", (value, sheet, coordinate, cell.data_type, cell.value)
+        assert cell.value == value, (value, sheet, coordinate, cell.value)
+    assert not any(cell.data_type in ("e", "f") for sheet in workbook for row in sheet for cell in row)
+    assert workbook["Compliance Matrix"]["A8"].data_type == "n"
+    assert workbook["Compliance Matrix"]["A8"].value == case["req"]
+    assert workbook["Compliance Matrix"]["F8"].data_type == "n"
+    assert workbook["Compliance Matrix"]["F8"].value == 1
+    assert workbook["Decision History"]["E2"].data_type == "s"
+    assert workbook["Decision History"]["E2"].value == stored[0]["decision_snapshot"]
+    assert history(case["tender"]) == stored

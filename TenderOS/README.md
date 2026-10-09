@@ -1,6 +1,6 @@
 # TenderOS — Bid Decision Intelligence
 
-**Repository integration status:** original local MVP source imported unchanged on 2026-10-09. Baseline and independent audit evidence are under `verification/`. The agentic product implementation remains subject to the PRD and engineering gates.
+**Repository integration status:** original local MVP imported on 2026-10-09, followed by scoped repairs to decision currency and spreadsheet exports. Independent verification and actual agent receipts are under `verification/`. This remains a local pilot; the model-backed product workflow is described in the draft PRD.
 
 ## Existing repository
 The existing `ProposalGuard/` directory is an independent TenderProof OS / ProposalGuard archive. Preserve it. TenderOS must be imported into its own `TenderOS/` directory; do not overwrite `ProposalGuard/` or the default branch.
@@ -11,11 +11,11 @@ TenderOS assesses tender eligibility and organization evidence, identifies manda
 ## Imported source and project knowledge
 The supplied `TenderOS_Codex_Work_Transfer_v1_2.zip` provides the FastAPI application, static UI, ten baseline tests, dependency manifest, PRD, APES documentation and agent contracts. Its `repo/` files have been mapped into this directory, while its knowledge, agent-operations and verification files retain their corresponding subdirectories.
 
-The application and tests retain the ZIP's original bytes. The existing repository `AGENTS.md` remains active. The transfer's original repository instructions and README are preserved in `verification/TRANSFER_REPO_AGENTS.md` and `verification/MVP_README_ORIGINAL.md`.
+Import commit `ca819a902f5f8ac1bc18b10238505c3cd773cca6` preserves the ZIP's original application and test bytes. Subsequent repairs are recorded separately in Git and [the repair report](verification/scoped-repairs/REPORT.md). The existing repository `AGENTS.md` remains active. The transfer's original repository instructions and README are preserved in `verification/TRANSFER_REPO_AGENTS.md` and `verification/MVP_README_ORIGINAL.md`.
 
 The ZIP contains a SQLite database despite its documentation saying the database was omitted. The entire archived `repo/data/` tree was excluded. No packaged database or customer uploads were imported.
 
-See [import mapping and hashes](verification/IMPORT_REPORT.json), [current source audit](verification/CURRENT_SOURCE_AUDIT.md), and the [draft PRD](project_knowledge/02_PRD_v1_1.md). The handoff ZIP's nine documents are byte-identical to the corresponding transfer knowledge files, so they were imported once.
+See [import mapping and hashes](verification/IMPORT_REPORT.json), [imported-source audit](verification/CURRENT_SOURCE_AUDIT.md), and the [draft PRD](project_knowledge/02_PRD_v1_1.md). The audit documents the original baseline and its defects; repair results supersede those defect statuses. The handoff ZIP's nine documents are byte-identical to the corresponding transfer knowledge files, so they were imported once.
 
 Independent verification on 2026-10-09: **10 tests passed, none skipped or failed**; `/api/health`, `/`, and `/api/docs` returned 200 through the local test client. [Current results](verification/current-baseline/baseline-result.json) and [test output](verification/current-baseline/baseline.stdout.txt) are preserved.
 
@@ -34,26 +34,31 @@ TENDEROS_DATA_DIR=/tmp/tenderos-local .venv/bin/python -m uvicorn app.main:app -
 
 Open `http://127.0.0.1:8000`; API documentation is at `/api/docs`. Set `TENDEROS_DATA_DIR` before application import to keep runtime data separate from the source tree.
 
-For the complete baseline, install the optional PDF-test dependency and run:
+For the complete test suite, install the optional PDF-test dependency and run:
 
 ```bash
 .venv/bin/python -m pip install reportlab
 TENDEROS_DATA_DIR=/tmp/tenderos-baseline PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -q -p no:cacheprovider
 ```
 
-Without `reportlab`, the existing PDF provenance test skips. Resolved versions and current test results are recorded in `verification/current-baseline/`; dependency ranges remain unchanged from the original source.
+Without `reportlab`, PDF tests skip. The original baseline and dependency versions are recorded in `verification/current-baseline/`; repair verification is in `verification/scoped-repairs/`. Dependency ranges remain unchanged from the original source.
 
 ## Engineering evidence and gates
-No autonomous AI sub-agent, no build. Read [AGENTS.md](AGENTS.md). Actual delegated agents performed source/archive audits and unchanged-source import, with separate independent QA. Their canonical task identifiers and tool traces are recorded. The launcher does not expose a separate opaque run ID; this receipt limitation is explicit rather than represented as a passed strict gate. The source migration introduces no new application logic.
+No autonomous AI sub-agent, no build. Read [AGENTS.md](AGENTS.md). Actual delegated agents performed source/archive audits, source import and scoped coding in an isolated worktree. Separate QA and security agents reviewed the completed commits using synthetic local data. Canonical task identifiers, commands, hashes and actual tool traces are recorded. The launcher does not expose a separate opaque run ID; this receipt limitation is explicit rather than represented as a passed strict gate.
 
-The draft PRD and supplied `START_HERE.md` require founder approval of the bounded implementation scope before T-003. The first proposed change is DEF-001: source/evidence changes must invalidate a current BID while preserving decision history. No implementation repair, merge or deployment is included in the import.
+The user's session instruction to continue autonomous development authorized the bounded private repairs. This does not assert approval of the full draft PRD or an external model processor. Historical transfer instructions and their original status claims are preserved. The changes remain on the draft integration branch.
+
+## Decision and export repairs
+
+- Source inventory, source associations, requirement rationale and linked evidence values participate in decision currency checks. A current BID also requires current readiness.
+- Each source attestation has an existing audit-event identity. Reattestation requires a fresh decision, including when the source content is unchanged and timestamps match.
+- Legacy or malformed snapshots remain historical and cannot become current. Existing assessments need source reattestation and a new human decision after upgrading; stored decision rows are retained.
+- Spreadsheet exports escape formula-like prefixes in dynamic text. XLSX strings, including Excel error labels, are serialized as literal text; numeric IDs and pages remain numeric.
 
 ## Current limitations
 - Local FastAPI/SQLite prototype without authenticated multi-user access.
 - PDF candidates come from local keyword heuristics; model-powered specialist tasks are proposed in the PRD.
 - Source/evidence references and reviewer identities need stronger validation before external use.
-- DEF-001 is unresolved: a zero-candidate addendum changes source completeness without invalidating the displayed BID.
-- XLSX header exports interpret formulas in tender title and decision reviewer/rationale; independently reproduced with a benign synthetic formula.
 - Baseline test success does not prove a working model-backed workflow or production readiness.
 - External tender submission and production deployment require their separate gates.
 

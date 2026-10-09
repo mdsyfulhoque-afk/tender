@@ -1,0 +1,3124 @@
+[
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_True",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_True",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_True",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_True",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_True",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_True",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_True",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_True",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_True",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_True",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_1.0",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_1.0",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_1.0",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_1.0",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_1.0",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_1.0",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_1.0",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_1.0",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_1.0",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_1.0",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_'1'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_'1'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_'1'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_'1'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_'1'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_'1'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_'1'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_'1'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_'1'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_'1'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_None",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_None",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_None",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_None",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_None",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_None",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_None",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_None",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_None",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_None",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_2",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_2",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_2",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_2",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_2",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_2",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_2",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_2",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_2",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "currency_version_rejects_type_or_value_2",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_event_id",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_event_id",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_event_id",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_event_id",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_event_id",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_event_id",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_event_id",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_event_id",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_event_id",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_event_id",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_reviewer",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_reviewer",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_reviewer",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_reviewer",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_reviewer",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_reviewer",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_reviewer",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_reviewer",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_reviewer",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_reviewer",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_note",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_note",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_note",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_note",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_note",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_note",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_note",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_note",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_note",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_note",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_at",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_at",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_at",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_at",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_at",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_at",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_at",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_at",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_at",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_at",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_scope_hash",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_scope_hash",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_scope_hash",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_scope_hash",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_scope_hash",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_scope_hash",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_scope_hash",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_scope_hash",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_scope_hash",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "missing_nested_attestation_scope_hash",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_float",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_float",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_float",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_float",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_float",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_float",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_float",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_float",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_float",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_float",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_bool",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_bool",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_bool",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_bool",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:19+00:00",
+    "case": "malformed_attestation_shape_bool",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_bool",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_bool",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_bool",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_bool",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_bool",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_bool",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_bool",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_missing",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_missing",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_missing",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_missing",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_missing",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_missing",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_missing",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_missing",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_missing",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_missing",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_extra",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_extra",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_extra",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_extra",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_extra",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_extra",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_extra",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_extra",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_extra",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_extra",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_string_id",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_string_id",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_string_id",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_string_id",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_string_id",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_string_id",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_string_id",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_string_id",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_string_id",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_string_id",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_id",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_id",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_id",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_id",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_id",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_id",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_id",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_id",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_id",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_id",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_id",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_id",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_id",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_id",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_id",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_id",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_id",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_id",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_id",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_id",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_dict_id",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_dict_id",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_dict_id",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_dict_id",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_dict_id",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_dict_id",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_dict_id",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_dict_id",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_dict_id",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_dict_id",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_attestation",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_attestation",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_attestation",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_attestation",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_attestation",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_attestation",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_attestation",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_attestation",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_attestation",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_attestation",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_attestation",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_attestation",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_attestation",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_attestation",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_attestation",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_attestation",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_attestation",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_attestation",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_attestation",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_list_attestation",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_boolean_reviewer",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_boolean_reviewer",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_boolean_reviewer",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_boolean_reviewer",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_boolean_reviewer",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_boolean_reviewer",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_boolean_reviewer",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_boolean_reviewer",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_boolean_reviewer",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_boolean_reviewer",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_note",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_note",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_note",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_note",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_note",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_note",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_note",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_note",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_note",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_null_note",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_numeric_at",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_numeric_at",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_numeric_at",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_numeric_at",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_numeric_at",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_numeric_at",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_numeric_at",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_numeric_at",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_numeric_at",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_numeric_at",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_object_scope_hash",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_object_scope_hash",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_object_scope_hash",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_object_scope_hash",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_object_scope_hash",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_object_scope_hash",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_object_scope_hash",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_object_scope_hash",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_object_scope_hash",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "malformed_attestation_shape_object_scope_hash",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "linked_evidence_expires_without_any_db_write",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "linked_evidence_expires_without_any_db_write",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "linked_evidence_expires_without_any_db_write",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:20+00:00",
+    "case": "linked_evidence_expires_without_any_db_write",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "linked_evidence_expires_without_any_db_write",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "linked_evidence_expires_without_any_db_write",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "linked_evidence_expires_without_any_db_write",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "linked_evidence_expires_without_any_db_write",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "linked_evidence_expires_without_any_db_write",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "linked_evidence_expires_without_any_db_write",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "linked_evidence_expires_without_any_db_write",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "linked_evidence_expires_without_any_db_write",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 409
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_notice_id_change",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_notice_id_change",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_notice_id_change",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_notice_id_change",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_notice_id_change",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_notice_id_change",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_notice_id_change",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_notice_id_change",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_notice_id_change",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_notice_id_change",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_source_url_change",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_source_url_change",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_source_url_change",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_source_url_change",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_source_url_change",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_source_url_change",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_source_url_change",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_source_url_change",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_source_url_change",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "tender_provenance_source_url_change",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_HOLD",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_HOLD",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_HOLD",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_HOLD",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_HOLD",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_HOLD",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_HOLD",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_HOLD",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_HOLD",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_HOLD",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_HOLD",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_NO_BID",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_NO_BID",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_NO_BID",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_NO_BID",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_NO_BID",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_NO_BID",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_NO_BID",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_NO_BID",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_NO_BID",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_NO_BID",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "non_bid_current_when_unresolved_NO_BID",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NULL!'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NULL!'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NULL!'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NULL!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NULL!'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NULL!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NULL!'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NULL!'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NULL!'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NULL!'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#DIV/0!'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#DIV/0!'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#DIV/0!'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#DIV/0!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#DIV/0!'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#DIV/0!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#DIV/0!'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#DIV/0!'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#DIV/0!'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#DIV/0!'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#VALUE!'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#VALUE!'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#VALUE!'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#VALUE!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#VALUE!'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#VALUE!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#VALUE!'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#VALUE!'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#VALUE!'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#VALUE!'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#REF!'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#REF!'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#REF!'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#REF!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#REF!'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#REF!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#REF!'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#REF!'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#REF!'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#REF!'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NAME?'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NAME?'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NAME?'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NAME?'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NAME?'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NAME?'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NAME?'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NAME?'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NAME?'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NAME?'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NUM!'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NUM!'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NUM!'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NUM!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NUM!'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NUM!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NUM!'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NUM!'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NUM!'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#NUM!'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#N/A'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#N/A'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#N/A'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#N/A'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#N/A'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#N/A'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#N/A'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#N/A'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#N/A'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:21+00:00",
+    "case": "xlsx_text_edge_'#N/A'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#GETTING_DATA'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#GETTING_DATA'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#GETTING_DATA'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#GETTING_DATA'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#GETTING_DATA'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#GETTING_DATA'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#GETTING_DATA'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#GETTING_DATA'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#GETTING_DATA'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#GETTING_DATA'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#SPILL!'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#SPILL!'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#SPILL!'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#SPILL!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#SPILL!'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#SPILL!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#SPILL!'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#SPILL!'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#SPILL!'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#SPILL!'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#CALC!'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#CALC!'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#CALC!'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#CALC!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#CALC!'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#CALC!'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#CALC!'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#CALC!'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#CALC!'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'#CALC!'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'00123'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'00123'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'00123'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'00123'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'00123'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'00123'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'00123'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'00123'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'00123'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'00123'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'123.45'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'123.45'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'123.45'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'123.45'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'123.45'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'123.45'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'123.45'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'123.45'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'123.45'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'123.45'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'1E10'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'1E10'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'1E10'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'1E10'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'1E10'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'1E10'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'1E10'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'1E10'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'1E10'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'1E10'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\ufeff=1+1 benign'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\ufeff=1+1 benign'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\ufeff=1+1 benign'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\ufeff=1+1 benign'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\ufeff=1+1 benign'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\ufeff=1+1 benign'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\ufeff=1+1 benign'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\ufeff=1+1 benign'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\ufeff=1+1 benign'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\ufeff=1+1 benign'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\u200b=1+1 benign'",
+    "method": "POST",
+    "path": "/api/organizations",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\u200b=1+1 benign'",
+    "method": "POST",
+    "path": "/api/tenders",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\u200b=1+1 benign'",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\u200b=1+1 benign'",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\u200b=1+1 benign'",
+    "method": "POST",
+    "path": "/api/evidence",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\u200b=1+1 benign'",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\u200b=1+1 benign'",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\u200b=1+1 benign'",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "status": 201
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\u200b=1+1 benign'",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "status": 200
+  },
+  {
+    "at_utc": "2026-10-09T16:39:22+00:00",
+    "case": "xlsx_text_edge_'\\u200b=1+1 benign'",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "status": 200
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "QA_REPORT.md": "517a00a838de6d8b6efeb0ae5855df3080c99d13a325c4b6c7df197e3464ac2d",
+  "completion-receipt.json": "8e12f031089377d954cc329baa22a5f4df7a57320ee0771249608934f60efae6",
+  "original-runner.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "original-runner.stdout.txt": "5784846d577214cae6d83ee11b28b460abd09ce077053e88ea6beae39b117c8e",
+  "result.json": "4d968f5715a58e41aeb92432b2dd5833e4df1dd03085daf7e9638061681f5b76",
+  "supplemental-request-trace.json": "146ba377e1b9ef0c59bad054f5e96f4e73a05709c51d16e6d9ff695cddf74dc9",
+  "supplemental.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "supplemental.stdout.txt": "edb70b4238984bc38ceeffad34e2847b5b531c3937a73a27f7fc1132590a7943",
+  "supplemental.xml": "a3940f8bdd37820d8cf0e2b796ae6af6ec23e6d8080b92c49d9dea135e004d43"
+}

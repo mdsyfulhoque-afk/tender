@@ -1,6 +1,6 @@
 {
   "strict_runtime_receipt_gate": "UNRESOLVED_OPAQUE_RUN_ID_NOT_EXPOSED",
-  "application_implementation": "NOT_STARTED",
+  "application_implementation": "SCOPED_REPAIRS_VERIFIED",
   "records": [
     {
       "task": "source audit",
@@ -65,6 +65,65 @@
       "output": "verification/current-baseline/independent-receipt.json",
       "output_sha256": "2f0674824a400255f0aafaab63af2b8f13b5e5f1ca88ae21f17d793fc6dc58e0",
       "identifier_kind": "actual canonical task identifier returned by delegated runtime; separate opaque run ID not exposed"
+    },
+    {
+      "task": "T-003 scoped repair",
+      "agent_id": "/root/tenderos_scoped_repairs",
+      "delegation_tool": "collaboration.spawn_agent; collaboration.followup_task",
+      "opaque_run_id": null,
+      "output": "verification/scoped-repairs/coder/coder-receipt.json",
+      "output_sha256": "700cc8fb0bee1722694513f8af1abf13c1a1b3df78acca826d6d65fb85183733",
+      "trace": "Actual delegated-agent runtime transcript; execution chunk IDs and UTC observations in linked receipt/report",
+      "identifier_kind": "Actual canonical task identifier; separate opaque run ID is not exposed",
+      "data_egress": "Synthetic local verification; no external model requests or customer data"
+    },
+    {
+      "task": "T-003 security follow-up",
+      "agent_id": "/root/tenderos_scoped_repairs",
+      "delegation_tool": "collaboration.spawn_agent; collaboration.followup_task",
+      "opaque_run_id": null,
+      "output": "verification/scoped-repairs/coder/security-followup/coder-receipt.json",
+      "output_sha256": "4a44ad90012cc4e9ebab31ff1fc779961dd53d18b21a0a32be5593db73656a65",
+      "trace": "Actual delegated-agent runtime transcript; execution chunk IDs and UTC observations in linked receipt/report",
+      "identifier_kind": "Actual canonical task identifier; separate opaque run ID is not exposed",
+      "data_egress": "Synthetic local verification; no external model requests or customer data"
+    },
+    {
+      "task": "T-004 independent QA",
+      "agent_id": "/root/tenderos_patch_qa",
+      "delegation_tool": "collaboration.spawn_agent; collaboration.followup_task",
+      "opaque_run_id": null,
+      "output": "verification/scoped-repairs/qa/candidate-b8d99aa/completion-receipt.json",
+      "output_sha256": "8e12f031089377d954cc329baa22a5f4df7a57320ee0771249608934f60efae6",
+      "trace": "Actual delegated-agent runtime transcript; execution chunk IDs and UTC observations in linked receipt/report",
+      "identifier_kind": "Actual canonical task identifier; separate opaque run ID is not exposed",
+      "data_egress": "Synthetic local verification; no external model requests or customer data"
+    },
+    {
+      "task": "T-004 independent security",
+      "agent_id": "/root/tenderos_patch_security",
+      "delegation_tool": "collaboration.spawn_agent; collaboration.followup_task",
+      "opaque_run_id": null,
+      "output": "verification/scoped-repairs/security/FINAL-SECURITY-REVIEW.md",
+      "output_sha256": "3be8bd2497101f0abafdd6c52425c465bc7cd318aad0ad8dcf08516906306a4c",
+      "trace": "Actual delegated-agent runtime transcript; execution chunk IDs and UTC observations in linked receipt/report",
+      "identifier_kind": "Actual canonical task identifier; separate opaque run ID is not exposed",
+      "data_egress": "Synthetic local verification; no external model requests or customer data"
     }
+  ],
+  "implementation_scope": [
+    "DEF-001 decision currency",
+    "CSV/XLSX literal spreadsheet values"
+  ],
+  "session_authorization": {
+    "basis": "User requested autonomous implementation and objected to agents stopping; bounded private repairs proceeded under that instruction.",
+    "full_prd_approval_asserted": false,
+    "model_processor_approval_asserted": false,
+    "strict_historical_receipt_gate_passed": false
+  },
+  "reviewed_candidate_commit": "b8d99aa32abab9e46147eaac7ce93cdbb32307d4",
+  "integrated_repair_commits": [
+    "27fbb5d483d2f446c40c7298d5b6285fab5db894",
+    "aa2f87b03134dbfd05790692bf4769daed5c6016"
   ]
 }

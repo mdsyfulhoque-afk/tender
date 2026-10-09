@@ -1,0 +1,3428 @@
+[
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_addendum_invalidates_approval_and_attestation_cannot_resurrect_it",
+    "utc_epoch_seconds": 1791563273.7048323
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "114b47527d103dc89be16f13d5466d0d606dd039e9126567388a7c386b30009b"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "50779be4ba33bd226aefa5749ae17a4b7f6fef737a08bc84f9da943e98408352"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "50779be4ba33bd226aefa5749ae17a4b7f6fef737a08bc84f9da943e98408352"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/upload-pdf",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "46bde5f5c9c5a16d223abff554cb257d5dddfd05bf6ab40805dfd14176aa75ab"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "125b8b2ed6b42be5b7c77d78e85b7e89839eec381c40a87682c3dcaf3ac5aa15"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_addendum_invalidates_approval_and_attestation_cannot_resurrect_it",
+    "utc_epoch_seconds": 1791563273.8299904
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_source_reassociation_requires_new_scope_and_new_decision",
+    "utc_epoch_seconds": 1791563273.854173
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/upload-pdf",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "882b748b93d956349fc6b72acc1b33053ebef2bfc8ec7ae36f75c1386a973c8e"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/upload-pdf",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "8020112cb5e14c995775467e2971334be146a70128b309e88add7777140a8fd2"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "64352b13a2fe62615030401e52759ca468e909adf56d2c55bb4456bad7c3ae1b"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "b6c38f8fe4633dca0658ca96121a28436cc50e0780d24ae1aa3bf2f454448296"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "52d39760ee1b2355a6c46a380b4d85ba82b00de0291408ea3277affb5535c1ae"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "52d39760ee1b2355a6c46a380b4d85ba82b00de0291408ea3277affb5535c1ae"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "0988848390fc48c12c014331c46c5751f0f295eedd9905024ce2385d1e2f9399"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_source_reassociation_requires_new_scope_and_new_decision",
+    "utc_epoch_seconds": 1791563273.912542
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_source_content_change_keeps_prior_snapshot_immutable",
+    "utc_epoch_seconds": 1791563273.9323118
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/upload-pdf",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "882b748b93d956349fc6b72acc1b33053ebef2bfc8ec7ae36f75c1386a973c8e"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "7deddf82473a5643b1fdd07e6f2e626722b4022bbb72ec2d6eb8d07b7c46a212"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "4ee6f1d8a500e5744f44c35e5802e6f0475ef0fbbc048accb09c4b040b197298"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "6b1c7344bd751eace3124a9230c0628e74ec6d962e96251db08df79edaf76368"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "86e6cb19fae4b6d5242ecf2f77310bc4ee8b893d225fc09165f14eae4077e071"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_source_content_change_keeps_prior_snapshot_immutable",
+    "utc_epoch_seconds": 1791563273.9848351
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_metadata_change_requires_new_approval[label-Replacement synthetic certificate label]",
+    "utc_epoch_seconds": 1791563274.0094876
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "2a92bdbae0d92f38780e72c4e4d8535ddfd42467d64245e88fc9e6e835028f06"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "fb3aa152d46129b19b14caf8c67d96b2f95b921594f14252198788f9138e1fda"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "be8e7ab1ad9d4bd24fd677a5a430c60d1368f8b10a9abf44ce1dd131a8535afb"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_metadata_change_requires_new_approval[label-Replacement synthetic certificate label]",
+    "utc_epoch_seconds": 1791563274.0537996
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_metadata_change_requires_new_approval[reference-INDEPENDENT-SYNTHETIC-REVISED]",
+    "utc_epoch_seconds": 1791563274.0782847
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "2a92bdbae0d92f38780e72c4e4d8535ddfd42467d64245e88fc9e6e835028f06"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "fb3aa152d46129b19b14caf8c67d96b2f95b921594f14252198788f9138e1fda"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "1e42fa7e81ed1ea133dc19e4be0975a514eb4fa31e7f8d568f8622d846d55a4e"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_metadata_change_requires_new_approval[reference-INDEPENDENT-SYNTHETIC-REVISED]",
+    "utc_epoch_seconds": 1791563274.1657941
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_metadata_change_requires_new_approval[verification_note-Synthetic issuer rechecked using a different verification record]",
+    "utc_epoch_seconds": 1791563274.188597
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "2a92bdbae0d92f38780e72c4e4d8535ddfd42467d64245e88fc9e6e835028f06"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "fb3aa152d46129b19b14caf8c67d96b2f95b921594f14252198788f9138e1fda"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "303013efe1c75fe878fefe6cb2e4752cea7f086e03787650ac78495becc51699"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_metadata_change_requires_new_approval[verification_note-Synthetic issuer rechecked using a different verification record]",
+    "utc_epoch_seconds": 1791563274.2341177
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_metadata_change_requires_new_approval[expires_on-2026-11-23]",
+    "utc_epoch_seconds": 1791563274.256265
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "2a92bdbae0d92f38780e72c4e4d8535ddfd42467d64245e88fc9e6e835028f06"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "fb3aa152d46129b19b14caf8c67d96b2f95b921594f14252198788f9138e1fda"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "d1cb9359d1a68ea11ec29653c122d130d5b1bd97bcb096484e72e87d941949d8"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_metadata_change_requires_new_approval[expires_on-2026-11-23]",
+    "utc_epoch_seconds": 1791563274.299302
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_revocation_stops_current_bid_without_mutating_history",
+    "utc_epoch_seconds": 1791563274.3165505
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "2a92bdbae0d92f38780e72c4e4d8535ddfd42467d64245e88fc9e6e835028f06"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "fb3aa152d46129b19b14caf8c67d96b2f95b921594f14252198788f9138e1fda"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "267313416b4a30b5f6fce0058270657dea7c367d0f2a7ccc37a02a68ea5a8786"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 409,
+    "actual_status": 409,
+    "response_sha256": "50629c7f85b5f9604b751d9a8bc387d04f211c0dd9d842d1fd134e00e6992b0f"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_revocation_stops_current_bid_without_mutating_history",
+    "utc_epoch_seconds": 1791563274.3511953
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_expiry_with_clock_advance_invalidates_bid",
+    "utc_epoch_seconds": 1791563274.3687623
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "e2452a3e3832ef1fd11c37f74e0d0e39bdae38168a21fe8cdc682e5aa1bb67ee"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "aa001ee58a9aff0b009cbad84442e6e5ffa4ec76a2554679df72c26f75edebfc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "480daf1655b22f1dad0ee5f6bfd2e122ddfc28ed3589be39f2461fdd07611728"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 409,
+    "actual_status": 409,
+    "response_sha256": "50629c7f85b5f9604b751d9a8bc387d04f211c0dd9d842d1fd134e00e6992b0f"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_expiry_with_clock_advance_invalidates_bid",
+    "utc_epoch_seconds": 1791563274.4222226
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_id_change_requires_new_approval",
+    "utc_epoch_seconds": 1791563274.456014
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "2a92bdbae0d92f38780e72c4e4d8535ddfd42467d64245e88fc9e6e835028f06"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "fb3aa152d46129b19b14caf8c67d96b2f95b921594f14252198788f9138e1fda"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "9e7e65453739bbc64ba155eed18a37bd5fb1196c7f29ded1da660b94414d7ad8"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "6063a6140bfd8a3c866ca3387a834a43708329c067a2d9254e66d79820b3519f"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_linked_evidence_id_change_requires_new_approval",
+    "utc_epoch_seconds": 1791563274.4975574
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_fresh_scope_attestation_cannot_reuse_prior_approval_even_same_second[False]",
+    "utc_epoch_seconds": 1791563274.5168247
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "583bffd6b6e303775b74a58ed97db56f635d75a9a4edf7b5cf34db612042f765"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "a039cc60a1c23a199b32b69c3ddf23613fdbfd7be1159cfff1a60ebd769d6b0f"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "a039cc60a1c23a199b32b69c3ddf23613fdbfd7be1159cfff1a60ebd769d6b0f"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "9404d2ba3c91fc6cba2fd977b0196a691c718075f51636f13a196b8f6a67f7cd"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_fresh_scope_attestation_cannot_reuse_prior_approval_even_same_second[False]",
+    "utc_epoch_seconds": 1791563274.569897
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_fresh_scope_attestation_cannot_reuse_prior_approval_even_same_second[True]",
+    "utc_epoch_seconds": 1791563274.592576
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "583bffd6b6e303775b74a58ed97db56f635d75a9a4edf7b5cf34db612042f765"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "a039cc60a1c23a199b32b69c3ddf23613fdbfd7be1159cfff1a60ebd769d6b0f"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "a039cc60a1c23a199b32b69c3ddf23613fdbfd7be1159cfff1a60ebd769d6b0f"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "d729be54804845fb0f35eead9176d9c51a08ca90429e432a8eccae499a94aad0"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_fresh_scope_attestation_cannot_reuse_prior_approval_even_same_second[True]",
+    "utc_epoch_seconds": 1791563274.640637
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_legacy_snapshots_fail_closed_without_rewriting_them[scope_absent]",
+    "utc_epoch_seconds": 1791563274.6653218
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "2a92bdbae0d92f38780e72c4e4d8535ddfd42467d64245e88fc9e6e835028f06"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "fb3aa152d46129b19b14caf8c67d96b2f95b921594f14252198788f9138e1fda"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "cfac9d398ae2868b301ef7a02d1d7c83684710ba5b7f31b0e0704dea621889ae"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_legacy_snapshots_fail_closed_without_rewriting_them[scope_absent]",
+    "utc_epoch_seconds": 1791563274.7091517
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_legacy_snapshots_fail_closed_without_rewriting_them[baseline_snapshot]",
+    "utc_epoch_seconds": 1791563274.735282
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "2a92bdbae0d92f38780e72c4e4d8535ddfd42467d64245e88fc9e6e835028f06"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "fb3aa152d46129b19b14caf8c67d96b2f95b921594f14252198788f9138e1fda"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "fb3aa152d46129b19b14caf8c67d96b2f95b921594f14252198788f9138e1fda"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "fb3aa152d46129b19b14caf8c67d96b2f95b921594f14252198788f9138e1fda"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_legacy_snapshots_fail_closed_without_rewriting_them[baseline_snapshot]",
+    "utc_epoch_seconds": 1791563274.783889
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_noop_reviews_unrelated_evidence_metrics_exports_preserve_current_bid",
+    "utc_epoch_seconds": 1791563274.8021145
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "2a92bdbae0d92f38780e72c4e4d8535ddfd42467d64245e88fc9e6e835028f06"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "fb3aa152d46129b19b14caf8c67d96b2f95b921594f14252198788f9138e1fda"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "fb3aa152d46129b19b14caf8c67d96b2f95b921594f14252198788f9138e1fda"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "9e7e65453739bbc64ba155eed18a37bd5fb1196c7f29ded1da660b94414d7ad8"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/metrics",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "82a210beacaa01c555bf2a7ee6f4390ebb4f3879a8e8625b19f954db24d678d6"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.csv",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f60f6db9344f756fdebb3a9d978c86b9001a8bb7426c8e621d30f081c6de5c07"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ac68f1d51f95e082a4315aaa5d61ca668191f7e6184b56334cd3676f9a9d4458"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.docx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "14a50d40bca8da168dc6a10c415e6b8325881ecd50b085e4bd52ec192501e0b0"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "b8f8c1835a6cb872270f04c0004e3f7fc2a76aa1175932c2cc3d58a9c9d009fe"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_noop_reviews_unrelated_evidence_metrics_exports_preserve_current_bid",
+    "utc_epoch_seconds": 1791563274.9260283
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_explicit_nonbid_decision_remains_current_for_unchanged_unresolved_state[HOLD]",
+    "utc_epoch_seconds": 1791563274.9479969
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "2a92bdbae0d92f38780e72c4e4d8535ddfd42467d64245e88fc9e6e835028f06"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "6ab9fe06bc36d0b3d5335a0b6cb347c4967d0d40aba4682dbc7b86142645db00"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "5e7fe5920b2f9d2a1246bdd9ad163e825fbb0b8d36b97ddb80757da927fe6d95"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "221ca2fc7bd8b3814066d9a5b482289982cd6767acbfa43fb3af882868293f14"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "308be915c055eac2a53cf3c6e32fb76c4b0a47265dd1963a4168ee30c3ed0407"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_explicit_nonbid_decision_remains_current_for_unchanged_unresolved_state[HOLD]",
+    "utc_epoch_seconds": 1791563274.9851797
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_explicit_nonbid_decision_remains_current_for_unchanged_unresolved_state[NO_BID]",
+    "utc_epoch_seconds": 1791563275.0057619
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "6ab9fe06bc36d0b3d5335a0b6cb347c4967d0d40aba4682dbc7b86142645db00"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "549d7a2b1e62c3b03dd1e92909aa53ad7bd5fc6232f446bcc3cbf7607c34296e"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "dc10643628b97c1f9c31df714cdb6d3762ae3dd77a0d10a4d3388615fe067ab2"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "3c1050bf8b688d99d241e902882b066cf37a7551ca229a9af21a8342a76850f5"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_explicit_nonbid_decision_remains_current_for_unchanged_unresolved_state[NO_BID]",
+    "utc_epoch_seconds": 1791563275.0460227
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[-=SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.067616
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "c11fc973539e113c55b6f66ba58fc905c0431c1e9d6acd91e2f6ad573e049562"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "e86d486a88aed618eb8e1375d1d3c56c79b231bac6aedc57e1e302a499098581"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[-=SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.143668
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[-+SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.1680002
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "c11fc973539e113c55b6f66ba58fc905c0431c1e9d6acd91e2f6ad573e049562"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "b0ff9ca1e4f91a5e9cb62197350e0e03ed2f0c4f42c4489545e152f67e3425f8"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[-+SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.2227225
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[--SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.244218
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "c11fc973539e113c55b6f66ba58fc905c0431c1e9d6acd91e2f6ad573e049562"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "59d3098616d8806d58f8f00c79871c7bf1d776da0c96aa84d2e0f8d27dd40768"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[--SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.2992556
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[-@SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.3197737
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "c11fc973539e113c55b6f66ba58fc905c0431c1e9d6acd91e2f6ad573e049562"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "8554b302b796ec6dc60c3ad221e43d95bd39eae568d3bbc6ea773b82729c77b5"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[-@SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.3671172
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[  -=SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.3879879
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "c11fc973539e113c55b6f66ba58fc905c0431c1e9d6acd91e2f6ad573e049562"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dce76354d8286f58d9707273beeca1a7d09065bee420e5b5f774ac0e8094b75e"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[  -=SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.4354012
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[  -+SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.4564028
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "c11fc973539e113c55b6f66ba58fc905c0431c1e9d6acd91e2f6ad573e049562"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "675e7d6e9b2eca1db9e0b88123152244a88719344767ae88b25dbcaf96e8ef88"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[  -+SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.511653
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[  --SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.5341127
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "c11fc973539e113c55b6f66ba58fc905c0431c1e9d6acd91e2f6ad573e049562"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "e992c6b813cfe9c067941ce79188788df5eca2ac2f678238317e52cc01a9a806"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[  --SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.5923066
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[  -@SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.6112256
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "c11fc973539e113c55b6f66ba58fc905c0431c1e9d6acd91e2f6ad573e049562"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "de7d0e54bce5fb4cff3b62d84381527465cec44513dccfc3699eda17f27807a9"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[  -@SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.6596124
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\t-=SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.681014
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "c11fc973539e113c55b6f66ba58fc905c0431c1e9d6acd91e2f6ad573e049562"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "92d047e68aa4d992870661bf72acf409ab3c601e59eed69cf0ecf951c05e2cd6"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\t-=SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.7325284
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\t-+SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.7536159
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "c11fc973539e113c55b6f66ba58fc905c0431c1e9d6acd91e2f6ad573e049562"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "d01aa3c792b5f259a3c2307f5506ba121f9d2a3d64937c4566f822d96f680ded"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\t-+SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.806952
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\t--SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.8262224
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "c11fc973539e113c55b6f66ba58fc905c0431c1e9d6acd91e2f6ad573e049562"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "d32e36ebf04b7b6001af939d00a7755c1e22e760bc30765d954b1ed3946f23a6"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\t--SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.902452
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\t-@SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.9257772
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "dde37ea25dfdc27891df169a99708009199127425c3302280527be009db71760"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "c11fc973539e113c55b6f66ba58fc905c0431c1e9d6acd91e2f6ad573e049562"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "d243ee8f90cb4c9bcaae5f40a1e2c74e471535e0673f58448b705e7b5a60dfd4"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\t-@SUM(1,2)]",
+    "utc_epoch_seconds": 1791563275.9836278
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\r\\n  -=SUM(1,2)]",
+    "utc_epoch_seconds": 1791563276.0107956
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "1e3425140086af469be323a22089f3f45e29427d865f6baec4b8157304d84748"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "a03fa8932aa3c92f4ae679011858caa2b9095a555c4e532a1337019af44d3328"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ea8a447265dcfb530bdea4b0fc14baa44d017f471110757523efcde628161164"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\r\\n  -=SUM(1,2)]",
+    "utc_epoch_seconds": 1791563276.068699
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\r\\n  -+SUM(1,2)]",
+    "utc_epoch_seconds": 1791563276.0923023
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "1e3425140086af469be323a22089f3f45e29427d865f6baec4b8157304d84748"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "a03fa8932aa3c92f4ae679011858caa2b9095a555c4e532a1337019af44d3328"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "e0a96e972ceabb275c02cf4c1503719529c97a4460cbbfb18a5e0833982f04d2"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\r\\n  -+SUM(1,2)]",
+    "utc_epoch_seconds": 1791563276.1508527
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\r\\n  --SUM(1,2)]",
+    "utc_epoch_seconds": 1791563276.1736326
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "1e3425140086af469be323a22089f3f45e29427d865f6baec4b8157304d84748"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "a03fa8932aa3c92f4ae679011858caa2b9095a555c4e532a1337019af44d3328"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "5a4b2b39ae7d94dcaa8f73365636d3c9cb987b811c5df7ed67d0e719cc492ff0"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\r\\n  --SUM(1,2)]",
+    "utc_epoch_seconds": 1791563276.2421691
+  },
+  {
+    "event": "test_started",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\r\\n  -@SUM(1,2)]",
+    "utc_epoch_seconds": 1791563276.2727096
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/organizations",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/requirements",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "2f58ece3d301b299202082014ce8e23e36bc63e4bbee94e1287f81d4cd185c4e"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/review",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "ee7d43e0ebe6733bffd85a23e85bfaa73868814803a27ce15051c2e33aa785ea"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/evidence",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "037c9214eef74cc3887f3a4f085b4e17d76280dafd273b0ee160c09c4ba1cfd4"
+  },
+  {
+    "event": "request",
+    "method": "PUT",
+    "path": "/api/requirements/1/status",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f67dccc65d786d084eaf182405e10cf9a6ee496002776aa727fb0c9cd5524d69"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "f47892845db1c655ad4c15cc3586ca8fb31d5b296b79fac254f30bcd50e90bbd"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "1e3425140086af469be323a22089f3f45e29427d865f6baec4b8157304d84748"
+  },
+  {
+    "event": "request",
+    "method": "POST",
+    "path": "/api/tenders/1/decisions",
+    "expected_status": 201,
+    "actual_status": 201,
+    "response_sha256": "40abe4a5acbd7e6f95c3c42850bf9ab3154593902913f45f8dcb036f5f03f8fc"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "a03fa8932aa3c92f4ae679011858caa2b9095a555c4e532a1337019af44d3328"
+  },
+  {
+    "event": "request",
+    "method": "GET",
+    "path": "/api/tenders/1/export.xlsx",
+    "expected_status": 200,
+    "actual_status": 200,
+    "response_sha256": "25bc6e0deb9ea458a6e21ee992c0df0aa1554142edfc8e79e29a69b44b49cc7e"
+  },
+  {
+    "event": "test_finished",
+    "test": "tenderos-independent-qa/test_independent_repairs.py::test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[\\r\\n  -@SUM(1,2)]",
+    "utc_epoch_seconds": 1791563276.3329024
+  }
+]

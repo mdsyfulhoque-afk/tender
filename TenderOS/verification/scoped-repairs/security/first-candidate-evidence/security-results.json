@@ -1,0 +1,241 @@
+{
+  "task_id": "/root/tenderos_patch_security",
+  "runtime_run_id": null,
+  "runtime_run_id_exposed": false,
+  "strict_historical_receipt_gate_passed": false,
+  "source_commit": "3cbcb46acd1ceb17d937d9c2bbc913ed44817485",
+  "started_at_utc": "2026-10-09T16:33:18+00:00",
+  "ended_at_utc": "2026-10-09T16:33:21+00:00",
+  "data": "synthetic only",
+  "external_model_calls": false,
+  "formula_evaluated": false,
+  "case_count": 37,
+  "passed": 37,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "zero_candidate_addendum_reattest_new_approval",
+      "started_at_utc": "2026-10-09T16:33:18+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:18+00:00"
+    },
+    {
+      "name": "linked_evidence_label_Synthetic changed label",
+      "started_at_utc": "2026-10-09T16:33:18+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:18+00:00"
+    },
+    {
+      "name": "linked_evidence_reference_SYNTHETIC-REF-2",
+      "started_at_utc": "2026-10-09T16:33:18+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:18+00:00"
+    },
+    {
+      "name": "linked_evidence_verification_note_Synthetic different signed-original verification.",
+      "started_at_utc": "2026-10-09T16:33:18+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:18+00:00"
+    },
+    {
+      "name": "linked_evidence_expires_on_2026-12-08",
+      "started_at_utc": "2026-10-09T16:33:18+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:18+00:00"
+    },
+    {
+      "name": "linked_evidence_verified_0",
+      "started_at_utc": "2026-10-09T16:33:18+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:18+00:00"
+    },
+    {
+      "name": "linked_evidence_expires_on_2026-10-08",
+      "started_at_utc": "2026-10-09T16:33:18+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:18+00:00"
+    },
+    {
+      "name": "requirement_rationale_change",
+      "started_at_utc": "2026-10-09T16:33:18+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:18+00:00"
+    },
+    {
+      "name": "requirement_source_id_remapping",
+      "started_at_utc": "2026-10-09T16:33:18+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:18+00:00"
+    },
+    {
+      "name": "source_content_hash_change",
+      "started_at_utc": "2026-10-09T16:33:18+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:19+00:00"
+    },
+    {
+      "name": "source_attestation_missing",
+      "started_at_utc": "2026-10-09T16:33:19+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:19+00:00"
+    },
+    {
+      "name": "source_reattest_same_scope_same_second",
+      "started_at_utc": "2026-10-09T16:33:19+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:19+00:00"
+    },
+    {
+      "name": "unlinked_evidence_metrics_other_tender_no_invalidation",
+      "started_at_utc": "2026-10-09T16:33:19+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:19+00:00"
+    },
+    {
+      "name": "legacy_or_malformed_snapshot_'{}'",
+      "started_at_utc": "2026-10-09T16:33:19+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:19+00:00"
+    },
+    {
+      "name": "legacy_or_malformed_snapshot_'null'",
+      "started_at_utc": "2026-10-09T16:33:19+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:19+00:00"
+    },
+    {
+      "name": "legacy_or_malformed_snapshot_'[]'",
+      "started_at_utc": "2026-10-09T16:33:19+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:19+00:00"
+    },
+    {
+      "name": "legacy_or_malformed_snapshot_'[1]'",
+      "started_at_utc": "2026-10-09T16:33:19+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:19+00:00"
+    },
+    {
+      "name": "legacy_or_malformed_snapshot_'\"synthetic string\"'",
+      "started_at_utc": "2026-10-09T16:33:19+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:19+00:00"
+    },
+    {
+      "name": "legacy_or_malformed_snapshot_'1'",
+      "started_at_utc": "2026-10-09T16:33:19+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:19+00:00"
+    },
+    {
+      "name": "legacy_or_malformed_snapshot_''",
+      "started_at_utc": "2026-10-09T16:33:19+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:20+00:00"
+    },
+    {
+      "name": "legacy_or_malformed_snapshot_'{invalid json'",
+      "started_at_utc": "2026-10-09T16:33:20+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:20+00:00"
+    },
+    {
+      "name": "missing_snapshot_metadata_fingerprint",
+      "started_at_utc": "2026-10-09T16:33:20+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:20+00:00"
+    },
+    {
+      "name": "missing_snapshot_metadata_scope_hash",
+      "started_at_utc": "2026-10-09T16:33:20+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:20+00:00"
+    },
+    {
+      "name": "missing_snapshot_metadata_currency_version",
+      "started_at_utc": "2026-10-09T16:33:20+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:20+00:00"
+    },
+    {
+      "name": "missing_snapshot_metadata_scope_attestation",
+      "started_at_utc": "2026-10-09T16:33:20+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:20+00:00"
+    },
+    {
+      "name": "older_bid_never_resurfaces",
+      "started_at_utc": "2026-10-09T16:33:20+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:20+00:00"
+    },
+    {
+      "name": "xlsx_dynamic_cells_literal_'=1+1 benign'",
+      "started_at_utc": "2026-10-09T16:33:20+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:20+00:00"
+    },
+    {
+      "name": "xlsx_dynamic_cells_literal_'+1+1 benign'",
+      "started_at_utc": "2026-10-09T16:33:20+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:20+00:00"
+    },
+    {
+      "name": "xlsx_dynamic_cells_literal_'-1+1 benign'",
+      "started_at_utc": "2026-10-09T16:33:20+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:20+00:00"
+    },
+    {
+      "name": "xlsx_dynamic_cells_literal_'@SUM(1,1) benign'",
+      "started_at_utc": "2026-10-09T16:33:20+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:20+00:00"
+    },
+    {
+      "name": "xlsx_dynamic_cells_literal_' \\t=1+1 benign'",
+      "started_at_utc": "2026-10-09T16:33:20+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:20+00:00"
+    },
+    {
+      "name": "xlsx_dynamic_cells_literal_'\\r\\n=1+1 benign'",
+      "started_at_utc": "2026-10-09T16:33:20+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:21+00:00"
+    },
+    {
+      "name": "xlsx_dynamic_cells_literal_'\\t+1+1 benign'",
+      "started_at_utc": "2026-10-09T16:33:21+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:21+00:00"
+    },
+    {
+      "name": "xlsx_dynamic_cells_literal_'\\xa0=1+1 benign'",
+      "started_at_utc": "2026-10-09T16:33:21+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:21+00:00"
+    },
+    {
+      "name": "xlsx_dynamic_cells_literal_'বাংলা synthetic plain text'",
+      "started_at_utc": "2026-10-09T16:33:21+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:21+00:00"
+    },
+    {
+      "name": "xlsx_dynamic_cells_literal_\"'ordinary literal text\"",
+      "started_at_utc": "2026-10-09T16:33:21+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:21+00:00"
+    },
+    {
+      "name": "xlsx_history_snapshot_literal",
+      "started_at_utc": "2026-10-09T16:33:21+00:00",
+      "passed": true,
+      "ended_at_utc": "2026-10-09T16:33:21+00:00"
+    }
+  ],
+  "source_sha256": "5377bf1e87eff9e0641ceb5103b96aa1bad978690ab6551375bdb7189777b5b0",
+  "harness_sha256": "91700d2b9f68324014baed4b38ef36bb775ec6620afa3ed6687a108e289bef34"
+}
