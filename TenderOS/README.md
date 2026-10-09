@@ -2,6 +2,8 @@
 
 **Repository integration status:** original local MVP imported on 2026-10-09, followed by scoped repairs to decision currency and spreadsheet exports. Independent verification and actual agent receipts are under `verification/`. This remains a local pilot; the model-backed product workflow is described in the draft PRD.
 
+**Vercel preparation:** branch `tenderos/deploy-vercel` adds a protected single-owner hosted mode with managed PostgreSQL, private Vercel Blob storage, authenticated reviewer identity and CSRF protection. See [deployment instructions](DEPLOY_VERCEL.md) and [deployment preparation evidence](verification/vercel-preparation/REPORT.md). The hosted changes passed independent static review; unit tests and live provider validation have not run for this candidate. Deployment is pending an authenticated Vercel workspace and API network access.
+
 ## Existing repository
 The existing `ProposalGuard/` directory is an independent TenderProof OS / ProposalGuard archive. Preserve it. TenderOS must be imported into its own `TenderOS/` directory; do not overwrite `ProposalGuard/` or the default branch.
 
@@ -56,7 +58,7 @@ The user's session instruction to continue autonomous development authorized the
 - Spreadsheet exports escape formula-like prefixes in dynamic text. XLSX strings, including Excel error labels, are serialized as literal text; numeric IDs and pages remain numeric.
 
 ## Current limitations
-- Local FastAPI/SQLite prototype without authenticated multi-user access.
+- Local FastAPI/SQLite mode and prepared hosted PostgreSQL/private Blob mode. Hosted access is for one configured owner; there is no multi-user customer or role system.
 - PDF candidates come from local keyword heuristics; model-powered specialist tasks are proposed in the PRD.
 - Source/evidence references and reviewer identities need stronger validation before external use.
 - Baseline test success does not prove a working model-backed workflow or production readiness.

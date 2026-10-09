@@ -1,0 +1,95 @@
+{
+  "records": [
+    {
+      "source": "/workspace/tenderos-vercel-audit/ARCHITECTURE.md",
+      "stored": "architecture/ARCHITECTURE.md",
+      "sha256": "6ada1447f70460fc2fac4206106ba08c16c01b8690b24a4811d6dcc73b61b507",
+      "bytes": 8956
+    },
+    {
+      "source": "/workspace/tenderos-vercel-audit/RECEIPT.json",
+      "stored": "architecture/RECEIPT.json",
+      "sha256": "ab2af689df582b56307c0d244d28bc07818533249a90b9bf57a7cd9a6b23ba47",
+      "bytes": 1694
+    },
+    {
+      "source": "/workspace/tenderos-vercel-audit/PERSISTENT_PILOT_DESIGN.md",
+      "stored": "architecture/PERSISTENT_PILOT_DESIGN.md",
+      "sha256": "5b11aa12f5822388f18694f6b1eea11e539790d836998939351977701c2809db",
+      "bytes": 11779
+    },
+    {
+      "source": "/workspace/tenderos-vercel-audit/PERSISTENT_RECEIPT.json",
+      "stored": "architecture/PERSISTENT_RECEIPT.json",
+      "sha256": "7acfa45daee4987987964a3bc368aef16fc01f2544d6cf84655eb8993557a3ed",
+      "bytes": 627
+    },
+    {
+      "source": "/workspace/tenderos-vercel-runtime/PACKAGING_RECEIPT.json",
+      "stored": "packaging/PACKAGING_RECEIPT.json",
+      "sha256": "a52a7435d75ff3448cdf29e3a318e2795487269365f58f382160805f598ae6d5",
+      "bytes": 4232
+    },
+    {
+      "source": "/workspace/tenderos-vercel-runtime/PACKAGING_PERSISTENT_FOLLOWUP_RECEIPT.json",
+      "stored": "packaging/PACKAGING_PERSISTENT_FOLLOWUP_RECEIPT.json",
+      "sha256": "658436e98b7f532f876b08013252837992a8d779a1e5d92ab4a235b45319efab",
+      "bytes": 2721
+    },
+    {
+      "source": "/workspace/tenderos-vercel-app-runtime/static-review.json",
+      "stored": "app/static-review.json",
+      "sha256": "af416b7ef4a86e0b9cdc6b62b8e5de1fa54e389ff8a310e50d7abe1356c2bad7",
+      "bytes": 2282
+    },
+    {
+      "source": "/workspace/tenderos-vercel-app-runtime/malformed-referer-fix.json",
+      "stored": "app/malformed-referer-fix.json",
+      "sha256": "86cc7c4e5981099e7b9c7a9a63683d4d2a782dd2123ab1638d6c0d991f270c84",
+      "bytes": 812
+    },
+    {
+      "source": "/workspace/tenderos-vercel-storage-runtime/storage-receipt.json",
+      "stored": "storage/storage-receipt.json",
+      "sha256": "749eb9646576f7a4ca180e97f47cb61103a1abb4cc90c6c5e0f475f857b83922",
+      "bytes": 5338
+    },
+    {
+      "source": "/workspace/tenderos-vercel-operator-runtime/preflight.json",
+      "stored": "operator/preflight.json",
+      "sha256": "b3a3406304b070d3fdfc6e181ee17873e97c8b0bf5a84b9962265c64d7088e4e",
+      "bytes": 2595
+    },
+    {
+      "source": "/workspace/tenderos-vercel-operator-runtime/network-attempt.json",
+      "stored": "operator/network-attempt.json",
+      "sha256": "a683e1a96fc747ef769b3ddee3f29038f71c6142f4e9ffbbdfc9937951c4e566",
+      "bytes": 547
+    },
+    {
+      "source": "/workspace/tenderos-vercel-operator-runtime/categories-attempt.json",
+      "stored": "operator/categories-attempt.json",
+      "sha256": "a5b2d240618dbfe8e2039a46186a47aa53d1eecb62582f86921b61a45622962a",
+      "bytes": 794
+    },
+    {
+      "source": "/workspace/tenderos-vercel-operator-runtime/DEPLOYMENT_SEQUENCE.md",
+      "stored": "operator/DEPLOYMENT_SEQUENCE.md",
+      "sha256": "6dad87246afc6fba1b901dbdb7feacda78b60f5a03e8de0676952ffacc907b0a",
+      "bytes": 4208
+    },
+    {
+      "source": "/workspace/tenderos-vercel-review-runtime/static_review.json",
+      "stored": "review/static_review.json",
+      "sha256": "68481836a4d2692300460ecef881e92d91b10118ee06ef55f5beddebff24b78b",
+      "bytes": 9225
+    },
+    {
+      "source": "/workspace/tenderos-vercel-review-runtime/STATIC_REVIEW.md",
+      "stored": "review/STATIC_REVIEW.md",
+      "sha256": "9a75fe0c9af13db06dd6ddb10fe57d4f3ea3866d330db7844f14255bbecbf46a",
+      "bytes": 3195
+    }
+  ],
+  "data": "No credentials, database records, PDFs or deployment account state copied"
+}

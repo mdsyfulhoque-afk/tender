@@ -1,0 +1,38 @@
+{
+  "agent_id": "/root/tenderos_vercel_app",
+  "opaque_run_id": null,
+  "recorded_utc": "2026-10-09T18:03:47.687801+00:00",
+  "worktree": "/workspace/tenderos-vercel",
+  "authorization": "User requested deployment into their Vercel and selected persistent managed database and private file storage. Parent delegated bounded single-owner app integration.",
+  "allowed_files": [
+    "TenderOS/app/main.py",
+    "TenderOS/app/hosting.py",
+    "TenderOS/app/static/index.html",
+    "TenderOS/app/static/ui.js"
+  ],
+  "checks": {
+    "python_source_compile": "pass",
+    "unit_tests": "not_run_per_parent_instruction",
+    "javascript_syntax": "pass (node --check TenderOS/app/static/ui.js, exit 0)"
+  },
+  "sha256": {
+    "TenderOS/app/main.py": "21e23b3bd2c7d232c0e1af0bf7d27d0c6e2232c62349cb4c5dc4d40460dfd715",
+    "TenderOS/app/hosting.py": "108dfee5ef7f7f851c7f6e13bf012490e0c62a572a0358182528ad9c30a974d2",
+    "TenderOS/app/static/index.html": "61300255bcc735f7bdc627fe78d118c577bc5b23a3d966a86e5d55701f0ebe28",
+    "TenderOS/app/static/ui.js": "37180bb6d8b831b52ac1af3ddc75f3825d8baa34eb885de8a6c34f70fc9d303c"
+  },
+  "tool_commands": [
+    "Read TenderOS/AGENTS.md, project constitution and PRD; inspect baseline main.py/ui.js/index.html.",
+    "apply_patch: added app/hosting.py; integrated hosted database/auth/private uploads/runtime health in app/main.py; updated index runtime label.",
+    "apply_patch + exact replacement script: UI health/CSRF/identity/private storage messaging.",
+    "python source compile(source, file, exec) for main.py and hosting.py without importing or writing bytecode.",
+    "node --check TenderOS/app/static/ui.js"
+  ],
+  "data_egress": "none; no customer data, credentials, model calls, resource provisioning or deployments",
+  "remaining_limitations": [
+    "Single owner credential; no multi-user/tenant role system or self-service password recovery.",
+    "Configured Blob credentials/privacy are validated; health checks database reachability, not a write/delete Blob probe.",
+    "Existing keyword PDF candidates and human verification workflows remain; no new model-backed product agents.",
+    "Hosted ambiguous database commit failure retains uploaded object; later operator reconciliation may identify private orphan objects."
+  ]
+}

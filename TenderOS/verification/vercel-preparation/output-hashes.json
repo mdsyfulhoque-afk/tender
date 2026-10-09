@@ -1,0 +1,19 @@
+{
+  "EVIDENCE_COPY.json": "cee8ebd41fb240c24026848cb7fdc23ff5a6cbc87abdce00bf3c25662b359e69",
+  "REPORT.md": "86d6d02bd8645b722543f1f67f7a32d22fbc5c3fd9345cca624aff28e393f0a0",
+  "app/malformed-referer-fix.json": "86cc7c4e5981099e7b9c7a9a63683d4d2a782dd2123ab1638d6c0d991f270c84",
+  "app/static-review.json": "af416b7ef4a86e0b9cdc6b62b8e5de1fa54e389ff8a310e50d7abe1356c2bad7",
+  "architecture/ARCHITECTURE.md": "6ada1447f70460fc2fac4206106ba08c16c01b8690b24a4811d6dcc73b61b507",
+  "architecture/PERSISTENT_PILOT_DESIGN.md": "5b11aa12f5822388f18694f6b1eea11e539790d836998939351977701c2809db",
+  "architecture/PERSISTENT_RECEIPT.json": "7acfa45daee4987987964a3bc368aef16fc01f2544d6cf84655eb8993557a3ed",
+  "architecture/RECEIPT.json": "ab2af689df582b56307c0d244d28bc07818533249a90b9bf57a7cd9a6b23ba47",
+  "operator/DEPLOYMENT_SEQUENCE.md": "6dad87246afc6fba1b901dbdb7feacda78b60f5a03e8de0676952ffacc907b0a",
+  "operator/categories-attempt.json": "a5b2d240618dbfe8e2039a46186a47aa53d1eecb62582f86921b61a45622962a",
+  "operator/network-attempt.json": "a683e1a96fc747ef769b3ddee3f29038f71c6142f4e9ffbbdfc9937951c4e566",
+  "operator/preflight.json": "b3a3406304b070d3fdfc6e181ee17873e97c8b0bf5a84b9962265c64d7088e4e",
+  "packaging/PACKAGING_PERSISTENT_FOLLOWUP_RECEIPT.json": "658436e98b7f532f876b08013252837992a8d779a1e5d92ab4a235b45319efab",
+  "packaging/PACKAGING_RECEIPT.json": "a52a7435d75ff3448cdf29e3a318e2795487269365f58f382160805f598ae6d5",
+  "review/STATIC_REVIEW.md": "9a75fe0c9af13db06dd6ddb10fe57d4f3ea3866d330db7844f14255bbecbf46a",
+  "review/static_review.json": "68481836a4d2692300460ecef881e92d91b10118ee06ef55f5beddebff24b78b",
+  "storage/storage-receipt.json": "749eb9646576f7a4ca180e97f47cb61103a1abb4cc90c6c5e0f475f857b83922"
+}

@@ -1,0 +1,122 @@
+{
+  "task_id": "T-004-VERCEL-STATIC-REVIEW",
+  "agent_runtime": "Codex delegated agent runtime",
+  "delegation_tool": "collaboration.spawn_agent",
+  "agent_id": "/root/tenderos_vercel_review",
+  "run_id": null,
+  "recorded_at_utc": "2026-10-09T18:11:39.872839+00:00",
+  "source_commit": "c513e5af95248a11597718b950e5b4456d423d73",
+  "baseline_commit": "bac1dceabf67a3e563c3f1a60f9f10369e709eb4",
+  "worktree": "/workspace/tenderos-vercel",
+  "allowed_scope": "Read-only frozen application and public official-source snapshots; static reasoning and compilation only; evidence writes outside repository",
+  "result": "PASS_BOUNDED_STATIC_INSPECTION",
+  "release_or_durability_certification": false,
+  "blocking_static_findings": [],
+  "source_sha256": {
+    "TenderOS/app/main.py": "21e23b3bd2c7d232c0e1af0bf7d27d0c6e2232c62349cb4c5dc4d40460dfd715",
+    "TenderOS/app/hosting.py": "ab0bf67310596abf67b8739ef4f7c5f7ac24e833638c760af1545aae6569d8a8",
+    "TenderOS/app/database.py": "983d23a381ae063eddb9996ad6a5d2f81ce94a1e50af5897d274975d08ef74fd",
+    "TenderOS/app/private_storage.py": "d0eda38a4b21b1886845564ece746f66ebc2ccc1d739d1fb88b614c56c91cff4",
+    "TenderOS/app/static/ui.js": "37180bb6d8b831b52ac1af3ddc75f3825d8baa34eb885de8a6c34f70fc9d303c",
+    "TenderOS/app/static/index.html": "61300255bcc735f7bdc627fe78d118c577bc5b23a3d966a86e5d55701f0ebe28",
+    "TenderOS/scripts/migrate_postgres.py": "3464af65ac5c3df735a280ea47188f885b118f3a027e140adf3b3c95761e8d14",
+    "TenderOS/scripts/postgres_schema.sql": "92dab3cbda0388c278f06ca7610a0b53bde2b13edff3bed770b4f709093a268e",
+    "TenderOS/vercel.json": "3cd92efc98f7152795f05679aa118e27836d96f3bea5bdc100d5627e24cc9ea3",
+    "TenderOS/.vercelignore": "02ad364639e050a3a5f55c6e307d0dc2808c3b533c6b942e2ca561bfd6a9d8a7",
+    "TenderOS/.gitignore": "bcb4bcc2f7f86d8cf73987cc30d79202273018457c82650efc83d47b032b0b4c",
+    "TenderOS/requirements.txt": "d9cd60046f7859688dccbc235b94031d3aa550521c888266d02bb424c3031a8d",
+    "TenderOS/DEPLOY_VERCEL.md": "a78bfc6ded502f9511598edb741e124604b671bf29e2490cd7c369d93959c552"
+  },
+  "python_syntax_compiled_without_execution": [
+    "TenderOS/app/main.py",
+    "TenderOS/app/hosting.py",
+    "TenderOS/app/database.py",
+    "TenderOS/app/private_storage.py",
+    "TenderOS/scripts/migrate_postgres.py"
+  ],
+  "preserved_domain_and_export_functions": {
+    "get_snapshot": {
+      "baseline_ast_sha256": "71c57443f839a8cc893e54a4a5c18e052b6c347f59b442a3eaf29b621266db34",
+      "candidate_ast_sha256": "71c57443f839a8cc893e54a4a5c18e052b6c347f59b442a3eaf29b621266db34",
+      "unchanged": true
+    },
+    "find_evidence": {
+      "baseline_ast_sha256": "877ca583b42819bd0493e975da3a9bb8a0fea52d7b566385c89710947dc0f53b",
+      "candidate_ast_sha256": "877ca583b42819bd0493e975da3a9bb8a0fea52d7b566385c89710947dc0f53b",
+      "unchanged": true
+    },
+    "evidence_current": {
+      "baseline_ast_sha256": "61ab385cf3917354059bfa8a26ec1110ab191cab66655d03bcf54997f0d340ff",
+      "candidate_ast_sha256": "61ab385cf3917354059bfa8a26ec1110ab191cab66655d03bcf54997f0d340ff",
+      "unchanged": true
+    },
+    "spreadsheet_literal": {
+      "baseline_ast_sha256": "2db8ac1bd59820612a442e276359713ec1ebb42b78771fd744d974b18acb3a18",
+      "candidate_ast_sha256": "2db8ac1bd59820612a442e276359713ec1ebb42b78771fd744d974b18acb3a18",
+      "unchanged": true
+    },
+    "export_csv": {
+      "baseline_ast_sha256": "3e22359159dddcdd9c3b34d445295df01e76e235f509f1a444f08dc92c7ab819",
+      "candidate_ast_sha256": "3e22359159dddcdd9c3b34d445295df01e76e235f509f1a444f08dc92c7ab819",
+      "unchanged": true
+    },
+    "export_xlsx": {
+      "baseline_ast_sha256": "333c25bd9a7bad091e4b9efff448e59a275c15fa096d7b47fc53e703683ecfef",
+      "candidate_ast_sha256": "333c25bd9a7bad091e4b9efff448e59a275c15fa096d7b47fc53e703683ecfef",
+      "unchanged": true
+    },
+    "report_rows": {
+      "baseline_ast_sha256": "7ad7f34f6543774e426be8b20c71bc4a3e58ea18a8032e968ac43138e824d401",
+      "candidate_ast_sha256": "7ad7f34f6543774e426be8b20c71bc4a3e58ea18a8032e968ac43138e824d401",
+      "unchanged": true
+    }
+  },
+  "git_status_short": "",
+  "inspected_controls": [
+    "Hosted filesystem creation and SQLite schema execution are guarded by not HOSTED; hosted conn selects PostgreSQL with no local fallback or cold-start DDL.",
+    "Global middleware requires complete PG/private-storage/auth configuration and validates exact configured Host plus HTTPS before Basic authentication; all app/static/docs/API routes share middleware.",
+    "Unsafe methods require password-keyed per-origin token; supplied Origin or Referer must match exact trusted request origin. No CORS response grants are introduced.",
+    "Authenticated ContextVar principal overrides typed reviewers and every audit actor; UI renders principal readonly and supplies mutation token after authenticated health.",
+    "PostgreSQL SQL values stay bound through qmark adapter; explicit insertion ID whitelist uses RETURNING id; identity/schema foreign-key order and integer/text representations align with application access.",
+    "Database routes use single serializable transactions with statement and lock limits; concurrency errors map to 409 and provider transport errors to redacted 503 without silent retry.",
+    "Migration is explicit --apply, transaction/advisory locked, digest marked, requires empty dedicated tables on first run, and has no DROP/ALTER/local database import.",
+    "Private upload endpoint, request headers and URL shape agree with locally inspected pinned vercel/storage source; no redirects, no public return URL, no read/browser tokens, and conservative retention after ambiguous database commit.",
+    "Native Python builder maps app/main.py to dotted app.main; installed builder static-discovery source uses importlib with project root and documents deployed parity. Namespace package app is valid without __init__.py.",
+    "Runtime module/static-file upload allowlist and function exclusions omit source archives, knowledge, receipts, scripts, SQL files, customer data, dotenv and local Vercel account state.",
+    "Core currency, source/evidence hashing, historical-snapshot validation and spreadsheet literal handling have identical ASTs to the repaired baseline."
+  ],
+  "operational_observations": [
+    "Health proves only one organizations-table read and configuration shapes; actual private Blob authorization and full migrated schema must be verified on connected services.",
+    "Hosted object retention deliberately permits orphaned private objects after failures; cleanup/reconciliation remains a manual operating task until a future feature is added.",
+    "No authenticated original-PDF retrieval route exists; this predates hosting. Owner must retain originals or use authorized provider/operator retrieval for source review."
+  ],
+  "limitations": [
+    "No unit, API, database, browser or deployed-service tests were added or run in this review.",
+    "Python compilation and AST inspection do not execute application import, middleware, SQL driver or provider protocol.",
+    "No managed account, credentials, network, migration, Vercel build/deployment, cross-instance durability or production protection was verified.",
+    "Prior baseline test counts are historical evidence and do not certify this hosted candidate.",
+    "No opaque runtime run ID is exposed; actual canonical agent identity is recorded without inventing one.",
+    "This supports accepting the code for deployment work, not marking the persistent pilot live."
+  ],
+  "data_egress": "None; no network/provider/customer calls or application runtime execution",
+  "tool_logs_location": "Current Codex transcript for /root/tenderos_vercel_review plus this static inspection report",
+  "official_source_snapshots": {
+    "/workspace/tenderos-vercel-runtime/vercel-python.ts.pinned": "574f4e0b4c6045b115f88c0b797b7b1a9be136bdd285d999e7ad14bf592fa059",
+    "/workspace/tenderos-vercel-runtime/vercel-entrypoint.ts.pinned": "77ecc6d2562ae1dc00407da93405f205e3106c18d9bc009e4c49164d92db1368",
+    "/workspace/tenderos-vercel-operator-runtime/cli/node_modules/@vercel/python/templates/vc_fastapi_static.py": "77fad21b5642e2284ab4040089114cffad30765d06f5cb242582d302830b3c72",
+    "/workspace/tenderos-vercel-storage-runtime/vercel-storage-source/packages/blob/src/put.ts": "12c570a1f085d6b6bcebe33bae90b0da91598c21b0978d61ba1087954b8ce79a",
+    "/workspace/tenderos-vercel-storage-runtime/vercel-storage-source/packages/blob/src/put-helpers.ts": "79898de5cefd8106643229fdab57f8c764b30c9396d942e9af9eafcb41b8a5e1",
+    "/workspace/tenderos-vercel-storage-runtime/vercel-storage-source/packages/blob/src/api.ts": "78657e778e5d7fa94ea5b902420636347fd1a658948f034bb6895e870b4a15e0",
+    "/workspace/tenderos-vercel-storage-runtime/vercel-storage-source/packages/blob/src/helpers.ts": "c5cb89d7912fac262688f16bf5650865c28fad3f02c204b79783671f64aaff2c"
+  },
+  "blob_source_commit": "d15b9b37f9042edafee0245af7df74f4bbc9bad4",
+  "javascript_syntax": {
+    "command": "node --check TenderOS/app/static/ui.js",
+    "exit_code": 0,
+    "application_executed": false
+  },
+  "diff_whitespace": {
+    "command": "git diff bac1dce..HEAD --check",
+    "exit_code": 0
+  }
+}

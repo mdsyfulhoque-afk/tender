@@ -1,0 +1,18 @@
+{
+  "start_utc": "2026-10-09T18:05:29.758651+00:00",
+  "end_utc": "2026-10-09T18:05:39.990824+00:00",
+  "command": [
+    "/workspace/tenderos-vercel-operator-runtime/cli/node_modules/.bin/vercel",
+    "integration",
+    "categories",
+    "--json",
+    "--non-interactive"
+  ],
+  "env_overrides": {
+    "VERCEL_TELEMETRY_DISABLED": "1",
+    "NODE_USE_ENV_PROXY": "1"
+  },
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "> No existing credentials found. Starting login flow...\nError: fetch failed\nError: Failed to get package info: Error: Failed to fetch dist-tags from npm\n    at process.<anonymous> (/workspace/tenderos-vercel-operator-runtime/cli/node_modules/vercel/dist/get-latest-worker.cjs:124:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n"
+}

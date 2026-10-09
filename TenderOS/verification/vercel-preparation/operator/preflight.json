@@ -1,0 +1,67 @@
+{
+  "recorded_utc": "2026-10-09T18:07:20.118969+00:00",
+  "agent_id": "/root/tenderos_vercel_operator",
+  "run_id": null,
+  "stage": "read-only-preflight",
+  "policy": {
+    "mode": "restricted",
+    "vpn_configured": false,
+    "api.vercel.com_allowed": false,
+    "vercel.com_allowed": false,
+    "registry.npmjs.org_allowed": true,
+    "tcp_grants_present": false
+  },
+  "source_modified_by_operator": false,
+  "account_mutation": false,
+  "deployment_attempted": false,
+  "vercel_account_tools_available": [],
+  "skills_loaded": [
+    "bootstrap",
+    "vercel-cli",
+    "vercel-storage",
+    "marketplace",
+    "cloud-environment-runtime",
+    "cloud-environment-runtime/references/networking.md",
+    "vercel-cli/references/storage.md",
+    "vercel-cli/references/integrations.md"
+  ],
+  "skill_resources_unreadable": [
+    "deployments-cicd",
+    "env-vars",
+    "access-protected-vercel-deployment"
+  ],
+  "credentials": {
+    "runtime_variable_names": [],
+    "secret_bindings": [],
+    "vercel_env_names": [],
+    "cli_auth_file_present": false,
+    "project_link_present": false
+  },
+  "next_steps": [
+    "supported cloud configuration to allow Vercel API/auth/deployment and provisioned storage endpoints",
+    "secure VERCEL_TOKEN binding or deliberate CLI device-login flow",
+    "resolve actual account/team and inspect existing projects before linking",
+    "freeze reviewed candidate and configure database plus private blob resource",
+    "verify exact project context and required env key names",
+    "deploy and verify authenticated durable data workflow"
+  ],
+  "cli_version": "63.1.0",
+  "cli_node_version": "24.19.0",
+  "cli_path": "/workspace/tenderos-vercel-operator-runtime/cli/node_modules/.bin/vercel",
+  "cli_whoami": {
+    "command": "vercel whoami --format json --non-interactive",
+    "exit_code": 1,
+    "loggedIn": false
+  },
+  "read_only_marketplace_categories_attempt": "CLI unexpectedly attempted implicit login before a fetch failure; no login completed and no user credential was supplied. Do not repeat unauthenticated platform commands.",
+  "network_probe": {
+    "endpoint": "https://api.vercel.com/v2/user",
+    "method": "HEAD",
+    "authorization_sent": false,
+    "curl_exit_code": 56,
+    "proxy_response": "403 Forbidden; CONNECT tunnel failed"
+  },
+  "canonical_trace": "/root/tenderos_vercel_operator",
+  "source_head": "d71f807cb19114ed26ddf2127ef60c4edff9d206",
+  "public_release_authorization": "User explicitly requested deployment to their Vercel and selected a persistent pilot. Technical account/resource readiness remains unverified."
+}
