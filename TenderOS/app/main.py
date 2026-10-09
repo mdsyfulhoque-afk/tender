@@ -202,10 +202,14 @@ def get_snapshot(db, tender_id):
     counts = {'VERIFIED': 0, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}
     blockers = []
     unresolved = []
+    linked_evidence = []
     for req in reqs:
         if req['reviewed'] and req['mandatory'] is not None:
             reviewed += 1
         ev = find_evidence(db, req, req['evidence_id']) if req['evidence_id'] else None
+        if ev:
+            linked_evidence.append({k:ev[k] for k in
+                ('id','organization_id','label','reference','expires_on','verified','verification_note')})
         effective = req['status']
         if effective == 'VERIFIED' and not evidence_current(ev):
             effective = 'UNKNOWN'
@@ -224,16 +228,23 @@ def get_snapshot(db, tender_id):
                 all_verified += 1
         elif not req['reviewed'] or req['mandatory'] is None:
             unresolved.append({'requirement_id':req['id'], 'text':req['text']})
-    source_ids=[dict(r) for r in db.execute('SELECT id,sha256 FROM sources WHERE tender_id=? ORDER BY id',(tender_id,))]
+    source_ids=[dict(r) for r in db.execute('SELECT id,name,sha256,bytes,pages,uploaded_at FROM sources WHERE tender_id=? ORDER BY id',(tender_id,))]
     source_scope_fingerprint=hashlib.sha256(json.dumps({
        'sources':source_ids,
-       'requirements':[{k:r[k] for k in ('id','text','source_page','source_quote','mandatory','reviewed')} for r in reqs]
+       'notice_id':tender['notice_id'], 'source_url':tender['source_url'],
+       'requirements':[{k:r[k] for k in ('id','text','source_id','source_page','source_quote','mandatory','reviewed')} for r in reqs]
     },sort_keys=True,ensure_ascii=False).encode('utf-8')).hexdigest()
     source_scope_verified=bool(tender['source_scope_fingerprint'] and tender['source_scope_fingerprint']==source_scope_fingerprint)
+    attestation_event=db.execute("SELECT id FROM audit_events WHERE tender_id=? AND action='human_source_scope_attested' ORDER BY id DESC LIMIT 1",(tender_id,)).fetchone()
+    source_scope_attestation={'event_id':attestation_event['id'] if attestation_event else None,
+        'reviewer':tender['source_scope_reviewer'], 'note':tender['source_scope_note'],
+        'at':tender['source_scope_at'], 'scope_hash':tender['source_scope_fingerprint']}
     mandatory = sum(1 for r in reqs if r['mandatory'] == 1)
-    fingerprint = hashlib.sha256(json.dumps([
-        {k:r[k] for k in ('id','mandatory','reviewed','text','source_page','source_quote','status','effective_status','evidence_id','evidence_issue') if k in r}
-        for r in reqs], sort_keys=True, ensure_ascii=False).encode('utf-8')).hexdigest()
+    fingerprint = hashlib.sha256(json.dumps({
+        'requirements':[{k:r[k] for k in ('id','mandatory','reviewed','text','source_id','source_page','source_quote','status','effective_status','evidence_id','evidence_issue','notes') if k in r}
+            for r in reqs],
+        'linked_evidence':linked_evidence
+    }, sort_keys=True, ensure_ascii=False).encode('utf-8')).hexdigest()
     if blockers:
         compliance = 'BLOCKED'
     elif not reqs or reviewed != len(reqs) or unresolved or not source_scope_verified:
@@ -246,8 +257,15 @@ def get_snapshot(db, tender_id):
     # but do not by themselves disqualify when the requirement has been reviewed and classified optional.
     decisions = [dict(row) for row in db.execute('SELECT * FROM decisions WHERE tender_id=? ORDER BY id DESC', (tender_id,))]
     for i, decision in enumerate(decisions):
-        past=json.loads(decision['decision_snapshot'])
-        decision['is_current']=(i==0 and past.get('fingerprint')==fingerprint)
+        try:
+            past=json.loads(decision['decision_snapshot'])
+        except (TypeError, ValueError):
+            past={}
+        # Legacy/incomplete snapshots remain historical; never rewrite stored approvals.
+        decision['is_current']=(i==0 and isinstance(past,dict) and type(past.get('currency_version')) is int and past.get('currency_version')==1
+            and past.get('fingerprint')==fingerprint and past.get('scope_hash')==source_scope_fingerprint
+            and past.get('scope_attestation')==source_scope_attestation
+            and (decision['decision']!='BID' or compliance=='READY_FOR_HUMAN_DECISION'))
     return {'tender': tender, 'requirements': reqs, 'counts': counts,
             'mandatory_total': mandatory, 'mandatory_verified': all_verified,
             'reviewed_count': reviewed, 'compliance': compliance,
@@ -255,7 +273,8 @@ def get_snapshot(db, tender_id):
             'coverage_percent': round(100 * all_verified / mandatory, 1) if mandatory else None,
             'decisions': decisions, 'fingerprint':fingerprint,
             'current_decision': decisions[0]['decision'] if decisions and decisions[0]['is_current'] else None,
-            'source_scope_verified':source_scope_verified, 'source_scope_fingerprint':source_scope_fingerprint}
+            'source_scope_verified':source_scope_verified, 'source_scope_fingerprint':source_scope_fingerprint,
+            'source_scope_attestation':source_scope_attestation}
 
 @app.middleware('http')
 async def local_security_headers(request, call_next):
@@ -396,7 +415,8 @@ def decide(tender_id:int,item:DecisionIn):
             raise HTTPException(409,'BID cannot be approved: mandatory compliance is blocked or unresolved')
         decision_data={'compliance':snapshot['compliance'],'mandatory_total':snapshot['mandatory_total'],
             'mandatory_verified':snapshot['mandatory_verified'],'requirement_ids':[r['id'] for r in snapshot['requirements']],
-            'fingerprint':snapshot['fingerprint'],'scope_hash':snapshot['source_scope_fingerprint']}
+            'fingerprint':snapshot['fingerprint'],'scope_hash':snapshot['source_scope_fingerprint'],'currency_version':1,
+            'scope_attestation':snapshot['source_scope_attestation']}
         cur=db.execute('INSERT INTO decisions(tender_id,decision,reviewer,rationale,decision_snapshot,created_at) VALUES(?,?,?,?,?,?)',
            (tender_id,item.decision,item.reviewer.strip(),item.rationale.strip(),json.dumps(decision_data),now()))
         log(db,tender_id,'human_decision',{'id':cur.lastrowid,'decision':item.decision,'reviewer':item.reviewer.strip() },item.reviewer.strip())
@@ -489,6 +509,10 @@ def report_guard(db,tender_id):
     snap=get_snapshot(db,tender_id)
     return snap
 
+def spreadsheet_literal(value):
+    # Excel interprets these prefixes as formulas, including after whitespace.
+    return "'"+value if isinstance(value,str) and value.lstrip().startswith(('=','+','-','@')) else value
+
 @app.get('/api/tenders/{tender_id}/export.csv')
 def export_csv(tender_id:int):
     with conn() as db:
@@ -498,7 +522,7 @@ def export_csv(tender_id:int):
     writer.writeheader()
     for row in rows:
         # Prevent spreadsheet formula injection when opening CSV in Excel.
-        writer.writerow({k:("'"+str(v) if isinstance(v,str) and v.lstrip().startswith(('=','+','-','@')) else v) for k,v in row.items()})
+        writer.writerow({k:spreadsheet_literal(v) for k,v in row.items()})
     return Response(out.getvalue(),media_type='text/csv; charset=utf-8',headers={'Content-Disposition':f'attachment; filename="tenderos_{tender_id}_matrix.csv"'})
 
 @app.get('/api/tenders/{tender_id}/export.xlsx')
@@ -508,7 +532,7 @@ def export_xlsx(tender_id:int):
     wb=Workbook()
     ws=wb.active; ws.title='Compliance Matrix'
     ws.append(['TenderOS / Human-reviewed compliance matrix'])
-    ws.append(['Tender',snap['tender']['title']]);ws.append(['Compliance',snap['compliance']]);
+    ws.append(['Tender',spreadsheet_literal(snap['tender']['title'])]);ws.append(['Compliance',snap['compliance']]);
     ws.append(['Mandatory evidence coverage',f"{snap['coverage_percent']}%" if snap['coverage_percent'] is not None else 'No mandatory requirements classified'])
     ws.append(['Note','Not a win probability. Not a substitute for reviewer sign-off.'])
     ws.append([])
@@ -517,7 +541,7 @@ def export_xlsx(tender_id:int):
     ws.append(cols)
     for row in rows:
         # XLSX is not immune to spreadsheet formula injection: escape user-supplied literals.
-        ws.append([('\''+row[k] if isinstance(row[k],str) and row[k].lstrip().startswith(('=','+','-','@')) else row[k]) for k in cols])
+        ws.append([spreadsheet_literal(row[k]) for k in cols])
     for c in ws[7]:
         c.font=Font(bold=True,color='FFFFFF');c.fill=PatternFill('solid',fgColor='193A53')
     ws.freeze_panes='E8'
@@ -526,7 +550,7 @@ def export_xlsx(tender_id:int):
     ws2=wb.create_sheet('Decision History')
     ws2.append(['Decision','Reviewer','Rationale','At','Snapshot'])
     for d in snap['decisions']:
-        ws2.append([d['decision'],d['reviewer'],d['rationale'],d['created_at'],d['decision_snapshot']])
+        ws2.append([spreadsheet_literal(d[k]) for k in ('decision','reviewer','rationale','created_at','decision_snapshot')])
     buf=io.BytesIO(); wb.save(buf);buf.seek(0)
     return StreamingResponse(buf,media_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           headers={'Content-Disposition':f'attachment; filename="tenderos_{tender_id}.xlsx"'})
