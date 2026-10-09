@@ -1,0 +1,17 @@
+# CLI upload allowlist, relative to this TenderOS directory.
+# New runtime modules/assets must be explicitly added after review.
+*
+!app/
+app/*
+!app/main.py
+!app/hosting.py
+!app/database.py
+!app/private_storage.py
+!app/static/
+app/static/*
+!app/static/index.html
+!app/static/style.css
+!app/static/ui.js
+!requirements.txt
+!vercel.json
+!.vercelignore

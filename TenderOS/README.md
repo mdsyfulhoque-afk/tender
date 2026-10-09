@@ -1,6 +1,20 @@
 # TenderOS — Bid Decision Intelligence
 
-**Repository integration status:** original local MVP imported on 2026-10-09, followed by scoped repairs to decision currency and spreadsheet exports. Independent verification and actual agent receipts are under `verification/`. This remains a local pilot; the model-backed product workflow is described in the draft PRD.
+**Repository integration status:** original local MVP imported on 2026-10-09, followed by decision/export repairs and model-free source inventory, document provenance and private evidence workflows. Independent verification and actual agent receipts are under `verification/`. This is a human-reviewed pilot; the draft PRD's model-backed workflow is not enabled.
+
+**Vercel preparation:** branch `tenderos/deploy-vercel` adds a protected single-owner hosted mode with managed PostgreSQL, private Vercel Blob storage, authenticated reviewer identity and CSRF protection. Static review is complete and the current local workflow suite passed **93 tests, with no failures or skips**. See [deployment instructions](DEPLOY_VERCEL.md) and the historical [deployment preparation evidence](verification/vercel-preparation/REPORT.md). The Vercel project root, managed services and live application remain unverified; local tests do not establish hosted persistence or a working deployment.
+
+## Deployment access followup
+
+The Vercel Git integration reacted to deployment head `fbe96b4f51c7400d9ada1bdf2fe763fef54c4f07`, but its status failed: "Git author IP3consulting must have access to the project on Vercel to create deployments." The [Vercel bot comment on PR #2](https://github.com/mdsyfulhoque-afk/tender/pull/2#issuecomment-6087417578) confirms a team access requirement. Its successful preview-comment check only confirms that the bot posted a comment.
+
+The connected GitHub account is `mdsyfulhoque-afk`; this documentation update is submitted through that authenticated connection, with no author override or history rewrite. Vercel will evaluate the actual new commit identity. The user confirmed their supplied access is the Vercel plugin connection. Current cloud observations still show no CLI login, token secret or supported Vercel API network access. Project configuration, managed resources and live deployment remain unverified.
+
+### 2026-10-10: reported preview returns 404
+
+The user opened the preview linked from the Vercel Git integration and supplied a browser screenshot showing Vercel `404 NOT_FOUND`. The Git status reports that the deployment operation completed, but that is not evidence of a working TenderOS app.
+
+The Vercel bot identifies project `tender` in team `ip-3` and reports `rootDirectory: null` (repository root). The repository root contains `ProposalGuard/` and `TenderOS/`; the FastAPI entrypoint and `vercel.json` are inside `TenderOS/`. Vercel therefore used a project root with no application entrypoint. Configure the project's Root Directory as `TenderOS` in Vercel Settings → Build and Deployment, with the FastAPI framework preset, then redeploy. The persistent database, private Blob store, hosted environment variables, and app runtime still require setup and verification.
 
 ## Existing repository
 The existing `ProposalGuard/` directory is an independent TenderProof OS / ProposalGuard archive. Preserve it. TenderOS must be imported into its own `TenderOS/` directory; do not overwrite `ProposalGuard/` or the default branch.
@@ -34,14 +48,13 @@ TENDEROS_DATA_DIR=/tmp/tenderos-local .venv/bin/python -m uvicorn app.main:app -
 
 Open `http://127.0.0.1:8000`; API documentation is at `/api/docs`. Set `TENDEROS_DATA_DIR` before application import to keep runtime data separate from the source tree.
 
-For the complete test suite, install the optional PDF-test dependency and run:
+Run the current workflow test suite:
 
 ```bash
-.venv/bin/python -m pip install reportlab
 TENDEROS_DATA_DIR=/tmp/tenderos-baseline PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -q -p no:cacheprovider
 ```
 
-Without `reportlab`, PDF tests skip. The original baseline and dependency versions are recorded in `verification/current-baseline/`; repair verification is in `verification/scoped-repairs/`. Dependency ranges remain unchanged from the original source.
+The current tests build deterministic synthetic PDFs without an optional ReportLab dependency. Historical baseline results are recorded in `verification/current-baseline/`; earlier repair verification is in `verification/scoped-repairs/`.
 
 ## Engineering evidence and gates
 No autonomous AI sub-agent, no build. Read [AGENTS.md](AGENTS.md). Actual delegated agents performed source/archive audits, source import and scoped coding in an isolated worktree. Separate QA and security agents reviewed the completed commits using synthetic local data. Canonical task identifiers, commands, hashes and actual tool traces are recorded. The launcher does not expose a separate opaque run ID; this receipt limitation is explicit rather than represented as a passed strict gate.
@@ -52,14 +65,15 @@ The user's session instruction to continue autonomous development authorized the
 
 - Source inventory, source associations, requirement rationale and linked evidence values participate in decision currency checks. A current BID also requires current readiness.
 - Each source attestation has an existing audit-event identity. Reattestation requires a fresh decision, including when the source content is unchanged and timestamps match.
-- Legacy or malformed snapshots remain historical and cannot become current. Existing assessments need source reattestation and a new human decision after upgrading; stored decision rows are retained.
+- Legacy or malformed snapshots remain historical and cannot become current. Existing assessments need a confirmed document inventory, source-linked requirements, document-backed evidence verification, source reattestation and a new human decision after upgrading; stored decision rows are retained.
 - Spreadsheet exports escape formula-like prefixes in dynamic text. XLSX strings, including Excel error labels, are serialized as literal text; numeric IDs and pages remain numeric.
 
 ## Current limitations
-- Local FastAPI/SQLite prototype without authenticated multi-user access.
-- PDF candidates come from local keyword heuristics; model-powered specialist tasks are proposed in the PRD.
-- Source/evidence references and reviewer identities need stronger validation before external use.
-- Baseline test success does not prove a working model-backed workflow or production readiness.
+- Local FastAPI/SQLite mode and prepared hosted PostgreSQL/private Blob mode. Hosted access is for one configured owner; there is no multi-user customer or role system.
+- PDF candidates use a deterministic keyword aid and require explicit human review. Model/provider API settings remain unset; no model-powered inference or automatic decisions are enabled.
+- Source quotes must match extracted text on the selected stored PDF page. Scanned-image PDFs need a readable text source or a future OCR workflow; OCR is not implemented.
+- Local operator/reviewer labels are unauthenticated. Hosted review and audit actions use the authenticated configured owner; there is no separate customer identity or role system.
+- The hosted project root and managed database/private file services remain unverified. The reported preview returned Vercel 404; local test success does not establish a usable hosted deployment or durable storage.
 - External tender submission and production deployment require their separate gates.
 
 Do not publish confidential tender files, scanned books, secrets, customer evidence or local databases to GitHub.

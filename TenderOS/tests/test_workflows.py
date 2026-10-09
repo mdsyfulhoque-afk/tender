@@ -1,6 +1,7 @@
 import io
 import json
 import sqlite3
+import hashlib
 from datetime import date, timedelta
 import pytest
 from fastapi.testclient import TestClient
@@ -13,7 +14,67 @@ def client(tmp_path,monkeypatch):
     monkeypatch.setattr(main,'DB',db);monkeypatch.setattr(main,'STORAGE',storage)
     with sqlite3.connect(db) as cx:
         cx.executescript(main.SCHEMA)
+        main.initialize_local_extensions(cx)
     return TestClient(main.app)
+
+SOURCE_TEXT='Three similar projects must be documented'
+SOURCE_QUOTE='Three completed projects are documented.'
+
+def synthetic_pdf(*pages):
+    """Small real text PDF; no optional package or customer document is needed."""
+    objects=[b'<< /Type /Catalog /Pages 2 0 R >>', b'',
+             b'<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>']
+    children=[]
+    for lines in pages:
+        page_id=len(objects)+1
+        children.append(f'{page_id} 0 R')
+        objects.append((f'<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] '
+                        f'/Resources << /Font << /F1 3 0 R >> >> '
+                        f'/Contents {page_id+1} 0 R >>').encode())
+        commands=['BT /F1 12 Tf 50 750 Td']
+        for line in lines:
+            escaped=line.replace('\\','\\\\').replace('(','\\(').replace(')','\\)')
+            commands.append(f'({escaped}) Tj 0 -16 Td')
+        commands.append('ET')
+        stream='\n'.join(commands).encode('ascii')
+        objects.append(f'<< /Length {len(stream)} >>\nstream\n'.encode()+stream+b'\nendstream')
+    objects[1]=f'<< /Type /Pages /Kids [{" ".join(children)}] /Count {len(pages)} >>'.encode()
+    output=bytearray(b'%PDF-1.4\n')
+    offsets=[0]
+    for index,value in enumerate(objects,1):
+        offsets.append(len(output))
+        output.extend(f'{index} 0 obj\n'.encode()+value+b'\nendobj\n')
+    xref=len(output)
+    output.extend(f'xref\n0 {len(offsets)}\n0000000000 65535 f \n'.encode())
+    for offset in offsets[1:]:
+        output.extend(f'{offset:010d} 00000 n \n'.encode())
+    output.extend((f'trailer\n<< /Size {len(offsets)} /Root 1 0 R >>\n'
+                   f'startxref\n{xref}\n%%EOF\n').encode())
+    return bytes(output)
+
+def confirm_inventory(client,uploaded,**changes):
+    values={'title':'Synthetic source PDF','document_type':'RFP','language':'English',
+            'version_label':'Original','availability':'AVAILABLE','source_id':uploaded['source_id']}
+    values.update(changes)
+    response=client.put(f"/api/inventory/{uploaded['inventory_item_id']}",json=values)
+    assert response.status_code==200,response.text
+
+def add_source(client,tender,quote=SOURCE_QUOTE,confirm=True,name='requirements.pdf'):
+    data=synthetic_pdf(('Synthetic administrative cover page.',),(quote,))
+    response=client.post(f'/api/tenders/{tender}/upload-pdf',files={'file':(name,data,'application/pdf')})
+    assert response.status_code==201,response.text
+    uploaded=response.json()
+    assert uploaded['candidates']==0,uploaded
+    if confirm:
+        confirm_inventory(client,uploaded)
+    return uploaded
+
+def review_requirement(client,tender,req,**changes):
+    requirement=next(x for x in client.get(f'/api/tenders/{tender}').json()['requirements'] if x['id']==req)
+    values={key:requirement[key] for key in ('text','source_id','source_page','source_quote')}
+    values['mandatory']=True
+    values.update(changes)
+    return client.put(f'/api/requirements/{req}/review',json=values)
 
 def add_org(client,name='Test Consulting'):
     x=client.post('/api/organizations',json={'name':name});assert x.status_code==201,x.text
@@ -25,19 +86,29 @@ def add_tender(client,org):
     return x.json()['id']
 
 def add_req(client,tender,mandatory=True):
-    x=client.post(f'/api/tenders/{tender}/requirements',json={'text':'Three similar projects must be documented', 'source_page':2,'source_quote':'Three similar projects must be documented'})
+    source=add_source(client,tender)
+    x=client.post(f'/api/tenders/{tender}/requirements',json={'text':SOURCE_TEXT,
+       'source_id':source['source_id'],'source_page':2,'source_quote':SOURCE_QUOTE})
     assert x.status_code==201,x.text
     req=x.json()['id']
     if mandatory is not None:
-        x=client.put(f'/api/requirements/{req}/review',json={'text':'Three similar projects must be documented','mandatory':mandatory,'source_page':2,'source_quote':'Three similar projects must be documented'})
+        x=review_requirement(client,tender,req,mandatory=mandatory)
         assert x.status_code==200,x.text
     return req
 
-def evidence(client,org,verified=True,expires_on=None):
-    result=client.post('/api/evidence',json={'organization_id':org,'label':'Signed certificate','reference':'CERT-001',
-       'verified':verified,'verification_note':'Checked signed original' if verified else '', 'expires_on':expires_on})
+def evidence(client,org,verified=True,expires_on=None,label='Signed certificate'):
+    result=client.post('/api/evidence',json={'organization_id':org,'label':label,'reference':'CERT-001',
+       'verified':False,'expires_on':expires_on})
     assert result.status_code==201,result.text
-    return result.json()['id']
+    ev=result.json()['id']
+    uploaded=client.post(f'/api/evidence/{ev}/upload-pdf',
+       files={'file':('certificate.pdf',synthetic_pdf(('Signed synthetic certificate CERT-001.',)),'application/pdf')})
+    assert uploaded.status_code==201,uploaded.text
+    if verified:
+        result=client.post(f'/api/evidence/{ev}/verify',json={'verified':True,
+           'verification_note':'Checked signed original synthetic certificate','document_hash':uploaded.json()['sha256']})
+        assert result.status_code==200,result.text
+    return ev
 
 def attest(client,tender):
     result=client.post(f'/api/tenders/{tender}/attest-source-scope',json={'reviewer':'Human Reviewer','note':'I inspected the complete source, schedules and amendments','checked_full_document_set':True})
@@ -72,7 +143,10 @@ def test_no_verified_without_current_evidence(client):
     org=add_org(client);t=add_tender(client,org);r=add_req(client,t)
     assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','notes':'none'}).status_code==422
     expired=(date.today()-timedelta(days=1)).isoformat()
-    ev=evidence(client,org,expires_on=expired)
+    ev=evidence(client,org,verified=False,expires_on=expired)
+    document=client.get(f'/api/tenders/{t}').json()['evidence'][0]
+    assert client.post(f'/api/evidence/{ev}/verify',json={'verified':True,
+       'verification_note':'Reviewed the expired signed original','document_hash':document['document_hash']}).status_code==422
     assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':ev}).status_code==422
     assert client.post('/api/evidence',json={'organization_id':org,'label':'Unsigned evidence','reference':'document','verified':True}).status_code==422
 
@@ -93,11 +167,8 @@ def test_exports_and_metrics(client):
     assert client.get(f'/api/tenders/{t}').json()['metrics']['paid_bdt']==0
 
 def test_pdf_has_source_provenance(client):
-    reportlab=pytest.importorskip('reportlab')
-    from reportlab.pdfgen.canvas import Canvas
     org=add_org(client);t=add_tender(client,org)
-    buf=io.BytesIO();c=Canvas(buf);c.drawString(50,750,'Bidders must show at least three similar projects completed.');c.showPage();c.save()
-    pdf=buf.getvalue()
+    pdf=synthetic_pdf(('Bidders must show at least three similar projects completed.',))
     up=client.post(f'/api/tenders/{t}/upload-pdf',files={'file':('requirements.pdf',pdf,'application/pdf')})
     assert up.status_code==201,up.text
     assert up.json()['candidates']>=1
@@ -106,7 +177,165 @@ def test_pdf_has_source_provenance(client):
     assert d['requirements'][0]['reviewed']==0
     assert d['requirements'][0]['mandatory'] is None
     assert len(d['sources'][0]['sha256'])==64
+    assert d['inventory_complete'] is False
+    assert d['inventory'][0]['language']=='Unconfirmed'
+    assert d['inventory'][0]['version_label']=='Unconfirmed'
     assert d['compliance']=='UNRESOLVED'
+
+def test_source_attestation_requires_nonempty_confirmed_inventory(client):
+    org=add_org(client);t=add_tender(client,org)
+    payload={'reviewer':'Human Reviewer','note':'Reviewed the complete registered tender set',
+             'checked_full_document_set':True}
+    assert client.post(f'/api/tenders/{t}/attest-source-scope',json=payload).status_code==409
+    source=add_source(client,t,confirm=False)
+    result=client.post(f'/api/tenders/{t}/requirements',json={'text':SOURCE_TEXT,
+       'source_id':source['source_id'],'source_page':2,'source_quote':SOURCE_QUOTE,'reviewed':True,'mandatory':True})
+    assert result.status_code==201,result.text
+    r=result.json()['id']
+    # The create payload cannot substitute for a human review action.
+    assert client.get(f'/api/tenders/{t}').json()['requirements'][0]['reviewed']==0
+    assert review_requirement(client,t,r).status_code==200
+    assert client.post(f'/api/tenders/{t}/attest-source-scope',json=payload).status_code==409
+    confirm_inventory(client,source)
+    assert client.post(f'/api/tenders/{t}/attest-source-scope',json=payload).status_code==200
+    assert client.get(f'/api/tenders/{t}').json()['inventory_complete'] is True
+    assert verdict(client,t).status_code==409  # No verified supporting evidence.
+
+def test_known_missing_document_invalidates_bid_and_keeps_history(client):
+    org,t,r,ev=ready_bid(client);history=stored_decisions(t)
+    result=client.post(f'/api/tenders/{t}/inventory',json={
+       'title':'Known annex not yet received','document_type':'ANNEX','language':'English',
+       'version_label':'Original','availability':'MISSING','notes':'Buyer lists this annex in the source set'})
+    assert result.status_code==201,result.text
+    snap=client.get(f'/api/tenders/{t}').json()
+    assert snap['inventory_complete'] is False and snap['source_scope_verified'] is False
+    assert snap['compliance']=='UNRESOLVED' and snap['current_decision'] is None
+    assert verdict(client,t).status_code==409
+    assert client.post(f'/api/tenders/{t}/attest-source-scope',json={
+       'reviewer':'Human Reviewer','note':'Reviewed the known but incomplete tender source set',
+       'checked_full_document_set':True}).status_code==409
+    assert stored_decisions(t)==history
+    supplied=client.post(f'/api/tenders/{t}/upload-pdf',
+       data={'inventory_item_id':str(result.json()['id'])},
+       files={'file':('received-annex.pdf',synthetic_pdf(('Supplemental administrative contact details.',)),'application/pdf')})
+    assert supplied.status_code==201,supplied.text
+    assert supplied.json()['inventory_item_id']==result.json()['id']
+    snapshot=client.get(f'/api/tenders/{t}').json()
+    assert snapshot['inventory_complete'] is True and len(snapshot['inventory'])==2
+    item=next(x for x in snapshot['inventory'] if x['id']==result.json()['id'])
+    assert item['availability']=='AVAILABLE' and item['document_type']=='ANNEX'
+    assert item['source_id']==supplied.json()['source_id']
+    assert snapshot['current_decision'] is None and stored_decisions(t)==history
+    attest(client,t)
+    assert client.get(f'/api/tenders/{t}').json()['compliance']=='READY_FOR_HUMAN_DECISION'
+    assert verdict(client,t).status_code==201
+    assert stored_decisions(t)[:len(history)]==history
+
+@pytest.mark.parametrize('foreign',[False,True])
+def test_upload_cannot_fulfill_available_or_cross_tender_inventory(client,foreign):
+    org=add_org(client);t=add_tender(client,org)
+    if foreign:
+        second=add_tender(client,org)
+        result=client.post(f'/api/tenders/{second}/inventory',json={
+           'title':'Missing foreign annex','document_type':'ANNEX','availability':'MISSING'})
+        assert result.status_code==201,result.text
+        item_id=result.json()['id']
+    else:
+        item_id=add_source(client,t)['inventory_item_id']
+    before=client.get(f'/api/tenders/{t}').json()['sources']
+    uploaded=client.post(f'/api/tenders/{t}/upload-pdf',data={'inventory_item_id':str(item_id)},
+       files={'file':('wrong-target.pdf',synthetic_pdf(('Administrative contact details.',)),'application/pdf')})
+    assert uploaded.status_code==422,uploaded.text
+    assert client.get(f'/api/tenders/{t}').json()['sources']==before
+
+@pytest.mark.parametrize('changes',[
+    {'source_page':3}, {'source_page':1}, {'source_quote':'A clause that does not occur in the PDF.'},
+    {'source_quote':'   '}, {'source_id':None}, {'source_page':0},
+])
+def test_requirement_creation_rejects_invalid_registered_provenance(client,changes):
+    org=add_org(client);t=add_tender(client,org);source=add_source(client,t)
+    values={'text':SOURCE_TEXT,'source_id':source['source_id'],'source_page':2,'source_quote':SOURCE_QUOTE}
+    values.update(changes)
+    assert client.post(f'/api/tenders/{t}/requirements',json=values).status_code==422
+    assert client.get(f'/api/tenders/{t}').json()['requirements']==[]
+
+def test_cross_tender_sources_cannot_be_claimed_or_downloaded(client):
+    org=add_org(client);first=add_tender(client,org);second=add_tender(client,org)
+    source=add_source(client,first)
+    result=client.post(f'/api/tenders/{second}/requirements',json={
+       'text':SOURCE_TEXT,'source_id':source['source_id'],'source_page':2,'source_quote':SOURCE_QUOTE})
+    assert result.status_code==422,result.text
+    result=client.post(f'/api/tenders/{second}/inventory',json={
+       'title':'Foreign source','document_type':'RFP','availability':'AVAILABLE','source_id':source['source_id']})
+    assert result.status_code==422,result.text
+    assert client.get(f"/api/tenders/{second}/sources/{source['source_id']}/file").status_code==404
+    document=client.get(f"/api/tenders/{first}/sources/{source['source_id']}/file")
+    assert document.status_code==200 and document.headers['content-type']=='application/pdf'
+    assert hashlib.sha256(document.content).hexdigest()==source['sha256']
+
+def test_typed_evidence_reference_cannot_become_verified_without_document(client):
+    org=add_org(client);t=add_tender(client,org);r=add_req(client,t)
+    values={'organization_id':org,'label':'Typed certificate reference','reference':'CERT-TYPED',
+            'verification_note':'A typed reference is not an inspected file'}
+    assert client.post('/api/evidence',json={**values,'verified':True}).status_code==422
+    response=client.post('/api/evidence',json=values)
+    assert response.status_code==201,response.text
+    ev=response.json()['id']
+    assert client.post(f'/api/evidence/{ev}/verify',json={'verified':True,
+       'verification_note':'Claimed review without any document','document_hash':'a'*64}).status_code==409
+    assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':ev}).status_code==422
+    assert verdict(client,t).status_code==409
+
+def test_new_evidence_file_revokes_verification_and_invalidates_bid(client):
+    org,t,r,ev=ready_bid(client);history=stored_decisions(t)
+    before=client.get(f'/api/tenders/{t}').json()
+    previous=before['evidence'][0]['files'][0]
+    replacement=synthetic_pdf(('Replacement signed synthetic certificate CERT-002.',))
+    uploaded=client.post(f'/api/evidence/{ev}/upload-pdf',
+       files={'file':('replacement.pdf',replacement,'application/pdf')})
+    assert uploaded.status_code==201,uploaded.text
+    after=client.get(f'/api/tenders/{t}').json();document=after['evidence'][0]
+    assert document['verified']==0 and document['verification_current'] is False
+    assert len(document['files'])==2 and document['files'][1]==previous
+    assert after['source_scope_verified'] is True and after['fingerprint']!=before['fingerprint']
+    assert after['compliance']=='UNRESOLVED' and after['current_decision'] is None
+    assert client.post(f'/api/evidence/{ev}/verify',json={'verified':True,
+       'verification_note':'Attempted review against the older certificate','document_hash':previous['sha256']}).status_code==409
+    assert stored_decisions(t)==history
+    assert client.post(f'/api/evidence/{ev}/verify',json={'verified':True,
+       'verification_note':'Checked the newly uploaded signed certificate','document_hash':uploaded.json()['sha256']}).status_code==200
+    reviewed=client.get(f'/api/tenders/{t}').json()
+    assert reviewed['compliance']=='READY_FOR_HUMAN_DECISION' and reviewed['current_decision'] is None
+    assert verdict(client,t).status_code==201
+    assert stored_decisions(t)[:len(history)]==history
+
+def test_evidence_download_is_scoped_and_hash_checked(client):
+    org,t,r,ev=ready_bid(client);other=add_org(client,'Another organization')
+    record=client.get(f'/api/tenders/{t}').json()['evidence'][0]['files'][0]
+    url=f"/api/organizations/{org}/evidence/{ev}/files/{record['id']}"
+    document=client.get(url)
+    assert document.status_code==200 and document.content.startswith(b'%PDF-')
+    assert hashlib.sha256(document.content).hexdigest()==record['sha256']
+    assert client.get(f"/api/organizations/{other}/evidence/{ev}/files/{record['id']}").status_code==404
+    with sqlite3.connect(main.DB) as db:
+        key=db.execute('SELECT private_path FROM evidence_files WHERE id=?',(record['id'],)).fetchone()[0]
+    (main.STORAGE/key).write_bytes(b'%PDF- changed private bytes')
+    assert client.get(url).status_code==409
+
+def test_material_requirement_review_revokes_previous_evidence_mapping(client):
+    org,t,r,ev=ready_bid(client);history=stored_decisions(t)
+    assert review_requirement(client,t,r,text='A revised interpretation of the same documented projects').status_code==200
+    snapshot=client.get(f'/api/tenders/{t}').json();requirement=snapshot['requirements'][0]
+    assert requirement['status']=='UNKNOWN' and requirement['evidence_id'] is None
+    assert snapshot['source_scope_verified'] is False and snapshot['current_decision'] is None
+    assert snapshot['compliance']=='UNRESOLVED' and stored_decisions(t)==history
+
+def test_unchanged_requirement_review_preserves_verified_mapping(client):
+    org,t,r,ev=ready_bid(client);history=stored_decisions(t)
+    assert review_requirement(client,t,r).status_code==200
+    snapshot=client.get(f'/api/tenders/{t}').json();requirement=snapshot['requirements'][0]
+    assert requirement['status']=='VERIFIED' and requirement['evidence_id']==ev
+    assert snapshot['current_decision']=='BID' and stored_decisions(t)==history
 
 def test_health_and_demo(client):
     h=client.get('/api/health');assert h.status_code==200
@@ -117,11 +346,13 @@ def test_health_and_demo(client):
     assert verdict(client,snap['tender']['id']).status_code==409
 
 def test_missing_provenance_keeps_mandatory_unresolved(client):
-    org=add_org(client);t=add_tender(client,org);r=add_req(client,t)
-    ev=evidence(client,org)
-    assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':ev}).status_code==200
-    # Removing the exact source quote must stop BID even when evidence has been verified.
-    assert client.put(f'/api/requirements/{r}/review',json={'text':'Three similar projects must be documented','mandatory':True,'source_page':2,'source_quote':''}).status_code==200
+    org,t,r,ev=ready_bid(client)
+    # Invalid provenance cannot be introduced by review. Legacy invalid records
+    # must still stop BID even when their evidence was verified previously.
+    assert review_requirement(client,t,r,source_quote='').status_code==422
+    assert client.get(f'/api/tenders/{t}').json()['current_decision']=='BID'
+    with sqlite3.connect(main.DB) as db:
+        db.execute('UPDATE requirements SET source_quote=? WHERE id=?',('',r))
     snap=client.get(f'/api/tenders/{t}').json()
     assert snap['compliance']=='UNRESOLVED'
     assert verdict(client,t).status_code==409
@@ -134,7 +365,10 @@ def test_changed_requirements_invalidate_prior_bid(client):
     attest(client,t)
     assert verdict(client,t).status_code==201
     assert client.get(f'/api/tenders/{t}').json()['current_decision']=='BID'
-    assert client.post(f'/api/tenders/{t}/requirements',json={'text':'New mandatory condition from addendum', 'source_page':3,'source_quote':'New mandatory condition from addendum'}).status_code==201
+    quote='The new document describes a further condition.'
+    source=add_source(client,t,quote=quote,name='additional-condition.pdf')
+    assert client.post(f'/api/tenders/{t}/requirements',json={'text':'New mandatory condition from addendum',
+       'source_id':source['source_id'],'source_page':2,'source_quote':quote}).status_code==201
     snap=client.get(f'/api/tenders/{t}').json()
     assert snap['current_decision'] is None
     assert snap['decisions'][0]['is_current'] is False
@@ -143,7 +377,9 @@ def test_changed_requirements_invalidate_prior_bid(client):
 def test_excel_formula_injection_blocked(client):
     from openpyxl import load_workbook
     org=add_org(client);t=add_tender(client,org)
-    x=client.post(f'/api/tenders/{t}/requirements',json={'text':'=SUM(1,2) external injection attempt','source_quote':'Original textual clause','source_page':1})
+    source=add_source(client,t,quote='Original textual clause')
+    x=client.post(f'/api/tenders/{t}/requirements',json={'text':'=SUM(1,2) external injection attempt',
+       'source_id':source['source_id'],'source_quote':'Original textual clause','source_page':2})
     assert x.status_code==201
     output=client.get(f'/api/tenders/{t}/export.xlsx')
     assert output.status_code==200
@@ -165,13 +401,11 @@ def stored_decisions(tender):
         return db.execute('SELECT * FROM decisions WHERE tender_id=? ORDER BY id',(tender,)).fetchall()
 
 def upload_non_candidate_pdf(client,tender):
-    from reportlab.pdfgen.canvas import Canvas
-    buf=io.BytesIO();c=Canvas(buf)
-    c.drawString(50,750,'This document records administrative contact information.')
-    c.showPage();c.save()
-    result=client.post(f'/api/tenders/{tender}/upload-pdf',files={'file':('addendum.pdf',buf.getvalue(),'application/pdf')})
+    pdf=synthetic_pdf(('This document records administrative contact information.',))
+    result=client.post(f'/api/tenders/{tender}/upload-pdf',files={'file':('additional-document.pdf',pdf,'application/pdf')})
     assert result.status_code==201,result.text
     assert result.json()['candidates']==0
+    confirm_inventory(client,result.json(),document_type='OTHER')
     return result.json()['source_id']
 
 def test_zero_candidate_addendum_invalidates_bid_without_rewriting_history(client):
@@ -218,7 +452,8 @@ def test_source_inventory_mutation_invalidates_bid(client,field,value):
 
 def test_changed_requirement_source_association_invalidates_bid(client):
     org,t,r,ev=ready_bid(client)
-    first=upload_non_candidate_pdf(client,t);second=upload_non_candidate_pdf(client,t)
+    first=add_source(client,t,name='first-copy.pdf')['source_id']
+    second=add_source(client,t,name='second-copy.pdf')['source_id']
     with sqlite3.connect(main.DB) as db:
         db.execute('UPDATE requirements SET source_id=? WHERE id=?',(first,r))
     attest(client,t);assert verdict(client,t).status_code==201
@@ -379,13 +614,13 @@ def test_all_untrusted_spreadsheet_fields_are_literals(client,literal):
     result=client.post('/api/tenders',json={'organization_id':org,'title':literal})
     assert result.status_code==201,result.text
     t=result.json()['id']
-    result=client.post(f'/api/tenders/{t}/requirements',json={'text':literal,'source_page':2,'source_quote':literal})
+    source=add_source(client,t,quote=literal.strip())
+    result=client.post(f'/api/tenders/{t}/requirements',json={'text':literal,'source_id':source['source_id'],'source_page':2,'source_quote':literal})
     assert result.status_code==201,result.text
     r=result.json()['id']
-    assert client.put(f'/api/requirements/{r}/review',json={'text':literal,'mandatory':True,'source_page':2,'source_quote':literal}).status_code==200
-    result=client.post('/api/evidence',json={'organization_id':org,'label':literal,'reference':'CERT-EXPORT','verified':True,'verification_note':'Checked signed original'})
-    assert result.status_code==201,result.text
-    assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':result.json()['id'],'notes':literal}).status_code==200
+    assert review_requirement(client,t,r).status_code==200
+    ev=evidence(client,org,label=literal)
+    assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':ev,'notes':literal}).status_code==200
     result=client.post(f'/api/tenders/{t}/decisions',json={'decision':'HOLD','reviewer':literal,'rationale':literal+' reviewed by a human'})
     assert result.status_code==201,result.text
     book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)

@@ -1,0 +1,58 @@
+{
+  "task_id": "Persistent pilot packaging follow-up",
+  "agent_id": "/root/tenderos_vercel_packaging",
+  "delegation_tool": "collaboration.followup_task",
+  "run_id": null,
+  "first_recorded_utc": "2026-10-09 18:02:16 UTC",
+  "completed_utc": "2026-10-09 18:04:52 UTC",
+  "worktree": "/workspace/tenderos-vercel",
+  "baseline_commit": "d71f807cb19114ed26ddf2127ef60c4edff9d206",
+  "authorization": "Parent authorized documentation/allowlist follow-up under user persistent deployment scope; parent separately authorized vercel.json migration-file exclusions.",
+  "allowed_edit_files": [
+    "TenderOS/.vercelignore",
+    "TenderOS/DEPLOY_VERCEL.md",
+    "TenderOS/vercel.json"
+  ],
+  "output_sha256": {
+    "TenderOS/.vercelignore": "02ad364639e050a3a5f55c6e307d0dc2808c3b533c6b942e2ca561bfd6a9d8a7",
+    "TenderOS/DEPLOY_VERCEL.md": "a78bfc6ded502f9511598edb741e124604b671bf29e2490cd7c369d93959c552",
+    "TenderOS/vercel.json": "3cd92efc98f7152795f05679aa118e27836d96f3bea5bdc100d5627e24cc9ea3"
+  },
+  "coordination": {
+    "application_agent": "/root/tenderos_vercel_app confirmed runtime modules, hosted modes, credentials, exact origins, unsafe request CSRF and upload cap",
+    "storage_agent": "/root/tenderos_vercel_storage confirmed managed PostgreSQL TLS URL/private Blob env, psycopg and python scripts/migrate_postgres.py --apply"
+  },
+  "commands": [
+    "Read .vercelignore, DEPLOY_VERCEL.md",
+    "Read incomplete app/hosting.py and main.py for env/mode naming only",
+    "apply_patch only authorized packaging files",
+    "python -m json.tool TenderOS/vercel.json",
+    "Static excludeFiles length inspection <=256",
+    "git diff --check -- authorized packaging paths",
+    "git status --short"
+  ],
+  "tool_trace_location": "Codex runtime task transcript; external receipt under /workspace/tenderos-vercel-runtime",
+  "static_inspection": {
+    "valid_json": true,
+    "excludeFiles_length": 183,
+    "diff_check_passed": true,
+    "new_runtime_modules_allowed": [
+      "app/hosting.py",
+      "app/database.py",
+      "app/private_storage.py"
+    ],
+    "migration_runtime_exclusion": [
+      "scripts/**",
+      "**/*.sql"
+    ]
+  },
+  "application_tests_run": false,
+  "build_or_deployment_performed": false,
+  "staged_or_committed": false,
+  "data_egress": "None in this follow-up; no provider calls or credential scans",
+  "open_risks": [
+    "Other agents editing candidate simultaneously; root must freeze complete application and obtain independent verification",
+    "Actual managed service bindings, schema application, Vercel account/build/deploy smoke results remain operator prerequisites",
+    "Git build clone privacy is separate from runtime exclusions and CLI upload allowlist"
+  ]
+}

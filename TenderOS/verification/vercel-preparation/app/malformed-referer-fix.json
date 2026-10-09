@@ -1,0 +1,20 @@
+{
+  "agent_id": "/root/tenderos_vercel_app",
+  "opaque_run_id": null,
+  "recorded_utc": "2026-10-09T18:05:49.867584+00:00",
+  "worktree": "/workspace/tenderos-vercel",
+  "change": "Catch ValueError and UnicodeError alongside HostingConfigurationError when parsing Origin/Referer; malformed request headers fail CSRF validation rather than raising.",
+  "checks": {
+    "python_source_compile": "pass",
+    "unit_tests": "not_run_per_parent_instruction"
+  },
+  "source_sha256": {
+    "TenderOS/app/hosting.py": "ab0bf67310596abf67b8739ef4f7c5f7ac24e833638c760af1545aae6569d8a8"
+  },
+  "prior_receipt": "static-review.json preserved unchanged",
+  "data_egress": "none",
+  "tool_commands": [
+    "apply_patch only app/hosting.py exception tuple",
+    "compile(source,filename,exec) without import or bytecode"
+  ]
+}
