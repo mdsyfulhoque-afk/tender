@@ -1,0 +1,133 @@
+{
+  "DEF001_reproduced": true,
+  "agent_runtime": "Codex delegated subagent; existing agent resumed by collaboration.followup_task",
+  "application_source_modified": false,
+  "artifact_hashes": {
+    "DEF-001-reproduction.json": "6a3f59173eeab20b8d46d350a2fd33646c93947d4a253e436128ae6f78196af6",
+    "XLSX-formula-observation.json": "b412939073580fa1d55e28e77bca2415764429295f0b624c56eeb3ef79eff01a",
+    "baseline-result.json": "1c9074e0b9ea7120e9986d70d74a4ad7b859f47ef337394c751e3d81670704ab",
+    "baseline.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "baseline.stdout.txt": "23988c8eb97d7850a42823868534e60c53fff563399590fd555cac04c870bc3f",
+    "resolved-dependencies.json": "5ec345ac2634fefdd73313110994c7ea3c37418ca76cb37b0631befb517d8362",
+    "source-preservation.json": "5ead9df2bd5eda1d0f428eabe52525a735cab253a84c7ce12257af044f0d7be8",
+    "startup-checks.json": "bf32c60605e9b1025ea56b41b4e7b4faf60a47797bd53abe1ea5993d7ff3a2f1",
+    "synthetic-request-log.json": "9e154ebd694989502e4cc7dd6ec1625cadf9095de0757bb40847d04975e2109e"
+  },
+  "baseline": {
+    "all_ten_tests_executed": true,
+    "command_argv": [
+      "/workspace/.venvs/tenderos-baseline/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "--basetemp=/workspace/tenderos-audit-runtime/baseline-tmp"
+    ],
+    "cwd": "/workspace/tender/TenderOS",
+    "end_utc": "2026-10-09T15:47:42.524684Z",
+    "environment_overrides": {
+      "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "TENDEROS_DATA_DIR": "/workspace/tenderos-audit-runtime/baseline-import-data"
+    },
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 10,
+    "skipped": 0,
+    "start_utc": "2026-10-09T15:47:40.835697Z"
+  },
+  "branch": "tenderos/import-v1.2",
+  "canonical_agent_id": "/root/tenderos_independent_verification",
+  "command": [
+    "/workspace/.venvs/tenderos-baseline/bin/python",
+    "/workspace/tenderos-audit-runtime/independent_qa.py"
+  ],
+  "commit_push_merge_deploy": false,
+  "current_execution_tool_chunk": "d1b2c2",
+  "data": "synthetic only",
+  "database_from_archive_read": false,
+  "delegation_tool": "collaboration.followup_task",
+  "end_utc": "2026-10-09T15:47:43.056400Z",
+  "execution_tool": "functions.exec -> tools.exec_command",
+  "external_model_api_calls": false,
+  "harness_sha256": "8fc23e3bd524a077364f1c03e284a8b6e35aaa03dda345afc2a56a70c862c389",
+  "harness_start_utc": "2026-10-09T15:47:40.824620Z",
+  "immutable_stored_history_preserved": true,
+  "independent_reviewer_run_id": null,
+  "network_calls": false,
+  "opaque_run_id": null,
+  "opaque_run_id_status": "No separate opaque run ID exposed; no ID invented.",
+  "open_risks": [
+    "DEF-001 reproduced",
+    "XLSX title/reviewer/rationale rendered as formula cells",
+    "opaque run ID unavailable"
+  ],
+  "preflight_observation": "Initial rg inspection reported audit-runtime directory absent (exit 2); harness created the authorized directory before execution. No baseline or reproduction command failed.",
+  "read_write_scope": {
+    "read_only_app_source": "/workspace/tender/TenderOS",
+    "synthetic_runtime_writes": "/workspace/tenderos-audit-runtime",
+    "verification_artifact_writes": "/workspace/tender/TenderOS/verification/current-baseline"
+  },
+  "receipt_finalized_utc": "2026-10-09T15:48:26.663755Z",
+  "source_hashes_after": {
+    "AGENTS.md": "1fbca1e2b3c5be11438c39aa7e4b2ab7f02554e62dfd1ed1a3f9f670cdfa3ef6",
+    "app/main.py": "e24389f50d33565b48fb534eb49033c85a7eced2b57a58b14fde69dd16f1e74c",
+    "app/static/index.html": "fbe6e399da5cfdf6fdae3eec0248061ab90e5482b4c98cb0a68643909f67fd51",
+    "app/static/style.css": "fe6211ffdd50ee909fbd1639e35f4daaf31297c17fb312917093210f7bf74596",
+    "app/static/ui.js": "cfb6cd9fe496337134ac1f5fdf1defd27f9c4a136ea0334344b2cf4e0892ce00",
+    "requirements.txt": "08a22f7263cbf8337774f642bb34a31e9aac82ac5015ebb699600567502cc920",
+    "tests/conftest.py": "2ec1e36f1f476a733e93d6b9a3404eaea6bd7d3d10c868f6cdc77828f68b30be",
+    "tests/test_workflows.py": "511bcf5b1634ead4382dbe0a103ce969af721cac0d68b619557f3018f0c01274"
+  },
+  "source_hashes_before": {
+    "AGENTS.md": "1fbca1e2b3c5be11438c39aa7e4b2ab7f02554e62dfd1ed1a3f9f670cdfa3ef6",
+    "app/main.py": "e24389f50d33565b48fb534eb49033c85a7eced2b57a58b14fde69dd16f1e74c",
+    "app/static/index.html": "fbe6e399da5cfdf6fdae3eec0248061ab90e5482b4c98cb0a68643909f67fd51",
+    "app/static/style.css": "fe6211ffdd50ee909fbd1639e35f4daaf31297c17fb312917093210f7bf74596",
+    "app/static/ui.js": "cfb6cd9fe496337134ac1f5fdf1defd27f9c4a136ea0334344b2cf4e0892ce00",
+    "requirements.txt": "08a22f7263cbf8337774f642bb34a31e9aac82ac5015ebb699600567502cc920",
+    "tests/conftest.py": "2ec1e36f1f476a733e93d6b9a3404eaea6bd7d3d10c868f6cdc77828f68b30be",
+    "tests/test_workflows.py": "511bcf5b1634ead4382dbe0a103ce969af721cac0d68b619557f3018f0c01274"
+  },
+  "start_utc_first_tool_observation": "2026-10-09T15:44:50Z",
+  "startup_statuses": {
+    "/": 200,
+    "/api/docs": 200,
+    "/api/health": 200
+  },
+  "task_id": "T-002 independent baseline and synthetic regression reproduction",
+  "tool_trace_preflight_chunks": [
+    "213dd8",
+    "43cf26",
+    "669f5f",
+    "02bc18",
+    "452945"
+  ],
+  "xlsx_formula_cells": [
+    {
+      "cell": "B2",
+      "data_type": "f",
+      "input_field": "tender.title",
+      "interpreted_as_formula": true,
+      "sheet": "Compliance Matrix",
+      "value": "=1+1"
+    },
+    {
+      "cell": "B2",
+      "data_type": "f",
+      "input_field": "decision.reviewer",
+      "interpreted_as_formula": true,
+      "sheet": "Decision History",
+      "value": "=1+1"
+    },
+    {
+      "cell": "C2",
+      "data_type": "f",
+      "input_field": "decision.rationale",
+      "interpreted_as_formula": true,
+      "sheet": "Decision History",
+      "value": "=1+1"
+    }
+  ]
+}

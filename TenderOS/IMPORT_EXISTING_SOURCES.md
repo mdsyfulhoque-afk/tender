@@ -1,6 +1,6 @@
 # TenderOS Source Import — safe handoff
 
-**Status: not executed.** These instructions are for an authorized cloud coding workspace / agent after the project archive is attached.
+**Status: unchanged-source import executed on 2026-10-09.** The supplied artifact was `TenderOS_Codex_Work_Transfer_v1_2.zip`; its layout differs from the originally named Git import ZIP. The executed mapping, original source hashes, governance preservation and exclusions are recorded in [verification/IMPORT_REPORT.json](verification/IMPORT_REPORT.json). The archived `repo/data/` tree was excluded, including the SQLite database that the transfer documentation incorrectly described as omitted. The procedure below preserves the original handoff requirements; execution evidence and current test results are in `verification/`.
 
 ## Target
 - GitHub: `mdsyfulhoque-afk/tender` (private)

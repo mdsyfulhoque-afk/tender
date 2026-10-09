@@ -1,0 +1,210 @@
+{
+  "active_governance_sha256": "1fbca1e2b3c5be11438c39aa7e4b2ab7f02554e62dfd1ed1a3f9f670cdfa3ef6",
+  "archive_sha256": "7786d9785ebf6c8db21b547f174277f872f20a15a58219c36dc70642d9a33867",
+  "checked_mapped_files": [
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/START_HERE.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "START_HERE.md",
+      "sha256": "c85c808623ba9565787a4b64287a49ebe91342b147e6a288fbb57d61abce5f62"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/agent_ops/CODEX_LAUNCH_IN_WORK.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "agent_ops/CODEX_LAUNCH_IN_WORK.md",
+      "sha256": "cc51590671a7ba52fe089fa6a269be58233e6a5d507f0e4b16a461c8ca8950b2"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/agent_ops/NOT_LAUNCHED_AGENT_RECEIPT.json",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "agent_ops/NOT_LAUNCHED_AGENT_RECEIPT.json",
+      "sha256": "f7257987fcbb28076e8cb7db0c862e19899c692d5f7e63113e92f9beffdd44b0"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/project_knowledge/00_READ_ME_FIRST.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "project_knowledge/00_READ_ME_FIRST.md",
+      "sha256": "e4796f7c1a266e45453f7c63f1207afe9720e571ac88d65c7befbec77e5e6afa"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/project_knowledge/01_REPOSITORY_AUDIT.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "project_knowledge/01_REPOSITORY_AUDIT.md",
+      "sha256": "0f9c02ff5372d5765e4acb98b976f578bc2daa0465cd486cabed7d616f6eb77d"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/project_knowledge/02_PRD_v1_1.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "project_knowledge/02_PRD_v1_1.md",
+      "sha256": "64261b62cad7b4c54669dbe8b63a7ed27c3dd42006205bede01233b9955633ad"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/project_knowledge/03_AUTONOMOUS_SUBAGENT_CONTRACTS.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "project_knowledge/03_AUTONOMOUS_SUBAGENT_CONTRACTS.md",
+      "sha256": "6adfe86380335598cb8af90aaee91cf912cc645ade1c36877ea3fc8ba0c7078f"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/project_knowledge/04_EGP_DOMAIN_NOTES.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "project_knowledge/04_EGP_DOMAIN_NOTES.md",
+      "sha256": "acee8d4f4654eceaff160ac9d1c7145c5c938d4a6587aff792d3b5e059ceeca5"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/project_knowledge/05_TECH_RESEARCH_MATRIX.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "project_knowledge/05_TECH_RESEARCH_MATRIX.md",
+      "sha256": "7ab45df6f3d3dd1c53e747ddf43068da0375b951082b4b13aa73fed630e73a6c"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/project_knowledge/06_WORK_AGENT_LAUNCH_PROMPT.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "project_knowledge/06_WORK_AGENT_LAUNCH_PROMPT.md",
+      "sha256": "c700d3c289d47833a928c93a4c9e6cf97cb1885f0bda2b5a5355842aab280ce7"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/project_knowledge/07_DECISION_AND_RISK_REGISTER.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "project_knowledge/07_DECISION_AND_RISK_REGISTER.md",
+      "sha256": "ff03083c5c29ea876f487fa1ec722bd0aedc9b81bbd772b7a6437a010a68df35"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/project_knowledge/APES_TenderToFit_Final_Master_Documentation_V1_0.docx",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "project_knowledge/APES_TenderToFit_Final_Master_Documentation_V1_0.docx",
+      "sha256": "9c7b6d6c6e873d3fd5dc3f8572c01d2ed9bbcb3426d34c7e925831e0ca21393f"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/project_knowledge/EGP_PRIMARY_REFERENCES_README.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "project_knowledge/EGP_PRIMARY_REFERENCES_README.md",
+      "sha256": "a58c98d50a1bb5b844323900d613a9ff0a3783a64f48c5f905075c3067c7b0c9"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/project_knowledge/TASK_GRAPH.json",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "project_knowledge/TASK_GRAPH.json",
+      "sha256": "90b43e5c047ba019663111503a56a08dab421975271df0a2375c48cb0dfea04f"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/project_knowledge/TENDERTOTFIT_FRESH_CONSTITUTION.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "project_knowledge/TENDERTOTFIT_FRESH_CONSTITUTION.md",
+      "sha256": "1038c8fefcb2a2721933e098633a00a53795038a77741ac6c950e18dc0703fd3"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/repo/.gitignore",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": ".gitignore",
+      "sha256": "00eae913ca57ce7dbb5fbae904e98f1aeb0b206ef8651e04407f9d8d2fe6a849"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/repo/AGENTS.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "verification/TRANSFER_REPO_AGENTS.md",
+      "sha256": "13757bea541f61d15d6ed063cab9433d1f36cbe0cfe96daf7668a409f98365c1"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/repo/README.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "verification/MVP_README_ORIGINAL.md",
+      "sha256": "9ebc0ddb3aa57e986d65a5351da4bb7ee6807a54c54fb292522fa01d6cee7911"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/repo/app/main.py",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "app/main.py",
+      "sha256": "e24389f50d33565b48fb534eb49033c85a7eced2b57a58b14fde69dd16f1e74c"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/repo/app/static/index.html",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "app/static/index.html",
+      "sha256": "fbe6e399da5cfdf6fdae3eec0248061ab90e5482b4c98cb0a68643909f67fd51"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/repo/app/static/style.css",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "app/static/style.css",
+      "sha256": "fe6211ffdd50ee909fbd1639e35f4daaf31297c17fb312917093210f7bf74596"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/repo/app/static/ui.js",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "app/static/ui.js",
+      "sha256": "cfb6cd9fe496337134ac1f5fdf1defd27f9c4a136ea0334344b2cf4e0892ce00"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/repo/docs/COMPANY_BLUEPRINT.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "docs/COMPANY_BLUEPRINT.md",
+      "sha256": "02e43bb7568ea63fffcf85c7e32f4d39f11cac035dacfcfa312992f511807edd"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/repo/requirements.txt",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "requirements.txt",
+      "sha256": "08a22f7263cbf8337774f642bb34a31e9aac82ac5015ebb699600567502cc920"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/repo/tests/conftest.py",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "tests/conftest.py",
+      "sha256": "2ec1e36f1f476a733e93d6b9a3404eaea6bd7d3d10c868f6cdc77828f68b30be"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/repo/tests/test_workflows.py",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "tests/test_workflows.py",
+      "sha256": "511bcf5b1634ead4382dbe0a103ce969af721cac0d68b619557f3018f0c01274"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/verification/BASELINE_TEST_RESULTS.txt",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "verification/BASELINE_TEST_RESULTS.txt",
+      "sha256": "1aec6fb297bb0a530bf9c7050d5bac8d63687c74ec2d7f97c86ba01527a42119"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/verification/FILE_MANIFEST.json",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "verification/FILE_MANIFEST.json",
+      "sha256": "cbc97a23b6b646358514c4f465cfc6929239752a929f5d13b76390cabeca158b"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/verification/PRESERVATION_CHECK.json",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "verification/PRESERVATION_CHECK.json",
+      "sha256": "5b7546e00da8b7201f2e795ebb428bbe80130046dc3463b34334cd85eb295b72"
+    },
+    {
+      "archive_path": "TenderOS_Codex_Work_Transfer_v1_2/verification/STATUS.md",
+      "byte_identical_to_archive": true,
+      "destination_relative_path": "verification/STATUS.md",
+      "sha256": "1caba5a1b2d670db0406031ac6c974978c01d92b29ed601ca47fc0453a455a02"
+    }
+  ],
+  "excluded_archive_database_present": false,
+  "expected_test_names": [
+    "test_mandatory_blocker_and_human_gate",
+    "test_fail_closed_when_unreviewed",
+    "test_no_verified_without_current_evidence",
+    "test_cross_organization_evidence_rejected",
+    "test_exports_and_metrics",
+    "test_pdf_has_source_provenance",
+    "test_health_and_demo",
+    "test_missing_provenance_keeps_mandatory_unresolved",
+    "test_changed_requirements_invalidate_prior_bid",
+    "test_excel_formula_injection_blocked"
+  ],
+  "source_hashes": {
+    "AGENTS.md": "1fbca1e2b3c5be11438c39aa7e4b2ab7f02554e62dfd1ed1a3f9f670cdfa3ef6",
+    "app/main.py": "e24389f50d33565b48fb534eb49033c85a7eced2b57a58b14fde69dd16f1e74c",
+    "app/static/index.html": "fbe6e399da5cfdf6fdae3eec0248061ab90e5482b4c98cb0a68643909f67fd51",
+    "app/static/style.css": "fe6211ffdd50ee909fbd1639e35f4daaf31297c17fb312917093210f7bf74596",
+    "app/static/ui.js": "cfb6cd9fe496337134ac1f5fdf1defd27f9c4a136ea0334344b2cf4e0892ce00",
+    "requirements.txt": "08a22f7263cbf8337774f642bb34a31e9aac82ac5015ebb699600567502cc920",
+    "tests/conftest.py": "2ec1e36f1f476a733e93d6b9a3404eaea6bd7d3d10c868f6cdc77828f68b30be",
+    "tests/test_workflows.py": "511bcf5b1634ead4382dbe0a103ce969af721cac0d68b619557f3018f0c01274"
+  },
+  "test_names_match": true
+}

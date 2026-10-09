@@ -1,0 +1,36 @@
+{
+  "all_three_fields_stored_as_formula": true,
+  "application_modified": false,
+  "benign_formula": "=1+1",
+  "cells": [
+    {
+      "cell": "B2",
+      "data_type": "f",
+      "input_field": "tender.title",
+      "interpreted_as_formula": true,
+      "sheet": "Compliance Matrix",
+      "value": "=1+1"
+    },
+    {
+      "cell": "B2",
+      "data_type": "f",
+      "input_field": "decision.reviewer",
+      "interpreted_as_formula": true,
+      "sheet": "Decision History",
+      "value": "=1+1"
+    },
+    {
+      "cell": "C2",
+      "data_type": "f",
+      "input_field": "decision.rationale",
+      "interpreted_as_formula": true,
+      "sheet": "Decision History",
+      "value": "=1+1"
+    }
+  ],
+  "data": "synthetic only",
+  "formula_evaluated": false,
+  "rationale_payload_uses_padding_to_satisfy_raw_min_length": true,
+  "title_input_characters": 4,
+  "workbook_sha256": "64f9bdc2a1f1d04822278e8e1d39530ddb9a64e83d0b4f9447c7ecf664f8f197"
+}

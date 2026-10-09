@@ -1,0 +1,7 @@
+{
+  "original_executed_path": "/workspace/tenderos-audit-runtime/independent_qa.py",
+  "persisted_copy": "TenderOS/verification/current-baseline/independent_qa.py",
+  "sha256": "8fc23e3bd524a077364f1c03e284a8b6e35aaa03dda345afc2a56a70c862c389",
+  "byte_identical": true,
+  "note": "Exact executed forensic harness; absolute paths record this workspace and require adjustment in another environment."
+}

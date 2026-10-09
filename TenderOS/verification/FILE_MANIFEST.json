@@ -1,0 +1,158 @@
+{
+  "bundle_name": "TenderOS_Codex_Work_Transfer_v1_2",
+  "generated_on": "2026-10-09",
+  "source_code_files_preserved": 10,
+  "local_tests_exit_code": 0,
+  "files": [
+    {
+      "path": "START_HERE.md",
+      "size_bytes": 2461,
+      "sha256": "c85c808623ba9565787a4b64287a49ebe91342b147e6a288fbb57d61abce5f62"
+    },
+    {
+      "path": "agent_ops/CODEX_LAUNCH_IN_WORK.md",
+      "size_bytes": 2367,
+      "sha256": "cc51590671a7ba52fe089fa6a269be58233e6a5d507f0e4b16a461c8ca8950b2"
+    },
+    {
+      "path": "agent_ops/NOT_LAUNCHED_AGENT_RECEIPT.json",
+      "size_bytes": 299,
+      "sha256": "f7257987fcbb28076e8cb7db0c862e19899c692d5f7e63113e92f9beffdd44b0"
+    },
+    {
+      "path": "project_knowledge/00_READ_ME_FIRST.md",
+      "size_bytes": 2892,
+      "sha256": "e4796f7c1a266e45453f7c63f1207afe9720e571ac88d65c7befbec77e5e6afa"
+    },
+    {
+      "path": "project_knowledge/01_REPOSITORY_AUDIT.md",
+      "size_bytes": 5212,
+      "sha256": "0f9c02ff5372d5765e4acb98b976f578bc2daa0465cd486cabed7d616f6eb77d"
+    },
+    {
+      "path": "project_knowledge/02_PRD_v1_1.md",
+      "size_bytes": 15667,
+      "sha256": "64261b62cad7b4c54669dbe8b63a7ed27c3dd42006205bede01233b9955633ad"
+    },
+    {
+      "path": "project_knowledge/03_AUTONOMOUS_SUBAGENT_CONTRACTS.md",
+      "size_bytes": 6839,
+      "sha256": "6adfe86380335598cb8af90aaee91cf912cc645ade1c36877ea3fc8ba0c7078f"
+    },
+    {
+      "path": "project_knowledge/04_EGP_DOMAIN_NOTES.md",
+      "size_bytes": 4240,
+      "sha256": "acee8d4f4654eceaff160ac9d1c7145c5c938d4a6587aff792d3b5e059ceeca5"
+    },
+    {
+      "path": "project_knowledge/05_TECH_RESEARCH_MATRIX.md",
+      "size_bytes": 3639,
+      "sha256": "7ab45df6f3d3dd1c53e747ddf43068da0375b951082b4b13aa73fed630e73a6c"
+    },
+    {
+      "path": "project_knowledge/06_WORK_AGENT_LAUNCH_PROMPT.md",
+      "size_bytes": 3826,
+      "sha256": "c700d3c289d47833a928c93a4c9e6cf97cb1885f0bda2b5a5355842aab280ce7"
+    },
+    {
+      "path": "project_knowledge/07_DECISION_AND_RISK_REGISTER.md",
+      "size_bytes": 3008,
+      "sha256": "ff03083c5c29ea876f487fa1ec722bd0aedc9b81bbd772b7a6437a010a68df35"
+    },
+    {
+      "path": "project_knowledge/APES_TenderToFit_Final_Master_Documentation_V1_0.docx",
+      "size_bytes": 97643,
+      "sha256": "9c7b6d6c6e873d3fd5dc3f8572c01d2ed9bbcb3426d34c7e925831e0ca21393f"
+    },
+    {
+      "path": "project_knowledge/EGP_PRIMARY_REFERENCES_README.md",
+      "size_bytes": 989,
+      "sha256": "a58c98d50a1bb5b844323900d613a9ff0a3783a64f48c5f905075c3067c7b0c9"
+    },
+    {
+      "path": "project_knowledge/TASK_GRAPH.json",
+      "size_bytes": 3360,
+      "sha256": "90b43e5c047ba019663111503a56a08dab421975271df0a2375c48cb0dfea04f"
+    },
+    {
+      "path": "project_knowledge/TENDERTOTFIT_FRESH_CONSTITUTION.md",
+      "size_bytes": 2573,
+      "sha256": "1038c8fefcb2a2721933e098633a00a53795038a77741ac6c950e18dc0703fd3"
+    },
+    {
+      "path": "repo/.gitignore",
+      "size_bytes": 52,
+      "sha256": "00eae913ca57ce7dbb5fbae904e98f1aeb0b206ef8651e04407f9d8d2fe6a849"
+    },
+    {
+      "path": "repo/AGENTS.md",
+      "size_bytes": 2706,
+      "sha256": "13757bea541f61d15d6ed063cab9433d1f36cbe0cfe96daf7668a409f98365c1"
+    },
+    {
+      "path": "repo/README.md",
+      "size_bytes": 5003,
+      "sha256": "9ebc0ddb3aa57e986d65a5351da4bb7ee6807a54c54fb292522fa01d6cee7911"
+    },
+    {
+      "path": "repo/app/main.py",
+      "size_bytes": 31341,
+      "sha256": "e24389f50d33565b48fb534eb49033c85a7eced2b57a58b14fde69dd16f1e74c"
+    },
+    {
+      "path": "repo/app/static/index.html",
+      "size_bytes": 1289,
+      "sha256": "fbe6e399da5cfdf6fdae3eec0248061ab90e5482b4c98cb0a68643909f67fd51"
+    },
+    {
+      "path": "repo/app/static/style.css",
+      "size_bytes": 8112,
+      "sha256": "fe6211ffdd50ee909fbd1639e35f4daaf31297c17fb312917093210f7bf74596"
+    },
+    {
+      "path": "repo/app/static/ui.js",
+      "size_bytes": 23338,
+      "sha256": "cfb6cd9fe496337134ac1f5fdf1defd27f9c4a136ea0334344b2cf4e0892ce00"
+    },
+    {
+      "path": "repo/data/tenderos.sqlite3",
+      "size_bytes": 49152,
+      "sha256": "22020d6da2ceb7e840c87fcf4206544e0e46237ed019e72ff7e34a1d70a73d76"
+    },
+    {
+      "path": "repo/docs/COMPANY_BLUEPRINT.md",
+      "size_bytes": 34269,
+      "sha256": "02e43bb7568ea63fffcf85c7e32f4d39f11cac035dacfcfa312992f511807edd"
+    },
+    {
+      "path": "repo/requirements.txt",
+      "size_bytes": 140,
+      "sha256": "08a22f7263cbf8337774f642bb34a31e9aac82ac5015ebb699600567502cc920"
+    },
+    {
+      "path": "repo/tests/conftest.py",
+      "size_bytes": 96,
+      "sha256": "2ec1e36f1f476a733e93d6b9a3404eaea6bd7d3d10c868f6cdc77828f68b30be"
+    },
+    {
+      "path": "repo/tests/test_workflows.py",
+      "size_bytes": 8504,
+      "sha256": "511bcf5b1634ead4382dbe0a103ce969af721cac0d68b619557f3018f0c01274"
+    },
+    {
+      "path": "verification/BASELINE_TEST_RESULTS.txt",
+      "size_bytes": 164,
+      "sha256": "1aec6fb297bb0a530bf9c7050d5bac8d63687c74ec2d7f97c86ba01527a42119"
+    },
+    {
+      "path": "verification/PRESERVATION_CHECK.json",
+      "size_bytes": 2340,
+      "sha256": "5b7546e00da8b7201f2e795ebb428bbe80130046dc3463b34334cd85eb295b72"
+    },
+    {
+      "path": "verification/STATUS.md",
+      "size_bytes": 592,
+      "sha256": "1caba5a1b2d670db0406031ac6c974978c01d92b29ed601ca47fc0453a455a02"
+    }
+  ]
+}

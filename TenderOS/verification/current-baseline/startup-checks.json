@@ -1,0 +1,22 @@
+{
+  "/": {
+    "body_sha256": "fbe6e399da5cfdf6fdae3eec0248061ab90e5482b4c98cb0a68643909f67fd51",
+    "content_type": "text/html; charset=utf-8",
+    "status_code": 200
+  },
+  "/api/docs": {
+    "body_sha256": "e4f43af7874b45079f7a899e38eea338cac8593fc4d51fa166b0f3b337467807",
+    "content_type": "text/html; charset=utf-8",
+    "status_code": 200
+  },
+  "/api/health": {
+    "body_sha256": "500c79f5022631ca5ebc6bbdaf0bf54fd27875793d09316d1d6c03995110b2ac",
+    "content_type": "application/json",
+    "json": {
+      "external_model_calls": false,
+      "mode": "LOCAL_PILOT",
+      "status": "ok"
+    },
+    "status_code": 200
+  }
+}
