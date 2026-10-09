@@ -10,6 +10,12 @@ The Vercel Git integration reacted to deployment head `fbe96b4f51c7400d9ada1bdf2
 
 The connected GitHub account is `mdsyfulhoque-afk`; this documentation update is submitted through that authenticated connection, with no author override or history rewrite. Vercel will evaluate the actual new commit identity. The user confirmed their supplied access is the Vercel plugin connection. Current cloud observations still show no CLI login, token secret or supported Vercel API network access. Project configuration, managed resources and live deployment remain unverified.
 
+### 2026-10-10: reported preview returns 404
+
+The user opened the preview linked from the Vercel Git integration and supplied a browser screenshot showing Vercel `404 NOT_FOUND`. The Git status reports that the deployment operation completed, but that is not evidence of a working TenderOS app.
+
+The Vercel bot identifies project `tender` in team `ip-3` and reports `rootDirectory: null` (repository root). The repository root contains `ProposalGuard/` and `TenderOS/`; the FastAPI entrypoint and `vercel.json` are inside `TenderOS/`. Vercel therefore used a project root with no application entrypoint. Configure the project's Root Directory as `TenderOS` in Vercel Settings → Build and Deployment, with the FastAPI framework preset, then redeploy. The persistent database, private Blob store, hosted environment variables, and app runtime still require setup and verification.
+
 ## Existing repository
 The existing `ProposalGuard/` directory is an independent TenderProof OS / ProposalGuard archive. Preserve it. TenderOS must be imported into its own `TenderOS/` directory; do not overwrite `ProposalGuard/` or the default branch.
 
