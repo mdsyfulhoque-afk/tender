@@ -1,0 +1,98 @@
+{
+  "after_zero_candidate_addendum": {
+    "compliance": "UNRESOLVED",
+    "current_decision": "BID",
+    "decisions": [
+      {
+        "created_at": "2026-10-09T15:47:42+00:00",
+        "decision": "BID",
+        "decision_snapshot": "{\"compliance\": \"READY_FOR_HUMAN_DECISION\", \"mandatory_total\": 1, \"mandatory_verified\": 1, \"requirement_ids\": [1], \"fingerprint\": \"9bcb6a731c2dd3e16bcaa8994e2f89ac7cfee7a7dee34b671b6f354ce0cb47aa\", \"scope_hash\": \"cf1299768e225dfffc90d1a3b8f4cc0a6bfdf5413e1732c9fc2d271d7d690bd2\"}",
+        "id": 1,
+        "is_current": true,
+        "rationale": "Approved only against complete synthetic test evidence and source inventory",
+        "reviewer": "Synthetic QA Reviewer",
+        "tender_id": 1
+      }
+    ],
+    "fingerprint": "9bcb6a731c2dd3e16bcaa8994e2f89ac7cfee7a7dee34b671b6f354ce0cb47aa",
+    "source_scope_fingerprint": "a9fe607365d2541c9b3b96794cfbd3ac07236dfaa75ab6b6e0ceca76ce99cbba",
+    "source_scope_verified": false
+  },
+  "before": {
+    "compliance": "READY_FOR_HUMAN_DECISION",
+    "current_decision": "BID",
+    "decisions": [
+      {
+        "created_at": "2026-10-09T15:47:42+00:00",
+        "decision": "BID",
+        "decision_snapshot": "{\"compliance\": \"READY_FOR_HUMAN_DECISION\", \"mandatory_total\": 1, \"mandatory_verified\": 1, \"requirement_ids\": [1], \"fingerprint\": \"9bcb6a731c2dd3e16bcaa8994e2f89ac7cfee7a7dee34b671b6f354ce0cb47aa\", \"scope_hash\": \"cf1299768e225dfffc90d1a3b8f4cc0a6bfdf5413e1732c9fc2d271d7d690bd2\"}",
+        "id": 1,
+        "is_current": true,
+        "rationale": "Approved only against complete synthetic test evidence and source inventory",
+        "reviewer": "Synthetic QA Reviewer",
+        "tender_id": 1
+      }
+    ],
+    "fingerprint": "9bcb6a731c2dd3e16bcaa8994e2f89ac7cfee7a7dee34b671b6f354ce0cb47aa",
+    "source_scope_fingerprint": "cf1299768e225dfffc90d1a3b8f4cc0a6bfdf5413e1732c9fc2d271d7d690bd2",
+    "source_scope_verified": true
+  },
+  "data": "synthetic only",
+  "defect_id": "DEF-001",
+  "expected_safe_current_decision": null,
+  "new_bid_response": {
+    "detail": "BID cannot be approved: mandatory compliance is blocked or unresolved"
+  },
+  "new_bid_status": 409,
+  "note": "Original baseline passed; separate safety reproduction demonstrates unresolved defect without modifying app.",
+  "observed_defect_reproduced": true,
+  "pdf_sha256": "614d11d89df76596a4ddcd69681eb50f23cf97c4cbac97ea436da8fafe673897",
+  "pdf_upload_response": {
+    "candidates": 0,
+    "pages": 1,
+    "review_required": true,
+    "sha256": "614d11d89df76596a4ddcd69681eb50f23cf97c4cbac97ea436da8fafe673897",
+    "source_id": 1
+  },
+  "requirements_count_after": 1,
+  "requirements_count_before": 1,
+  "safety_expectation_passed": false,
+  "source_count_after": 1,
+  "source_count_before": 0,
+  "stored_decision_rows_after": [
+    {
+      "created_at": "2026-10-09T15:47:42+00:00",
+      "decision": "BID",
+      "decision_snapshot": "{\"compliance\": \"READY_FOR_HUMAN_DECISION\", \"mandatory_total\": 1, \"mandatory_verified\": 1, \"requirement_ids\": [1], \"fingerprint\": \"9bcb6a731c2dd3e16bcaa8994e2f89ac7cfee7a7dee34b671b6f354ce0cb47aa\", \"scope_hash\": \"cf1299768e225dfffc90d1a3b8f4cc0a6bfdf5413e1732c9fc2d271d7d690bd2\"}",
+      "id": 1,
+      "rationale": "Approved only against complete synthetic test evidence and source inventory",
+      "reviewer": "Synthetic QA Reviewer",
+      "tender_id": 1
+    }
+  ],
+  "stored_decision_rows_after_rejected_bid": [
+    {
+      "created_at": "2026-10-09T15:47:42+00:00",
+      "decision": "BID",
+      "decision_snapshot": "{\"compliance\": \"READY_FOR_HUMAN_DECISION\", \"mandatory_total\": 1, \"mandatory_verified\": 1, \"requirement_ids\": [1], \"fingerprint\": \"9bcb6a731c2dd3e16bcaa8994e2f89ac7cfee7a7dee34b671b6f354ce0cb47aa\", \"scope_hash\": \"cf1299768e225dfffc90d1a3b8f4cc0a6bfdf5413e1732c9fc2d271d7d690bd2\"}",
+      "id": 1,
+      "rationale": "Approved only against complete synthetic test evidence and source inventory",
+      "reviewer": "Synthetic QA Reviewer",
+      "tender_id": 1
+    }
+  ],
+  "stored_decision_rows_before": [
+    {
+      "created_at": "2026-10-09T15:47:42+00:00",
+      "decision": "BID",
+      "decision_snapshot": "{\"compliance\": \"READY_FOR_HUMAN_DECISION\", \"mandatory_total\": 1, \"mandatory_verified\": 1, \"requirement_ids\": [1], \"fingerprint\": \"9bcb6a731c2dd3e16bcaa8994e2f89ac7cfee7a7dee34b671b6f354ce0cb47aa\", \"scope_hash\": \"cf1299768e225dfffc90d1a3b8f4cc0a6bfdf5413e1732c9fc2d271d7d690bd2\"}",
+      "id": 1,
+      "rationale": "Approved only against complete synthetic test evidence and source inventory",
+      "reviewer": "Synthetic QA Reviewer",
+      "tender_id": 1
+    }
+  ],
+  "stored_history_byte_content_preserved": true,
+  "stored_history_sha256_after": "ee53ebabbd3246a5c1e63da7825c91b35cd4170966c1fd5c8a7fb935a0a33816",
+  "stored_history_sha256_before": "ee53ebabbd3246a5c1e63da7825c91b35cd4170966c1fd5c8a7fb935a0a33816"
+}

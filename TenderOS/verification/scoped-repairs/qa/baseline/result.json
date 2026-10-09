@@ -1,0 +1,154 @@
+{
+  "all_passed": false,
+  "application_source_modified": false,
+  "canonical_agent_id": "/root/tenderos_patch_qa",
+  "commit_push_merge_deploy": false,
+  "data": "synthetic only",
+  "delegation_tool": "collaboration.spawn_agent",
+  "dependencies": {
+    "fastapi": "0.143.0",
+    "httpx": "0.28.1",
+    "openpyxl": "3.1.5",
+    "pydantic": "2.14.0",
+    "pypdf": "6.20.0",
+    "pytest": "9.1.1",
+    "reportlab": "5.0.1",
+    "starlette": "1.7.0"
+  },
+  "end_utc": "2026-10-09T16:27:56.660917Z",
+  "environment_overrides": {
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TENDEROS_DATA_DIR": "/workspace/tenderos-independent-qa/baseline/original-import-data",
+    "TENDEROS_QA_REQUEST_TRACE": "/workspace/tenderos-independent-qa/baseline/request-trace.json",
+    "TENDEROS_QA_SOURCE": "/workspace/tender/TenderOS"
+  },
+  "execution_response_chunk": "Available to parent after this process finishes; not invented here",
+  "existing_customer_database_read": false,
+  "external_model_api_calls": false,
+  "external_network_calls": false,
+  "opaque_run_id": null,
+  "opaque_run_id_status": "No separate opaque runtime run ID is exposed; no ID invented",
+  "preparation_execution_chunks": [
+    "6704b6",
+    "289b62",
+    "664a73",
+    "25be70",
+    "05a42c"
+  ],
+  "preparation_observed_utc": "2026-10-09T16:22:24Z",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "qa_harness_sha256": "840f3438973fdd4d18579c44ca3fcab98276fe0f7ec49ada131e8493289b752d",
+  "qa_runner_sha256": "92d29f67fc84c8a253f292bb67e5e79cdf38647f63635c072fdff3e979b20cd2",
+  "runtime": "Codex collaboration spawned subagent",
+  "source": "/workspace/tender/TenderOS",
+  "source_commit": "ca819a902f5f8ac1bc18b10238505c3cd773cca6",
+  "source_hashes_after": {
+    "app/main.py": "e24389f50d33565b48fb534eb49033c85a7eced2b57a58b14fde69dd16f1e74c",
+    "app/static/index.html": "fbe6e399da5cfdf6fdae3eec0248061ab90e5482b4c98cb0a68643909f67fd51",
+    "app/static/style.css": "fe6211ffdd50ee909fbd1639e35f4daaf31297c17fb312917093210f7bf74596",
+    "app/static/ui.js": "cfb6cd9fe496337134ac1f5fdf1defd27f9c4a136ea0334344b2cf4e0892ce00",
+    "tests/conftest.py": "2ec1e36f1f476a733e93d6b9a3404eaea6bd7d3d10c868f6cdc77828f68b30be",
+    "tests/test_workflows.py": "511bcf5b1634ead4382dbe0a103ce969af721cac0d68b619557f3018f0c01274"
+  },
+  "source_hashes_before": {
+    "app/main.py": "e24389f50d33565b48fb534eb49033c85a7eced2b57a58b14fde69dd16f1e74c",
+    "app/static/index.html": "fbe6e399da5cfdf6fdae3eec0248061ab90e5482b4c98cb0a68643909f67fd51",
+    "app/static/style.css": "fe6211ffdd50ee909fbd1639e35f4daaf31297c17fb312917093210f7bf74596",
+    "app/static/ui.js": "cfb6cd9fe496337134ac1f5fdf1defd27f9c4a136ea0334344b2cf4e0892ce00",
+    "tests/conftest.py": "2ec1e36f1f476a733e93d6b9a3404eaea6bd7d3d10c868f6cdc77828f68b30be",
+    "tests/test_workflows.py": "511bcf5b1634ead4382dbe0a103ce969af721cac0d68b619557f3018f0c01274"
+  },
+  "source_unchanged": true,
+  "start_utc": "2026-10-09T16:27:52.897077Z",
+  "suites": [
+    {
+      "command_argv": [
+        "/workspace/.venvs/tenderos-baseline/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "/workspace/tenderos-independent-qa/test_independent_repairs.py",
+        "--basetemp=/workspace/tenderos-independent-qa/baseline/independent-tmp",
+        "--junitxml=/workspace/tenderos-independent-qa/baseline/independent.xml"
+      ],
+      "counts": {
+        "errors": 0,
+        "failures": 12,
+        "skipped": 0,
+        "tests": 33
+      },
+      "cwd": "/workspace/tender/TenderOS",
+      "end_utc": "2026-10-09T16:27:56.650368Z",
+      "exit_code": 1,
+      "failures": [
+        {
+          "details": "pilot = <starlette.testclient.TestClient object at 0x7f369da67530>\n\n    def test_addendum_invalidates_approval_and_attestation_cannot_resurrect_it(pilot):\n        case = make_ready(pilot)\n        tender = case[\"tender\"]\n        history = historical(tender)\n        before = detail(pilot, tender)\n        upload_no_candidates(pilot, tender)\n        after = detail(pilot, tender)\n        assert len(after[\"requirements\"]) == len(before[\"requirements\"])\n        assert after[\"source_scope_fingerprint\"] != before[\"source_scope_fingerprint\"]\n        assert after[\"source_scope_verified\"] is False\n        assert after[\"compliance\"] == \"UNRESOLVED\"\n>       assert_stale(after)\n\n../../tenderos-independent-qa/test_independent_repairs.py:156: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsnapshot = {'tender': {'id': 1, 'organization_id': 1, 'title': 'Independent synthetic decision QA tender', 'buyer': '', ...}, 're...ource_page': 1, ...}], 'counts': {'VERIFIED': 1, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}, 'mandatory_total': 1, ...}\n\n    def assert_stale(snapshot):\n>       assert snapshot[\"current_decision\"] is None\nE       AssertionError: assert 'BID' is None\n\n../../tenderos-independent-qa/test_independent_repairs.py:141: AssertionError",
+          "message": "AssertionError: assert 'BID' is None",
+          "test": "test_addendum_invalidates_approval_and_attestation_cannot_resurrect_it"
+        },
+        {
+          "details": "pilot = <starlette.testclient.TestClient object at 0x7f369db23e90>\n\n    def test_source_reassociation_requires_new_scope_and_new_decision(pilot):\n        case = make_ready(pilot, source_count=2)\n        tender = case[\"tender\"]\n        before = detail(pilot, tender)\n        history = historical(tender)\n        mutate(\"UPDATE requirements SET source_id=? WHERE id=?\", (case[\"sources\"][1], case[\"req\"]))\n        changed = detail(pilot, tender)\n        assert changed[\"sources\"] == before[\"sources\"]\n>       assert changed[\"source_scope_fingerprint\"] != before[\"source_scope_fingerprint\"]\nE       AssertionError: assert 'b2f061380cbd7c2b7d9e383ccd69ce91bd0a5f8b54b4bc01e274b06a77d44982' != 'b2f061380cbd7c2b7d9e383ccd69ce91bd0a5f8b54b4bc01e274b06a77d44982'\n\n../../tenderos-independent-qa/test_independent_repairs.py:180: AssertionError",
+          "message": "AssertionError: assert 'b2f061380cbd7c2b7d9e383ccd69ce91bd0a5f8b54b4bc01e274b06a77d44982' != 'b2f061380cbd7c2b7d9e383ccd69ce91bd0a5f8b54b4bc01e274b06a77d44982'",
+          "test": "test_source_reassociation_requires_new_scope_and_new_decision"
+        },
+        {
+          "details": "pilot = <starlette.testclient.TestClient object at 0x7f369db51010>\n\n    def test_source_content_change_keeps_prior_snapshot_immutable(pilot):\n        case = make_ready(pilot, source_count=1)\n        history = historical(case[\"tender\"])\n        mutate(\"UPDATE sources SET sha256=? WHERE id=?\", (\"f\" * 64, case[\"sources\"][0]))\n>       assert_stale(detail(pilot, case[\"tender\"]))\n\n../../tenderos-independent-qa/test_independent_repairs.py:195: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsnapshot = {'tender': {'id': 1, 'organization_id': 1, 'title': 'Independent synthetic decision QA tender', 'buyer': '', ...}, 're...ource_page': 1, ...}], 'counts': {'VERIFIED': 1, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}, 'mandatory_total': 1, ...}\n\n    def assert_stale(snapshot):\n>       assert snapshot[\"current_decision\"] is None\nE       AssertionError: assert 'BID' is None\n\n../../tenderos-independent-qa/test_independent_repairs.py:141: AssertionError",
+          "message": "AssertionError: assert 'BID' is None",
+          "test": "test_source_content_change_keeps_prior_snapshot_immutable"
+        },
+        {
+          "details": "pilot = <starlette.testclient.TestClient object at 0x7f369db53230>\ncolumn = 'label', value = 'Replacement synthetic certificate label'\n\n    @pytest.mark.parametrize(\"column,value\", [\n        (\"label\", \"Replacement synthetic certificate label\"),\n        (\"reference\", \"INDEPENDENT-SYNTHETIC-REVISED\"),\n        (\"verification_note\", \"Synthetic issuer rechecked using a different verification record\"),\n        (\"expires_on\", (date.today() + timedelta(days=45)).isoformat()),\n    ])\n    def test_linked_evidence_metadata_change_requires_new_approval(pilot, column, value):\n        case = make_ready(pilot)\n        history = historical(case[\"tender\"])\n        assert column in {\"label\", \"reference\", \"verification_note\", \"expires_on\"}\n        mutate(f\"UPDATE evidence SET {column}=? WHERE id=?\", (value, case[\"evidence\"]))\n        changed = detail(pilot, case[\"tender\"])\n        assert changed[\"compliance\"] == \"READY_FOR_HUMAN_DECISION\"\n>       assert_stale(changed)\n\n../../tenderos-independent-qa/test_independent_repairs.py:214: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsnapshot = {'tender': {'id': 1, 'organization_id': 1, 'title': 'Independent synthetic decision QA tender', 'buyer': '', ...}, 're...ource_page': 1, ...}], 'counts': {'VERIFIED': 1, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}, 'mandatory_total': 1, ...}\n\n    def assert_stale(snapshot):\n>       assert snapshot[\"current_decision\"] is None\nE       AssertionError: assert 'BID' is None\n\n../../tenderos-independent-qa/test_independent_repairs.py:141: AssertionError",
+          "message": "AssertionError: assert 'BID' is None",
+          "test": "test_linked_evidence_metadata_change_requires_new_approval[label-Replacement synthetic certificate label]"
+        },
+        {
+          "details": "pilot = <starlette.testclient.TestClient object at 0x7f369da890a0>\ncolumn = 'reference', value = 'INDEPENDENT-SYNTHETIC-REVISED'\n\n    @pytest.mark.parametrize(\"column,value\", [\n        (\"label\", \"Replacement synthetic certificate label\"),\n        (\"reference\", \"INDEPENDENT-SYNTHETIC-REVISED\"),\n        (\"verification_note\", \"Synthetic issuer rechecked using a different verification record\"),\n        (\"expires_on\", (date.today() + timedelta(days=45)).isoformat()),\n    ])\n    def test_linked_evidence_metadata_change_requires_new_approval(pilot, column, value):\n        case = make_ready(pilot)\n        history = historical(case[\"tender\"])\n        assert column in {\"label\", \"reference\", \"verification_note\", \"expires_on\"}\n        mutate(f\"UPDATE evidence SET {column}=? WHERE id=?\", (value, case[\"evidence\"]))\n        changed = detail(pilot, case[\"tender\"])\n        assert changed[\"compliance\"] == \"READY_FOR_HUMAN_DECISION\"\n>       assert_stale(changed)\n\n../../tenderos-independent-qa/test_independent_repairs.py:214: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsnapshot = {'tender': {'id': 1, 'organization_id': 1, 'title': 'Independent synthetic decision QA tender', 'buyer': '', ...}, 're...ource_page': 1, ...}], 'counts': {'VERIFIED': 1, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}, 'mandatory_total': 1, ...}\n\n    def assert_stale(snapshot):\n>       assert snapshot[\"current_decision\"] is None\nE       AssertionError: assert 'BID' is None\n\n../../tenderos-independent-qa/test_independent_repairs.py:141: AssertionError",
+          "message": "AssertionError: assert 'BID' is None",
+          "test": "test_linked_evidence_metadata_change_requires_new_approval[reference-INDEPENDENT-SYNTHETIC-REVISED]"
+        },
+        {
+          "details": "pilot = <starlette.testclient.TestClient object at 0x7f369db229f0>\ncolumn = 'verification_note'\nvalue = 'Synthetic issuer rechecked using a different verification record'\n\n    @pytest.mark.parametrize(\"column,value\", [\n        (\"label\", \"Replacement synthetic certificate label\"),\n        (\"reference\", \"INDEPENDENT-SYNTHETIC-REVISED\"),\n        (\"verification_note\", \"Synthetic issuer rechecked using a different verification record\"),\n        (\"expires_on\", (date.today() + timedelta(days=45)).isoformat()),\n    ])\n    def test_linked_evidence_metadata_change_requires_new_approval(pilot, column, value):\n        case = make_ready(pilot)\n        history = historical(case[\"tender\"])\n        assert column in {\"label\", \"reference\", \"verification_note\", \"expires_on\"}\n        mutate(f\"UPDATE evidence SET {column}=? WHERE id=?\", (value, case[\"evidence\"]))\n        changed = detail(pilot, case[\"tender\"])\n        assert changed[\"compliance\"] == \"READY_FOR_HUMAN_DECISION\"\n>       assert_stale(changed)\n\n../../tenderos-independent-qa/test_independent_repairs.py:214: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsnapshot = {'tender': {'id': 1, 'organization_id': 1, 'title': 'Independent synthetic decision QA tender', 'buyer': '', ...}, 're...ource_page': 1, ...}], 'counts': {'VERIFIED': 1, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}, 'mandatory_total': 1, ...}\n\n    def assert_stale(snapshot):\n>       assert snapshot[\"current_decision\"] is None\nE       AssertionError: assert 'BID' is None\n\n../../tenderos-independent-qa/test_independent_repairs.py:141: AssertionError",
+          "message": "AssertionError: assert 'BID' is None",
+          "test": "test_linked_evidence_metadata_change_requires_new_approval[verification_note-Synthetic issuer rechecked using a different verification record]"
+        },
+        {
+          "details": "pilot = <starlette.testclient.TestClient object at 0x7f369d1e6660>\ncolumn = 'expires_on', value = '2026-11-23'\n\n    @pytest.mark.parametrize(\"column,value\", [\n        (\"label\", \"Replacement synthetic certificate label\"),\n        (\"reference\", \"INDEPENDENT-SYNTHETIC-REVISED\"),\n        (\"verification_note\", \"Synthetic issuer rechecked using a different verification record\"),\n        (\"expires_on\", (date.today() + timedelta(days=45)).isoformat()),\n    ])\n    def test_linked_evidence_metadata_change_requires_new_approval(pilot, column, value):\n        case = make_ready(pilot)\n        history = historical(case[\"tender\"])\n        assert column in {\"label\", \"reference\", \"verification_note\", \"expires_on\"}\n        mutate(f\"UPDATE evidence SET {column}=? WHERE id=?\", (value, case[\"evidence\"]))\n        changed = detail(pilot, case[\"tender\"])\n        assert changed[\"compliance\"] == \"READY_FOR_HUMAN_DECISION\"\n>       assert_stale(changed)\n\n../../tenderos-independent-qa/test_independent_repairs.py:214: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsnapshot = {'tender': {'id': 1, 'organization_id': 1, 'title': 'Independent synthetic decision QA tender', 'buyer': '', ...}, 're...ource_page': 1, ...}], 'counts': {'VERIFIED': 1, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}, 'mandatory_total': 1, ...}\n\n    def assert_stale(snapshot):\n>       assert snapshot[\"current_decision\"] is None\nE       AssertionError: assert 'BID' is None\n\n../../tenderos-independent-qa/test_independent_repairs.py:141: AssertionError",
+          "message": "AssertionError: assert 'BID' is None",
+          "test": "test_linked_evidence_metadata_change_requires_new_approval[expires_on-2026-11-23]"
+        },
+        {
+          "details": "pilot = <starlette.testclient.TestClient object at 0x7f369d207770>\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f369d205580>\nrevoked = False\n\n    @pytest.mark.parametrize(\"revoked\", [False, True])\n    def test_fresh_scope_attestation_cannot_reuse_prior_approval_even_same_second(pilot, monkeypatch, revoked):\n        # Match timestamps deliberately: event identity must distinguish the reviews.\n        monkeypatch.setattr(main, \"now\", lambda: \"2030-01-01T12:00:00+00:00\")\n        case = make_ready(pilot)\n        history = historical(case[\"tender\"])\n        before = detail(pilot, case[\"tender\"])\n        if revoked:\n            mutate(\"UPDATE tenders SET source_scope_fingerprint=NULL WHERE id=?\", (case[\"tender\"],))\n            assert_stale(detail(pilot, case[\"tender\"]))\n        attest(pilot, case[\"tender\"])\n        changed = detail(pilot, case[\"tender\"])\n        assert changed[\"source_scope_fingerprint\"] == before[\"source_scope_fingerprint\"]\n        assert changed[\"source_scope_verified\"] is True\n        assert changed[\"compliance\"] == \"READY_FOR_HUMAN_DECISION\"\n>       assert_stale(changed)\n\n../../tenderos-independent-qa/test_independent_repairs.py:282: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsnapshot = {'tender': {'id': 1, 'organization_id': 1, 'title': 'Independent synthetic decision QA tender', 'buyer': '', ...}, 're...ource_page': 1, ...}], 'counts': {'VERIFIED': 1, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}, 'mandatory_total': 1, ...}\n\n    def assert_stale(snapshot):\n>       assert snapshot[\"current_decision\"] is None\nE       AssertionError: assert 'BID' is None\n\n../../tenderos-independent-qa/test_independent_repairs.py:141: AssertionError",
+          "message": "AssertionError: assert 'BID' is None",
+          "test": "test_fresh_scope_attestation_cannot_reuse_prior_approval_even_same_second[False]"
+        },
+        {
+          "details": "pilot = <starlette.testclient.TestClient object at 0x7f369d1e66c0>\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f369d1e5760>\nrevoked = True\n\n    @pytest.mark.parametrize(\"revoked\", [False, True])\n    def test_fresh_scope_attestation_cannot_reuse_prior_approval_even_same_second(pilot, monkeypatch, revoked):\n        # Match timestamps deliberately: event identity must distinguish the reviews.\n        monkeypatch.setattr(main, \"now\", lambda: \"2030-01-01T12:00:00+00:00\")\n        case = make_ready(pilot)\n        history = historical(case[\"tender\"])\n        before = detail(pilot, case[\"tender\"])\n        if revoked:\n            mutate(\"UPDATE tenders SET source_scope_fingerprint=NULL WHERE id=?\", (case[\"tender\"],))\n>           assert_stale(detail(pilot, case[\"tender\"]))\n\n../../tenderos-independent-qa/test_independent_repairs.py:276: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsnapshot = {'tender': {'id': 1, 'organization_id': 1, 'title': 'Independent synthetic decision QA tender', 'buyer': '', ...}, 're...ource_page': 1, ...}], 'counts': {'VERIFIED': 1, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}, 'mandatory_total': 1, ...}\n\n    def assert_stale(snapshot):\n>       assert snapshot[\"current_decision\"] is None\nE       AssertionError: assert 'BID' is None\n\n../../tenderos-independent-qa/test_independent_repairs.py:141: AssertionError",
+          "message": "AssertionError: assert 'BID' is None",
+          "test": "test_fresh_scope_attestation_cannot_reuse_prior_approval_even_same_second[True]"
+        },
+        {
+          "details": "pilot = <starlette.testclient.TestClient object at 0x7f369d180410>\nlegacy_kind = 'scope_absent'\n\n    @pytest.mark.parametrize(\"legacy_kind\", [\"scope_absent\", \"baseline_snapshot\"])\n    def test_legacy_snapshots_fail_closed_without_rewriting_them(pilot, legacy_kind):\n        case = make_ready(pilot)\n        row = historical(case[\"tender\"])[0]\n        snapshot = json.loads(row[\"decision_snapshot\"])\n        if legacy_kind == \"scope_absent\":\n            snapshot.pop(\"scope_hash\", None)\n        else:\n            # This exactly limits persisted fields to the original ca819a9 shape.\n            original_fields = {\"compliance\", \"mandatory_total\", \"mandatory_verified\", \"requirement_ids\", \"fingerprint\", \"scope_hash\"}\n            snapshot = {key: value for key, value in snapshot.items() if key in original_fields}\n            # Original requirement-only fingerprint, intentionally excluding source/evidence metadata.\n            requirements = detail(pilot, case[\"tender\"])[\"requirements\"]\n            keys = (\"id\", \"mandatory\", \"reviewed\", \"text\", \"source_page\", \"source_quote\", \"status\", \"effective_status\", \"evidence_id\", \"evidence_issue\")\n            original_fp = [{key: req[key] for key in keys if key in req} for req in requirements]\n            snapshot[\"fingerprint\"] = hashlib.sha256(json.dumps(original_fp, sort_keys=True, ensure_ascii=False).encode()).hexdigest()\n        mutate(\"UPDATE decisions SET decision_snapshot=? WHERE id=?\", (json.dumps(snapshot), row[\"id\"]))\n        history = historical(case[\"tender\"])\n        changed = detail(pilot, case[\"tender\"])\n        assert changed[\"compliance\"] == \"READY_FOR_HUMAN_DECISION\"\n>       assert_stale(changed)\n\n../../tenderos-independent-qa/test_independent_repairs.py:309: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsnapshot = {'tender': {'id': 1, 'organization_id': 1, 'title': 'Independent synthetic decision QA tender', 'buyer': '', ...}, 're...ource_page': 1, ...}], 'counts': {'VERIFIED': 1, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}, 'mandatory_total': 1, ...}\n\n    def assert_stale(snapshot):\n>       assert snapshot[\"current_decision\"] is None\nE       AssertionError: assert 'BID' is None\n\n../../tenderos-independent-qa/test_independent_repairs.py:141: AssertionError",
+          "message": "AssertionError: assert 'BID' is None",
+          "test": "test_legacy_snapshots_fail_closed_without_rewriting_them[scope_absent]"
+        },
+        {
+          "details": "pilot = <starlette.testclient.TestClient object at 0x7f369d240260>\nlegacy_kind = 'baseline_snapshot'\n\n    @pytest.mark.parametrize(\"legacy_kind\", [\"scope_absent\", \"baseline_snapshot\"])\n    def test_legacy_snapshots_fail_closed_without_rewriting_them(pilot, legacy_kind):\n        case = make_ready(pilot)\n        row = historical(case[\"tender\"])[0]\n        snapshot = json.loads(row[\"decision_snapshot\"])\n        if legacy_kind == \"scope_absent\":\n            snapshot.pop(\"scope_hash\", None)\n        else:\n            # This exactly limits persisted fields to the original ca819a9 shape.\n            original_fields = {\"compliance\", \"mandatory_total\", \"mandatory_verified\", \"requirement_ids\", \"fingerprint\", \"scope_hash\"}\n            snapshot = {key: value for key, value in snapshot.items() if key in original_fields}\n            # Original requirement-only fingerprint, intentionally excluding source/evidence metadata.\n            requirements = detail(pilot, case[\"tender\"])[\"requirements\"]\n            keys = (\"id\", \"mandatory\", \"reviewed\", \"text\", \"source_page\", \"source_quote\", \"status\", \"effective_status\", \"evidence_id\", \"evidence_issue\")\n            original_fp = [{key: req[key] for key in keys if key in req} for req in requirements]\n            snapshot[\"fingerprint\"] = hashlib.sha256(json.dumps(original_fp, sort_keys=True, ensure_ascii=False).encode()).hexdigest()\n        mutate(\"UPDATE decisions SET decision_snapshot=? WHERE id=?\", (json.dumps(snapshot), row[\"id\"]))\n        history = historical(case[\"tender\"])\n        changed = detail(pilot, case[\"tender\"])\n        assert changed[\"compliance\"] == \"READY_FOR_HUMAN_DECISION\"\n>       assert_stale(changed)\n\n../../tenderos-independent-qa/test_independent_repairs.py:309: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nsnapshot = {'tender': {'id': 1, 'organization_id': 1, 'title': 'Independent synthetic decision QA tender', 'buyer': '', ...}, 're...ource_page': 1, ...}], 'counts': {'VERIFIED': 1, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}, 'mandatory_total': 1, ...}\n\n    def assert_stale(snapshot):\n>       assert snapshot[\"current_decision\"] is None\nE       AssertionError: assert 'BID' is None\n\n../../tenderos-independent-qa/test_independent_repairs.py:141: AssertionError",
+          "message": "AssertionError: assert 'BID' is None",
+          "test": "test_legacy_snapshots_fail_closed_without_rewriting_them[baseline_snapshot]"
+        },
+        {
+          "details": "pilot = <starlette.testclient.TestClient object at 0x7f369db527e0>\nprefix = '=SUM(1,2)', whitespace = ''\n\n    @pytest.mark.parametrize(\"prefix\", [\"=SUM(1,2)\", \"+SUM(1,2)\", \"-SUM(1,2)\", \"@SUM(1,2)\"])\n    @pytest.mark.parametrize(\"whitespace\", [\"\", \"  \", \"\\t\", \"\\r\\n  \"])\n    def test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants(pilot, prefix, whitespace):\n        case = make_ready(pilot)\n        payload = whitespace + prefix + \" synthetic literal\"\n        # Preserve leading whitespace in synthetic persisted legacy records. API trims\n        # most fields; direct DB writes ensure the export handles those legacy values.\n        mutate(\"UPDATE tenders SET title=? WHERE id=?\", (payload, case[\"tender\"]))\n        mutate(\"UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?\", (payload, payload, payload, case[\"req\"]))\n        mutate(\"UPDATE evidence SET label=? WHERE id=?\", (payload, case[\"evidence\"]))\n        mutate(\"UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?\", (payload, payload, case[\"tender\"]))\n        history = historical(case[\"tender\"])\n        response = call(pilot, \"get\", f\"/api/tenders/{case['tender']}/export.xlsx\")\n        workbook = load_workbook(io.BytesIO(response.content), data_only=False)\n        cells = [(\"Compliance Matrix\", coordinate) for coordinate in (\"B2\", \"E8\", \"G8\", \"H8\", \"I8\")]\n        cells += [(\"Decision History\", coordinate) for coordinate in (\"B2\", \"C2\")]\n        for sheet_name, coordinate in cells:\n            cell = workbook[sheet_name][coordinate]\n>           assert cell.data_type == \"s\", (sheet_name, coordinate, cell.value, cell.data_type)\nE           AssertionError: ('Compliance Matrix', 'B2', '=SUM(1,2) synthetic literal', 'f')\nE           assert 'f' == 's'\nE             \nE             - s\nE             + f\n\n../../tenderos-independent-qa/test_independent_repairs.py:377: AssertionError",
+          "message": "AssertionError: ('Compliance Matrix', 'B2', '=SUM(1,2) synthetic literal', 'f')\nassert 'f' == 's'\n  \n  - s\n  + f",
+          "test": "test_xlsx_all_user_fields_are_literal_with_prefix_and_whitespace_variants[-=SUM(1,2)]"
+        }
+      ],
+      "start_utc": "2026-10-09T16:27:52.899833Z",
+      "suite": "independent"
+    }
+  ],
+  "task_id": "T-004",
+  "tool_traces_location": "Codex conversation tool trace for canonical task /root/tenderos_patch_qa; external command evidence in this report directory"
+}

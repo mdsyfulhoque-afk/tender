@@ -1,0 +1,292 @@
+FF.................FFFFFFF.................                              [100%]
+=================================== FAILURES ===================================
+_ test_attestation_snapshot_requires_exact_nested_types_and_complete_shape[event_float] _
+
+pilot = <starlette.testclient.TestClient object at 0x7fa1e5f2c230>
+mutation = 'event_float'
+
+    @pytest.mark.parametrize("mutation", ATTESTATION_MUTATIONS)
+    def test_attestation_snapshot_requires_exact_nested_types_and_complete_shape(pilot, mutation):
+        case = make_ready(pilot)
+        decision = history(case["tender"])[0]
+        snapshot = json.loads(decision["decision_snapshot"])
+        attestation = snapshot["scope_attestation"]
+        if mutation.startswith("event_"):
+            replacement = {"event_float": 1.0, "event_true": True, "event_false": False,
+                           "event_string": "1", "event_null": None, "event_dict": {"value": 1}, "event_list": [1]}
+            if mutation == "event_missing":
+                attestation.pop("event_id")
+            else:
+                attestation["event_id"] = replacement[mutation]
+        elif mutation == "nested_extra":
+            attestation["unexpected_key"] = "synthetic surplus snapshot metadata"
+        elif mutation.endswith("_missing") and mutation != "attestation_missing":
+            attestation.pop(mutation.removesuffix("_missing"))
+        elif mutation == "attestation_missing":
+            snapshot.pop("scope_attestation")
+        else:
+            snapshot["scope_attestation"] = {"nested_null": None, "nested_list": [], "nested_string": "1",
+                                             "nested_bool": True, "nested_float": 1.0}[mutation]
+        mutate("UPDATE decisions SET decision_snapshot=? WHERE id=?", (json.dumps(snapshot), decision["id"]))
+        stored = history(case["tender"])
+        result = detail(pilot, case["tender"])
+        assert result["compliance"] == "READY_FOR_HUMAN_DECISION"
+>       assert result["current_decision"] is None
+E       AssertionError: assert 'BID' is None
+
+../../test_supplemental_repairs.py:150: AssertionError
+_ test_attestation_snapshot_requires_exact_nested_types_and_complete_shape[event_true] _
+
+pilot = <starlette.testclient.TestClient object at 0x7fa1e5fc7590>
+mutation = 'event_true'
+
+    @pytest.mark.parametrize("mutation", ATTESTATION_MUTATIONS)
+    def test_attestation_snapshot_requires_exact_nested_types_and_complete_shape(pilot, mutation):
+        case = make_ready(pilot)
+        decision = history(case["tender"])[0]
+        snapshot = json.loads(decision["decision_snapshot"])
+        attestation = snapshot["scope_attestation"]
+        if mutation.startswith("event_"):
+            replacement = {"event_float": 1.0, "event_true": True, "event_false": False,
+                           "event_string": "1", "event_null": None, "event_dict": {"value": 1}, "event_list": [1]}
+            if mutation == "event_missing":
+                attestation.pop("event_id")
+            else:
+                attestation["event_id"] = replacement[mutation]
+        elif mutation == "nested_extra":
+            attestation["unexpected_key"] = "synthetic surplus snapshot metadata"
+        elif mutation.endswith("_missing") and mutation != "attestation_missing":
+            attestation.pop(mutation.removesuffix("_missing"))
+        elif mutation == "attestation_missing":
+            snapshot.pop("scope_attestation")
+        else:
+            snapshot["scope_attestation"] = {"nested_null": None, "nested_list": [], "nested_string": "1",
+                                             "nested_bool": True, "nested_float": 1.0}[mutation]
+        mutate("UPDATE decisions SET decision_snapshot=? WHERE id=?", (json.dumps(snapshot), decision["id"]))
+        stored = history(case["tender"])
+        result = detail(pilot, case["tender"])
+        assert result["compliance"] == "READY_FOR_HUMAN_DECISION"
+>       assert result["current_decision"] is None
+E       AssertionError: assert 'BID' is None
+
+../../test_supplemental_repairs.py:150: AssertionError
+_ test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#NULL!] _
+
+pilot = <starlette.testclient.TestClient object at 0x7fa1e4c944d0>
+value = '#NULL!'
+
+    @pytest.mark.parametrize("value", EXCEL_ERROR_STRINGS + PLAIN_STRING_VALUES)
+    def test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings(pilot, value):
+        case = make_ready(pilot)
+        # Existing imported/legacy persisted strings can be shorter than today's
+        # API length limits. Exercise export semantics directly with synthetic rows.
+        mutate("UPDATE tenders SET title=? WHERE id=?", (value, case["tender"]))
+        mutate("UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?", (value, value, value, case["req"]))
+        mutate("UPDATE evidence SET label=? WHERE id=?", (value, case["evidence"]))
+        mutate("UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?", (value, value, case["tender"]))
+        stored = history(case["tender"])
+        response = call(pilot, "get", f"/api/tenders/{case['tender']}/export.xlsx")
+        workbook = load_workbook(io.BytesIO(response.content), data_only=False)
+        fields = [("Compliance Matrix", coordinate) for coordinate in ("B2", "E8", "G8", "H8", "I8")]
+        fields += [("Decision History", coordinate) for coordinate in ("B2", "C2")]
+        for sheet, coordinate in fields:
+            cell = workbook[sheet][coordinate]
+>           assert cell.data_type == "s", (value, sheet, coordinate, cell.data_type, cell.value)
+E           AssertionError: ('#NULL!', 'Compliance Matrix', 'B2', 'e', '#NULL!')
+E           assert 'e' == 's'
+E             
+E             - s
+E             + e
+
+../../test_supplemental_repairs.py:184: AssertionError
+_ test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#DIV/0!] _
+
+pilot = <starlette.testclient.TestClient object at 0x7fa1e4c973b0>
+value = '#DIV/0!'
+
+    @pytest.mark.parametrize("value", EXCEL_ERROR_STRINGS + PLAIN_STRING_VALUES)
+    def test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings(pilot, value):
+        case = make_ready(pilot)
+        # Existing imported/legacy persisted strings can be shorter than today's
+        # API length limits. Exercise export semantics directly with synthetic rows.
+        mutate("UPDATE tenders SET title=? WHERE id=?", (value, case["tender"]))
+        mutate("UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?", (value, value, value, case["req"]))
+        mutate("UPDATE evidence SET label=? WHERE id=?", (value, case["evidence"]))
+        mutate("UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?", (value, value, case["tender"]))
+        stored = history(case["tender"])
+        response = call(pilot, "get", f"/api/tenders/{case['tender']}/export.xlsx")
+        workbook = load_workbook(io.BytesIO(response.content), data_only=False)
+        fields = [("Compliance Matrix", coordinate) for coordinate in ("B2", "E8", "G8", "H8", "I8")]
+        fields += [("Decision History", coordinate) for coordinate in ("B2", "C2")]
+        for sheet, coordinate in fields:
+            cell = workbook[sheet][coordinate]
+>           assert cell.data_type == "s", (value, sheet, coordinate, cell.data_type, cell.value)
+E           AssertionError: ('#DIV/0!', 'Compliance Matrix', 'B2', 'e', '#DIV/0!')
+E           assert 'e' == 's'
+E             
+E             - s
+E             + e
+
+../../test_supplemental_repairs.py:184: AssertionError
+_ test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#VALUE!] _
+
+pilot = <starlette.testclient.TestClient object at 0x7fa1e4d05a90>
+value = '#VALUE!'
+
+    @pytest.mark.parametrize("value", EXCEL_ERROR_STRINGS + PLAIN_STRING_VALUES)
+    def test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings(pilot, value):
+        case = make_ready(pilot)
+        # Existing imported/legacy persisted strings can be shorter than today's
+        # API length limits. Exercise export semantics directly with synthetic rows.
+        mutate("UPDATE tenders SET title=? WHERE id=?", (value, case["tender"]))
+        mutate("UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?", (value, value, value, case["req"]))
+        mutate("UPDATE evidence SET label=? WHERE id=?", (value, case["evidence"]))
+        mutate("UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?", (value, value, case["tender"]))
+        stored = history(case["tender"])
+        response = call(pilot, "get", f"/api/tenders/{case['tender']}/export.xlsx")
+        workbook = load_workbook(io.BytesIO(response.content), data_only=False)
+        fields = [("Compliance Matrix", coordinate) for coordinate in ("B2", "E8", "G8", "H8", "I8")]
+        fields += [("Decision History", coordinate) for coordinate in ("B2", "C2")]
+        for sheet, coordinate in fields:
+            cell = workbook[sheet][coordinate]
+>           assert cell.data_type == "s", (value, sheet, coordinate, cell.data_type, cell.value)
+E           AssertionError: ('#VALUE!', 'Compliance Matrix', 'B2', 'e', '#VALUE!')
+E           assert 'e' == 's'
+E             
+E             - s
+E             + e
+
+../../test_supplemental_repairs.py:184: AssertionError
+_ test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#REF!] _
+
+pilot = <starlette.testclient.TestClient object at 0x7fa1e4d05400>
+value = '#REF!'
+
+    @pytest.mark.parametrize("value", EXCEL_ERROR_STRINGS + PLAIN_STRING_VALUES)
+    def test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings(pilot, value):
+        case = make_ready(pilot)
+        # Existing imported/legacy persisted strings can be shorter than today's
+        # API length limits. Exercise export semantics directly with synthetic rows.
+        mutate("UPDATE tenders SET title=? WHERE id=?", (value, case["tender"]))
+        mutate("UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?", (value, value, value, case["req"]))
+        mutate("UPDATE evidence SET label=? WHERE id=?", (value, case["evidence"]))
+        mutate("UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?", (value, value, case["tender"]))
+        stored = history(case["tender"])
+        response = call(pilot, "get", f"/api/tenders/{case['tender']}/export.xlsx")
+        workbook = load_workbook(io.BytesIO(response.content), data_only=False)
+        fields = [("Compliance Matrix", coordinate) for coordinate in ("B2", "E8", "G8", "H8", "I8")]
+        fields += [("Decision History", coordinate) for coordinate in ("B2", "C2")]
+        for sheet, coordinate in fields:
+            cell = workbook[sheet][coordinate]
+>           assert cell.data_type == "s", (value, sheet, coordinate, cell.data_type, cell.value)
+E           AssertionError: ('#REF!', 'Compliance Matrix', 'B2', 'e', '#REF!')
+E           assert 'e' == 's'
+E             
+E             - s
+E             + e
+
+../../test_supplemental_repairs.py:184: AssertionError
+_ test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#NAME?] _
+
+pilot = <starlette.testclient.TestClient object at 0x7fa1e4cdf4d0>
+value = '#NAME?'
+
+    @pytest.mark.parametrize("value", EXCEL_ERROR_STRINGS + PLAIN_STRING_VALUES)
+    def test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings(pilot, value):
+        case = make_ready(pilot)
+        # Existing imported/legacy persisted strings can be shorter than today's
+        # API length limits. Exercise export semantics directly with synthetic rows.
+        mutate("UPDATE tenders SET title=? WHERE id=?", (value, case["tender"]))
+        mutate("UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?", (value, value, value, case["req"]))
+        mutate("UPDATE evidence SET label=? WHERE id=?", (value, case["evidence"]))
+        mutate("UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?", (value, value, case["tender"]))
+        stored = history(case["tender"])
+        response = call(pilot, "get", f"/api/tenders/{case['tender']}/export.xlsx")
+        workbook = load_workbook(io.BytesIO(response.content), data_only=False)
+        fields = [("Compliance Matrix", coordinate) for coordinate in ("B2", "E8", "G8", "H8", "I8")]
+        fields += [("Decision History", coordinate) for coordinate in ("B2", "C2")]
+        for sheet, coordinate in fields:
+            cell = workbook[sheet][coordinate]
+>           assert cell.data_type == "s", (value, sheet, coordinate, cell.data_type, cell.value)
+E           AssertionError: ('#NAME?', 'Compliance Matrix', 'B2', 'e', '#NAME?')
+E           assert 'e' == 's'
+E             
+E             - s
+E             + e
+
+../../test_supplemental_repairs.py:184: AssertionError
+_ test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#NUM!] _
+
+pilot = <starlette.testclient.TestClient object at 0x7fa1e4c84ec0>
+value = '#NUM!'
+
+    @pytest.mark.parametrize("value", EXCEL_ERROR_STRINGS + PLAIN_STRING_VALUES)
+    def test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings(pilot, value):
+        case = make_ready(pilot)
+        # Existing imported/legacy persisted strings can be shorter than today's
+        # API length limits. Exercise export semantics directly with synthetic rows.
+        mutate("UPDATE tenders SET title=? WHERE id=?", (value, case["tender"]))
+        mutate("UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?", (value, value, value, case["req"]))
+        mutate("UPDATE evidence SET label=? WHERE id=?", (value, case["evidence"]))
+        mutate("UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?", (value, value, case["tender"]))
+        stored = history(case["tender"])
+        response = call(pilot, "get", f"/api/tenders/{case['tender']}/export.xlsx")
+        workbook = load_workbook(io.BytesIO(response.content), data_only=False)
+        fields = [("Compliance Matrix", coordinate) for coordinate in ("B2", "E8", "G8", "H8", "I8")]
+        fields += [("Decision History", coordinate) for coordinate in ("B2", "C2")]
+        for sheet, coordinate in fields:
+            cell = workbook[sheet][coordinate]
+>           assert cell.data_type == "s", (value, sheet, coordinate, cell.data_type, cell.value)
+E           AssertionError: ('#NUM!', 'Compliance Matrix', 'B2', 'e', '#NUM!')
+E           assert 'e' == 's'
+E             
+E             - s
+E             + e
+
+../../test_supplemental_repairs.py:184: AssertionError
+_ test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#N/A] _
+
+pilot = <starlette.testclient.TestClient object at 0x7fa1e4c86960>
+value = '#N/A'
+
+    @pytest.mark.parametrize("value", EXCEL_ERROR_STRINGS + PLAIN_STRING_VALUES)
+    def test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings(pilot, value):
+        case = make_ready(pilot)
+        # Existing imported/legacy persisted strings can be shorter than today's
+        # API length limits. Exercise export semantics directly with synthetic rows.
+        mutate("UPDATE tenders SET title=? WHERE id=?", (value, case["tender"]))
+        mutate("UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?", (value, value, value, case["req"]))
+        mutate("UPDATE evidence SET label=? WHERE id=?", (value, case["evidence"]))
+        mutate("UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?", (value, value, case["tender"]))
+        stored = history(case["tender"])
+        response = call(pilot, "get", f"/api/tenders/{case['tender']}/export.xlsx")
+        workbook = load_workbook(io.BytesIO(response.content), data_only=False)
+        fields = [("Compliance Matrix", coordinate) for coordinate in ("B2", "E8", "G8", "H8", "I8")]
+        fields += [("Decision History", coordinate) for coordinate in ("B2", "C2")]
+        for sheet, coordinate in fields:
+            cell = workbook[sheet][coordinate]
+>           assert cell.data_type == "s", (value, sheet, coordinate, cell.data_type, cell.value)
+E           AssertionError: ('#N/A', 'Compliance Matrix', 'B2', 'e', '#N/A')
+E           assert 'e' == 's'
+E             
+E             - s
+E             + e
+
+../../test_supplemental_repairs.py:184: AssertionError
+=============================== warnings summary ===============================
+../../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /workspace/.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../test_supplemental_repairs.py::test_attestation_snapshot_requires_exact_nested_types_and_complete_shape[event_float]
+FAILED ../../test_supplemental_repairs.py::test_attestation_snapshot_requires_exact_nested_types_and_complete_shape[event_true]
+FAILED ../../test_supplemental_repairs.py::test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#NULL!]
+FAILED ../../test_supplemental_repairs.py::test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#DIV/0!]
+FAILED ../../test_supplemental_repairs.py::test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#VALUE!]
+FAILED ../../test_supplemental_repairs.py::test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#REF!]
+FAILED ../../test_supplemental_repairs.py::test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#NAME?]
+FAILED ../../test_supplemental_repairs.py::test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#NUM!]
+FAILED ../../test_supplemental_repairs.py::test_xlsx_error_codes_numeric_looking_and_unicode_stay_exact_literal_strings[#N/A]
+9 failed, 34 passed, 1 warning in 4.67s

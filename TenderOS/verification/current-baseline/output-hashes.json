@@ -1,0 +1,13 @@
+{
+  "/workspace/tenderos-audit-runtime/independent_qa.py": "8fc23e3bd524a077364f1c03e284a8b6e35aaa03dda345afc2a56a70c862c389",
+  "DEF-001-reproduction.json": "6a3f59173eeab20b8d46d350a2fd33646c93947d4a253e436128ae6f78196af6",
+  "XLSX-formula-observation.json": "b412939073580fa1d55e28e77bca2415764429295f0b624c56eeb3ef79eff01a",
+  "baseline-result.json": "1c9074e0b9ea7120e9986d70d74a4ad7b859f47ef337394c751e3d81670704ab",
+  "baseline.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "baseline.stdout.txt": "23988c8eb97d7850a42823868534e60c53fff563399590fd555cac04c870bc3f",
+  "independent-receipt.json": "2f0674824a400255f0aafaab63af2b8f13b5e5f1ca88ae21f17d793fc6dc58e0",
+  "resolved-dependencies.json": "5ec345ac2634fefdd73313110994c7ea3c37418ca76cb37b0631befb517d8362",
+  "source-preservation.json": "5ead9df2bd5eda1d0f428eabe52525a735cab253a84c7ce12257af044f0d7be8",
+  "startup-checks.json": "bf32c60605e9b1025ea56b41b4e7b4faf60a47797bd53abe1ea5993d7ff3a2f1",
+  "synthetic-request-log.json": "9e154ebd694989502e4cc7dd6ec1625cadf9095de0757bb40847d04975e2109e"
+}

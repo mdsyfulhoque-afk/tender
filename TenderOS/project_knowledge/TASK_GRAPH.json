@@ -1,0 +1,19 @@
+{
+  "project": "TenderOS",
+  "version": "1.1",
+  "generated_on": "2026-10-09",
+  "artifact_status": "REVIEW_READY",
+  "build_status": "BLOCKED_NO_VERIFIED_SUBAGENT_RUNTIME",
+  "hard_gate": "No actual autonomous AI delegated sub-agent means no code modification or build",
+  "tasks": [
+    {"id":"T-000","title":"Prove real delegated agent capability","agent":"runtime_probe","depends_on":[],"kind":"read_only","status":"BLOCKED_RUNTIME_NOT_EXPOSED","required_outputs":["real_agent_run_id","tool_event_log","output_artifact_hash"],"allowed_paths":["README.md","tests/test_workflows.py"],"forbidden":["app_code_edits","model_data_egress","deploy"]},
+    {"id":"T-001","title":"Independent repo and domain audit","agent":"AG-R01","depends_on":["T-000"],"kind":"read_only","status":"PENDING","required_outputs":["repo_audit.json","domain_evidence.md","agent_trace"],"allowed_paths":["tenderos_mvp","E-GP scans"],"forbidden":["code_edit","external_submission"]},
+    {"id":"T-002","title":"Independent review of audit","agent":"AG-Q04","depends_on":["T-001"],"kind":"read_only","status":"PENDING","required_outputs":["review_findings.md","separate_agent_run_id"],"allowed_paths":["audit artifacts","source repo"],"forbidden":["code_edit","self_approval"]},
+    {"id":"T-003","title":"Fix stale current BID on new addendum","agent":"AG-I03","depends_on":["T-002","FOUNDER_APPROVES_PRD"],"kind":"code_change","status":"PENDING","required_outputs":["isolated_git_diff","regression_test","agent_run_trace"],"allowed_paths":["app/main.py","tests/test_workflows.py"],"forbidden":["merge","deploy","outbound_model_egress"]},
+    {"id":"T-004","title":"Independent regression and security review","agent":"AG-Q04","depends_on":["T-003"],"kind":"read_only_review","status":"PENDING","required_outputs":["qa_tests.txt","severity_report.md","independent_run_id"],"allowed_paths":["isolated_candidate_branch","tests"],"forbidden":["self_approval","deploy"]},
+    {"id":"T-005","title":"Build scoped model gateway and no-egress policy","agent":"AG-I03","depends_on":["T-004","FOUNDER_APPROVES_MODEL_POLICY"],"kind":"code_change","status":"PENDING","required_outputs":["provider_adapter","typed_outputs","privacy_tests","run_receipts"],"allowed_paths":["approved scoped modules and tests"],"forbidden":["unapproved_data_egress","deploy"]},
+    {"id":"T-006","title":"Real model-powered requirement extraction","agent":"AG-I03","depends_on":["T-005"],"kind":"code_change","status":"PENDING","required_outputs":["requirement_agent","source_link_validator","real_model_test_traces"],"allowed_paths":["approved scoped modules and tests"],"forbidden":["claim_verified_without_human"]},
+    {"id":"T-007","title":"Real model-powered evidence matching","agent":"AG-I03","depends_on":["T-006"],"kind":"code_change","status":"PENDING","required_outputs":["evidence_agent","tenant_scoping_tests","real_model_test_traces"],"allowed_paths":["approved scoped modules and tests"],"forbidden":["cross_tenant_search","mark_verified"]},
+    {"id":"T-008","title":"Independent verification and labeled benchmark","agent":"AG-Q04","depends_on":["T-007"],"kind":"evaluation","status":"PENDING","required_outputs":["benchmark_report","false_ready_tests","cost_log","privacy_results"],"allowed_paths":["approved synthetic or consented data"],"forbidden":["mock_only_claimed_real","submit_bid"]}
+  ]
+}

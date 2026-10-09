@@ -1,0 +1,146 @@
+[
+  {
+    "actual": 200,
+    "expected": 200,
+    "method": "GET",
+    "path": "/api/health"
+  },
+  {
+    "actual": 200,
+    "expected": 200,
+    "method": "GET",
+    "path": "/"
+  },
+  {
+    "actual": 200,
+    "expected": 200,
+    "method": "GET",
+    "path": "/api/docs"
+  },
+  {
+    "actual": 201,
+    "expected": 201,
+    "method": "POST",
+    "path": "/api/organizations"
+  },
+  {
+    "actual": 201,
+    "expected": 201,
+    "method": "POST",
+    "path": "/api/tenders"
+  },
+  {
+    "actual": 201,
+    "expected": 201,
+    "method": "POST",
+    "path": "/api/tenders/1/requirements"
+  },
+  {
+    "actual": 200,
+    "expected": 200,
+    "method": "PUT",
+    "path": "/api/requirements/1/review"
+  },
+  {
+    "actual": 201,
+    "expected": 201,
+    "method": "POST",
+    "path": "/api/evidence"
+  },
+  {
+    "actual": 200,
+    "expected": 200,
+    "method": "PUT",
+    "path": "/api/requirements/1/status"
+  },
+  {
+    "actual": 200,
+    "expected": 200,
+    "method": "POST",
+    "path": "/api/tenders/1/attest-source-scope"
+  },
+  {
+    "actual": 201,
+    "expected": 201,
+    "method": "POST",
+    "path": "/api/tenders/1/decisions"
+  },
+  {
+    "actual": 200,
+    "expected": 200,
+    "method": "GET",
+    "path": "/api/tenders/1"
+  },
+  {
+    "actual": 201,
+    "expected": 201,
+    "method": "POST",
+    "path": "/api/tenders/1/upload-pdf"
+  },
+  {
+    "actual": 200,
+    "expected": 200,
+    "method": "GET",
+    "path": "/api/tenders/1"
+  },
+  {
+    "actual": 409,
+    "expected": 409,
+    "method": "POST",
+    "path": "/api/tenders/1/decisions"
+  },
+  {
+    "actual": 201,
+    "expected": 201,
+    "method": "POST",
+    "path": "/api/organizations"
+  },
+  {
+    "actual": 201,
+    "expected": 201,
+    "method": "POST",
+    "path": "/api/tenders"
+  },
+  {
+    "actual": 201,
+    "expected": 201,
+    "method": "POST",
+    "path": "/api/tenders/2/requirements"
+  },
+  {
+    "actual": 200,
+    "expected": 200,
+    "method": "PUT",
+    "path": "/api/requirements/2/review"
+  },
+  {
+    "actual": 201,
+    "expected": 201,
+    "method": "POST",
+    "path": "/api/evidence"
+  },
+  {
+    "actual": 200,
+    "expected": 200,
+    "method": "PUT",
+    "path": "/api/requirements/2/status"
+  },
+  {
+    "actual": 200,
+    "expected": 200,
+    "method": "POST",
+    "path": "/api/tenders/2/attest-source-scope"
+  },
+  {
+    "actual": 201,
+    "expected": 201,
+    "method": "POST",
+    "path": "/api/tenders/2/decisions"
+  },
+  {
+    "actual": 200,
+    "expected": 200,
+    "method": "GET",
+    "path": "/api/tenders/2/export.xlsx"
+  }
+]

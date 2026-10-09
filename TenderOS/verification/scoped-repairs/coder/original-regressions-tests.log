@@ -1,0 +1,1386 @@
+..........FFFFFFFFFFF...FFF.FFFFFFFFFFF..FFFFFFFF..F                     [100%]
+=================================== FAILURES ===================================
+____ test_zero_candidate_addendum_invalidates_bid_without_rewriting_history ____
+
+client = <starlette.testclient.TestClient object at 0x7f8ed41f58b0>
+
+    def test_zero_candidate_addendum_invalidates_bid_without_rewriting_history(client):
+        org,t,r,ev=ready_bid(client)
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        upload_non_candidate_pdf(client,t)
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['requirements']==before['requirements']
+        assert after['fingerprint']==before['fingerprint']
+        assert after['source_scope_fingerprint']!=before['source_scope_fingerprint']
+        assert after['source_scope_verified'] is False
+        assert after['compliance']=='UNRESOLVED'
+>       assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+E       AssertionError: assert ('BID' is None)
+
+regression_tests/test_workflows.py:186: AssertionError
+__ test_source_inventory_mutation_invalidates_bid[name-revised-addendum.pdf] ___
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf7a6210>
+field = 'name', value = 'revised-addendum.pdf'
+
+    @pytest.mark.parametrize('field,value',[
+        ('name','revised-addendum.pdf'),('sha256','a'*64),('bytes',12345),
+        ('pages',2),('uploaded_at','2030-01-01T00:00:00+00:00')
+    ])
+    def test_source_inventory_mutation_invalidates_bid(client,field,value):
+        org,t,r,ev=ready_bid(client)
+        source=upload_non_candidate_pdf(client,t)
+        attest(client,t);assert verdict(client,t).status_code==201
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        with sqlite3.connect(main.DB) as db:
+            db.execute(f'UPDATE sources SET {field}=? WHERE id=?',(value,source))
+        after=client.get(f'/api/tenders/{t}').json()
+>       assert after['source_scope_fingerprint']!=before['source_scope_fingerprint']
+E       AssertionError: assert '9edb32eb0548c829730ab4fe0f8ee332b0805eb4b83a854cd6896c7dd984c645' != '9edb32eb0548c829730ab4fe0f8ee332b0805eb4b83a854cd6896c7dd984c645'
+
+regression_tests/test_workflows.py:212: AssertionError
+_ test_source_inventory_mutation_invalidates_bid[sha256-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa] _
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf7a4e90>
+field = 'sha256'
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    @pytest.mark.parametrize('field,value',[
+        ('name','revised-addendum.pdf'),('sha256','a'*64),('bytes',12345),
+        ('pages',2),('uploaded_at','2030-01-01T00:00:00+00:00')
+    ])
+    def test_source_inventory_mutation_invalidates_bid(client,field,value):
+        org,t,r,ev=ready_bid(client)
+        source=upload_non_candidate_pdf(client,t)
+        attest(client,t);assert verdict(client,t).status_code==201
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        with sqlite3.connect(main.DB) as db:
+            db.execute(f'UPDATE sources SET {field}=? WHERE id=?',(value,source))
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['source_scope_fingerprint']!=before['source_scope_fingerprint']
+        assert after['source_scope_verified'] is False
+>       assert after['current_decision'] is None
+E       AssertionError: assert 'BID' is None
+
+regression_tests/test_workflows.py:214: AssertionError
+_________ test_source_inventory_mutation_invalidates_bid[bytes-12345] __________
+
+client = <starlette.testclient.TestClient object at 0x7f8ed4b86810>
+field = 'bytes', value = 12345
+
+    @pytest.mark.parametrize('field,value',[
+        ('name','revised-addendum.pdf'),('sha256','a'*64),('bytes',12345),
+        ('pages',2),('uploaded_at','2030-01-01T00:00:00+00:00')
+    ])
+    def test_source_inventory_mutation_invalidates_bid(client,field,value):
+        org,t,r,ev=ready_bid(client)
+        source=upload_non_candidate_pdf(client,t)
+        attest(client,t);assert verdict(client,t).status_code==201
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        with sqlite3.connect(main.DB) as db:
+            db.execute(f'UPDATE sources SET {field}=? WHERE id=?',(value,source))
+        after=client.get(f'/api/tenders/{t}').json()
+>       assert after['source_scope_fingerprint']!=before['source_scope_fingerprint']
+E       AssertionError: assert '65103defa06692c382dfbdf64cd52b638fecfcda6d4bf57a1a4cb99bce3be4f9' != '65103defa06692c382dfbdf64cd52b638fecfcda6d4bf57a1a4cb99bce3be4f9'
+
+regression_tests/test_workflows.py:212: AssertionError
+___________ test_source_inventory_mutation_invalidates_bid[pages-2] ____________
+
+client = <starlette.testclient.TestClient object at 0x7f8ed41f4ef0>
+field = 'pages', value = 2
+
+    @pytest.mark.parametrize('field,value',[
+        ('name','revised-addendum.pdf'),('sha256','a'*64),('bytes',12345),
+        ('pages',2),('uploaded_at','2030-01-01T00:00:00+00:00')
+    ])
+    def test_source_inventory_mutation_invalidates_bid(client,field,value):
+        org,t,r,ev=ready_bid(client)
+        source=upload_non_candidate_pdf(client,t)
+        attest(client,t);assert verdict(client,t).status_code==201
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        with sqlite3.connect(main.DB) as db:
+            db.execute(f'UPDATE sources SET {field}=? WHERE id=?',(value,source))
+        after=client.get(f'/api/tenders/{t}').json()
+>       assert after['source_scope_fingerprint']!=before['source_scope_fingerprint']
+E       AssertionError: assert 'b63479718e230e649dc99497a82dfadc77cc777d66849a0a1df1887e8c8c1252' != 'b63479718e230e649dc99497a82dfadc77cc777d66849a0a1df1887e8c8c1252'
+
+regression_tests/test_workflows.py:212: AssertionError
+_ test_source_inventory_mutation_invalidates_bid[uploaded_at-2030-01-01T00:00:00+00:00] _
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf7a5820>
+field = 'uploaded_at', value = '2030-01-01T00:00:00+00:00'
+
+    @pytest.mark.parametrize('field,value',[
+        ('name','revised-addendum.pdf'),('sha256','a'*64),('bytes',12345),
+        ('pages',2),('uploaded_at','2030-01-01T00:00:00+00:00')
+    ])
+    def test_source_inventory_mutation_invalidates_bid(client,field,value):
+        org,t,r,ev=ready_bid(client)
+        source=upload_non_candidate_pdf(client,t)
+        attest(client,t);assert verdict(client,t).status_code==201
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        with sqlite3.connect(main.DB) as db:
+            db.execute(f'UPDATE sources SET {field}=? WHERE id=?',(value,source))
+        after=client.get(f'/api/tenders/{t}').json()
+>       assert after['source_scope_fingerprint']!=before['source_scope_fingerprint']
+E       AssertionError: assert '06eb77014ac1744d40aab605345063e1cebb56eab5505da204dfaf237534cca7' != '06eb77014ac1744d40aab605345063e1cebb56eab5505da204dfaf237534cca7'
+
+regression_tests/test_workflows.py:212: AssertionError
+_________ test_changed_requirement_source_association_invalidates_bid __________
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf7a6240>
+
+    def test_changed_requirement_source_association_invalidates_bid(client):
+        org,t,r,ev=ready_bid(client)
+        first=upload_non_candidate_pdf(client,t);second=upload_non_candidate_pdf(client,t)
+        with sqlite3.connect(main.DB) as db:
+            db.execute('UPDATE requirements SET source_id=? WHERE id=?',(first,r))
+        attest(client,t);assert verdict(client,t).status_code==201
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        with sqlite3.connect(main.DB) as db:
+            db.execute('UPDATE requirements SET source_id=? WHERE id=?',(second,r))
+        after=client.get(f'/api/tenders/{t}').json()
+>       assert after['source_scope_fingerprint']!=before['source_scope_fingerprint']
+E       AssertionError: assert '92f37b2a9b35af76272219c52972efbb2724cff25cebea8385539a2365222b52' != '92f37b2a9b35af76272219c52972efbb2724cff25cebea8385539a2365222b52'
+
+regression_tests/test_workflows.py:228: AssertionError
+_ test_linked_evidence_mutations_invalidate_bid[label-Replacement certificate] _
+
+client = <starlette.testclient.TestClient object at 0x7f8ed41f7a70>
+field = 'label', value = 'Replacement certificate'
+
+    @pytest.mark.parametrize('field,value',[
+        ('label','Replacement certificate'),('reference','CERT-REVISED'),
+        ('verification_note','Rechecked against a replacement signed original'),
+        ('expires_on',(date.today()+timedelta(days=90)).isoformat()),('verified',0)
+    ])
+    def test_linked_evidence_mutations_invalidate_bid(client,field,value):
+        org,t,r,ev=ready_bid(client,expires_on=(date.today()+timedelta(days=60)).isoformat())
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        # Evidence has no update API; change the linked fixture record directly.
+        with sqlite3.connect(main.DB) as db:
+            db.execute(f'UPDATE evidence SET {field}=? WHERE id=?',(value,ev))
+        after=client.get(f'/api/tenders/{t}').json()
+>       assert after['fingerprint']!=before['fingerprint']
+E       AssertionError: assert '6d1c0beb646a2a838bf0cc97b7c0335af91c8ac61362110303bf2fa4c5025f4b' != '6d1c0beb646a2a838bf0cc97b7c0335af91c8ac61362110303bf2fa4c5025f4b'
+
+regression_tests/test_workflows.py:246: AssertionError
+____ test_linked_evidence_mutations_invalidate_bid[reference-CERT-REVISED] _____
+
+client = <starlette.testclient.TestClient object at 0x7f8ed41f4800>
+field = 'reference', value = 'CERT-REVISED'
+
+    @pytest.mark.parametrize('field,value',[
+        ('label','Replacement certificate'),('reference','CERT-REVISED'),
+        ('verification_note','Rechecked against a replacement signed original'),
+        ('expires_on',(date.today()+timedelta(days=90)).isoformat()),('verified',0)
+    ])
+    def test_linked_evidence_mutations_invalidate_bid(client,field,value):
+        org,t,r,ev=ready_bid(client,expires_on=(date.today()+timedelta(days=60)).isoformat())
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        # Evidence has no update API; change the linked fixture record directly.
+        with sqlite3.connect(main.DB) as db:
+            db.execute(f'UPDATE evidence SET {field}=? WHERE id=?',(value,ev))
+        after=client.get(f'/api/tenders/{t}').json()
+>       assert after['fingerprint']!=before['fingerprint']
+E       AssertionError: assert '6d1c0beb646a2a838bf0cc97b7c0335af91c8ac61362110303bf2fa4c5025f4b' != '6d1c0beb646a2a838bf0cc97b7c0335af91c8ac61362110303bf2fa4c5025f4b'
+
+regression_tests/test_workflows.py:246: AssertionError
+_ test_linked_evidence_mutations_invalidate_bid[verification_note-Rechecked against a replacement signed original] _
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf75f200>
+field = 'verification_note'
+value = 'Rechecked against a replacement signed original'
+
+    @pytest.mark.parametrize('field,value',[
+        ('label','Replacement certificate'),('reference','CERT-REVISED'),
+        ('verification_note','Rechecked against a replacement signed original'),
+        ('expires_on',(date.today()+timedelta(days=90)).isoformat()),('verified',0)
+    ])
+    def test_linked_evidence_mutations_invalidate_bid(client,field,value):
+        org,t,r,ev=ready_bid(client,expires_on=(date.today()+timedelta(days=60)).isoformat())
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        # Evidence has no update API; change the linked fixture record directly.
+        with sqlite3.connect(main.DB) as db:
+            db.execute(f'UPDATE evidence SET {field}=? WHERE id=?',(value,ev))
+        after=client.get(f'/api/tenders/{t}').json()
+>       assert after['fingerprint']!=before['fingerprint']
+E       AssertionError: assert '6d1c0beb646a2a838bf0cc97b7c0335af91c8ac61362110303bf2fa4c5025f4b' != '6d1c0beb646a2a838bf0cc97b7c0335af91c8ac61362110303bf2fa4c5025f4b'
+
+regression_tests/test_workflows.py:246: AssertionError
+_____ test_linked_evidence_mutations_invalidate_bid[expires_on-2027-01-07] _____
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf75ee40>
+field = 'expires_on', value = '2027-01-07'
+
+    @pytest.mark.parametrize('field,value',[
+        ('label','Replacement certificate'),('reference','CERT-REVISED'),
+        ('verification_note','Rechecked against a replacement signed original'),
+        ('expires_on',(date.today()+timedelta(days=90)).isoformat()),('verified',0)
+    ])
+    def test_linked_evidence_mutations_invalidate_bid(client,field,value):
+        org,t,r,ev=ready_bid(client,expires_on=(date.today()+timedelta(days=60)).isoformat())
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        # Evidence has no update API; change the linked fixture record directly.
+        with sqlite3.connect(main.DB) as db:
+            db.execute(f'UPDATE evidence SET {field}=? WHERE id=?',(value,ev))
+        after=client.get(f'/api/tenders/{t}').json()
+>       assert after['fingerprint']!=before['fingerprint']
+E       AssertionError: assert '6d1c0beb646a2a838bf0cc97b7c0335af91c8ac61362110303bf2fa4c5025f4b' != '6d1c0beb646a2a838bf0cc97b7c0335af91c8ac61362110303bf2fa4c5025f4b'
+
+regression_tests/test_workflows.py:246: AssertionError
+______________ test_changed_evidence_mapping_notes_invalidate_bid ______________
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf775730>
+
+    def test_changed_evidence_mapping_notes_invalidate_bid(client):
+        org,t,r,ev=ready_bid(client);history=stored_decisions(t)
+        assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':ev,'notes':'Changed supporting evidence interpretation'}).status_code==200
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['compliance']=='READY_FOR_HUMAN_DECISION'
+>       assert after['current_decision'] is None
+E       AssertionError: assert 'BID' is None
+
+regression_tests/test_workflows.py:287: AssertionError
+_ test_incomplete_or_legacy_decision_metadata_is_historical[missing_currency_version] _
+
+client = <starlette.testclient.TestClient object at 0x7f8ed4b853d0>
+legacy_case = 'missing_currency_version'
+
+    @pytest.mark.parametrize('legacy_case',[
+        'missing_currency_version','missing_scope_hash','missing_fingerprint','missing_scope_attestation',
+        'unsupported_currency_version','null','array','malformed'
+    ])
+    def test_incomplete_or_legacy_decision_metadata_is_historical(client,legacy_case):
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            row=db.execute('SELECT id,decision_snapshot FROM decisions WHERE tender_id=?',(t,)).fetchone()
+            past=json.loads(row[1])
+            if legacy_case.startswith('missing_'):
+                past.pop(legacy_case.removeprefix('missing_'),None)
+                text=json.dumps(past)
+            elif legacy_case=='unsupported_currency_version':
+                past['currency_version']=0;text=json.dumps(past)
+            else:
+                text={'null':'null','array':'[]','malformed':'{not valid json'}[legacy_case]
+            db.execute('UPDATE decisions SET decision_snapshot=? WHERE id=?',(text,row[0]))
+        history=stored_decisions(t)
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['compliance']=='READY_FOR_HUMAN_DECISION'
+>       assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+E       AssertionError: assert ('BID' is None)
+
+regression_tests/test_workflows.py:310: AssertionError
+_ test_incomplete_or_legacy_decision_metadata_is_historical[missing_scope_hash] _
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf777140>
+legacy_case = 'missing_scope_hash'
+
+    @pytest.mark.parametrize('legacy_case',[
+        'missing_currency_version','missing_scope_hash','missing_fingerprint','missing_scope_attestation',
+        'unsupported_currency_version','null','array','malformed'
+    ])
+    def test_incomplete_or_legacy_decision_metadata_is_historical(client,legacy_case):
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            row=db.execute('SELECT id,decision_snapshot FROM decisions WHERE tender_id=?',(t,)).fetchone()
+            past=json.loads(row[1])
+            if legacy_case.startswith('missing_'):
+                past.pop(legacy_case.removeprefix('missing_'),None)
+                text=json.dumps(past)
+            elif legacy_case=='unsupported_currency_version':
+                past['currency_version']=0;text=json.dumps(past)
+            else:
+                text={'null':'null','array':'[]','malformed':'{not valid json'}[legacy_case]
+            db.execute('UPDATE decisions SET decision_snapshot=? WHERE id=?',(text,row[0]))
+        history=stored_decisions(t)
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['compliance']=='READY_FOR_HUMAN_DECISION'
+>       assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+E       AssertionError: assert ('BID' is None)
+
+regression_tests/test_workflows.py:310: AssertionError
+_ test_incomplete_or_legacy_decision_metadata_is_historical[missing_scope_attestation] _
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf7a69f0>
+legacy_case = 'missing_scope_attestation'
+
+    @pytest.mark.parametrize('legacy_case',[
+        'missing_currency_version','missing_scope_hash','missing_fingerprint','missing_scope_attestation',
+        'unsupported_currency_version','null','array','malformed'
+    ])
+    def test_incomplete_or_legacy_decision_metadata_is_historical(client,legacy_case):
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            row=db.execute('SELECT id,decision_snapshot FROM decisions WHERE tender_id=?',(t,)).fetchone()
+            past=json.loads(row[1])
+            if legacy_case.startswith('missing_'):
+                past.pop(legacy_case.removeprefix('missing_'),None)
+                text=json.dumps(past)
+            elif legacy_case=='unsupported_currency_version':
+                past['currency_version']=0;text=json.dumps(past)
+            else:
+                text={'null':'null','array':'[]','malformed':'{not valid json'}[legacy_case]
+            db.execute('UPDATE decisions SET decision_snapshot=? WHERE id=?',(text,row[0]))
+        history=stored_decisions(t)
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['compliance']=='READY_FOR_HUMAN_DECISION'
+>       assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+E       AssertionError: assert ('BID' is None)
+
+regression_tests/test_workflows.py:310: AssertionError
+_ test_incomplete_or_legacy_decision_metadata_is_historical[unsupported_currency_version] _
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf7776e0>
+legacy_case = 'unsupported_currency_version'
+
+    @pytest.mark.parametrize('legacy_case',[
+        'missing_currency_version','missing_scope_hash','missing_fingerprint','missing_scope_attestation',
+        'unsupported_currency_version','null','array','malformed'
+    ])
+    def test_incomplete_or_legacy_decision_metadata_is_historical(client,legacy_case):
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            row=db.execute('SELECT id,decision_snapshot FROM decisions WHERE tender_id=?',(t,)).fetchone()
+            past=json.loads(row[1])
+            if legacy_case.startswith('missing_'):
+                past.pop(legacy_case.removeprefix('missing_'),None)
+                text=json.dumps(past)
+            elif legacy_case=='unsupported_currency_version':
+                past['currency_version']=0;text=json.dumps(past)
+            else:
+                text={'null':'null','array':'[]','malformed':'{not valid json'}[legacy_case]
+            db.execute('UPDATE decisions SET decision_snapshot=? WHERE id=?',(text,row[0]))
+        history=stored_decisions(t)
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['compliance']=='READY_FOR_HUMAN_DECISION'
+>       assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+E       AssertionError: assert ('BID' is None)
+
+regression_tests/test_workflows.py:310: AssertionError
+_______ test_incomplete_or_legacy_decision_metadata_is_historical[null] ________
+
+client = <starlette.testclient.TestClient object at 0x7f8ed4b86d20>
+legacy_case = 'null'
+
+    @pytest.mark.parametrize('legacy_case',[
+        'missing_currency_version','missing_scope_hash','missing_fingerprint','missing_scope_attestation',
+        'unsupported_currency_version','null','array','malformed'
+    ])
+    def test_incomplete_or_legacy_decision_metadata_is_historical(client,legacy_case):
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            row=db.execute('SELECT id,decision_snapshot FROM decisions WHERE tender_id=?',(t,)).fetchone()
+            past=json.loads(row[1])
+            if legacy_case.startswith('missing_'):
+                past.pop(legacy_case.removeprefix('missing_'),None)
+                text=json.dumps(past)
+            elif legacy_case=='unsupported_currency_version':
+                past['currency_version']=0;text=json.dumps(past)
+            else:
+                text={'null':'null','array':'[]','malformed':'{not valid json'}[legacy_case]
+            db.execute('UPDATE decisions SET decision_snapshot=? WHERE id=?',(text,row[0]))
+        history=stored_decisions(t)
+>       after=client.get(f'/api/tenders/{t}').json()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+regression_tests/test_workflows.py:308: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:1053: in get
+    return self.request(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/testclient.py:463: in request
+    return super().request(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:914: in send
+    response = self._send_handling_auth(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/testclient.py:360: in handle_request
+    raise exc
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/testclient.py:357: in handle_request
+    portal.call(self.app, scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/applications.py:1216: in __call__
+    await super().__call__(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/errors.py:186: in __call__
+    raise exc
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/telemetry/_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/base.py:197: in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/main.py:269: in local_security_headers
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/base.py:173: in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/base.py:149: in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/_exception_handler.py:53: in wrapped_app
+    raise exc
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/routing.py:676: in __call__
+    await self.middleware_stack(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:2786: in app
+    await route.handle(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:1310: in handle
+    await super().handle(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/routing.py:282: in handle
+    await self.app(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:165: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/_exception_handler.py:53: in wrapped_app
+    raise exc
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:151: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:727: in app
+    raw_response = await run_endpoint_function(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:362: in run_endpoint_function
+    return await run_in_threadpool(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/_backends/_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/_backends/_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/telemetry/_api.py:244: in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+app/main.py:322: in tender_detail
+    out = get_snapshot(db, tender_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+db = <sqlite3.Connection object at 0x7f8ecf739210>, tender_id = 1
+
+    def get_snapshot(db, tender_id):
+        tender = asdict(require(db, 'tenders', tender_id))
+        reqs = [dict(r) for r in db.execute('SELECT * FROM requirements WHERE tender_id=? ORDER BY id', (tender_id,))]
+        all_verified = 0
+        reviewed = 0
+        counts = {'VERIFIED': 0, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}
+        blockers = []
+        unresolved = []
+        for req in reqs:
+            if req['reviewed'] and req['mandatory'] is not None:
+                reviewed += 1
+            ev = find_evidence(db, req, req['evidence_id']) if req['evidence_id'] else None
+            effective = req['status']
+            if effective == 'VERIFIED' and not evidence_current(ev):
+                effective = 'UNKNOWN'
+                req['evidence_issue'] = 'Linked evidence is unverified or expired'
+            req['effective_status'] = effective
+            req['evidence_label'] = ev['label'] if ev else None
+            counts[effective] += 1
+            if req['mandatory'] == 1:
+                if not req['source_quote'] or not (req['source_page'] or tender['notice_id'] or tender['source_url']):
+                    unresolved.append({'requirement_id':req['id'], 'text':req['text'], 'reason':'Source provenance incomplete'})
+                if effective == 'NOT_HELD' and req['reviewed']:
+                    blockers.append({'requirement_id':req['id'], 'text':req['text']})
+                elif not req['reviewed'] or effective != 'VERIFIED':
+                    unresolved.append({'requirement_id':req['id'], 'text':req['text']})
+                else:
+                    all_verified += 1
+            elif not req['reviewed'] or req['mandatory'] is None:
+                unresolved.append({'requirement_id':req['id'], 'text':req['text']})
+        source_ids=[dict(r) for r in db.execute('SELECT id,sha256 FROM sources WHERE tender_id=? ORDER BY id',(tender_id,))]
+        source_scope_fingerprint=hashlib.sha256(json.dumps({
+           'sources':source_ids,
+           'requirements':[{k:r[k] for k in ('id','text','source_page','source_quote','mandatory','reviewed')} for r in reqs]
+        },sort_keys=True,ensure_ascii=False).encode('utf-8')).hexdigest()
+        source_scope_verified=bool(tender['source_scope_fingerprint'] and tender['source_scope_fingerprint']==source_scope_fingerprint)
+        mandatory = sum(1 for r in reqs if r['mandatory'] == 1)
+        fingerprint = hashlib.sha256(json.dumps([
+            {k:r[k] for k in ('id','mandatory','reviewed','text','source_page','source_quote','status','effective_status','evidence_id','evidence_issue') if k in r}
+            for r in reqs], sort_keys=True, ensure_ascii=False).encode('utf-8')).hexdigest()
+        if blockers:
+            compliance = 'BLOCKED'
+        elif not reqs or reviewed != len(reqs) or unresolved or not source_scope_verified:
+            compliance = 'UNRESOLVED'
+        elif all_verified == mandatory:
+            compliance = 'READY_FOR_HUMAN_DECISION'
+        else:
+            compliance = 'UNRESOLVED'
+        # Unreviewed statuses or mandatory flags always stop BID. Optional PARTIAL/UNKNOWN require explicit reviewer awareness
+        # but do not by themselves disqualify when the requirement has been reviewed and classified optional.
+        decisions = [dict(row) for row in db.execute('SELECT * FROM decisions WHERE tender_id=? ORDER BY id DESC', (tender_id,))]
+        for i, decision in enumerate(decisions):
+            past=json.loads(decision['decision_snapshot'])
+>           decision['is_current']=(i==0 and past.get('fingerprint')==fingerprint)
+                                             ^^^^^^^^
+E           AttributeError: 'NoneType' object has no attribute 'get'
+
+app/main.py:250: AttributeError
+_______ test_incomplete_or_legacy_decision_metadata_is_historical[array] _______
+
+client = <starlette.testclient.TestClient object at 0x7f8ed41f7f50>
+legacy_case = 'array'
+
+    @pytest.mark.parametrize('legacy_case',[
+        'missing_currency_version','missing_scope_hash','missing_fingerprint','missing_scope_attestation',
+        'unsupported_currency_version','null','array','malformed'
+    ])
+    def test_incomplete_or_legacy_decision_metadata_is_historical(client,legacy_case):
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            row=db.execute('SELECT id,decision_snapshot FROM decisions WHERE tender_id=?',(t,)).fetchone()
+            past=json.loads(row[1])
+            if legacy_case.startswith('missing_'):
+                past.pop(legacy_case.removeprefix('missing_'),None)
+                text=json.dumps(past)
+            elif legacy_case=='unsupported_currency_version':
+                past['currency_version']=0;text=json.dumps(past)
+            else:
+                text={'null':'null','array':'[]','malformed':'{not valid json'}[legacy_case]
+            db.execute('UPDATE decisions SET decision_snapshot=? WHERE id=?',(text,row[0]))
+        history=stored_decisions(t)
+>       after=client.get(f'/api/tenders/{t}').json()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+regression_tests/test_workflows.py:308: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:1053: in get
+    return self.request(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/testclient.py:463: in request
+    return super().request(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:914: in send
+    response = self._send_handling_auth(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/testclient.py:360: in handle_request
+    raise exc
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/testclient.py:357: in handle_request
+    portal.call(self.app, scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/applications.py:1216: in __call__
+    await super().__call__(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/errors.py:186: in __call__
+    raise exc
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/telemetry/_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/base.py:197: in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/main.py:269: in local_security_headers
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/base.py:173: in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/base.py:149: in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/_exception_handler.py:53: in wrapped_app
+    raise exc
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/routing.py:676: in __call__
+    await self.middleware_stack(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:2786: in app
+    await route.handle(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:1310: in handle
+    await super().handle(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/routing.py:282: in handle
+    await self.app(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:165: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/_exception_handler.py:53: in wrapped_app
+    raise exc
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:151: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:727: in app
+    raw_response = await run_endpoint_function(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:362: in run_endpoint_function
+    return await run_in_threadpool(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/_backends/_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/_backends/_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/telemetry/_api.py:244: in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+app/main.py:322: in tender_detail
+    out = get_snapshot(db, tender_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+db = <sqlite3.Connection object at 0x7f8ecf7395d0>, tender_id = 1
+
+    def get_snapshot(db, tender_id):
+        tender = asdict(require(db, 'tenders', tender_id))
+        reqs = [dict(r) for r in db.execute('SELECT * FROM requirements WHERE tender_id=? ORDER BY id', (tender_id,))]
+        all_verified = 0
+        reviewed = 0
+        counts = {'VERIFIED': 0, 'PARTIAL': 0, 'NOT_HELD': 0, 'UNKNOWN': 0}
+        blockers = []
+        unresolved = []
+        for req in reqs:
+            if req['reviewed'] and req['mandatory'] is not None:
+                reviewed += 1
+            ev = find_evidence(db, req, req['evidence_id']) if req['evidence_id'] else None
+            effective = req['status']
+            if effective == 'VERIFIED' and not evidence_current(ev):
+                effective = 'UNKNOWN'
+                req['evidence_issue'] = 'Linked evidence is unverified or expired'
+            req['effective_status'] = effective
+            req['evidence_label'] = ev['label'] if ev else None
+            counts[effective] += 1
+            if req['mandatory'] == 1:
+                if not req['source_quote'] or not (req['source_page'] or tender['notice_id'] or tender['source_url']):
+                    unresolved.append({'requirement_id':req['id'], 'text':req['text'], 'reason':'Source provenance incomplete'})
+                if effective == 'NOT_HELD' and req['reviewed']:
+                    blockers.append({'requirement_id':req['id'], 'text':req['text']})
+                elif not req['reviewed'] or effective != 'VERIFIED':
+                    unresolved.append({'requirement_id':req['id'], 'text':req['text']})
+                else:
+                    all_verified += 1
+            elif not req['reviewed'] or req['mandatory'] is None:
+                unresolved.append({'requirement_id':req['id'], 'text':req['text']})
+        source_ids=[dict(r) for r in db.execute('SELECT id,sha256 FROM sources WHERE tender_id=? ORDER BY id',(tender_id,))]
+        source_scope_fingerprint=hashlib.sha256(json.dumps({
+           'sources':source_ids,
+           'requirements':[{k:r[k] for k in ('id','text','source_page','source_quote','mandatory','reviewed')} for r in reqs]
+        },sort_keys=True,ensure_ascii=False).encode('utf-8')).hexdigest()
+        source_scope_verified=bool(tender['source_scope_fingerprint'] and tender['source_scope_fingerprint']==source_scope_fingerprint)
+        mandatory = sum(1 for r in reqs if r['mandatory'] == 1)
+        fingerprint = hashlib.sha256(json.dumps([
+            {k:r[k] for k in ('id','mandatory','reviewed','text','source_page','source_quote','status','effective_status','evidence_id','evidence_issue') if k in r}
+            for r in reqs], sort_keys=True, ensure_ascii=False).encode('utf-8')).hexdigest()
+        if blockers:
+            compliance = 'BLOCKED'
+        elif not reqs or reviewed != len(reqs) or unresolved or not source_scope_verified:
+            compliance = 'UNRESOLVED'
+        elif all_verified == mandatory:
+            compliance = 'READY_FOR_HUMAN_DECISION'
+        else:
+            compliance = 'UNRESOLVED'
+        # Unreviewed statuses or mandatory flags always stop BID. Optional PARTIAL/UNKNOWN require explicit reviewer awareness
+        # but do not by themselves disqualify when the requirement has been reviewed and classified optional.
+        decisions = [dict(row) for row in db.execute('SELECT * FROM decisions WHERE tender_id=? ORDER BY id DESC', (tender_id,))]
+        for i, decision in enumerate(decisions):
+            past=json.loads(decision['decision_snapshot'])
+>           decision['is_current']=(i==0 and past.get('fingerprint')==fingerprint)
+                                             ^^^^^^^^
+E           AttributeError: 'list' object has no attribute 'get'
+
+app/main.py:250: AttributeError
+_____ test_incomplete_or_legacy_decision_metadata_is_historical[malformed] _____
+
+client = <starlette.testclient.TestClient object at 0x7f8ed41f69f0>
+legacy_case = 'malformed'
+
+    @pytest.mark.parametrize('legacy_case',[
+        'missing_currency_version','missing_scope_hash','missing_fingerprint','missing_scope_attestation',
+        'unsupported_currency_version','null','array','malformed'
+    ])
+    def test_incomplete_or_legacy_decision_metadata_is_historical(client,legacy_case):
+        org,t,r,ev=ready_bid(client)
+        with sqlite3.connect(main.DB) as db:
+            row=db.execute('SELECT id,decision_snapshot FROM decisions WHERE tender_id=?',(t,)).fetchone()
+            past=json.loads(row[1])
+            if legacy_case.startswith('missing_'):
+                past.pop(legacy_case.removeprefix('missing_'),None)
+                text=json.dumps(past)
+            elif legacy_case=='unsupported_currency_version':
+                past['currency_version']=0;text=json.dumps(past)
+            else:
+                text={'null':'null','array':'[]','malformed':'{not valid json'}[legacy_case]
+            db.execute('UPDATE decisions SET decision_snapshot=? WHERE id=?',(text,row[0]))
+        history=stored_decisions(t)
+>       after=client.get(f'/api/tenders/{t}').json()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+regression_tests/test_workflows.py:308: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:1053: in get
+    return self.request(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/testclient.py:463: in request
+    return super().request(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:914: in send
+    response = self._send_handling_auth(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/httpx/_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/testclient.py:360: in handle_request
+    raise exc
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/testclient.py:357: in handle_request
+    portal.call(self.app, scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/applications.py:1216: in __call__
+    await super().__call__(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/errors.py:186: in __call__
+    raise exc
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/telemetry/_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/base.py:197: in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/main.py:269: in local_security_headers
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/base.py:173: in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/base.py:149: in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/middleware/exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/_exception_handler.py:53: in wrapped_app
+    raise exc
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/routing.py:676: in __call__
+    await self.middleware_stack(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:2786: in app
+    await route.handle(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:1310: in handle
+    await super().handle(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/routing.py:282: in handle
+    await self.app(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:165: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/_exception_handler.py:53: in wrapped_app
+    raise exc
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:151: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:727: in app
+    raw_response = await run_endpoint_function(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/routing.py:362: in run_endpoint_function
+    return await run_in_threadpool(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/starlette/concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/_backends/_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/anyio/_backends/_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/telemetry/_api.py:244: in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+app/main.py:322: in tender_detail
+    out = get_snapshot(db, tender_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/main.py:249: in get_snapshot
+    past=json.loads(decision['decision_snapshot'])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7f8ed784c7a0>
+s = '{not valid json', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+>           obj, end = self.scan_once(s, idx)
+                       ^^^^^^^^^^^^^^^^^^^^^^
+E           json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py:354: JSONDecodeError
+_________________ test_current_bid_requires_current_readiness __________________
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf7a5d60>
+
+    def test_current_bid_requires_current_readiness(client):
+        org,t,r,ev=ready_bid(client);history=stored_decisions(t)
+        with sqlite3.connect(main.DB) as db:
+            db.execute('UPDATE tenders SET source_scope_fingerprint=NULL WHERE id=?',(t,))
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['compliance']=='UNRESOLVED' and after['source_scope_verified'] is False
+>       assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+E       AssertionError: assert ('BID' is None)
+
+regression_tests/test_workflows.py:320: AssertionError
+________ test_same_scope_reattestation_does_not_restore_old_bid[False] _________
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf7a4620>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f8ecf7a74d0>
+revoke = False
+
+    @pytest.mark.parametrize('revoke',[False,True])
+    def test_same_scope_reattestation_does_not_restore_old_bid(client,monkeypatch,revoke):
+        monkeypatch.setattr(main,'now',lambda:'2030-01-01T00:00:00+00:00')
+        org,t,r,ev=ready_bid(client)
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        if revoke:
+            with sqlite3.connect(main.DB) as db:
+                db.execute('UPDATE tenders SET source_scope_fingerprint=NULL WHERE id=?',(t,))
+            assert client.get(f'/api/tenders/{t}').json()['current_decision'] is None
+        attest(client,t)
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['source_scope_fingerprint']==before['source_scope_fingerprint']
+        assert after['source_scope_verified'] is True and after['compliance']=='READY_FOR_HUMAN_DECISION'
+>       assert after['source_scope_attestation']['at']==before['source_scope_attestation']['at']
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'source_scope_attestation'
+
+regression_tests/test_workflows.py:337: KeyError
+_________ test_same_scope_reattestation_does_not_restore_old_bid[True] _________
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf7a6330>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f8ecf7a7710>
+revoke = True
+
+    @pytest.mark.parametrize('revoke',[False,True])
+    def test_same_scope_reattestation_does_not_restore_old_bid(client,monkeypatch,revoke):
+        monkeypatch.setattr(main,'now',lambda:'2030-01-01T00:00:00+00:00')
+        org,t,r,ev=ready_bid(client)
+        before=client.get(f'/api/tenders/{t}').json();history=stored_decisions(t)
+        if revoke:
+            with sqlite3.connect(main.DB) as db:
+                db.execute('UPDATE tenders SET source_scope_fingerprint=NULL WHERE id=?',(t,))
+>           assert client.get(f'/api/tenders/{t}').json()['current_decision'] is None
+E           AssertionError: assert 'BID' is None
+
+regression_tests/test_workflows.py:332: AssertionError
+_ test_changed_attestation_values_invalidate_bid[source_scope_reviewer-Replacement Human Reviewer] _
+
+client = <starlette.testclient.TestClient object at 0x7f8ecea1e6c0>
+field = 'source_scope_reviewer', value = 'Replacement Human Reviewer'
+
+    @pytest.mark.parametrize('field,value',[
+        ('source_scope_reviewer','Replacement Human Reviewer'),
+        ('source_scope_note','A revised note describing the inspected source set'),
+        ('source_scope_at','2030-01-01T00:00:00+00:00')
+    ])
+    def test_changed_attestation_values_invalidate_bid(client,field,value):
+        org,t,r,ev=ready_bid(client);history=stored_decisions(t)
+        with sqlite3.connect(main.DB) as db:
+            db.execute(f'UPDATE tenders SET {field}=? WHERE id=?',(value,t))
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['source_scope_verified'] is True and after['compliance']=='READY_FOR_HUMAN_DECISION'
+>       assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+E       AssertionError: assert ('BID' is None)
+
+regression_tests/test_workflows.py:356: AssertionError
+_ test_changed_attestation_values_invalidate_bid[source_scope_note-A revised note describing the inspected source set] _
+
+client = <starlette.testclient.TestClient object at 0x7f8ecea1f5f0>
+field = 'source_scope_note'
+value = 'A revised note describing the inspected source set'
+
+    @pytest.mark.parametrize('field,value',[
+        ('source_scope_reviewer','Replacement Human Reviewer'),
+        ('source_scope_note','A revised note describing the inspected source set'),
+        ('source_scope_at','2030-01-01T00:00:00+00:00')
+    ])
+    def test_changed_attestation_values_invalidate_bid(client,field,value):
+        org,t,r,ev=ready_bid(client);history=stored_decisions(t)
+        with sqlite3.connect(main.DB) as db:
+            db.execute(f'UPDATE tenders SET {field}=? WHERE id=?',(value,t))
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['source_scope_verified'] is True and after['compliance']=='READY_FOR_HUMAN_DECISION'
+>       assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+E       AssertionError: assert ('BID' is None)
+
+regression_tests/test_workflows.py:356: AssertionError
+_ test_changed_attestation_values_invalidate_bid[source_scope_at-2030-01-01T00:00:00+00:00] _
+
+client = <starlette.testclient.TestClient object at 0x7f8ecea0cf20>
+field = 'source_scope_at', value = '2030-01-01T00:00:00+00:00'
+
+    @pytest.mark.parametrize('field,value',[
+        ('source_scope_reviewer','Replacement Human Reviewer'),
+        ('source_scope_note','A revised note describing the inspected source set'),
+        ('source_scope_at','2030-01-01T00:00:00+00:00')
+    ])
+    def test_changed_attestation_values_invalidate_bid(client,field,value):
+        org,t,r,ev=ready_bid(client);history=stored_decisions(t)
+        with sqlite3.connect(main.DB) as db:
+            db.execute(f'UPDATE tenders SET {field}=? WHERE id=?',(value,t))
+        after=client.get(f'/api/tenders/{t}').json()
+        assert after['source_scope_verified'] is True and after['compliance']=='READY_FOR_HUMAN_DECISION'
+>       assert after['current_decision'] is None and after['decisions'][0]['is_current'] is False
+E       AssertionError: assert ('BID' is None)
+
+regression_tests/test_workflows.py:356: AssertionError
+________ test_all_untrusted_spreadsheet_fields_are_literals[=SUM(1,2)] _________
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf7a4710>
+literal = '=SUM(1,2)'
+
+    @pytest.mark.parametrize('literal',[
+        '=SUM(1,2)','+SUM(1,2)','-SUM(1,2)','@SUM(1,2)',
+        ' \t=SUM(1,2)',' \t+SUM(1,2)',' \t-SUM(1,2)',' \t@SUM(1,2)',
+        "'=SUM(1,2)",'Ordinary reviewed text'
+    ])
+    def test_all_untrusted_spreadsheet_fields_are_literals(client,literal):
+        import csv
+        from openpyxl import load_workbook
+        org=add_org(client)
+        result=client.post('/api/tenders',json={'organization_id':org,'title':literal})
+        assert result.status_code==201,result.text
+        t=result.json()['id']
+        result=client.post(f'/api/tenders/{t}/requirements',json={'text':literal,'source_page':2,'source_quote':literal})
+        assert result.status_code==201,result.text
+        r=result.json()['id']
+        assert client.put(f'/api/requirements/{r}/review',json={'text':literal,'mandatory':True,'source_page':2,'source_quote':literal}).status_code==200
+        result=client.post('/api/evidence',json={'organization_id':org,'label':literal,'reference':'CERT-EXPORT','verified':True,'verification_note':'Checked signed original'})
+        assert result.status_code==201,result.text
+        assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':result.json()['id'],'notes':literal}).status_code==200
+        result=client.post(f'/api/tenders/{t}/decisions',json={'decision':'HOLD','reviewer':literal,'rationale':literal+' reviewed by a human'})
+        assert result.status_code==201,result.text
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        def escaped(text):
+            return "'"+text if text.lstrip().startswith(('=','+','-','@')) else text
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+>           assert item.data_type!='f'
+E           AssertionError: assert 'f' != 'f'
+E            +  where 'f' = <Cell 'Compliance Matrix'.B2>.data_type
+
+regression_tests/test_workflows.py:395: AssertionError
+________ test_all_untrusted_spreadsheet_fields_are_literals[+SUM(1,2)] _________
+
+client = <starlette.testclient.TestClient object at 0x7f8ecea0d910>
+literal = '+SUM(1,2)'
+
+    @pytest.mark.parametrize('literal',[
+        '=SUM(1,2)','+SUM(1,2)','-SUM(1,2)','@SUM(1,2)',
+        ' \t=SUM(1,2)',' \t+SUM(1,2)',' \t-SUM(1,2)',' \t@SUM(1,2)',
+        "'=SUM(1,2)",'Ordinary reviewed text'
+    ])
+    def test_all_untrusted_spreadsheet_fields_are_literals(client,literal):
+        import csv
+        from openpyxl import load_workbook
+        org=add_org(client)
+        result=client.post('/api/tenders',json={'organization_id':org,'title':literal})
+        assert result.status_code==201,result.text
+        t=result.json()['id']
+        result=client.post(f'/api/tenders/{t}/requirements',json={'text':literal,'source_page':2,'source_quote':literal})
+        assert result.status_code==201,result.text
+        r=result.json()['id']
+        assert client.put(f'/api/requirements/{r}/review',json={'text':literal,'mandatory':True,'source_page':2,'source_quote':literal}).status_code==200
+        result=client.post('/api/evidence',json={'organization_id':org,'label':literal,'reference':'CERT-EXPORT','verified':True,'verification_note':'Checked signed original'})
+        assert result.status_code==201,result.text
+        assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':result.json()['id'],'notes':literal}).status_code==200
+        result=client.post(f'/api/tenders/{t}/decisions',json={'decision':'HOLD','reviewer':literal,'rationale':literal+' reviewed by a human'})
+        assert result.status_code==201,result.text
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        def escaped(text):
+            return "'"+text if text.lstrip().startswith(('=','+','-','@')) else text
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+            assert item.data_type!='f'
+>           assert item.value==escaped(literal.strip())
+E           assert '+SUM(1,2)' == "'+SUM(1,2)"
+E             
+E             - '+SUM(1,2)
+E             ? -
+E             + +SUM(1,2)
+
+regression_tests/test_workflows.py:396: AssertionError
+________ test_all_untrusted_spreadsheet_fields_are_literals[-SUM(1,2)] _________
+
+client = <starlette.testclient.TestClient object at 0x7f8ecea1e6c0>
+literal = '-SUM(1,2)'
+
+    @pytest.mark.parametrize('literal',[
+        '=SUM(1,2)','+SUM(1,2)','-SUM(1,2)','@SUM(1,2)',
+        ' \t=SUM(1,2)',' \t+SUM(1,2)',' \t-SUM(1,2)',' \t@SUM(1,2)',
+        "'=SUM(1,2)",'Ordinary reviewed text'
+    ])
+    def test_all_untrusted_spreadsheet_fields_are_literals(client,literal):
+        import csv
+        from openpyxl import load_workbook
+        org=add_org(client)
+        result=client.post('/api/tenders',json={'organization_id':org,'title':literal})
+        assert result.status_code==201,result.text
+        t=result.json()['id']
+        result=client.post(f'/api/tenders/{t}/requirements',json={'text':literal,'source_page':2,'source_quote':literal})
+        assert result.status_code==201,result.text
+        r=result.json()['id']
+        assert client.put(f'/api/requirements/{r}/review',json={'text':literal,'mandatory':True,'source_page':2,'source_quote':literal}).status_code==200
+        result=client.post('/api/evidence',json={'organization_id':org,'label':literal,'reference':'CERT-EXPORT','verified':True,'verification_note':'Checked signed original'})
+        assert result.status_code==201,result.text
+        assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':result.json()['id'],'notes':literal}).status_code==200
+        result=client.post(f'/api/tenders/{t}/decisions',json={'decision':'HOLD','reviewer':literal,'rationale':literal+' reviewed by a human'})
+        assert result.status_code==201,result.text
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        def escaped(text):
+            return "'"+text if text.lstrip().startswith(('=','+','-','@')) else text
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+            assert item.data_type!='f'
+>           assert item.value==escaped(literal.strip())
+E           assert '-SUM(1,2)' == "'-SUM(1,2)"
+E             
+E             - '-SUM(1,2)
+E             ? -
+E             + -SUM(1,2)
+
+regression_tests/test_workflows.py:396: AssertionError
+________ test_all_untrusted_spreadsheet_fields_are_literals[@SUM(1,2)] _________
+
+client = <starlette.testclient.TestClient object at 0x7f8ecea0e7e0>
+literal = '@SUM(1,2)'
+
+    @pytest.mark.parametrize('literal',[
+        '=SUM(1,2)','+SUM(1,2)','-SUM(1,2)','@SUM(1,2)',
+        ' \t=SUM(1,2)',' \t+SUM(1,2)',' \t-SUM(1,2)',' \t@SUM(1,2)',
+        "'=SUM(1,2)",'Ordinary reviewed text'
+    ])
+    def test_all_untrusted_spreadsheet_fields_are_literals(client,literal):
+        import csv
+        from openpyxl import load_workbook
+        org=add_org(client)
+        result=client.post('/api/tenders',json={'organization_id':org,'title':literal})
+        assert result.status_code==201,result.text
+        t=result.json()['id']
+        result=client.post(f'/api/tenders/{t}/requirements',json={'text':literal,'source_page':2,'source_quote':literal})
+        assert result.status_code==201,result.text
+        r=result.json()['id']
+        assert client.put(f'/api/requirements/{r}/review',json={'text':literal,'mandatory':True,'source_page':2,'source_quote':literal}).status_code==200
+        result=client.post('/api/evidence',json={'organization_id':org,'label':literal,'reference':'CERT-EXPORT','verified':True,'verification_note':'Checked signed original'})
+        assert result.status_code==201,result.text
+        assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':result.json()['id'],'notes':literal}).status_code==200
+        result=client.post(f'/api/tenders/{t}/decisions',json={'decision':'HOLD','reviewer':literal,'rationale':literal+' reviewed by a human'})
+        assert result.status_code==201,result.text
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        def escaped(text):
+            return "'"+text if text.lstrip().startswith(('=','+','-','@')) else text
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+            assert item.data_type!='f'
+>           assert item.value==escaped(literal.strip())
+E           assert '@SUM(1,2)' == "'@SUM(1,2)"
+E             
+E             - '@SUM(1,2)
+E             ? -
+E             + @SUM(1,2)
+
+regression_tests/test_workflows.py:396: AssertionError
+_______ test_all_untrusted_spreadsheet_fields_are_literals[ \t=SUM(1,2)] _______
+
+client = <starlette.testclient.TestClient object at 0x7f8ecea61ac0>
+literal = ' \t=SUM(1,2)'
+
+    @pytest.mark.parametrize('literal',[
+        '=SUM(1,2)','+SUM(1,2)','-SUM(1,2)','@SUM(1,2)',
+        ' \t=SUM(1,2)',' \t+SUM(1,2)',' \t-SUM(1,2)',' \t@SUM(1,2)',
+        "'=SUM(1,2)",'Ordinary reviewed text'
+    ])
+    def test_all_untrusted_spreadsheet_fields_are_literals(client,literal):
+        import csv
+        from openpyxl import load_workbook
+        org=add_org(client)
+        result=client.post('/api/tenders',json={'organization_id':org,'title':literal})
+        assert result.status_code==201,result.text
+        t=result.json()['id']
+        result=client.post(f'/api/tenders/{t}/requirements',json={'text':literal,'source_page':2,'source_quote':literal})
+        assert result.status_code==201,result.text
+        r=result.json()['id']
+        assert client.put(f'/api/requirements/{r}/review',json={'text':literal,'mandatory':True,'source_page':2,'source_quote':literal}).status_code==200
+        result=client.post('/api/evidence',json={'organization_id':org,'label':literal,'reference':'CERT-EXPORT','verified':True,'verification_note':'Checked signed original'})
+        assert result.status_code==201,result.text
+        assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':result.json()['id'],'notes':literal}).status_code==200
+        result=client.post(f'/api/tenders/{t}/decisions',json={'decision':'HOLD','reviewer':literal,'rationale':literal+' reviewed by a human'})
+        assert result.status_code==201,result.text
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        def escaped(text):
+            return "'"+text if text.lstrip().startswith(('=','+','-','@')) else text
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+>           assert item.data_type!='f'
+E           AssertionError: assert 'f' != 'f'
+E            +  where 'f' = <Cell 'Compliance Matrix'.B2>.data_type
+
+regression_tests/test_workflows.py:395: AssertionError
+_______ test_all_untrusted_spreadsheet_fields_are_literals[ \t+SUM(1,2)] _______
+
+client = <starlette.testclient.TestClient object at 0x7f8ecea1e7e0>
+literal = ' \t+SUM(1,2)'
+
+    @pytest.mark.parametrize('literal',[
+        '=SUM(1,2)','+SUM(1,2)','-SUM(1,2)','@SUM(1,2)',
+        ' \t=SUM(1,2)',' \t+SUM(1,2)',' \t-SUM(1,2)',' \t@SUM(1,2)',
+        "'=SUM(1,2)",'Ordinary reviewed text'
+    ])
+    def test_all_untrusted_spreadsheet_fields_are_literals(client,literal):
+        import csv
+        from openpyxl import load_workbook
+        org=add_org(client)
+        result=client.post('/api/tenders',json={'organization_id':org,'title':literal})
+        assert result.status_code==201,result.text
+        t=result.json()['id']
+        result=client.post(f'/api/tenders/{t}/requirements',json={'text':literal,'source_page':2,'source_quote':literal})
+        assert result.status_code==201,result.text
+        r=result.json()['id']
+        assert client.put(f'/api/requirements/{r}/review',json={'text':literal,'mandatory':True,'source_page':2,'source_quote':literal}).status_code==200
+        result=client.post('/api/evidence',json={'organization_id':org,'label':literal,'reference':'CERT-EXPORT','verified':True,'verification_note':'Checked signed original'})
+        assert result.status_code==201,result.text
+        assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':result.json()['id'],'notes':literal}).status_code==200
+        result=client.post(f'/api/tenders/{t}/decisions',json={'decision':'HOLD','reviewer':literal,'rationale':literal+' reviewed by a human'})
+        assert result.status_code==201,result.text
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        def escaped(text):
+            return "'"+text if text.lstrip().startswith(('=','+','-','@')) else text
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+            assert item.data_type!='f'
+>           assert item.value==escaped(literal.strip())
+E           assert '+SUM(1,2)' == "'+SUM(1,2)"
+E             
+E             - '+SUM(1,2)
+E             ? -
+E             + +SUM(1,2)
+
+regression_tests/test_workflows.py:396: AssertionError
+_______ test_all_untrusted_spreadsheet_fields_are_literals[ \t-SUM(1,2)] _______
+
+client = <starlette.testclient.TestClient object at 0x7f8ecea59400>
+literal = ' \t-SUM(1,2)'
+
+    @pytest.mark.parametrize('literal',[
+        '=SUM(1,2)','+SUM(1,2)','-SUM(1,2)','@SUM(1,2)',
+        ' \t=SUM(1,2)',' \t+SUM(1,2)',' \t-SUM(1,2)',' \t@SUM(1,2)',
+        "'=SUM(1,2)",'Ordinary reviewed text'
+    ])
+    def test_all_untrusted_spreadsheet_fields_are_literals(client,literal):
+        import csv
+        from openpyxl import load_workbook
+        org=add_org(client)
+        result=client.post('/api/tenders',json={'organization_id':org,'title':literal})
+        assert result.status_code==201,result.text
+        t=result.json()['id']
+        result=client.post(f'/api/tenders/{t}/requirements',json={'text':literal,'source_page':2,'source_quote':literal})
+        assert result.status_code==201,result.text
+        r=result.json()['id']
+        assert client.put(f'/api/requirements/{r}/review',json={'text':literal,'mandatory':True,'source_page':2,'source_quote':literal}).status_code==200
+        result=client.post('/api/evidence',json={'organization_id':org,'label':literal,'reference':'CERT-EXPORT','verified':True,'verification_note':'Checked signed original'})
+        assert result.status_code==201,result.text
+        assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':result.json()['id'],'notes':literal}).status_code==200
+        result=client.post(f'/api/tenders/{t}/decisions',json={'decision':'HOLD','reviewer':literal,'rationale':literal+' reviewed by a human'})
+        assert result.status_code==201,result.text
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        def escaped(text):
+            return "'"+text if text.lstrip().startswith(('=','+','-','@')) else text
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+            assert item.data_type!='f'
+>           assert item.value==escaped(literal.strip())
+E           assert '-SUM(1,2)' == "'-SUM(1,2)"
+E             
+E             - '-SUM(1,2)
+E             ? -
+E             + -SUM(1,2)
+
+regression_tests/test_workflows.py:396: AssertionError
+_______ test_all_untrusted_spreadsheet_fields_are_literals[ \t@SUM(1,2)] _______
+
+client = <starlette.testclient.TestClient object at 0x7f8ecf7a75f0>
+literal = ' \t@SUM(1,2)'
+
+    @pytest.mark.parametrize('literal',[
+        '=SUM(1,2)','+SUM(1,2)','-SUM(1,2)','@SUM(1,2)',
+        ' \t=SUM(1,2)',' \t+SUM(1,2)',' \t-SUM(1,2)',' \t@SUM(1,2)',
+        "'=SUM(1,2)",'Ordinary reviewed text'
+    ])
+    def test_all_untrusted_spreadsheet_fields_are_literals(client,literal):
+        import csv
+        from openpyxl import load_workbook
+        org=add_org(client)
+        result=client.post('/api/tenders',json={'organization_id':org,'title':literal})
+        assert result.status_code==201,result.text
+        t=result.json()['id']
+        result=client.post(f'/api/tenders/{t}/requirements',json={'text':literal,'source_page':2,'source_quote':literal})
+        assert result.status_code==201,result.text
+        r=result.json()['id']
+        assert client.put(f'/api/requirements/{r}/review',json={'text':literal,'mandatory':True,'source_page':2,'source_quote':literal}).status_code==200
+        result=client.post('/api/evidence',json={'organization_id':org,'label':literal,'reference':'CERT-EXPORT','verified':True,'verification_note':'Checked signed original'})
+        assert result.status_code==201,result.text
+        assert client.put(f'/api/requirements/{r}/status',json={'status':'VERIFIED','evidence_id':result.json()['id'],'notes':literal}).status_code==200
+        result=client.post(f'/api/tenders/{t}/decisions',json={'decision':'HOLD','reviewer':literal,'rationale':literal+' reviewed by a human'})
+        assert result.status_code==201,result.text
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        def escaped(text):
+            return "'"+text if text.lstrip().startswith(('=','+','-','@')) else text
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+            assert item.data_type!='f'
+>           assert item.value==escaped(literal.strip())
+E           assert '@SUM(1,2)' == "'@SUM(1,2)"
+E             
+E             - '@SUM(1,2)
+E             ? -
+E             + @SUM(1,2)
+
+regression_tests/test_workflows.py:396: AssertionError
+__________ test_spreadsheet_export_escapes_stored_leading_whitespace ___________
+
+client = <starlette.testclient.TestClient object at 0x7f8ecea0db50>
+
+    def test_spreadsheet_export_escapes_stored_leading_whitespace(client):
+        from openpyxl import load_workbook
+        org,t,r,ev=ready_bid(client)
+        literal=' \t=SUM(1,2)'
+        with sqlite3.connect(main.DB) as db:
+            db.execute('UPDATE tenders SET title=? WHERE id=?',(literal,t))
+            db.execute('UPDATE requirements SET text=?,source_quote=?,notes=? WHERE id=?',(literal,literal,literal,r))
+            db.execute('UPDATE evidence SET label=? WHERE id=?',(literal,ev))
+            db.execute('UPDATE decisions SET reviewer=?,rationale=? WHERE tender_id=?',(literal,literal,t))
+        book=load_workbook(io.BytesIO(client.get(f'/api/tenders/{t}/export.xlsx').content),data_only=False)
+        for cell in ['B2','E8','G8','H8','I8']:
+            item=book['Compliance Matrix'][cell]
+>           assert item.value=="'"+literal and item.data_type!='f'
+E           assert (' \t=SUM(1,2)' == "' \t=SUM(1,2)"
+E             
+E             - ' 	=SUM(1,2)
+E             ? -
+E             +  	=SUM(1,2))
+
+regression_tests/test_workflows.py:419: AssertionError
+=============================== warnings summary ===============================
+../../.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /workspace/.venvs/tenderos-baseline/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED regression_tests/test_workflows.py::test_zero_candidate_addendum_invalidates_bid_without_rewriting_history
+FAILED regression_tests/test_workflows.py::test_source_inventory_mutation_invalidates_bid[name-revised-addendum.pdf]
+FAILED regression_tests/test_workflows.py::test_source_inventory_mutation_invalidates_bid[sha256-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]
+FAILED regression_tests/test_workflows.py::test_source_inventory_mutation_invalidates_bid[bytes-12345]
+FAILED regression_tests/test_workflows.py::test_source_inventory_mutation_invalidates_bid[pages-2]
+FAILED regression_tests/test_workflows.py::test_source_inventory_mutation_invalidates_bid[uploaded_at-2030-01-01T00:00:00+00:00]
+FAILED regression_tests/test_workflows.py::test_changed_requirement_source_association_invalidates_bid
+FAILED regression_tests/test_workflows.py::test_linked_evidence_mutations_invalidate_bid[label-Replacement certificate]
+FAILED regression_tests/test_workflows.py::test_linked_evidence_mutations_invalidate_bid[reference-CERT-REVISED]
+FAILED regression_tests/test_workflows.py::test_linked_evidence_mutations_invalidate_bid[verification_note-Rechecked against a replacement signed original]
+FAILED regression_tests/test_workflows.py::test_linked_evidence_mutations_invalidate_bid[expires_on-2027-01-07]
+FAILED regression_tests/test_workflows.py::test_changed_evidence_mapping_notes_invalidate_bid
+FAILED regression_tests/test_workflows.py::test_incomplete_or_legacy_decision_metadata_is_historical[missing_currency_version]
+FAILED regression_tests/test_workflows.py::test_incomplete_or_legacy_decision_metadata_is_historical[missing_scope_hash]
+FAILED regression_tests/test_workflows.py::test_incomplete_or_legacy_decision_metadata_is_historical[missing_scope_attestation]
+FAILED regression_tests/test_workflows.py::test_incomplete_or_legacy_decision_metadata_is_historical[unsupported_currency_version]
+FAILED regression_tests/test_workflows.py::test_incomplete_or_legacy_decision_metadata_is_historical[null]
+FAILED regression_tests/test_workflows.py::test_incomplete_or_legacy_decision_metadata_is_historical[array]
+FAILED regression_tests/test_workflows.py::test_incomplete_or_legacy_decision_metadata_is_historical[malformed]
+FAILED regression_tests/test_workflows.py::test_current_bid_requires_current_readiness
+FAILED regression_tests/test_workflows.py::test_same_scope_reattestation_does_not_restore_old_bid[False]
+FAILED regression_tests/test_workflows.py::test_same_scope_reattestation_does_not_restore_old_bid[True]
+FAILED regression_tests/test_workflows.py::test_changed_attestation_values_invalidate_bid[source_scope_reviewer-Replacement Human Reviewer]
+FAILED regression_tests/test_workflows.py::test_changed_attestation_values_invalidate_bid[source_scope_note-A revised note describing the inspected source set]
+FAILED regression_tests/test_workflows.py::test_changed_attestation_values_invalidate_bid[source_scope_at-2030-01-01T00:00:00+00:00]
+FAILED regression_tests/test_workflows.py::test_all_untrusted_spreadsheet_fields_are_literals[=SUM(1,2)]
+FAILED regression_tests/test_workflows.py::test_all_untrusted_spreadsheet_fields_are_literals[+SUM(1,2)]
+FAILED regression_tests/test_workflows.py::test_all_untrusted_spreadsheet_fields_are_literals[-SUM(1,2)]
+FAILED regression_tests/test_workflows.py::test_all_untrusted_spreadsheet_fields_are_literals[@SUM(1,2)]
+FAILED regression_tests/test_workflows.py::test_all_untrusted_spreadsheet_fields_are_literals[ \t=SUM(1,2)]
+FAILED regression_tests/test_workflows.py::test_all_untrusted_spreadsheet_fields_are_literals[ \t+SUM(1,2)]
+FAILED regression_tests/test_workflows.py::test_all_untrusted_spreadsheet_fields_are_literals[ \t-SUM(1,2)]
+FAILED regression_tests/test_workflows.py::test_all_untrusted_spreadsheet_fields_are_literals[ \t@SUM(1,2)]
+FAILED regression_tests/test_workflows.py::test_spreadsheet_export_escapes_stored_leading_whitespace
+34 failed, 18 passed, 1 warning in 5.88s

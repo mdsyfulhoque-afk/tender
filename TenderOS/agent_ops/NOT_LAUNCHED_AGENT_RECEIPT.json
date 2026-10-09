@@ -1,0 +1,11 @@
+{
+  "task_id": "T-000",
+  "status": "NOT_LAUNCHED",
+  "reason": "No exposed Work cloud transfer or Codex delegated execution interface in the source session",
+  "agent_runtime": null,
+  "agent_id": null,
+  "run_id": null,
+  "tool_trace": null,
+  "reviewer_run_id": null,
+  "source_changes": "NONE"
+}

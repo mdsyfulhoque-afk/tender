@@ -1,0 +1,180 @@
+{
+  "task_id": "T-003",
+  "agent_runtime": "Codex collaboration runtime",
+  "delegation_tool": "collaboration.spawn_agent",
+  "agent_id": "/root/tenderos_scoped_repairs",
+  "run_id": null,
+  "run_id_status": "Separate opaque runtime run IDs not exposed; canonical task identity is actual",
+  "receipt_created_utc": "2026-10-09T16:23:14.274154+00:00",
+  "branch_or_worktree": "/workspace/tenderos-fix @ tenderos/fix-readiness-exports",
+  "baseline_commit": "ca819a902f5f8ac1bc18b10238505c3cd773cca6",
+  "source_hashes_before": {
+    "TenderOS/app/main.py": "e24389f50d33565b48fb534eb49033c85a7eced2b57a58b14fde69dd16f1e74c",
+    "TenderOS/tests/test_workflows.py": "511bcf5b1634ead4382dbe0a103ce969af721cac0d68b619557f3018f0c01274"
+  },
+  "tool_logs_location": "/workspace/tenderos-repair-runtime",
+  "allowed_tools_and_permissions": [
+    "Read repo files",
+    "Modify only TenderOS/app/main.py and TenderOS/tests/test_workflows.py",
+    "Write outside runtime artifacts",
+    "Run local synthetic regression tests",
+    "Local commit only"
+  ],
+  "data_egress": "No model/network/customer-data operations",
+  "independent_reviewer_run_id": null,
+  "limitations": [
+    "No independent QA acceptance yet",
+    "No separate opaque run IDs available",
+    "No provider or full PRD approval asserted",
+    "No production deployment/merge/push authorized by this bounded task"
+  ],
+  "delegated_read_only_consult": "/root/tenderos_scoped_repairs/repair_review_plan",
+  "patched_tests": {
+    "command": [
+      "/workspace/.venvs/tenderos-baseline/bin/python",
+      "-m",
+      "pytest",
+      "tests",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "--basetemp",
+      "/workspace/tenderos-repair-runtime/pytest-patched"
+    ],
+    "cwd": "/workspace/tenderos-fix/TenderOS",
+    "environment": {
+      "TENDEROS_DATA_DIR": "/workspace/tenderos-repair-runtime/patched-data",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"
+    },
+    "start_utc": "2026-10-09T16:28:04.076868+00:00",
+    "end_utc": "2026-10-09T16:28:09.382730+00:00",
+    "exit_code": 0,
+    "log_path": "/workspace/tenderos-repair-runtime/patched-tests.log"
+  },
+  "original-baseline": {
+    "command": [
+      "/workspace/.venvs/tenderos-baseline/bin/python",
+      "-m",
+      "pytest",
+      "tests",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "--basetemp",
+      "/workspace/tenderos-repair-runtime/pytest-original-baseline"
+    ],
+    "cwd": "/workspace/tenderos-repair-runtime/original",
+    "environment": {
+      "TENDEROS_DATA_DIR": "/workspace/tenderos-repair-runtime/original-baseline-data",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"
+    },
+    "start_utc": "2026-10-09T16:28:37.604797+00:00",
+    "end_utc": "2026-10-09T16:28:39.407328+00:00",
+    "exit_code": 0,
+    "log_path": "/workspace/tenderos-repair-runtime/original-baseline-tests.log",
+    "source_sha256": "e24389f50d33565b48fb534eb49033c85a7eced2b57a58b14fde69dd16f1e74c"
+  },
+  "original-regressions": {
+    "command": [
+      "/workspace/.venvs/tenderos-baseline/bin/python",
+      "-m",
+      "pytest",
+      "regression_tests",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "--basetemp",
+      "/workspace/tenderos-repair-runtime/pytest-original-regressions"
+    ],
+    "cwd": "/workspace/tenderos-repair-runtime/original",
+    "environment": {
+      "TENDEROS_DATA_DIR": "/workspace/tenderos-repair-runtime/original-regressions-data",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"
+    },
+    "start_utc": "2026-10-09T16:28:39.407677+00:00",
+    "end_utc": "2026-10-09T16:28:45.683822+00:00",
+    "exit_code": 1,
+    "log_path": "/workspace/tenderos-repair-runtime/original-regressions-tests.log",
+    "source_sha256": "e24389f50d33565b48fb534eb49033c85a7eced2b57a58b14fde69dd16f1e74c"
+  },
+  "source_hashes_after": {
+    "TenderOS/app/main.py": "5377bf1e87eff9e0641ceb5103b96aa1bad978690ab6551375bdb7189777b5b0",
+    "TenderOS/tests/test_workflows.py": "d636814627614a150696c33394ccec88b19a94f9eb5af834612996b650614bda"
+  },
+  "diff_sha256": "ede40690f81b29607a4d6599491e61e22f33008df531392fa402cde1290fdc54",
+  "diff_summary": "TenderOS/app/main.py             |  50 +++++--\n TenderOS/tests/test_workflows.py | 272 +++++++++++++++++++++++++++++++++++++++\n 2 files changed, 309 insertions(+), 13 deletions(-)",
+  "test_results": {
+    "patched_suite": "52 passed, zero failures/errors/skips",
+    "original_suite_on_original_source": "10 passed, zero failures/errors/skips",
+    "patched_suite_on_original_source": "34 failed, 18 passed; expected failures demonstrate defects",
+    "warning": "Existing Starlette httpx TestClient deprecation warning only"
+  },
+  "tool_execution_trace": [
+    {
+      "tool": "functions.exec -> tools.exec_command",
+      "chunk_id": "ea9faf",
+      "activity": "Create original source copy, pre-edit hashes and actual canonical identity receipt"
+    },
+    {
+      "tool": "functions.exec -> tools.apply_patch",
+      "activity": "Scoped application repair and regression test edits; transcript is live trace"
+    },
+    {
+      "tool": "functions.exec -> tools.exec_command",
+      "chunk_id": "2da947",
+      "activity": "Run complete patched 52-test suite"
+    },
+    {
+      "tool": "functions.exec -> tools.exec_command",
+      "chunk_id": "5f55a5",
+      "activity": "Run unchanged original 10-test suite and all 52 tests against unchanged original source"
+    },
+    {
+      "tool": "functions.exec -> tools.exec_command",
+      "chunk_id": "05cd03",
+      "activity": "Inspect exact two-file candidate diff"
+    },
+    {
+      "tool": "functions.exec -> tools.exec_command",
+      "chunk_id": "546f82",
+      "activity": "Diff check and recorded source/diff/output hashes"
+    },
+    {
+      "tool": "functions.exec -> tools.exec_command",
+      "chunk_id": "ba970c",
+      "activity": "Stage exactly the two authorized application/test files"
+    },
+    {
+      "tool": "functions.exec -> tools.exec_command",
+      "chunk_id": "4eed7b",
+      "activity": "Create local immutable candidate commit"
+    }
+  ],
+  "output_sha256": {
+    "/workspace/tenderos-repair-runtime/candidate.diff": "ede40690f81b29607a4d6599491e61e22f33008df531392fa402cde1290fdc54",
+    "/workspace/tenderos-repair-runtime/patched-tests.log": "57661a695d09cbf514418d21425baba80329d18eac440c652d6cf37a793ad0b9",
+    "/workspace/tenderos-repair-runtime/original-baseline-tests.log": "40136f85e71b6c265d0c6cf97773c54bd44d22c487637b2cdba48717dc713086",
+    "/workspace/tenderos-repair-runtime/original-regressions-tests.log": "81b65b8878d36e6c8c0ef1a1b08674832b0918805a895bacbbff859d553bc827"
+  },
+  "candidate_prepared_utc": "2026-10-09T16:29:44.765425+00:00",
+  "commit_sha": "3cbcb46acd1ceb17d937d9c2bbc913ed44817485",
+  "committed_files": [
+    "TenderOS/app/main.py",
+    "TenderOS/tests/test_workflows.py"
+  ],
+  "worktree_status_after_commit": "",
+  "start_end_utc": [
+    "2026-10-09T16:23:14.274154+00:00",
+    "2026-10-09T16:30:25.576788+00:00"
+  ],
+  "open_risks": [
+    "Candidate awaits independently executed QA and security review",
+    "Existing local pilot lacks authenticated reviewer/production tenant security",
+    "Legacy decisions remain historical and require fresh source attestation and human decision",
+    "No product-time model agents added",
+    "No production deployment/merge/push performed"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  ".gitignore": {
+    "baseline_sha256": "00eae913ca57ce7dbb5fbae904e98f1aeb0b206ef8651e04407f9d8d2fe6a849",
+    "transfer_sha256": "00eae913ca57ce7dbb5fbae904e98f1aeb0b206ef8651e04407f9d8d2fe6a849",
+    "identical": true
+  },
+  "README.md": {
+    "baseline_sha256": "9ebc0ddb3aa57e986d65a5351da4bb7ee6807a54c54fb292522fa01d6cee7911",
+    "transfer_sha256": "9ebc0ddb3aa57e986d65a5351da4bb7ee6807a54c54fb292522fa01d6cee7911",
+    "identical": true
+  },
+  "requirements.txt": {
+    "baseline_sha256": "08a22f7263cbf8337774f642bb34a31e9aac82ac5015ebb699600567502cc920",
+    "transfer_sha256": "08a22f7263cbf8337774f642bb34a31e9aac82ac5015ebb699600567502cc920",
+    "identical": true
+  },
+  "app/main.py": {
+    "baseline_sha256": "e24389f50d33565b48fb534eb49033c85a7eced2b57a58b14fde69dd16f1e74c",
+    "transfer_sha256": "e24389f50d33565b48fb534eb49033c85a7eced2b57a58b14fde69dd16f1e74c",
+    "identical": true
+  },
+  "app/static/index.html": {
+    "baseline_sha256": "fbe6e399da5cfdf6fdae3eec0248061ab90e5482b4c98cb0a68643909f67fd51",
+    "transfer_sha256": "fbe6e399da5cfdf6fdae3eec0248061ab90e5482b4c98cb0a68643909f67fd51",
+    "identical": true
+  },
+  "app/static/style.css": {
+    "baseline_sha256": "fe6211ffdd50ee909fbd1639e35f4daaf31297c17fb312917093210f7bf74596",
+    "transfer_sha256": "fe6211ffdd50ee909fbd1639e35f4daaf31297c17fb312917093210f7bf74596",
+    "identical": true
+  },
+  "app/static/ui.js": {
+    "baseline_sha256": "cfb6cd9fe496337134ac1f5fdf1defd27f9c4a136ea0334344b2cf4e0892ce00",
+    "transfer_sha256": "cfb6cd9fe496337134ac1f5fdf1defd27f9c4a136ea0334344b2cf4e0892ce00",
+    "identical": true
+  },
+  "tests/conftest.py": {
+    "baseline_sha256": "2ec1e36f1f476a733e93d6b9a3404eaea6bd7d3d10c868f6cdc77828f68b30be",
+    "transfer_sha256": "2ec1e36f1f476a733e93d6b9a3404eaea6bd7d3d10c868f6cdc77828f68b30be",
+    "identical": true
+  },
+  "tests/test_workflows.py": {
+    "baseline_sha256": "511bcf5b1634ead4382dbe0a103ce969af721cac0d68b619557f3018f0c01274",
+    "transfer_sha256": "511bcf5b1634ead4382dbe0a103ce969af721cac0d68b619557f3018f0c01274",
+    "identical": true
+  },
+  "docs/COMPANY_BLUEPRINT.md": {
+    "baseline_sha256": "02e43bb7568ea63fffcf85c7e32f4d39f11cac035dacfcfa312992f511807edd",
+    "transfer_sha256": "02e43bb7568ea63fffcf85c7e32f4d39f11cac035dacfcfa312992f511807edd",
+    "identical": true
+  }
+}

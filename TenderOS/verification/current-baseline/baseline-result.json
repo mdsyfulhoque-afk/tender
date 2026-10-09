@@ -1,0 +1,24 @@
+{
+  "all_ten_tests_executed": true,
+  "command_argv": [
+    "/workspace/.venvs/tenderos-baseline/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp=/workspace/tenderos-audit-runtime/baseline-tmp"
+  ],
+  "cwd": "/workspace/tender/TenderOS",
+  "end_utc": "2026-10-09T15:47:42.524684Z",
+  "environment_overrides": {
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TENDEROS_DATA_DIR": "/workspace/tenderos-audit-runtime/baseline-import-data"
+  },
+  "exit_code": 0,
+  "failed": 0,
+  "passed": 10,
+  "skipped": 0,
+  "start_utc": "2026-10-09T15:47:40.835697Z"
+}

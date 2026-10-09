@@ -1,0 +1,8 @@
+Command: pytest -q -p no:cacheprovider
+Exit: 0
+STDOUT:
+..........                                                               [100%]
+10 passed in 0.71s
+
+STDERR:
+
