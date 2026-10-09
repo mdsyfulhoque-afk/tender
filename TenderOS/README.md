@@ -4,6 +4,12 @@
 
 **Vercel preparation:** branch `tenderos/deploy-vercel` adds a protected single-owner hosted mode with managed PostgreSQL, private Vercel Blob storage, authenticated reviewer identity and CSRF protection. See [deployment instructions](DEPLOY_VERCEL.md) and [deployment preparation evidence](verification/vercel-preparation/REPORT.md). The hosted changes passed independent static review; unit tests and live provider validation have not run for this candidate. Deployment is pending an authenticated Vercel workspace and API network access.
 
+## Deployment access followup
+
+The Vercel Git integration reacted to deployment head `fbe96b4f51c7400d9ada1bdf2fe763fef54c4f07`, but its status failed: "Git author IP3consulting must have access to the project on Vercel to create deployments." The [Vercel bot comment on PR #2](https://github.com/mdsyfulhoque-afk/tender/pull/2#issuecomment-6087417578) confirms a team access requirement. Its successful preview-comment check only confirms that the bot posted a comment.
+
+The connected GitHub account is `mdsyfulhoque-afk`; this documentation update is submitted through that authenticated connection, with no author override or history rewrite. Vercel will evaluate the actual new commit identity. The user confirmed their supplied access is the Vercel plugin connection. Current cloud observations still show no CLI login, token secret or supported Vercel API network access. Project configuration, managed resources and live deployment remain unverified.
+
 ## Existing repository
 The existing `ProposalGuard/` directory is an independent TenderProof OS / ProposalGuard archive. Preserve it. TenderOS must be imported into its own `TenderOS/` directory; do not overwrite `ProposalGuard/` or the default branch.
 
