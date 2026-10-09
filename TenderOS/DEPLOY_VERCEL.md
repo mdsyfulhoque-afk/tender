@@ -9,12 +9,18 @@ access; local mode retains SQLite. `TENDEROS_DATA_DIR=/tmp/...` is not a hosted
 storage fallback. Application packaging does not create those resources or
 establish an account connection or deployment URL.
 
+Use only services and operations within their free-tier allowances. Do not
+auto-upgrade plans, enable chargeable overages, or make billable AI/API calls.
+Keep model/provider API settings unset. Confirm database, file storage and
+hosting quotas before provisioning or deploying; a required paid operation
+must not proceed automatically.
+
 ## Project settings
 
 | Setting | Value |
 | --- | --- |
 | Repository | `mdsyfulhoque-afk/tender` |
-| Reviewed integration branch | `tenderos/import-v1.2` |
+| Reviewed integration branch | `tenderos/deploy-vercel` |
 | Root Directory | `TenderOS` |
 | Framework Preset | FastAPI |
 | Application entrypoint | `app/main.py`, exporting `app` (`app.main:app`) |
@@ -66,8 +72,10 @@ permitted. Missing service/authentication configuration must fail closed.
 Add new runtime files explicitly. Knowledge, receipts, tests, databases, uploads,
 logs, dotenv and Vercel local state are excluded by default; `vercel.json` also
 excludes them from the function bundle. `scripts/migrate_postgres.py` and
-`scripts/postgres_schema.sql` are operator migration tools, not runtime upload
-files; execute them from the trusted source checkout before deployment.
+`scripts/postgres_schema.sql` and
+`scripts/postgres_migrations/002_document_registry.sql` are operator migration
+tools, not runtime upload files; execute the runner from the trusted source
+checkout before deployment.
 
 With the managed database URL already configured securely in the operator's
 environment, apply the idempotent schema migration explicitly:
@@ -78,8 +86,12 @@ python -m pip install -r requirements.txt
 python scripts/migrate_postgres.py --apply
 ```
 
-This uses a transaction/advisory lock and migration digest marker; function
-startup never applies DDL. It does not import SQLite or customer data.
+The runner applies the initial v1 schema and additive v2 document-registry
+migration using a transaction/advisory lock and migration digest markers.
+Existing versioned v1 databases receive only v2; saved application records and
+decision history are preserved. Repeated runs validate the recorded digests.
+Function startup never applies DDL. The runner does not import SQLite or
+customer data.
 
 Git integration can clone the private repository for its build; a CLI ignore
 file does not prevent that. Root Directory limits the application build, and
@@ -126,6 +138,7 @@ Configuration is based on the current official Vercel source inspected on
 - [Function configuration schema](https://github.com/vercel/vercel/blob/c628be7835e03a965b93e9cf9e2bd5ac2acbf5eb/packages/build-utils/src/schemas.ts)
 - [FastAPI deployment documentation](https://vercel.com/docs/frameworks/backend/fastapi)
 
-This packaging agent performed static inspection only, with no application
-tests, Vercel build, login or deployment. The final frozen application and its
-actual managed services require independent verification before deployment.
+The original packaging review performed static inspection only. The current
+model-free workflow suite subsequently passed 93 local tests, with no failures
+or skips. Live Vercel build/runtime, managed-service authorization and persistence
+remain unverified; verify the actual deployed application before promotion.
