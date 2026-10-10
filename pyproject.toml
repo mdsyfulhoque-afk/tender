@@ -1,0 +1,16 @@
+[project]
+name = "tenderos-root-deploy"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.110,<1",
+    "uvicorn>=0.27,<1",
+    "python-multipart>=0.0.9,<1",
+    "pypdf>=4,<7",
+    "python-docx>=1.1,<2",
+    "openpyxl>=3.1,<4",
+    "psycopg[binary]>=3.2,<4",
+]
+
+[tool.vercel]
+entrypoint = "TenderOS.app.main:app"

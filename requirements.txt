@@ -1,0 +1,2 @@
+# Keep the deployment dependencies aligned with the TenderOS application.
+-r TenderOS/requirements.txt

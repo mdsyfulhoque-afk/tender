@@ -28,6 +28,9 @@ _INSERT_ID_TABLES = frozenset({
     'organizations', 'tenders', 'sources', 'requirements', 'evidence',
     'decisions', 'audit_events',
     'tender_inventory_items', 'evidence_files',
+    'workflow_jobs', 'workflow_steps', 'workflow_artifacts',
+    'workflow_events', 'workflow_candidate_reviews',
+    'service_intakes', 'commercial_ledger', 'diagnostic_releases',
 })
 _INSERT_TABLE = re.compile(r'^\s*INSERT\s+INTO\s+([a-z_][a-z_0-9]*)\s*\(', re.I)
 _FORBIDDEN_QUERY_OPTIONS = frozenset({

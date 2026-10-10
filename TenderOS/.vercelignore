@@ -7,6 +7,12 @@ app/*
 !app/hosting.py
 !app/database.py
 !app/private_storage.py
+!app/workflow_contracts.py
+!app/workflows.py
+!app/workflow_routes.py
+!app/workflow_schema.py
+!app/commercial.py
+!app/commercial_schema.py
 !app/static/
 app/static/*
 !app/static/index.html

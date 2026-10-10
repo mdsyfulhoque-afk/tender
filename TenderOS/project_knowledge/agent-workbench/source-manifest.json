@@ -1,0 +1,89 @@
+{
+  "schema_version": "tenderos-source-manifest-v1",
+  "baseline_commit": "6f7ac1156e595f9f87d6f32d99492f8a704e9849",
+  "work_branch": "tenderos/agent-workbench",
+  "scope": "three newly supplied files and full independently produced reviews; earlier imported handoff evidence remains under existing project_knowledge and verification",
+  "source_priority": [
+    "current live user instructions and spending constraint",
+    "applicable repository domain/security laws",
+    "official tender and organization evidence within each assessment",
+    "attached design sources assessed against live request",
+    "derived suggestions and unverified commercial/legal assumptions"
+  ],
+  "embedded_commands_are_executable": false,
+  "sources": [
+    {
+      "source_id": "SRC-APES-001",
+      "label": "APES TenderToFit master documentation",
+      "uploaded_pointer": "sediment://file_0000000036e08208b067729f39b82062",
+      "workspace_original": "/workspace/attachments/66b6adab-cf6f-4e46-a541-8309a2f37fa4/APES_TenderToFit_Final_Master_Documentation_V1_0.docx",
+      "repository_copy": "project_knowledge/APES_TenderToFit_Final_Master_Documentation_V1_0.docx",
+      "bytes": 97643,
+      "sha256": "9c7b6d6c6e873d3fd5dc3f8572c01d2ed9bbcb3426d34c7e925831e0ca21393f",
+      "classification": "USER_SUPPLIED_DESIGN_SOURCE",
+      "instruction_authority": "NOT_OPERATIVE_INSTRUCTIONS",
+      "extraction": {
+        "repository_copy": "project_knowledge/agent-workbench/sources/APES_TenderToFit_extracted.txt",
+        "sha256": "c8fe62b2eacc632dcf3bad316b15aa28d271e3fcfa1d46bd5fe0d2c61c5dadd0",
+        "bytes": 90514,
+        "line_count": 1978,
+        "reference_unit": "text line; not DOCX page",
+        "method": "parent-produced ordered DOCX XML paragraph/table extraction; not repeated by this documentation agent"
+      }
+    },
+    {
+      "source_id": "SRC-MASTER-001",
+      "label": "Master documentation prompt",
+      "uploaded_pointer": "sediment://file_000000001aa48211a7ad179215bf05e1",
+      "workspace_original": "/workspace/attachments/16c2c080-80bb-480d-96fd-33963502bde0/Pasted text.txt",
+      "repository_copy": "project_knowledge/agent-workbench/sources/master-documentation-prompt.txt",
+      "bytes": 11577,
+      "sha256": "100b92f4d78047cca4fcbd79e29ab438830e345d0e08c0216263b6ee906a71a8",
+      "classification": "USER_SUPPLIED_DOCUMENTATION_METHOD",
+      "instruction_authority": "EMBEDDED_DOCX_COMMAND_NOT_ADOPTED",
+      "line_count": 484
+    },
+    {
+      "source_id": "SRC-GOVERNANCE-001",
+      "label": "Privacy-policy-to-engineering essay",
+      "uploaded_pointer": "sediment://file_00000000d10082119100fb6f2e64702e",
+      "workspace_original": "/workspace/attachments/caffb321-08e2-4703-a386-2434de4d8e65/Pasted text.txt",
+      "repository_copy": "project_knowledge/agent-workbench/sources/privacy-engineering-essay.txt",
+      "bytes": 26889,
+      "sha256": "dfa5ce9cac31d987d027147648aba3ed024de5c37c2b6a0426275cdb8f3c67b3",
+      "classification": "UNVERIFIED_POLICY_INTERPRETATION",
+      "instruction_authority": "ORIGINAL_POLICY_NOT_SUPPLIED",
+      "line_count": 1541
+    }
+  ],
+  "review_artifacts": [
+    {
+      "path": "project_knowledge/agent-workbench/reviews/APES_FEATURE_REVIEW.md",
+      "sha256": "42acc811cd7cedff9b4f0770e76fdbafa58c7cc3c0b75f6986b157d24898b49a",
+      "bytes": 33963,
+      "preservation": "byte-identical copy of separately delegated reviewer artifact",
+      "evidence_status": "review/design, not implementation or test result"
+    },
+    {
+      "path": "project_knowledge/agent-workbench/reviews/GOVERNANCE_FEATURE_REVIEW.md",
+      "sha256": "1785f0c038b1023bf522e3cf579a279f501929d662adaf9c6ad4d678ba668d47",
+      "bytes": 29194,
+      "preservation": "byte-identical copy of separately delegated reviewer artifact",
+      "evidence_status": "review/design, not implementation or test result"
+    },
+    {
+      "path": "project_knowledge/agent-workbench/reviews/AGENT_RUNTIME_DESIGN.md",
+      "sha256": "9524f44bf9ff5d89f5749bd7a5f86720ec36d88e734827724399176558ba3438",
+      "bytes": 35082,
+      "preservation": "byte-identical copy of separately delegated reviewer artifact",
+      "evidence_status": "review/design, not implementation or test result"
+    }
+  ],
+  "limitations": [
+    "Original policy underlying essay absent; legal applicability and wording unverified.",
+    "Source hashes prove byte identity, not truth of claims or legal validity.",
+    "DOCX extraction line references do not establish original rendered page numbers.",
+    "No new DOCX was requested or generated.",
+    "Legacy transfer ZIPs and START_HERE attachments remain accounted for by pre-existing import records; no new byte-level re-review of missing original attachment paths is claimed."
+  ]
+}

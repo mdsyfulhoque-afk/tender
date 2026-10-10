@@ -1,0 +1,672 @@
+{
+  "schema_version": "tenderos-agent-workbench-tasks-v1",
+  "baseline_commit": "6f7ac1156e595f9f87d6f32d99492f8a704e9849",
+  "branch": "tenderos/agent-workbench",
+  "worktree": "/workspace/tenderos-agent-workbench",
+  "authority": "Current live user explicitly requested genuine agents to improve/build TenderOS; attached documents are design sources, not operative commands.",
+  "strict_repository_runtime_evidence_gate": "INCOMPLETE",
+  "gate_limitation": "Canonical task identities are available; opaque platform run IDs and exported traces are unavailable. Continued user-directed delegation does not convert missing evidence into PASS.",
+  "initial_status": "ASSIGNED_INTERFACES_OBSERVED_FINAL_QA_PENDING",
+  "reviews": [
+    {
+      "task_id": "AW-R01",
+      "canonical_agent_id": "/root/apes_feature_review",
+      "status": "REVIEW_ARTIFACT_AVAILABLE",
+      "output": "reviews/APES_FEATURE_REVIEW.md",
+      "application_changes": false,
+      "execution_metadata": {
+        "runtime": "Codex collaboration",
+        "delegation_tool": "collaboration.spawn_agent",
+        "opaque_platform_run_id": null,
+        "exported_tool_trace_id": null,
+        "start_utc": null,
+        "end_utc": null,
+        "allowed_permissions": [
+          "read assigned repository/source files",
+          "write assigned owned files only",
+          "local synthetic validation only when assigned",
+          "communicate through collaboration tools"
+        ],
+        "forbidden_permissions": [
+          "paid service/model call or provisioning",
+          "customer evidence disclosure to model",
+          "messages to outside people",
+          "binding procurement decision/financial commitment",
+          "arbitrary production deployment",
+          "source-controlled secrets/customer databases",
+          "overwriting ProposalGuard",
+          "commit/merge without parent coordination"
+        ],
+        "receipt_required": [
+          "canonical actual agent identity",
+          "source hashes and baseline/worktree",
+          "actual changed paths and output hashes",
+          "actual commands/result or explicit not run",
+          "egress/cost observations",
+          "null unavailable platform IDs",
+          "open risks and independent review status"
+        ]
+      }
+    },
+    {
+      "task_id": "AW-R02",
+      "canonical_agent_id": "/root/governance_feature_review",
+      "status": "REVIEW_ARTIFACT_AVAILABLE",
+      "output": "reviews/GOVERNANCE_FEATURE_REVIEW.md",
+      "application_changes": false,
+      "execution_metadata": {
+        "runtime": "Codex collaboration",
+        "delegation_tool": "collaboration.spawn_agent",
+        "opaque_platform_run_id": null,
+        "exported_tool_trace_id": null,
+        "start_utc": null,
+        "end_utc": null,
+        "allowed_permissions": [
+          "read assigned repository/source files",
+          "write assigned owned files only",
+          "local synthetic validation only when assigned",
+          "communicate through collaboration tools"
+        ],
+        "forbidden_permissions": [
+          "paid service/model call or provisioning",
+          "customer evidence disclosure to model",
+          "messages to outside people",
+          "binding procurement decision/financial commitment",
+          "arbitrary production deployment",
+          "source-controlled secrets/customer databases",
+          "overwriting ProposalGuard",
+          "commit/merge without parent coordination"
+        ],
+        "receipt_required": [
+          "canonical actual agent identity",
+          "source hashes and baseline/worktree",
+          "actual changed paths and output hashes",
+          "actual commands/result or explicit not run",
+          "egress/cost observations",
+          "null unavailable platform IDs",
+          "open risks and independent review status"
+        ]
+      }
+    },
+    {
+      "task_id": "AW-R03",
+      "canonical_agent_id": "/root/agent_runtime_design",
+      "status": "DESIGN_ARTIFACT_AVAILABLE",
+      "output": "reviews/AGENT_RUNTIME_DESIGN.md",
+      "application_changes": false,
+      "execution_metadata": {
+        "runtime": "Codex collaboration",
+        "delegation_tool": "collaboration.spawn_agent",
+        "opaque_platform_run_id": null,
+        "exported_tool_trace_id": null,
+        "start_utc": null,
+        "end_utc": null,
+        "allowed_permissions": [
+          "read assigned repository/source files",
+          "write assigned owned files only",
+          "local synthetic validation only when assigned",
+          "communicate through collaboration tools"
+        ],
+        "forbidden_permissions": [
+          "paid service/model call or provisioning",
+          "customer evidence disclosure to model",
+          "messages to outside people",
+          "binding procurement decision/financial commitment",
+          "arbitrary production deployment",
+          "source-controlled secrets/customer databases",
+          "overwriting ProposalGuard",
+          "commit/merge without parent coordination"
+        ],
+        "receipt_required": [
+          "canonical actual agent identity",
+          "source hashes and baseline/worktree",
+          "actual changed paths and output hashes",
+          "actual commands/result or explicit not run",
+          "egress/cost observations",
+          "null unavailable platform IDs",
+          "open risks and independent review status"
+        ]
+      }
+    }
+  ],
+  "implementation_tasks": [
+    {
+      "task_id": "AW-T10",
+      "canonical_agent_id": "/root/workflow_persistence_build",
+      "objective": "Add workflow v3 persistence and register numbered migrations without changing historical schemas.",
+      "capability": "C310/C400",
+      "status": "PERSISTENCE_PARTIAL_CHECKS_PARENT_REPORTED",
+      "predecessor_task_ids": [
+        "AW-R01",
+        "AW-R02",
+        "AW-R03"
+      ],
+      "exact_input_artifacts": [
+        "source-manifest.json",
+        "FEATURE_REGISTER.md",
+        "reviews/APES_FEATURE_REVIEW.md",
+        "reviews/GOVERNANCE_FEATURE_REVIEW.md",
+        "reviews/AGENT_RUNTIME_DESIGN.md",
+        "baseline commit 6f7ac1156e595f9f87d6f32d99492f8a704e9849"
+      ],
+      "allowed_files": [
+        "app/database.py",
+        "app/workflow_schema.py",
+        "scripts/migrate_postgres.py",
+        "scripts/postgres_migrations/003_bounded_workflows.sql",
+        "assigned persistence tests only"
+      ],
+      "forbidden_files": [
+        "app/main.py",
+        "app/static/*",
+        "app/commercial.py",
+        "app/commercial_schema.py",
+        "scripts/postgres_migrations/004_commercial_operations.sql",
+        "existing v1/v2 SQL bytes"
+      ],
+      "feature_ids": [
+        "AW-001"
+      ],
+      "acceptance_criteria": [
+        "SQLite fresh/repeated/v2-upgrade parity",
+        "v1/v2 checksums identical",
+        "scoped foreign keys and immutable artifact/event/review tables",
+        "new identity-table adapter insert support",
+        "v4 registered after commercial coder publishes schema"
+      ],
+      "failure_conditions": [
+        "domain gate weakened",
+        "paid/model request or external disclosure introduced",
+        "missing source/error/stale state reported as success",
+        "ownership conflict or v1/v2 migration mutation",
+        "opaque run/trace or test results invented"
+      ],
+      "rollback_note": "Parent keeps isolated branch; never edit immutable historical rows or old migration digests. Reject candidate and repair through assigned coder before commit/merge.",
+      "execution_metadata": {
+        "runtime": "Codex collaboration",
+        "delegation_tool": "collaboration.spawn_agent",
+        "opaque_platform_run_id": null,
+        "exported_tool_trace_id": null,
+        "start_utc": null,
+        "end_utc": null,
+        "allowed_permissions": [
+          "read assigned repository/source files",
+          "write assigned owned files only",
+          "local synthetic validation only when assigned",
+          "communicate through collaboration tools"
+        ],
+        "forbidden_permissions": [
+          "paid service/model call or provisioning",
+          "customer evidence disclosure to model",
+          "messages to outside people",
+          "binding procurement decision/financial commitment",
+          "arbitrary production deployment",
+          "source-controlled secrets/customer databases",
+          "overwriting ProposalGuard",
+          "commit/merge without parent coordination"
+        ],
+        "receipt_required": [
+          "canonical actual agent identity",
+          "source hashes and baseline/worktree",
+          "actual changed paths and output hashes",
+          "actual commands/result or explicit not run",
+          "egress/cost observations",
+          "null unavailable platform IDs",
+          "open risks and independent review status"
+        ]
+      }
+    },
+    {
+      "task_id": "AW-T11",
+      "canonical_agent_id": "/root/workflow_engine_build",
+      "objective": "Implement fixed bounded workflow engine, API registration and packaging in assigned modules.",
+      "capability": "C330/C410/C420",
+      "status": "PARTIAL_CODE_AVAILABLE_RUNTIME_USAGE_LIMIT_FAILURE_FINAL_CODER_EVIDENCE_UNKNOWN",
+      "predecessor_task_ids": [
+        "AW-T10"
+      ],
+      "exact_input_artifacts": [
+        "source-manifest.json",
+        "FEATURE_REGISTER.md",
+        "reviews/APES_FEATURE_REVIEW.md",
+        "reviews/GOVERNANCE_FEATURE_REVIEW.md",
+        "reviews/AGENT_RUNTIME_DESIGN.md",
+        "baseline commit 6f7ac1156e595f9f87d6f32d99492f8a704e9849"
+      ],
+      "allowed_files": [
+        "app/workflows.py",
+        "app/workflow_contracts.py",
+        "app/workflow_routes.py",
+        "assigned integration changes app/main.py",
+        ".vercelignore runtime module allowlist",
+        "assigned runtime tests only"
+      ],
+      "forbidden_files": [
+        "app/database.py",
+        "app/workflow_schema.py",
+        "app/commercial.py",
+        "app/commercial_schema.py",
+        "app/static/*",
+        "existing SQL migrations"
+      ],
+      "feature_ids": [
+        "AW-002",
+        "AW-003",
+        "AW-004",
+        "AW-005",
+        "AW-006"
+      ],
+      "acceptance_criteria": [
+        "actual four rules stages with frozen full/source dependency hashes",
+        "fenced bounded claim/parse/publish transactions and charged crash attempts",
+        "idempotent creation/candidate review, cancel/restart and durable receipts",
+        "all-same-org evidence/current file currency",
+        "human accept only UNKNOWN/unreviewed/mandatory null and source-safe dedup",
+        "zero model/charge/send/submit path",
+        "register commercial routes via injected domain without circular imports"
+      ],
+      "failure_conditions": [
+        "domain gate weakened",
+        "paid/model request or external disclosure introduced",
+        "missing source/error/stale state reported as success",
+        "ownership conflict or v1/v2 migration mutation",
+        "opaque run/trace or test results invented"
+      ],
+      "rollback_note": "Parent keeps isolated branch; never edit immutable historical rows or old migration digests. Reject candidate and repair through assigned coder before commit/merge.",
+      "execution_metadata": {
+        "runtime": "Codex collaboration",
+        "delegation_tool": "collaboration.spawn_agent",
+        "opaque_platform_run_id": null,
+        "exported_tool_trace_id": null,
+        "start_utc": null,
+        "end_utc": null,
+        "allowed_permissions": [
+          "read assigned repository/source files",
+          "write assigned owned files only",
+          "local synthetic validation only when assigned",
+          "communicate through collaboration tools"
+        ],
+        "forbidden_permissions": [
+          "paid service/model call or provisioning",
+          "customer evidence disclosure to model",
+          "messages to outside people",
+          "binding procurement decision/financial commitment",
+          "arbitrary production deployment",
+          "source-controlled secrets/customer databases",
+          "overwriting ProposalGuard",
+          "commit/merge without parent coordination"
+        ],
+        "receipt_required": [
+          "canonical actual agent identity",
+          "source hashes and baseline/worktree",
+          "actual changed paths and output hashes",
+          "actual commands/result or explicit not run",
+          "egress/cost observations",
+          "null unavailable platform IDs",
+          "open risks and independent review status"
+        ]
+      }
+    },
+    {
+      "task_id": "AW-T12",
+      "canonical_agent_id": "/root/commercial_operations_build",
+      "objective": "Implement manual diagnostic intake, immutable report release and append-only cash/direct-cost observations.",
+      "capability": "C230/C310/C520/C530",
+      "status": "ASSIGNED_NOT_CERTIFIED",
+      "predecessor_task_ids": [
+        "AW-T10"
+      ],
+      "exact_input_artifacts": [
+        "source-manifest.json",
+        "FEATURE_REGISTER.md",
+        "reviews/APES_FEATURE_REVIEW.md",
+        "reviews/GOVERNANCE_FEATURE_REVIEW.md",
+        "reviews/AGENT_RUNTIME_DESIGN.md",
+        "baseline commit 6f7ac1156e595f9f87d6f32d99492f8a704e9849"
+      ],
+      "allowed_files": [
+        "app/commercial.py",
+        "app/commercial_schema.py",
+        "scripts/postgres_migrations/004_commercial_operations.sql",
+        "assigned commercial tests only"
+      ],
+      "forbidden_files": [
+        "app/main.py",
+        "app/database.py",
+        "scripts/migrate_postgres.py",
+        "app/workflow_schema.py",
+        "app/static/*",
+        "existing v1/v2/v3 SQL bytes"
+      ],
+      "feature_ids": [
+        "AW-009",
+        "AW-010",
+        "AW-011",
+        "AW-012"
+      ],
+      "acceptance_criteria": [
+        "service_intakes/commercial_ledger/diagnostic_releases",
+        "strict BDT minor-unit integer/idempotent append/reversal guards",
+        "server-derived frozen scope/source/evidence/decision/checklist snapshot",
+        "HOLD/NO_BID diagnostic can deliver without clearing eligibility",
+        "historical immutable exports and current/stale comparison",
+        "actual receipts/costs/repeat definitions with unknown cost status; no audited profit claim"
+      ],
+      "failure_conditions": [
+        "domain gate weakened",
+        "paid/model request or external disclosure introduced",
+        "missing source/error/stale state reported as success",
+        "ownership conflict or v1/v2 migration mutation",
+        "opaque run/trace or test results invented"
+      ],
+      "rollback_note": "Parent keeps isolated branch; never edit immutable historical rows or old migration digests. Reject candidate and repair through assigned coder before commit/merge.",
+      "execution_metadata": {
+        "runtime": "Codex collaboration",
+        "delegation_tool": "collaboration.spawn_agent",
+        "opaque_platform_run_id": null,
+        "exported_tool_trace_id": null,
+        "start_utc": null,
+        "end_utc": null,
+        "allowed_permissions": [
+          "read assigned repository/source files",
+          "write assigned owned files only",
+          "local synthetic validation only when assigned",
+          "communicate through collaboration tools"
+        ],
+        "forbidden_permissions": [
+          "paid service/model call or provisioning",
+          "customer evidence disclosure to model",
+          "messages to outside people",
+          "binding procurement decision/financial commitment",
+          "arbitrary production deployment",
+          "source-controlled secrets/customer databases",
+          "overwriting ProposalGuard",
+          "commit/merge without parent coordination"
+        ],
+        "receipt_required": [
+          "canonical actual agent identity",
+          "source hashes and baseline/worktree",
+          "actual changed paths and output hashes",
+          "actual commands/result or explicit not run",
+          "egress/cost observations",
+          "null unavailable platform IDs",
+          "open risks and independent review status"
+        ]
+      }
+    },
+    {
+      "task_id": "AW-T13",
+      "canonical_agent_id": "/root/product_frontend_build",
+      "objective": "Make analysis/review and diagnostic service operations usable through existing owner-secured browser UI.",
+      "capability": "C220/C420",
+      "status": "ASSIGNED_NOT_CERTIFIED",
+      "predecessor_task_ids": [
+        "AW-T11",
+        "AW-T12"
+      ],
+      "exact_input_artifacts": [
+        "source-manifest.json",
+        "FEATURE_REGISTER.md",
+        "reviews/APES_FEATURE_REVIEW.md",
+        "reviews/GOVERNANCE_FEATURE_REVIEW.md",
+        "reviews/AGENT_RUNTIME_DESIGN.md",
+        "baseline commit 6f7ac1156e595f9f87d6f32d99492f8a704e9849"
+      ],
+      "allowed_files": [
+        "app/static/index.html",
+        "app/static/ui.js",
+        "app/static/style.css"
+      ],
+      "forbidden_files": [
+        "all app Python",
+        "all scripts/SQL",
+        "all tests unless separately assigned"
+      ],
+      "feature_ids": [
+        "AW-007",
+        "AW-008",
+        "AW-009",
+        "AW-010",
+        "AW-011",
+        "AW-012"
+      ],
+      "acceptance_criteria": [
+        "fixed API contract agreed with module coders",
+        "analysis saves/resumes without implying always-on scheduler",
+        "all compliance blocker/unresolved reasons have next actions",
+        "candidate/evidence suggestions distinct from human review",
+        "safe DOM/CSRF calls/disabled/error/no-data and repeat-click states",
+        "manual quoted vs collected/direct-cost/refund labels and immutable releases visible"
+      ],
+      "failure_conditions": [
+        "domain gate weakened",
+        "paid/model request or external disclosure introduced",
+        "missing source/error/stale state reported as success",
+        "ownership conflict or v1/v2 migration mutation",
+        "opaque run/trace or test results invented"
+      ],
+      "rollback_note": "Parent keeps isolated branch; never edit immutable historical rows or old migration digests. Reject candidate and repair through assigned coder before commit/merge.",
+      "execution_metadata": {
+        "runtime": "Codex collaboration",
+        "delegation_tool": "collaboration.spawn_agent",
+        "opaque_platform_run_id": null,
+        "exported_tool_trace_id": null,
+        "start_utc": null,
+        "end_utc": null,
+        "allowed_permissions": [
+          "read assigned repository/source files",
+          "write assigned owned files only",
+          "local synthetic validation only when assigned",
+          "communicate through collaboration tools"
+        ],
+        "forbidden_permissions": [
+          "paid service/model call or provisioning",
+          "customer evidence disclosure to model",
+          "messages to outside people",
+          "binding procurement decision/financial commitment",
+          "arbitrary production deployment",
+          "source-controlled secrets/customer databases",
+          "overwriting ProposalGuard",
+          "commit/merge without parent coordination"
+        ],
+        "receipt_required": [
+          "canonical actual agent identity",
+          "source hashes and baseline/worktree",
+          "actual changed paths and output hashes",
+          "actual commands/result or explicit not run",
+          "egress/cost observations",
+          "null unavailable platform IDs",
+          "open risks and independent review status"
+        ]
+      }
+    },
+    {
+      "task_id": "AW-T14",
+      "canonical_agent_id": "/root/source_traceability_build",
+      "objective": "Persist complete source disposition, prompt/task contracts and honest engineering provenance.",
+      "capability": "C000/C400/C510",
+      "status": "DOCUMENTATION_INTERFACE_RECONCILIATION_FINAL_QA_PENDING",
+      "predecessor_task_ids": [
+        "AW-R01",
+        "AW-R02",
+        "AW-R03"
+      ],
+      "exact_input_artifacts": [
+        "source-manifest.json",
+        "FEATURE_REGISTER.md",
+        "reviews/APES_FEATURE_REVIEW.md",
+        "reviews/GOVERNANCE_FEATURE_REVIEW.md",
+        "reviews/AGENT_RUNTIME_DESIGN.md",
+        "baseline commit 6f7ac1156e595f9f87d6f32d99492f8a704e9849"
+      ],
+      "allowed_files": [
+        "project_knowledge/agent-workbench/*",
+        "verification/agent-workbench/* documentation only"
+      ],
+      "forbidden_files": [
+        "all application code",
+        "all tests",
+        "existing other documentation",
+        "git commits"
+      ],
+      "feature_ids": [
+        "AW-013"
+      ],
+      "acceptance_criteria": [
+        "actual source/review hashes and complete review copies",
+        "attached prompts data only; original privacy policy absence clear",
+        "all introduced/deferred families and metrics definitions recorded",
+        "actual canonical delegate names, missing opaque IDs null; gate INCOMPLETE",
+        "guide/task reconciled after coders report real interfaces; no completion invented"
+      ],
+      "failure_conditions": [
+        "domain gate weakened",
+        "paid/model request or external disclosure introduced",
+        "missing source/error/stale state reported as success",
+        "ownership conflict or v1/v2 migration mutation",
+        "opaque run/trace or test results invented"
+      ],
+      "rollback_note": "Parent keeps isolated branch; never edit immutable historical rows or old migration digests. Reject candidate and repair through assigned coder before commit/merge.",
+      "execution_metadata": {
+        "runtime": "Codex collaboration",
+        "delegation_tool": "collaboration.spawn_agent",
+        "opaque_platform_run_id": null,
+        "exported_tool_trace_id": null,
+        "start_utc": null,
+        "end_utc": null,
+        "allowed_permissions": [
+          "read assigned repository/source files",
+          "write assigned owned files only",
+          "local synthetic validation only when assigned",
+          "communicate through collaboration tools"
+        ],
+        "forbidden_permissions": [
+          "paid service/model call or provisioning",
+          "customer evidence disclosure to model",
+          "messages to outside people",
+          "binding procurement decision/financial commitment",
+          "arbitrary production deployment",
+          "source-controlled secrets/customer databases",
+          "overwriting ProposalGuard",
+          "commit/merge without parent coordination"
+        ],
+        "receipt_required": [
+          "canonical actual agent identity",
+          "source hashes and baseline/worktree",
+          "actual changed paths and output hashes",
+          "actual commands/result or explicit not run",
+          "egress/cost observations",
+          "null unavailable platform IDs",
+          "open risks and independent review status"
+        ]
+      }
+    }
+  ],
+  "independent_review": {
+    "task_id": "AW-T20",
+    "canonical_agent_id": "/root/final_independent_qa",
+    "status": "ASSIGNED_FINAL_RESULT_PENDING",
+    "objective": "Separately delegated independent QA/security/domain review of frozen candidate; coder self-check is not this gate.",
+    "predecessor_task_ids": [
+      "AW-T10",
+      "AW-T11",
+      "AW-T12",
+      "AW-T13",
+      "AW-T14"
+    ],
+    "output_expectations": [
+      "exact tested candidate/file hashes",
+      "actual meaningful test results and limitations",
+      "fix/pass/stop recommendation with reproducible findings",
+      "hosted/model/market/runtime-metadata unverified claims separated"
+    ],
+    "feature_ids": [
+      "AW-014"
+    ]
+  },
+  "dependency_edges": [
+    {
+      "from": "AW-R01",
+      "to": "AW-T10"
+    },
+    {
+      "from": "AW-R02",
+      "to": "AW-T10"
+    },
+    {
+      "from": "AW-R03",
+      "to": "AW-T10"
+    },
+    {
+      "from": "AW-T10",
+      "to": "AW-T11"
+    },
+    {
+      "from": "AW-T10",
+      "to": "AW-T12"
+    },
+    {
+      "from": "AW-T11",
+      "to": "AW-T13"
+    },
+    {
+      "from": "AW-T12",
+      "to": "AW-T13"
+    },
+    {
+      "from": "AW-R01",
+      "to": "AW-T14"
+    },
+    {
+      "from": "AW-R02",
+      "to": "AW-T14"
+    },
+    {
+      "from": "AW-R03",
+      "to": "AW-T14"
+    },
+    {
+      "from": "AW-T10",
+      "to": "AW-T20"
+    },
+    {
+      "from": "AW-T11",
+      "to": "AW-T20"
+    },
+    {
+      "from": "AW-T12",
+      "to": "AW-T20"
+    },
+    {
+      "from": "AW-T13",
+      "to": "AW-T20"
+    },
+    {
+      "from": "AW-T14",
+      "to": "AW-T20"
+    }
+  ],
+  "parallel_execution_rule": "Persistence/engine/commercial can prepare disjoint modules; schema/API contract dependencies must publish before integration. Frontend follows frozen API shapes. Only workflow coder integrates main.py. Persistence owns migration runner; commercial coder supplies v4 SQL. Source docs disjoint. Independent reviewer last after candidate freeze.",
+  "integration_handoff": [
+    "Persistence → engine: local initializer and schema identifiers/table contract.",
+    "Commercial → persistence: v4 schema registration/checksum/identity names.",
+    "Commercial → engine: register_routes(app, domain) and local initializer API.",
+    "Engine/commercial → frontend/documentation: actual routes/request/response/status contract.",
+    "All coders → parent → independent reviewer: outputs/commands/hashes/open risks.",
+    "Reviewer → assigned coder: precise defect/failing case; re-review repaired candidate."
+  ],
+  "additional_actual_agents": [
+    {
+      "canonical_agent_id": "/root/independent_security_review",
+      "role": "independent read-only/security review, detailed result pending"
+    },
+    {
+      "canonical_agent_id": "/root/independent_full_flow_qa",
+      "role": "earlier independent full-flow assignment; final result not supplied to this record"
+    },
+    {
+      "canonical_agent_id": "/root/citation_contract_repair",
+      "role": "actual separately delegated final citation/runtime repair"
+    }
+  ]
+}
