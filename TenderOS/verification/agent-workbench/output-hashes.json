@@ -4,8 +4,8 @@
   "self_excluded": true,
   "files": {
     "README.md": {
-      "sha256": "c50dc2504d7079f5a0e5d4dcd19a90672c66c84a40ff358acb0b4eeaf88e1b3c",
-      "bytes": 6104
+      "sha256": "f3a4d396e0f1b8499e780d2f1d8c066ae2112c072861f850341827131426542f",
+      "bytes": 7466
     },
     "project_knowledge/agent-workbench/FEATURE_REGISTER.md": {
       "sha256": "750865eacd9afb6ba64c8d8b90f36121d4b0271db6bf42d3934485bbc06cb896",
@@ -32,8 +32,8 @@
       "bytes": 26057
     },
     "project_knowledge/agent-workbench/USER_GUIDE.md": {
-      "sha256": "b8de7a1880f7d29800d36e27bc705b9cb3f5ac1b017b2af2b0393e61264513ca",
-      "bytes": 11327
+      "sha256": "c3694a7e480d3de529f9d43cd22c886c09e0d709bc28931de90174b97cf5ef5c",
+      "bytes": 13375
     },
     "project_knowledge/agent-workbench/reviews/AGENT_RUNTIME_DESIGN.md": {
       "sha256": "9524f44bf9ff5d89f5749bd7a5f86720ec36d88e734827724399176558ba3438",
@@ -64,16 +64,16 @@
       "bytes": 26889
     },
     "verification/agent-workbench/ENGINEERING_EVIDENCE.md": {
-      "sha256": "04d0ae1e11b35e21dfeb0c1e03587f6fa1b62ca3af4736b789427b78ff885817",
-      "bytes": 9147
+      "sha256": "33123e030dd38dea168f049b544fb47a87a1192ea656d80a587f8f50c1d04e12",
+      "bytes": 9966
     },
     "verification/agent-workbench/build-manifest.json": {
-      "sha256": "1c46bbb3bd3b03cd13c679f84c0c557226114b64ba160eb06165a5b4c34e1402",
-      "bytes": 9855
+      "sha256": "2c28740dc7951e742ab5dc6ab13dfe2fce579f65898945ff387834bda99d22f9",
+      "bytes": 13339
     },
     "verification/agent-workbench/qa/QA_REPORT.md": {
-      "sha256": "dd59923c5f73a17e66c09e7a521bf1256dd1e1145ba37948097a760d355318b7",
-      "bytes": 7620
+      "sha256": "7c37835b4e2d73577b6aa80891dad0f8af75d82ada7bfc57d67f801766045f26",
+      "bytes": 9764
     },
     "verification/agent-workbench/qa/SECURITY_REVIEW.md": {
       "sha256": "e87badb3674290a0fb1a028b909f00bf29707a6d3232290ce1b1c881fe0da663",

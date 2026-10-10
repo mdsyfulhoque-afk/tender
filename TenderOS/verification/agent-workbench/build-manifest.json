@@ -1,16 +1,16 @@
 {
   "schema_version": "tenderos-engineering-build-manifest-v2",
   "baseline_commit": "6f7ac1156e595f9f87d6f32d99492f8a704e9849",
-  "current_head_commit": "eb4280bbec18381298453e48d4ef46e8283e33eb",
+  "current_head_commit": "c2add278938fb322047d920bd21754e302cb656e",
   "branch": "tenderos/agent-workbench",
   "worktree": "/workspace/tenderos-agent-workbench",
   "status": "INDEPENDENTLY_REVIEWED_LOCAL_PILOT_CANDIDATE_HOSTED_RELEASE_UNVERIFIED",
   "candidate_digest": {
     "algorithm": "SHA-256 of sorted modified/untracked repository files outside verification/agent-workbench: UTF-8 relative path, NUL, raw SHA-256 digest of file bytes, newline",
-    "sha256": "5ed614bc1035bc96b90fd4591ec8c7e9f0f8cfede9fd79d4776bfe66d0c5ec4a",
+    "sha256": "ba82f19c6c9c94e4b8f749224d1c2a367af5985554e1457028fa5641a3425bfb",
     "file_count": 2,
     "path_root": "/workspace/tenderos-agent-workbench",
-    "scope_note": "Worktree delta on current_head_commit, not a commit digest. Evidence directory is excluded to avoid self-reference; QA-at-completion digest remains separately recorded in qa/QA_REPORT.md."
+    "scope_note": "Current worktree delta on current_head_commit, not a commit digest. Includes modified/untracked files outside TenderOS/verification/agent-workbench; evidence files are excluded to avoid self-reference. QA-at-completion digest remains historical in qa/QA_REPORT.md."
   },
   "live_authority": "User requested an agent-built TenderOS and no paid service/model dependency before revenue. Attached prompts and policies were reviewed as source material, not treated as live instructions.",
   "strict_AGENTS_runtime_evidence_gate": "INCOMPLETE",
@@ -193,19 +193,93 @@
     "release_gate": "INCOMPLETE",
     "latest_preview": {
       "creation": "Automatically created by GitHub/Vercel integration",
-      "deployment_status": "READY",
-      "commit": "eb4280b",
+      "deployment_status": "ERROR",
+      "commit": "c2add278938fb322047d920bd21754e302cb656e",
+      "deployment_id": "dpl_7WrL2foMKMa1asTbqmELADbNciJD",
+      "build_error": "FASTAPI_ENTRYPOINT_NOT_FOUND while Vercel rootDirectory was temporarily TenderOS",
+      "root_directory_at_build": "TenderOS",
       "url": "https://tender-git-tenderos-agent-workbench-ip-3.vercel.app",
-      "origin_access": "Independent QA fetch denied with 403 Forbidden at stage read_protection_bypass before origin access",
+      "latest_user_screenshot": "Vercel 404_NOT_FOUND at this preview alias; no later successful deployment is verified",
+      "metadata_read_access": "get_project, get_deployment, and list_deployments succeed when teamId is omitted",
+      "explicit_team_scope": "Calls with teamId fail with 403 Forbidden, scope ip-3",
+      "web_fetch_vercel_url": "403 Forbidden at stage read_protection_bypass",
+      "previous_ready_deployment_commit": "5241a2b",
+      "earlier_ready_preview_commit": "eb4280b",
       "application_http_ui_api_database_private_storage_verified": false
     },
-    "prior_preview": "User-reported Vercel 404_NOT_FOUND; prior evidence identifies repository-root vs TenderOS root-directory mismatch.",
-    "plugin_access": "Connected scope lacks deployment/team authorization. Project listing works; same-team project detail, environment listing and deployment listing return 403 Forbidden, scope ip-3.",
-    "managed_postgres": "NOT_CONNECTED_OR_TESTED",
-    "private_blob": "NOT_CONNECTED_OR_TESTED",
+    "root_entrypoint_shim": {
+      "present_in_worktree": true,
+      "status": "COMMITTED; Vercel rootDirectory reset to repository root after c2add27 entrypoint failure; next build not triggered",
+      "commit": "c2add278938fb322047d920bd21754e302cb656e",
+      "repository_root_files": [
+        "vercel.json",
+        ".vercelignore",
+        "pyproject.toml",
+        "requirements.txt"
+      ],
+      "repository_root_entrypoint": "pyproject.toml [tool.vercel].entrypoint = TenderOS.app.main:app",
+      "fix_verified": false
+    },
+    "plugin_access": "get_project, get_deployment, and list_deployments succeed when teamId is omitted. Explicit teamId calls fail with 403 Forbidden, scope ip-3. web_fetch_vercel_url remains blocked at read_protection_bypass.",
+    "managed_postgres": "NOT_CONFIGURED_NO_VERCEL_PROJECT_ENVIRONMENT_VARIABLES",
+    "private_blob": "NOT_CONFIGURED_NO_VERCEL_PROJECT_ENVIRONMENT_VARIABLES",
+    "hosted_auth_environment_variables": "ABSENT; non-decrypting Vercel environment listing returned an empty list; zero project variables are configured",
     "browser_to_api_to_database_to_file": "NOT_VERIFIED",
     "manual_mutations_attempted": false,
-    "production_status_claimed": false
+    "production_status_claimed": false,
+    "project_configuration": {
+      "root_directory": null,
+      "root_directory_display": "null (repository root)",
+      "root_directory_status": "RESET_SUCCESSFULLY; no deployment triggered after reset",
+      "selected_vercel_config": "Repository-root vercel.json, .vercelignore, and pyproject.toml",
+      "root_project_metadata": "Committed in c2add27: [project] metadata and [tool.vercel].entrypoint = TenderOS.app.main:app",
+      "configuration_commit_history": [
+        {
+          "commit": "49777a4",
+          "change": "Introduced repository-root Vercel shim and allowlist"
+        },
+        {
+          "commit": "d544651",
+          "change": "Removed overlong excludeFiles setting and relied on repository-root allowlist"
+        },
+        {
+          "commit": "c2add27",
+          "change": "Committed root Python project metadata and FastAPI entrypoint"
+        }
+      ],
+      "nested_config_when_root_directory_tenderos": "TenderOS/vercel.json and TenderOS/.vercelignore",
+      "latest_build_after_root_directory_reset": "NOT_TRIGGERED"
+    },
+    "failed_build_history": [
+      {
+        "commit": "49777a4cafb7179ffed1e07508a16861b4eac8bb",
+        "deployment_id": "dpl_6cWLZ1Fx7beUeybLbMrT7vCFnxXu",
+        "status": "ERROR",
+        "error": "functions.TenderOS/app/main.py.excludeFiles exceeds 256 characters"
+      },
+      {
+        "commit": "d544651280f34d4cba45de6e5d82b6a59b0586c3",
+        "status": "ERROR",
+        "error": "At build time, uv lock failed because the root pyproject.toml had no [project] table"
+      },
+      {
+        "commit": "c2add278938fb322047d920bd21754e302cb656e",
+        "deployment_id": "dpl_7WrL2foMKMa1asTbqmELADbNciJD",
+        "status": "ERROR",
+        "root_directory_at_build": "TenderOS",
+        "error": "FASTAPI_ENTRYPOINT_NOT_FOUND"
+      }
+    ],
+    "vercel_environment_variables": {
+      "listing_method": "Non-decrypting project environment listing",
+      "result": "EMPTY_LIST",
+      "configured_count": 0,
+      "required_settings": {
+        "postgresql": "ABSENT",
+        "private_blob": "ABSENT",
+        "owner_auth": "ABSENT"
+      }
+    }
   },
   "network_and_costs": {
     "paid_model_calls": 0,
