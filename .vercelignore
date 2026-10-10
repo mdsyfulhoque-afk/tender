@@ -1,0 +1,27 @@
+# Keep the monorepo deployment limited to TenderOS runtime files.
+/*
+ProposalGuard/
+!.vercelignore
+!pyproject.toml
+!requirements.txt
+!vercel.json
+!TenderOS/
+TenderOS/*
+!TenderOS/requirements.txt
+!TenderOS/app/
+TenderOS/app/*
+!TenderOS/app/main.py
+!TenderOS/app/hosting.py
+!TenderOS/app/database.py
+!TenderOS/app/private_storage.py
+!TenderOS/app/workflow_contracts.py
+!TenderOS/app/workflows.py
+!TenderOS/app/workflow_routes.py
+!TenderOS/app/workflow_schema.py
+!TenderOS/app/commercial.py
+!TenderOS/app/commercial_schema.py
+!TenderOS/app/static/
+TenderOS/app/static/*
+!TenderOS/app/static/index.html
+!TenderOS/app/static/style.css
+!TenderOS/app/static/ui.js

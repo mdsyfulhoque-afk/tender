@@ -1,0 +1,2 @@
+[tool.vercel]
+entrypoint = "TenderOS.app.main:app"

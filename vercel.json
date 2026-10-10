@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "fastapi",
+  "functions": {
+    "TenderOS/app/main.py": {
+      "maxDuration": 60,
+      "excludeFiles": "{TenderOS/verification/**,TenderOS/project_knowledge/**,TenderOS/agent_ops/**,TenderOS/tests/**,TenderOS/scripts/**,TenderOS/data/**,TenderOS/private_uploads/**,TenderOS/**/__pycache__/**,TenderOS/**/.pytest_cache/**,TenderOS/**/.venv/**,TenderOS/**/.vercel/**,TenderOS/**/*.md,TenderOS/**/*.docx,TenderOS/**/*.sql,TenderOS/**/*.sqlite,TenderOS/**/*.sqlite3,TenderOS/**/*.db,TenderOS/**/*.log,TenderOS/**/*.zip,TenderOS/**/*.pyc,**/.env*}"
+    }
+  }
+}
