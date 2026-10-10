@@ -7,7 +7,7 @@
   "status": "INDEPENDENTLY_REVIEWED_LOCAL_PILOT_CANDIDATE_HOSTED_RELEASE_UNVERIFIED",
   "candidate_digest": {
     "algorithm": "SHA-256 of sorted modified/untracked repository files outside verification/agent-workbench: UTF-8 relative path, NUL, raw SHA-256 digest of file bytes, newline",
-    "sha256": "ba82f19c6c9c94e4b8f749224d1c2a367af5985554e1457028fa5641a3425bfb",
+    "sha256": "ee01023df4e689fac4590cac3dd7e1fadcca3e7b8f5e4fa6c83bde46823223ac",
     "file_count": 2,
     "path_root": "/workspace/tenderos-agent-workbench",
     "scope_note": "Current worktree delta on current_head_commit, not a commit digest. Includes modified/untracked files outside TenderOS/verification/agent-workbench; evidence files are excluded to avoid self-reference. QA-at-completion digest remains historical in qa/QA_REPORT.md."
@@ -193,23 +193,24 @@
     "release_gate": "INCOMPLETE",
     "latest_preview": {
       "creation": "Automatically created by GitHub/Vercel integration",
-      "deployment_status": "ERROR",
-      "commit": "c2add278938fb322047d920bd21754e302cb656e",
-      "deployment_id": "dpl_7WrL2foMKMa1asTbqmELADbNciJD",
-      "build_error": "FASTAPI_ENTRYPOINT_NOT_FOUND while Vercel rootDirectory was temporarily TenderOS",
-      "root_directory_at_build": "TenderOS",
+      "deployment_status": "READY",
+      "commit": "2f38991d",
+      "commit_hash_note": "Short commit prefix supplied by verified deployment metadata update",
+      "deployment_id": "dpl_GK3kcXCeGoDQVzLaL4gtCXZn8AZc",
       "url": "https://tender-git-tenderos-agent-workbench-ip-3.vercel.app",
-      "latest_user_screenshot": "Vercel 404_NOT_FOUND at this preview alias; no later successful deployment is verified",
+      "branch_alias": "tender-git-tenderos-agent-workbench-ip-3.vercel.app",
+      "root_directory_at_build": null,
+      "root_directory_note": "Vercel rootDirectory was reset to null/repository root before this build",
+      "origin_access": "web_fetch_vercel_url returns 403 at read_protection_bypass before origin access",
+      "earlier_user_screenshot": "Vercel 404_NOT_FOUND at this alias before this READY deployment",
       "metadata_read_access": "get_project, get_deployment, and list_deployments succeed when teamId is omitted",
       "explicit_team_scope": "Calls with teamId fail with 403 Forbidden, scope ip-3",
-      "web_fetch_vercel_url": "403 Forbidden at stage read_protection_bypass",
       "previous_ready_deployment_commit": "5241a2b",
-      "earlier_ready_preview_commit": "eb4280b",
       "application_http_ui_api_database_private_storage_verified": false
     },
     "root_entrypoint_shim": {
       "present_in_worktree": true,
-      "status": "COMMITTED; Vercel rootDirectory reset to repository root after c2add27 entrypoint failure; next build not triggered",
+      "status": "COMMITTED; deployment READY at 2f38991d with repository-root configuration; app flow remains unverified",
       "commit": "c2add278938fb322047d920bd21754e302cb656e",
       "repository_root_files": [
         "vercel.json",
@@ -218,6 +219,7 @@
         "requirements.txt"
       ],
       "repository_root_entrypoint": "pyproject.toml [tool.vercel].entrypoint = TenderOS.app.main:app",
+      "deployment_build_ready": true,
       "fix_verified": false
     },
     "plugin_access": "get_project, get_deployment, and list_deployments succeed when teamId is omitted. Explicit teamId calls fail with 403 Forbidden, scope ip-3. web_fetch_vercel_url remains blocked at read_protection_bypass.",
@@ -230,7 +232,7 @@
     "project_configuration": {
       "root_directory": null,
       "root_directory_display": "null (repository root)",
-      "root_directory_status": "RESET_SUCCESSFULLY; no deployment triggered after reset",
+      "root_directory_status": "RESET BEFORE READY deployment 2f38991d",
       "selected_vercel_config": "Repository-root vercel.json, .vercelignore, and pyproject.toml",
       "root_project_metadata": "Committed in c2add27: [project] metadata and [tool.vercel].entrypoint = TenderOS.app.main:app",
       "configuration_commit_history": [
@@ -247,8 +249,9 @@
           "change": "Committed root Python project metadata and FastAPI entrypoint"
         }
       ],
-      "nested_config_when_root_directory_tenderos": "TenderOS/vercel.json and TenderOS/.vercelignore",
-      "latest_build_after_root_directory_reset": "NOT_TRIGGERED"
+      "previous_nested_root_configuration": "When rootDirectory was TenderOS, Vercel selected TenderOS/vercel.json and TenderOS/.vercelignore",
+      "latest_build_after_root_directory_reset": "READY at dpl_GK3kcXCeGoDQVzLaL4gtCXZn8AZc for short commit 2f38991d",
+      "future_documentation_commit_preview": "Expected to create another preview; status not yet known"
     },
     "failed_build_history": [
       {
