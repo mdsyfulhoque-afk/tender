@@ -6,7 +6,7 @@
 - Worktree: `/workspace/tenderos-agent-workbench`, branch `tenderos/agent-workbench`.
 - Baseline commit: `6f7ac1156e595f9f87d6f32d99492f8a704e9849`.
 - Opaque platform run ID and exported tool trace ID: `null` (not exposed by this execution environment).
-- No paid API, model/provider, external network, browser deployment, or production data was used. All database checks used fresh `TENDEROS_DATA_DIR` directories; the repository/default database was not opened or modified.
+- No paid API/model/provider or production data was used. A later independent access check against the GitHub/Vercel-created preview was denied by deployment protection before origin access; no application endpoint was reached. All database checks used fresh `TENDEROS_DATA_DIR` directories; the repository/default database was not opened or modified.
 - QA made no application-source edits. QA added the independent test file and this report. The requested trailing-whitespace cleanup in `tests/test_workflows.py` leaves no diff there.
 
 ## Results
@@ -57,6 +57,10 @@ git diff --check
 
 The separate TestClient transport reproduction was run on a trivial synthetic FastAPI endpoint, without network access. The final candidate is not certified as a complete passing 197-test suite because of this stall.
 
+## Hosted preview access observation
+
+GitHub/Vercel integration automatically created a deployment marked **READY** for commit `eb4280b`: [preview URL](https://tender-git-tenderos-agent-workbench-ip-3.vercel.app). An independent QA fetch was denied with `403 Forbidden` at stage `read_protection_bypass`, before origin access. The connected Vercel scope lacks authorization for the deployment/team. This verifies that a preview deployment record exists; it does not verify the application response. QA could not observe the HTTP root, rendered UI, API, database, or private file storage. No production status is claimed.
+
 ## Candidate identity
 
 Candidate SHA-256: `601e96bb8f3a1b9456f302f2cb079bc7ceb3e473377a59418ccfa1373699e8e4`.
@@ -79,4 +83,4 @@ After the QA candidate was frozen, the QA agent removed one terminal LF byte fro
 
 ## Limitations
 
-No managed PostgreSQL or private object-storage service was connected or tested. No Vercel deployment, browser-level flow, accessibility review, or production environment validation was performed. The missing opaque runtime run/trace identifiers remain unverified against the repository's stricter agent-runtime evidence policy; they are reported as unavailable rather than inferred. QA results do not authorize deployment or establish revenue outcomes.
+No managed PostgreSQL or private object-storage service was connected or tested. A Vercel preview is marked READY, but the independent fetch was blocked before origin access; no app HTTP/browser flow, accessibility review, or production environment validation was performed. The missing opaque runtime run/trace identifiers remain unverified against the repository's stricter agent-runtime evidence policy; they are reported as unavailable rather than inferred. The release gate remains incomplete. QA results do not certify deployment or establish revenue outcomes.

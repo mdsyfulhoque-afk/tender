@@ -21,7 +21,7 @@ TENDEROS_DATA_DIR=/tmp/tenderos-local .venv/bin/python -m uvicorn app.main:app -
 
 Open `http://127.0.0.1:8000`. Choose a private durable data directory suitable for real pilot use; `/tmp/tenderos-local` is only the README example and may be cleared by the host. Set the data directory before import. Dependency installation needs available packages; local analysis itself has no inference-provider dependency. Keep original files/database private and out of Git. Existing local reviewer names are unverified labels. Public exposure is not the local mode's intended use.
 
-Hosted operation requires existing protected owner authentication, PostgreSQL and private file-store configuration. It may incur infrastructure charges even with zero model spending. Managed PostgreSQL, private Blob, browser behavior and an actual deployment have not been verified. The Vercel plugin's same-team project detail, environment list and deployment list requests returned `403 Forbidden` (`scope ip-3`), so project configuration was not inspectable.
+Hosted operation requires existing protected owner authentication, PostgreSQL and private file-store configuration. It may incur infrastructure charges even with zero model spending. A GitHub/Vercel integration preview is marked READY for commit `eb4280b`, but managed PostgreSQL, private Blob, browser behavior, and an application response have not been verified. Independent QA's fetch was denied with `403 Forbidden` at `read_protection_bypass` before origin access. The Vercel scope lacks authorization for the deployment/team; project configuration remains uninspectable.
 
 ## 1. Agree intake and register sources
 
@@ -67,7 +67,7 @@ The rules pipeline makes no model calls and does not train on customer files. Da
 
 Hosted access is one configured workspace owner, not authenticated multi-user tenants. Exports are not proof of complete data erasure or rights compliance. OCR, general model inference, hard parser sandboxing, portable backup/restore validation and actual hosted browser→API→DB→private-file verification require separate evidence. The privacy essay's absent original policy does not certify legal compliance.
 
-The supplied preview previously returned Vercel 404. The plugin can list the project, but current team resource operations return 403; neither a working URL nor durable persistence has been verified. Do not represent local build success as a repaired public deployment.
+The [current preview](https://tender-git-tenderos-agent-workbench-ip-3.vercel.app) is marked READY by the GitHub/Vercel integration, but QA's fetch received 403 at the protection-bypass stage before reaching the origin. No HTTP root, UI, API, database, or file-storage behavior was observed. A previous preview returned Vercel 404. The connected scope lacks deployment/team authorization. Do not present READY status as proof of a usable application or durable persistence.
 
 ## Verification record and limits
 

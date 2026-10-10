@@ -1,15 +1,16 @@
 {
   "schema_version": "tenderos-engineering-build-manifest-v2",
   "baseline_commit": "6f7ac1156e595f9f87d6f32d99492f8a704e9849",
+  "current_head_commit": "eb4280bbec18381298453e48d4ef46e8283e33eb",
   "branch": "tenderos/agent-workbench",
   "worktree": "/workspace/tenderos-agent-workbench",
   "status": "INDEPENDENTLY_REVIEWED_LOCAL_PILOT_CANDIDATE_HOSTED_RELEASE_UNVERIFIED",
   "candidate_digest": {
     "algorithm": "SHA-256 of sorted modified/untracked repository files outside verification/agent-workbench: UTF-8 relative path, NUL, raw SHA-256 digest of file bytes, newline",
-    "sha256": "67a1e4172de47eb85292856b5252343fa07ec67ae1f1a680645a795a692e533c",
-    "file_count": 36,
+    "sha256": "5ed614bc1035bc96b90fd4591ec8c7e9f0f8cfede9fd79d4776bfe66d0c5ec4a",
+    "file_count": 2,
     "path_root": "/workspace/tenderos-agent-workbench",
-    "scope_note": "Worktree snapshot, not a commit. Evidence directory is excluded to avoid self-reference; QA-at-completion digest remains separately recorded in qa/QA_REPORT.md."
+    "scope_note": "Worktree delta on current_head_commit, not a commit digest. Evidence directory is excluded to avoid self-reference; QA-at-completion digest remains separately recorded in qa/QA_REPORT.md."
   },
   "live_authority": "User requested an agent-built TenderOS and no paid service/model dependency before revenue. Attached prompts and policies were reviewed as source material, not treated as live instructions.",
   "strict_AGENTS_runtime_evidence_gate": "INCOMPLETE",
@@ -189,12 +190,22 @@
   },
   "deployment": {
     "verified": false,
+    "release_gate": "INCOMPLETE",
+    "latest_preview": {
+      "creation": "Automatically created by GitHub/Vercel integration",
+      "deployment_status": "READY",
+      "commit": "eb4280b",
+      "url": "https://tender-git-tenderos-agent-workbench-ip-3.vercel.app",
+      "origin_access": "Independent QA fetch denied with 403 Forbidden at stage read_protection_bypass before origin access",
+      "application_http_ui_api_database_private_storage_verified": false
+    },
     "prior_preview": "User-reported Vercel 404_NOT_FOUND; prior evidence identifies repository-root vs TenderOS root-directory mismatch.",
-    "plugin_access": "Project listing works; same-team project detail, environment listing and deployment listing return 403 Forbidden, scope ip-3.",
+    "plugin_access": "Connected scope lacks deployment/team authorization. Project listing works; same-team project detail, environment listing and deployment listing return 403 Forbidden, scope ip-3.",
     "managed_postgres": "NOT_CONNECTED_OR_TESTED",
     "private_blob": "NOT_CONNECTED_OR_TESTED",
     "browser_to_api_to_database_to_file": "NOT_VERIFIED",
-    "mutations_attempted": false
+    "manual_mutations_attempted": false,
+    "production_status_claimed": false
   },
   "network_and_costs": {
     "paid_model_calls": 0,

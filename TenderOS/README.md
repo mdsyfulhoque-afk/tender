@@ -24,11 +24,11 @@ See the [candidate user guide](project_knowledge/agent-workbench/USER_GUIDE.md) 
 
 ## Deployment and cost status
 
-No deployment was made by this build. A previously reported Vercel preview returned `404 NOT_FOUND`; historical evidence says the project Root Directory was the repository root while the app lives in `TenderOS/`. The connected Vercel plugin can list the project, but same-team project detail, environment-variable listing, and deployment listing currently return `403 Forbidden` (`scope ip-3`). Project configuration could not be verified or repaired in this session.
+GitHub/Vercel integration automatically created a **READY preview** for commit `eb4280b`: [open the preview](https://tender-git-tenderos-agent-workbench-ip-3.vercel.app). READY is deployment control-plane status, not proof that TenderOS responds. Independent QA's access check was denied with `403 Forbidden` at stage `read_protection_bypass`, before the request reached the origin. QA therefore could not verify the HTTP root, UI, API, database, or private storage flow. The connected Vercel scope lacks authorization for the deployment/team; same-team project detail, environment-variable listing, and deployment listing also return `403 Forbidden` (`scope ip-3`). Project settings and runtime behavior remain unverified. A prior preview showed `404 NOT_FOUND`; historical evidence attributed it to the repository root being used instead of `TenderOS/`.
 
 Hosted mode expects protected owner authentication, PostgreSQL and private file storage. None of those managed resources was connected or exercised, and the end-to-end browser → API → database → private-file flow is unverified. Hosted infrastructure may incur charges independently of model usage. No paid model, API key, paid service provisioning, payment processor, email sender, or customer-facing multi-tenant account system is included. Do not interpret manual receipt entries as bank reconciliation or recorded direct contribution as audited profit.
 
-The earlier Vercel project preparation and preview history is preserved in [deployment preparation evidence](verification/vercel-preparation/REPORT.md). It does not certify the current candidate as deployed or usable online.
+Earlier Vercel project preparation and preview history is preserved in [deployment preparation evidence](verification/vercel-preparation/REPORT.md). The current READY preview exists, but its origin was not reached by QA; this is not a verified usable or production deployment. The release gate remains incomplete.
 
 ## Existing repository and imported source
 
