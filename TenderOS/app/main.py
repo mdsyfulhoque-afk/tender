@@ -122,6 +122,10 @@ if not HOSTED:
         db.executescript(SCHEMA)
         from .database import initialize_local_extensions
         initialize_local_extensions(db)
+        from .workflow_schema import initialize_local_workflows
+        initialize_local_workflows(db)
+        from .commercial_schema import initialize_local_commercial
+        initialize_local_commercial(db)
 
 
 def require(db, table, id):
@@ -1061,3 +1065,10 @@ def demo():
               VALUES(?,?,?,?,1,'synthetic',?,?,?,?)''',(ten,text,'Synthetic example; not an official tender',mandatory,status,note,stamp,stamp))
         log(db,ten,'synthetic_demo_loaded',{'disclaimer':'All example data are fabricated for software testing'})
         return {'organization_id':org,'tender_id':ten,'synthetic':True}
+
+# Inject the established domain boundaries without importing main from workers.
+import sys
+from .workflow_routes import register_routes as register_workflow_routes
+register_workflow_routes(app, sys.modules[__name__])
+from .commercial import register_routes as register_commercial_routes
+register_commercial_routes(app, sys.modules[__name__])

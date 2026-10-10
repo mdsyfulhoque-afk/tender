@@ -1,0 +1,1978 @@
+AI PRODUCT ENGINEERING SYSTEM (APES)
+with TenderToFit as the Validation Pilot
+Final Master Documentation
+Version
+1.0
+Date
+11 August 2026
+Document status
+REVIEW_READY
+System status
+Architectural baseline consolidated; implementation and pilot validation pending
+Pilot project
+TenderToFit — Bangladesh bidder-side tender decision-support workspace
+Primary owner
+Syful
+Purpose
+A standalone operating specification for designing, researching, engineering, verifying, and releasing AI-assisted products through an artifact-driven system, using TenderToFit as the first pilot. It consolidates the full design discussion into one authoritative document and replaces superseded conversational drafts.
+Document Control and Readiness
+Field
+Adopted rule
+Source material
+The full discussion in the current ChatGPT conversation. Conversation statements are design inputs; they are not empirical evidence unless explicitly identified as user-provided facts or verified sources.
+Authoritative precedence
+Later explicit decisions supersede earlier conflicting proposals. Compatible earlier requirements are retained.
+Readiness
+REVIEW_READY. The system architecture and operating method are coherent enough for formal review and pilot execution, but they are not yet PRODUCTION_READY because the capability catalog, implementation code, empirical market evidence, and TenderToFit pilot acceptance tests remain to be completed.
+Runtime cost constraint
+The shipped product must not require paid APIs, paid hosting, or paid tools. Prefer locally runnable, open-source or no-incremental-cost components. ChatGPT/Codex may be used as owner-side engineering environments, but they must not become runtime dependencies of the shipped product.
+Primary execution model
+ChatGPT for research synthesis, specifications, artifact governance, review and orchestration; Codex for repository-level implementation and tests; file analysis for project sources; browsing for current/public evidence when available; code interpreter for analytical models, scoring and quantitative QA.
+Pilot evidence status
+The user described an existing TenderToFit project and translated/processed Bangladesh e-GP procedure material. Those files were referenced but not actually inspected in the captured discussion; therefore any conclusions derived from them remain pending until file analysis is completed.
+FINAL ADOPTED THESIS
+APES is the reusable product-engineering system. TenderToFit is the validation pilot. The system is evidence-first, design-centered, artifact-driven, state-aware, and quality-gated. The user should not have to manually reconstruct the process or supply a prompt at every step; a self-contained Master Orchestrator bootstraps the system in a fresh chat and advances from approved artifact to approved artifact.
+Supersession and Correction Register
+Earlier direction
+Final adopted rule
+Reason
+Start coding TenderToFit immediately in a seven-day sprint.
+Build the APES evidence/design/execution system first; use TenderToFit as the pilot.
+Coding speed is no longer the main differentiator; design quality, evidence and decision traceability are.
+Treat TenderToFit mainly as a PDF parser/compliance extractor.
+Design it as a bidder-side decision-support workspace that complements the official e-GP process.
+The user emphasized the complexity of Bangladesh e-GP workflows for SMEs and consultants; the product should reduce decision/workflow burden, not duplicate the official platform.
+Canvas is the main design workspace.
+Use normal ChatGPT for structured specifications and artifact review, and Codex for implementation; Canvas is not required.
+Later discussion explicitly moved the workflow to ChatGPT/ChatGPT Classic and Codex.
+User performs research/interviews manually.
+ChatGPT performs the research workload where tools permit; the user acts mainly as strategic approver/domain source.
+The user explicitly stated they do not intend to perform the operational work themselves.
+Agent roles resemble a conventional org chart.
+Agents are primarily identified by activities, tasks, inputs, outputs, contracts and artifacts.
+This better fits an AI-native system and supports automated task distribution.
+A linear checklist is sufficient.
+Use a dependency graph/state machine with entry conditions, quality gates, artifact contracts and handoffs.
+The user requested task-connectivity matrices and orchestration.
+The assistant’s conversational competitor comments can be treated as research.
+Treat those comments as hypotheses only; run an explicit evidence package before locking the PRS.
+No actual competitor evidence was captured in the discussion.
+Contents
+Section
+What it contains
+Part I
+Background, objectives, constraints and definitions
+Part II
+APES final architecture, reasoning, governance, quality and knowledge models
+Part III
+Capability, activity, task, agent, artifact and connectivity specifications
+Part IV
+Prompt operating system and Codex implementation framework
+Part V
+Seven-day orchestration plan
+Part VI
+TenderToFit pilot specification and worked example
+Part VII
+Tool-to-artifact execution map and implementation guidance
+Part VIII
+Quality assurance, readiness and release governance
+Part IX
+Automation, learning and APES evolution roadmap
+Appendices
+Registers, templates, prompt index, checklists and handoff forms
+NAVIGATION NOTE
+The document uses real Word heading styles. Use the Word navigation pane to jump between sections. Page numbers are included in the footer. The contents table is intentionally static so the file remains stable in headless rendering and fully editable.
+PART I — BACKGROUND AND OBJECTIVES
+From a one-off seven-day product build to a reusable AI product engineering system.
+1. Original Objective
+The initial objective was to create one sellable digital product that could be shipped in seven days using only free tools and without paid APIs, paid hosting, or paid runtime services. The intended product direction combined the owner’s economics, policy, software/SaaS, financial-analysis and startup interests with a Bangladesh market context.
+The early candidate was TenderToFit Lite: an offline-first tender support application for SMEs and procurement consultants. The proposed workflow was to import a tender, extract requirements, build a compliance matrix, identify missing evidence, calculate a readiness score, and export Word/Excel reports.
+The discussion then established a more important strategic conclusion: software implementation is increasingly fast with AI, so the differentiator should be design quality, decision quality, evidence, workflow understanding, and reliable orchestration. The project therefore evolved from “build TenderToFit in seven days” into “build the engineering system that can repeatedly build TenderToFit and future products.”
+2. Final Objectives
+Create APES: a reusable AI Product Engineering System that converts an idea into a validated, specified, implemented, tested, packaged and learnable product through explicit artifact states.
+Make the system self-bootstrapping in a fresh ChatGPT conversation through one Master Orchestrator prompt rather than requiring the user to issue a new prompt for every step.
+Define work through capabilities, activities, tasks, artifacts, contracts, dependencies and quality gates instead of loose conversational roles.
+Use TenderToFit as the pilot to validate the system and improve APES before generalizing it to other products.
+Ensure the shipped product can operate without mandatory paid APIs, paid hosting or paid tools.
+Make every important product decision traceable to evidence, assumptions, alternatives, review findings and acceptance tests.
+Keep design and UX decisions ahead of implementation decisions; no feature should exist only because it is easy for an AI coding agent to generate.
+3. Intended Users of This Document
+The product owner approving strategic decisions and final gates.
+ChatGPT or another high-reasoning AI acting as orchestrator, researcher, spec writer and reviewer.
+Codex or another repository-level coding agent implementing bounded engineering tasks.
+Human developers, analysts, designers, procurement specialists or consultants joining the project later.
+Future APES instances used to build additional SaaS, policy, research, finance or software products.
+4. Scope and Constraints
+Constraint
+Adopted requirement
+Cost
+No proposed runtime architecture may require paid APIs, paid hosting or paid development tools. Free/open-source/local components are the default.
+Execution ownership
+The AI system performs the operational research/specification/build-orchestration work; the owner primarily reviews strategic decisions and provides domain context when needed.
+Evidence
+No unverified market claim, competitor feature, pricing figure, legal statement or user complaint may be promoted to “fact” without source traceability.
+Design
+User journeys, decision points, information architecture and acceptance criteria must be defined before implementation tasks are issued.
+Implementation
+Coding work is decomposed into bounded tasks with explicit inputs, allowed files, tests and definition of done.
+Quality
+No artifact or task advances merely because content exists; it must pass its required gate.
+Automation
+The process should become state-aware and artifact-driven so prompts can be generated from system state rather than manually improvised.
+5. Key Definitions
+APES — AI Product Engineering System: the reusable operating system that governs research, design, engineering, QA, release and learning.
+Capability — A stable ability APES must possess, defined independently from any particular model or tool.
+Activity — A repeatable unit of work within a capability.
+Task — An execution-sized unit with precise inputs, outputs, dependencies, owner/agent and definition of done.
+Agent — An AI or human execution role defined primarily by the activities/tasks it performs and the artifacts it owns or reviews.
+Artifact — A versioned, reviewable output that serves as a source of truth: e.g., evidence register, PRS, UX spec, architecture spec, code change, QA report.
+Contract — The explicit preconditions, inputs, outputs, invariants and quality criteria governing a capability, agent, task or handoff.
+Gate — A pass/fix/stop decision point that prevents unapproved material from flowing downstream.
+Evidence — Source-backed information with provenance and confidence.
+Assumption — A claim being used provisionally but not yet verified.
+Decision — A recorded choice with alternatives, rationale, evidence and consequences.
+State machine — The lifecycle controller that advances the project only when required artifacts and gates are satisfied.
+PART II — APES FINAL ARCHITECTURE AND METHODOLOGY
+A formal system for decision quality, traceability and repeatable product execution.
+6. APES System Thesis
+CORE PRINCIPLE
+Optimize for decision quality, not document quantity. Artifacts exist to make decisions inspectable, testable, transferable and automatable. Conversation is temporary; durable project knowledge must become a versioned artifact or recorded decision.
+APES is not a chatbot, a prompt library, or a conventional software-development checklist. It is an artifact-driven engineering operating system. Models, tools and prompts are replaceable implementations. Capabilities, contracts, state, evidence, quality gates and learning loops are the durable architecture.
+7. Layered Architecture
+Layer
+Purpose
+Examples
+L0 — Foundation
+Defines philosophy, terminology, invariants and system boundaries.
+Evidence before assumptions; artifacts over chat; verification before approval; no paid runtime dependencies.
+L1 — Capability
+Defines what the system must be able to do, independent of tools.
+Research, opportunity analysis, requirements, UX, architecture, QA, release.
+L2 — Activity & Task
+Decomposes capabilities into executable work and dependencies.
+Collect evidence; normalize requirements; create wireframe; run regression tests.
+L3 — Artifact & Contract
+Defines durable outputs and the conditions governing their creation/consumption.
+Evidence Register, PRS, UX Spec, task contract, handoff contract.
+L4 — Execution
+Assigns agents, prompts and tools to tasks.
+ChatGPT researcher; Codex build task; code-interpreter pricing model.
+L5 — Governance & Intelligence
+Controls state, reviews, priorities, escalation, risk and resource allocation.
+State machine, quality scorecard, chief review gate, decision log.
+L6 — Learning & Evolution
+Captures lessons and improves APES itself.
+Debrief, prompt changes, capability revisions, release of APES v1.1.
+8. Engineering Reasoning Framework
+1.  Understand — define the actual decision/problem, user, context, constraints and unknowns before proposing a solution.
+2.  Investigate — collect evidence, inspect files, research alternatives, identify contradictions and assign confidence.
+3.  Design — develop user journeys, decision logic, information architecture and candidate solution patterns.
+4.  Specify — convert the chosen design into explicit requirements, interfaces, data contracts, tests and bounded implementation tasks.
+5.  Validate — test the artifact/implementation against evidence, acceptance criteria, consistency, security and business relevance.
+6.  Improve — capture defects and lessons, update the decision record, revise the artifact or APES rule, and re-run the affected gate.
+9. Knowledge Model
+Knowledge class
+Definition
+Allowed downstream use
+Verified evidence
+Traceable information supported by source/file/data and reviewed for relevance.
+May support requirements and decisions directly.
+User-provided fact
+A fact explicitly supplied by the owner/domain source; provenance is the user unless independently verified.
+May support design with a provenance label; external/public claims should still be verified where material.
+Working assumption
+An unverified claim needed temporarily to continue analysis.
+May influence prototypes, but must remain visible and must not be represented as fact.
+Design decision
+A choice adopted after considering evidence, alternatives, constraints and trade-offs.
+Becomes binding until superseded through change control.
+Derived requirement
+A requirement produced from evidence/decision logic.
+May enter implementation only when traceable to an approved source or decision.
+Lesson learned
+A post-execution finding about what worked, failed or should change.
+Feeds APES evolution after debrief and review.
+10. Governance Model
+Governance domain
+Required control
+Lifecycle governance
+Every project has explicit states, entry criteria, exit criteria and permitted transitions.
+Artifact governance
+Every material artifact has an ID, version, owner/agent, status, dependencies, date and review record.
+Decision governance
+Material choices record alternatives, evidence, rationale, risks, consequences and supersession rules.
+Quality governance
+Artifacts pass structural, domain, technical, commercial and traceability checks appropriate to their type.
+Knowledge governance
+Facts, assumptions, decisions and lessons are stored separately and never silently conflated.
+Evolution governance
+Changes to APES itself are versioned, justified by pilot/operational evidence and released through controlled change.
+11. Engineering Quality Model
+Dimension
+Question
+Typical evidence
+Correctness
+Is the artifact technically/domain correct for the evidence available?
+Tests, source review, reviewer findings.
+Completeness
+Does it cover all required inputs, cases and outputs?
+Checklist coverage, traceability matrix.
+Consistency
+Does it agree with related artifacts and final decisions?
+Cross-artifact review, terminology audit.
+Traceability
+Can every major requirement/decision be traced to evidence or an explicit assumption?
+Evidence IDs, decision IDs, requirement links.
+Testability
+Can the requirement or behavior be objectively verified?
+Acceptance criteria, test cases, measurable thresholds.
+Maintainability
+Can another agent/person understand, change and extend it safely?
+Modularity, documentation, clear contracts.
+Commercial relevance
+Does it solve a valuable user problem and support an achievable value/cost model?
+User/problem evidence, pricing hypothesis, workflow savings.
+Safety & security
+Are data handling, privacy and threat implications acceptable?
+Threat review, local-data design, dependency audit.
+12. Engineering Intelligence Model
+APES allocates and coordinates work through five forms of engineering intelligence. These are system behaviors, not separate personas.
+Intelligence
+Responsibility
+Situation assessment
+Determine current state, missing inputs, evidence confidence, blockers and the highest-value next decision.
+Planning intelligence
+Generate dependency-aware work, choose parallelizable tasks and avoid premature downstream work.
+Allocation intelligence
+Assign tasks to the agent/tool best suited to the required artifact and risk level.
+Coordination intelligence
+Manage handoffs, state transitions, conflicts, changes, retries and review loops.
+Review intelligence
+Challenge assumptions, detect inconsistency, score quality, stop weak work and trigger correction.
+13. Lifecycle State Machine
+State
+Meaning
+Exit gate
+Next
+S0 — Uninitialized
+No project baseline exists.
+Project intake accepted.
+S1
+S1 — Governed
+Project/artifact/decision registries initialized.
+C000 governance gate passes.
+S2
+S2 — Evidence-ready
+Evidence package and uncertainty map are sufficient.
+Target problem and evidence confidence meet threshold.
+S3
+S3 — Design-ready
+PRS, journeys and design decisions are traceable.
+Design review passes.
+S4
+S4 — Engineering-ready
+Architecture, data contracts, security and test strategy are frozen enough to build.
+Architecture/engineering gate passes.
+S5
+S5 — Build-active
+Bounded implementation tasks executing.
+Task tests/integration results satisfy build gate.
+S6
+S6 — Release-candidate
+Integrated product, docs and packaging exist.
+Regression, acceptance and release review pass.
+S7
+S7 — Released
+Versioned release package approved.
+Operational acceptance recorded.
+S8
+S8 — Learning
+Pilot/usage findings captured and APES/product improvements proposed.
+Debrief approved.
+S1 or next version
+PART III — CAPABILITY, AGENT, ARTIFACT AND CONNECTIVITY SPECIFICATIONS
+The executable backbone of APES.
+14. Capability Engineering Rules
+Capabilities are stable; agent/model/tool implementations may change without redefining the capability.
+Every capability has a contract: purpose, inputs, preconditions, activities, outputs, metrics, risks, dependencies, consumers, review gate and completion criteria.
+Activities are derived from capabilities; tasks are derived from activities; artifacts are produced/updated by tasks; agents are assigned to tasks.
+No downstream capability may consume an artifact that has not passed the required quality gate.
+When a real pilot reveals a gap, add or revise the minimal capability needed rather than introducing speculative architecture layers.
+15. Capability Catalog V1.0
+ID
+Capability
+Purpose
+Primary outputs
+C000
+Engineering Governance
+Initialize registries, states, standards, decision controls and review gates.
+Project Registry; Artifact Registry; Decision Log; governance policy.
+C100
+Opportunity Engineering
+Test whether a problem is worth solving and for whom.
+Problem statement; user segments; opportunity thesis; stop/pivot/proceed decision.
+C110
+Research & Evidence
+Collect, classify, verify and synthesize source evidence.
+Evidence Register; source notes; confidence map; gaps.
+C120
+Competitive & Alternative Intelligence
+Map direct, partial, adjacent and non-software alternatives.
+Competitor/alternative matrix; complaints; pricing evidence; differentiation opportunities.
+C130
+Domain Workflow Intelligence
+Model the user’s real process, decisions, handoffs, documents and failure points.
+Workflow map; pain-point map; decision inventory; source traceability.
+C200
+Product Strategy
+Convert evidence into positioning, scope, value proposition and priorities.
+Product strategy; scope; non-goals; success metrics.
+C210
+Requirements Engineering
+Produce testable, traceable functional/non-functional requirements.
+PRS; requirement IDs; acceptance criteria; traceability links.
+C220
+Experience Design
+Design journeys, screen flows, information architecture and interaction rules.
+UX spec; wireframes/prototypes; edge-state rules; usability criteria.
+C230
+Commercial Viability
+Model who pays, why, packaging, pricing hypotheses and unit economics.
+Commercial hypothesis; pricing model; monetization assumptions; validation plan.
+C300
+Solution Architecture
+Define system boundaries, components, interfaces, deployment and constraints.
+Architecture spec; component map; interfaces; ADRs.
+C310
+Data & Information Architecture
+Define data entities, schemas, provenance, retention and export contracts.
+Data model; schema; evidence lineage; migration rules.
+C320
+Security, Privacy & Risk
+Identify threats, sensitive data, dependency risk and mitigations.
+Threat/risk register; controls; privacy rules; dependency policy.
+C330
+AI/Automation Architecture
+Decide where agents/automation are appropriate and how they are constrained.
+Agent workflow; prompt contracts; tool permissions; fallbacks.
+C400
+Build Planning & Task Engineering
+Turn specs into bounded, dependency-aware implementation tasks.
+Backlog; task contracts; dependency graph; sequencing plan.
+C410
+Implementation
+Change code/config/assets and run local tests.
+Repository changes; unit tests; build notes.
+C420
+Integration & Packaging
+Integrate modules, package the application and prepare release candidate.
+RC build; installer/package; integration report.
+C500
+Verification & QA
+Verify requirements, regression, data integrity, UX states and release criteria.
+QA report; defect log; readiness score; sign-off recommendation.
+C510
+Documentation & Enablement
+Create user/developer/admin materials and demo assets.
+User guide; release notes; demo script; sample data.
+C520
+Commercial Productization
+Prepare packaging, license terms, sales assets and launch materials.
+Offer structure; pricing sheet; brochure/static landing assets; sales checklist.
+C530
+Release Management
+Version, archive, release, rollback-plan and hand off.
+v1.0 package; checksums; changelog; release record.
+C600
+Learning & Knowledge Capture
+Debrief pilot/release and turn findings into durable improvements.
+Debrief; lessons; change proposals; knowledge updates.
+C610
+APES Evolution
+Review and version APES itself based on evidence from usage.
+APES change log; revised capabilities/prompts/gates; APES release.
+16. Full Capability Contract — C000 Engineering Governance
+Field
+Specification
+Mission
+Establish and maintain the controlled engineering environment before any product work begins.
+Business objective
+Make every project auditable, governable and recoverable without depending on memory of a chat.
+Engineering objective
+Ensure artifacts are versioned, decisions traceable, reviews mandatory and lifecycle transitions explicit.
+Inputs
+Project charter/intake; APES version; organizational/project constraints; owner/approval rules.
+Preconditions
+Project identity is known; owner is identifiable; APES baseline is available.
+Activities
+Initialize project; assign IDs; create artifact/decision/evidence/assumption/risk registers; define states; configure gates; initialize metrics.
+Outputs
+Project Registry; Artifact Registry; Decision Log; Evidence Register shell; Assumption Register; Risk Register; Versioning Strategy; Governance Policy.
+Metrics
+100% material artifacts registered; 100% material decisions have IDs; zero undefined mandatory gates; no orphan downstream artifacts.
+Failure conditions
+Missing project state; missing artifact ownership; undefined approval authority; broken traceability; conflicting version baselines.
+Review gate
+Governance completeness, registry integrity, lifecycle validity and traceability checks all pass.
+Completion criterion
+Every downstream capability can reference approved governance artifacts without ambiguity.
+17. Agent Architecture — Activity-Based Agents
+Agents are named for the work they perform. An agent may be instantiated by ChatGPT, Codex, a human specialist or another tool. The contract remains stable even when the implementation changes.
+ID
+Agent activity
+Core responsibility
+Primary output
+AG-00
+Orchestration & State
+Assess state, choose next tasks, enforce gates, maintain registries and dependencies.
+State update; task plan; gate decision.
+AG-01
+Evidence Acquisition
+Search/read sources, files and data; capture provenance and excerpts.
+Evidence items; source metadata; retrieval gaps.
+AG-02
+Evidence Synthesis
+Resolve/flag contradictions, classify confidence and summarize implications.
+Evidence synthesis; confidence map; unresolved questions.
+AG-03
+Opportunity Analysis
+Define users, jobs, pains, alternatives and proceed/pivot/stop logic.
+Opportunity brief; decision recommendation.
+AG-04
+Competitive Intelligence
+Map direct/partial/adjacent alternatives, pricing and complaints from evidence.
+Competitive matrix; differentiation hypotheses.
+AG-05
+Domain Workflow Mapping
+Convert domain procedures/files into steps, decisions, documents and failure points.
+Workflow map; pain-point matrix; decision inventory.
+AG-06
+Product Strategy
+Set scope, positioning, success metrics, priorities and non-goals.
+Product strategy artifact.
+AG-07
+Requirements Engineering
+Turn approved decisions into testable requirements and acceptance criteria.
+PRS; requirement IDs; traceability.
+AG-08
+Experience Design
+Design journeys, navigation, screens, states, copy and usability tests.
+UX spec; wireframes/prototype instructions.
+AG-09
+Solution Architecture
+Choose components, boundaries, interfaces, deployment and technical trade-offs.
+Architecture spec; ADRs.
+AG-10
+Data & Information
+Design schema, provenance, exports, retention and migrations.
+Data model; schema; lineage rules.
+AG-11
+Security & Risk
+Threat-model data, dependencies, permissions, failure modes and mitigations.
+Risk/threat report; control requirements.
+AG-12
+Task Engineering
+Decompose work, set allowed files, dependencies, test obligations and DoD.
+Implementation backlog; task contracts.
+AG-13
+Prompt Compilation
+Compile approved task contracts into executable prompts for Codex/other agents.
+Versioned execution prompts.
+AG-14
+Implementation
+Modify repository within scope; run tests; report exact changes and unresolved issues.
+Code/config/assets; test output.
+AG-15
+Verification
+Design/run tests, inspect failures, verify requirements and regression.
+QA report; defect list; pass/fix recommendation.
+AG-16
+Cross-Review
+Challenge assumptions, cross-check artifacts and stop weak handoffs.
+Review findings; gate decision; correction instructions.
+AG-17
+Documentation & Productization
+Create user docs, demo materials, sales assets and release notes.
+Guides; demo kit; productization pack.
+AG-18
+Release
+Build/version/archive release candidate and final package; prepare rollback.
+Release record; package; changelog.
+AG-19
+Learning & Evolution
+Conduct debrief; capture lessons; propose APES/product changes.
+Debrief; change proposals; knowledge updates.
+18. Artifact Catalog and Status Model
+ID
+Artifact
+Class
+Purpose
+Gate/status
+ART-000
+APES Foundation Baseline
+System
+Final architecture, principles, glossary and governance baseline.
+REVIEW_READY
+ART-010
+Project Intake & Charter
+Project
+Problem, owner, goals, constraints, success criteria.
+Required
+ART-020
+Evidence Package
+Research
+Evidence Register, source notes, assumptions, gaps and confidence.
+Required before design
+ART-030
+Opportunity Decision
+Strategy
+Proceed/pivot/stop decision and rationale.
+Required before PRS
+ART-040
+Workflow Intelligence
+Domain
+User process, documents, decisions, pain points, handoffs.
+Required for workflow-heavy products
+ART-050
+Competitive Intelligence
+Research
+Alternatives, features, complaints, pricing evidence, gaps.
+Required before positioning
+ART-100
+Product Strategy
+Product
+Scope, users, value, metrics, non-goals, priorities.
+Required
+ART-110
+Product Requirements Specification
+Product
+Functional/non-functional requirements, acceptance criteria, traceability.
+Required
+ART-120
+UX Specification
+Design
+Journeys, screens, states, content and usability criteria.
+Required for UI product
+ART-200
+Solution Architecture
+Engineering
+Components, interfaces, deployment, ADRs.
+Required
+ART-210
+Data Architecture
+Engineering
+Schema, provenance, retention, export contract.
+Required
+ART-220
+Security & Risk Plan
+Engineering
+Threats, risks, controls, dependency policy.
+Required
+ART-300
+Task Connectivity Matrix
+Execution
+Task graph, dependencies, owners, outputs and gates.
+Required
+ART-310
+Codex Prompt Library
+Execution
+One prompt per bounded implementation task plus review prompts.
+Required for Codex build
+ART-400
+Implementation Build
+Code
+Repository/installer/package changes.
+Build output
+ART-410
+QA & Acceptance Report
+QA
+Tests, defects, traceability coverage, readiness.
+Required before release
+ART-420
+Productization Pack
+Commercial
+Docs, demo, static sales assets, pricing hypothesis.
+Required before commercial release
+ART-430
+Release Package
+Release
+Versioned build, changelog, rollback info, checksums.
+Required
+ART-500
+Debrief & Learning Pack
+Learning
+Lessons, metrics, defects, APES change proposals.
+Required after pilot/release
+19. Standard Artifact Metadata
+Metadata field
+Required content
+Artifact ID
+Stable identifier, e.g., ART-110.
+Title
+Human-readable artifact name.
+Version
+Semantic or controlled version, e.g., 0.3, 1.0.
+Status
+DRAFT_ONLY / REVIEW_READY / PRODUCTION_READY / PUBLICATION_READY as appropriate.
+Owner/agent
+Agent or human responsible for maintaining the artifact.
+Inputs
+Evidence, prior artifacts and decisions consumed.
+Dependencies
+Artifacts/gates that must be approved first.
+Assumptions
+Referenced assumption IDs; never hide them in prose.
+Decisions
+Referenced decision IDs.
+Outputs/consumers
+Downstream artifacts/tasks permitted to consume this version.
+Review record
+Reviewer, date, findings and pass/fix/stop decision.
+Change summary
+What changed since prior version and why.
+20. Task Connectivity Matrix — Core Product Path
+Task
+Activity
+Depends on
+Owner
+Output
+Gate
+T000
+Initialize project governance
+None
+AG-00
+ART-010 + registries
+G0 Governance
+T010
+Acquire project/domain files
+T000
+AG-01
+Evidence items
+G1 Evidence
+T020
+Research public market/alternatives
+T000
+AG-01/04
+Source-backed competitor evidence
+G1 Evidence
+T030
+Synthesize evidence/confidence
+T010,T020
+AG-02
+ART-020
+G1 Evidence
+T040
+Map domain workflow/pains
+T010,T030
+AG-05
+ART-040
+G1 Evidence
+T050
+Decide opportunity/positioning
+T030,T040
+AG-03/06
+ART-030 + ART-100
+G2 Opportunity
+T100
+Draft testable PRS
+T050
+AG-07
+ART-110
+G3 Design
+T110
+Design user journeys/screens
+T040,T100
+AG-08
+ART-120
+G3 Design
+T120
+Cross-review design consistency
+T100,T110
+AG-16
+Design findings
+G3 Design
+T200
+Specify solution architecture
+T100,T110
+AG-09
+ART-200
+G4 Engineering
+T210
+Specify data/provenance model
+T100,T110
+AG-10
+ART-210
+G4 Engineering
+T220
+Threat/risk review
+T200,T210
+AG-11
+ART-220
+G4 Engineering
+T300
+Decompose implementation tasks
+T200,T210,T220
+AG-12
+ART-300
+G4 Engineering
+T310
+Compile Codex prompts
+T300
+AG-13
+ART-310
+G4 Engineering
+T400
+Implement bounded tasks
+T310
+AG-14
+ART-400 increments
+Per-task build gates
+T410
+Integrate and regression-test
+T400
+AG-15
+Integrated build + defect log
+G5 Build
+T420
+Package release candidate
+T410
+AG-18
+RC build
+G6 RC
+T430
+Create docs/commercial assets
+T100,T110,T410
+AG-17
+ART-420
+G6 RC
+T440
+Acceptance/release review
+T420,T430
+AG-15/16
+ART-410
+G7 Release
+T450
+Release/archive
+T440
+AG-18
+ART-430
+G7 Release
+T500
+Debrief and APES improvement
+T450
+AG-19
+ART-500
+G8 Learning
+21. Standard Agent Handoff Contract
+Field
+Required handoff content
+From / To
+Producing agent and consuming agent.
+Task/Artifact IDs
+Exact IDs and versions being handed off.
+State
+Current project state and gate status.
+Inputs supplied
+Files, evidence, decisions, assumptions, code commit/revision.
+Invariants
+Facts/constraints that must not be changed by the next agent without a decision record.
+Open issues
+Known defects, uncertainty and unresolved questions.
+Acceptance test
+How the receiver confirms the handoff is usable.
+Failure response
+What to do if inputs are incomplete, contradictory or unsafe.
+PART IV — PROMPT OPERATING SYSTEM AND CODEX FRAMEWORK
+Self-contained prompts that bootstrap and execute APES without relying on chat memory.
+22. Master Orchestrator Prompt — Full-Control Version
+PROMPT 00 — Master Orchestrator (Full-Control)
+You are the AI Product Engineering System (APES) Master Orchestrator for [PROJECT NAME]. This prompt is self-contained: assume a fresh chat with no prior knowledge unless files or facts are explicitly provided.
+MISSION
+Build and govern a reusable product-engineering process first, then use it to deliver the product. APES must transform evidence into decisions, decisions into specifications, specifications into bounded implementation tasks, tasks into verified code/artifacts, and results into release and learning.
+NON-NEGOTIABLE PRINCIPLES
+1. Evidence before assumptions.
+2. Research before product lock; design before implementation; verification before approval; commercial viability before release.
+3. Artifacts, not conversation, are the source of truth. Material knowledge must become a versioned artifact, evidence item, assumption, decision or issue.
+4. Define agents by activities/tasks, inputs, outputs, dependencies and quality contracts rather than prestige job titles.
+5. Use state-machine logic and dependency-aware task connectivity. Do not advance downstream work until required gates pass.
+6. Do not silently treat illustrative data, model guesses, prior assistant claims or unverified market statements as evidence.
+7. When later decisions supersede earlier ones, record the supersession in the Decision Log.
+8. Optimize for decision quality and user experience, not code volume or document volume.
+9. The shipped product must not require paid APIs, paid hosting or paid runtime tools. Prefer local/open-source/no-incremental-cost components. Owner-side ChatGPT/Codex use is allowed but must not become a shipped runtime dependency.
+10. Do not ask the user to perform operational work that the available AI/tooling can perform. Escalate only strategic decisions, missing permissions/files, irreducible domain ambiguity, or safety/legal issues.
+SYSTEM TO BUILD
+Create and maintain: Project Registry; Artifact Registry; Evidence Register; Source-of-Truth Register; Assumption Register; Decision Log; Issue Log; Risk Register; Version Log; Capability Catalog; Activity/Task Catalog; Agent Catalog; Task Connectivity Matrix; Artifact Dependency Matrix; Quality Scorecard; Prompt Library; Release Register; Debrief/Learning Register.
+BASE APES VOLUMES
+V1 Foundation & Governance
+V2 Capability Catalog
+V3 Activity Catalog
+V4 Task Catalog & Connectivity
+V5 Artifact Catalog & Registry
+V6 Agent Catalog & Contracts
+V7 Workflow/Orchestration Engine
+V8 Prompt Generation Framework
+V9 AI/Automation Execution Framework
+V10 Pilot Implementation & Validation
+EXECUTION METHOD
+A. Initialize governance and artifact IDs.
+B. Build the evidence package from [FILES], [COUNTRY], public research and user-provided facts. Label each item as verified evidence, user-provided fact, assumption, illustrative data or unresolved claim.
+C. Produce opportunity, workflow and competitive intelligence. End with PROCEED / PIVOT / STOP and confidence.
+D. If proceed/pivot is approved, create Product Strategy, PRS and UX specification with requirement-to-evidence traceability.
+E. Create solution/data/security architecture and freeze engineering constraints.
+F. Derive activities, bounded tasks and dependency graph. Each task must define inputs, allowed files/components, output, tests, risks, definition of done and rollback notes.
+G. Compile one executable Codex prompt per approved implementation task.
+H. After each task, run verification and cross-artifact consistency review. Update registries.
+I. Package a release candidate, docs, demo assets and commercial hypotheses. Run acceptance/regression review.
+J. Release only when the release gate passes. Then run debrief and propose APES/product improvements.
+STATE MODEL
+S0 Uninitialized -> S1 Governed -> S2 Evidence-ready -> S3 Design-ready -> S4 Engineering-ready -> S5 Build-active -> S6 Release-candidate -> S7 Released -> S8 Learning.
+Do not skip mandatory states.
+ARTIFACT STATUS
+Use DRAFT_ONLY, REVIEW_READY, PRODUCTION_READY, PUBLICATION_READY. Never overstate readiness.
+REVIEW BEHAVIOR
+For each artifact: state purpose; inputs; evidence/assumptions; decisions; content; unresolved issues; quality score; gate result; next permitted tasks. Run a chief-review pass that challenges contradictions, unsupported claims, missing edge cases, traceability gaps, testability and commercial relevance.
+PILOT
+After the APES baseline exists, use [PILOT PROJECT] as the validation project. Preserve pilot-specific constraints and learnings without hard-coding them into generic APES unless evidence supports generalization.
+START NOW
+1. Create ART-010 Project Intake & Charter from the supplied context.
+2. Create/initialize all governance registers.
+3. Declare current state and missing evidence.
+4. Produce the first task plan and begin the highest-priority executable task. Do not stop at an outline.
+23. Short Launch Prompt
+PROMPT 00-S — Short Launch
+Start APES for [PROJECT NAME] using the APES Master Orchestrator rules. Assume a fresh project. Initialize governance, artifact IDs and state; build the evidence package from [FILES]/[COUNTRY]/public research; record assumptions and decisions; then advance artifact-by-artifact through design, engineering, Codex implementation, QA, release and debrief. Do the operational work yourself wherever tools permit. Do not begin implementation before evidence, design and engineering gates pass. No paid runtime APIs/hosting/tools. Show only the decisions or blockers that require owner input.
+24. Evidence and Competitive Intelligence Prompt
+PROMPT 01 — Evidence, Workflow and Competitive Intelligence
+Act as APES Research, Competitive Intelligence and Domain Workflow agents for [PROJECT NAME] in [COUNTRY/MARKET]. Produce an evidence package, not a brainstorm.
+INPUTS
+- Project description: [INPUT]
+- Files/source material: [FILES]
+- Intended users: [AUDIENCE]
+- Known constraints: [CONSTRAINTS]
+RESEARCH TASKS
+1. Inspect all provided files and extract the real workflow, terminology, documents, decisions, deadlines, failure points and user burdens.
+2. Research four alternative classes: (a) direct competitors, (b) partial competitors, (c) adjacent/manual substitutes, and (d) official/public infrastructure that the product must complement rather than duplicate.
+3. For each evidence-backed alternative capture: product/organization, market, target users, workflow covered, notable features, pricing model or public pricing if verifiable, user complaints/limitations from attributable sources, strengths, weaknesses, and relevance.
+4. Build a jobs-to-be-done and pain-point matrix. Distinguish frequency, severity, consequence, current workaround, evidence source and confidence.
+5. Identify what users must decide, not only what they must type/click.
+6. Identify data/privacy/regulatory/process constraints.
+7. Produce opportunity hypotheses and rank them by evidence strength, user value, implementation difficulty, differentiation and ability to operate without paid runtime dependencies.
+8. End with PROCEED / PIVOT / STOP for the current concept, with confidence and the evidence that would change the decision.
+EVIDENCE RULES
+- Every material claim must cite/point to a source or be labeled USER-PROVIDED FACT, ASSUMPTION or ILLUSTRATIVE.
+- Do not invent competitor pricing, customer complaints or government rules.
+- Record contradictions rather than averaging them away.
+- Separate Bangladesh-specific findings from global analogues.
+OUTPUTS
+ART-020 Evidence Package; ART-040 Workflow Intelligence; ART-050 Competitive Intelligence; updated Evidence/Assumption/Issue Registers; and a concise opportunity decision draft.
+25. File Analysis Prompt for TenderToFit / e-GP Materials
+PROMPT 01-F — TenderToFit Source Analysis
+Analyze the supplied TenderToFit and Bangladesh e-GP procedure materials as primary domain inputs. Do not summarize the book generically.
+Extract a structured bidder-side operating model:
+- step ID and stage;
+- triggering event;
+- user role;
+- required information/document;
+- decision to be made;
+- action in/around e-GP;
+- prerequisite/dependency;
+- deadline/time risk;
+- error/disqualification risk;
+- current workaround;
+- pain for SME bidder vs procurement consultant;
+- evidence location/page/section;
+- ambiguity or translation uncertainty.
+Then derive:
+1. workflow graph;
+2. decision inventory;
+3. document/evidence inventory;
+4. pain-point matrix;
+5. candidate product interventions mapped one-to-one to evidence-backed pains;
+6. list of functions the product must NOT duplicate because they belong to official e-GP;
+7. requirements that remain hypotheses and need external validation.
+Label translated wording separately from the underlying procedural meaning when translation may affect interpretation. Output ART-040 Workflow Intelligence and update the Evidence Register.
+26. Product Strategy and PRS Prompt
+PROMPT 02 — Product Strategy + PRS
+Using only approved evidence, assumptions and decisions from ART-020/030/040/050, create ART-100 Product Strategy and ART-110 Product Requirements Specification for [PROJECT NAME].
+For every requirement include: requirement ID; user/problem source; rationale; functional behavior; priority; acceptance criteria; failure/edge states; data involved; security/privacy implications; dependency; and traceability to evidence/decision IDs.
+Define: target users; jobs-to-be-done; value proposition; scope; non-goals; success metrics; core workflows; functional requirements; non-functional requirements; data/export requirements; accessibility/usability requirements; offline/no-paid-runtime constraint; audit/provenance requirements; observability/error handling; and explicit v1 exclusions.
+Reject features that cannot be tied to an evidence-backed user need or strategic decision. Mark unvalidated ideas as hypotheses, not requirements. End with a design gate checklist and PASS/FIX/STOP recommendation.
+27. UX / Decision-Workflow Design Prompt
+PROMPT 03 — UX and Decision Workflow
+Create ART-120 UX Specification for [PROJECT NAME] from the approved PRS and workflow intelligence. Treat design as a primary differentiator.
+Design around user decisions and risk reduction, not feature menus. Produce:
+- personas/roles only where evidence supports distinct workflows;
+- end-to-end journeys;
+- task flows and decision points;
+- information architecture;
+- screen/state inventory;
+- wireframe-level layout for each critical screen;
+- empty/loading/error/partial/blocked states;
+- microcopy for high-risk decisions;
+- review/override behavior when automated extraction is uncertain;
+- keyboard/accessibility considerations;
+- usability acceptance criteria;
+- instrumentation/feedback points that do not require paid services.
+For each screen/state show the user question being answered, required evidence, next decision, and error-prevention mechanism. Cross-check every interaction against the PRS and record any requirement conflict as an issue rather than improvising a new requirement.
+28. Architecture and Engineering Specification Prompt
+PROMPT 04 — Architecture + Data + Security
+Create ART-200 Solution Architecture, ART-210 Data Architecture and ART-220 Security/Risk Plan for [PROJECT NAME].
+Constraints: no mandatory paid APIs, paid hosting or paid runtime tools; local/offline-first when feasible; modular components; deterministic behavior for critical decisions; user-review path for uncertain extraction; explicit provenance.
+Specify: system context; components; boundaries; interfaces; data entities; schema; data lineage; file ingestion; parsing/extraction pipeline; business rules; export layer; local persistence; configuration; logging; error taxonomy; privacy; threat model; dependency/license review; packaging; updates/migrations; testability; performance targets; backup/restore; and failure recovery.
+Record significant technical choices as architecture decision records (ADRs) with alternatives and trade-offs. Do not select libraries solely because they are popular; consider license, packaging, maintenance and offline suitability. End with engineering gate criteria and unresolved decisions.
+29. Task Engineering and Connectivity Prompt
+PROMPT 05 — Task Connectivity and Build Plan
+From approved PRS, UX, architecture, data and security artifacts, derive ART-300 Task Connectivity Matrix.
+Each task must include: task ID; objective; capability/activity; exact inputs; predecessor tasks; files/components allowed to change; files/components forbidden unless escalated; implementation steps; test obligations; expected artifacts; definition of done; failure conditions; rollback note; owner agent; reviewer agent; and next tasks unlocked.
+Build a dependency graph, not a simple list. Mark tasks as parallelizable, sequential or gate-bound. Keep tasks small enough for one coding-agent context while large enough to produce a verifiable increment. Create review tasks explicitly; do not assume testing is implicit. End by identifying the critical path and the smallest demonstrable vertical slice.
+30. Codex Implementation Prompt Template
+PROMPT 06 — Codex Task Execution
+You are the implementation agent for APES Task [TASK ID] in [PROJECT NAME]. Work only from the task contract and referenced approved artifacts.
+OBJECTIVE
+[TASK OBJECTIVE]
+SOURCE OF TRUTH
+- PRS: [ARTIFACT/VERSION]
+- UX: [ARTIFACT/VERSION]
+- Architecture/Data/Security: [ARTIFACT/VERSION]
+- Task contract: [TASK/VERSION]
+- Relevant files: [FILES]
+SCOPE
+Allowed files/components: [ALLOWED]
+Do not modify without escalation: [FORBIDDEN]
+Dependencies/preconditions: [DEPENDENCIES]
+CONSTRAINTS
+- No paid runtime API/hosting/tool dependency.
+- Preserve existing contracts and tests unless the task explicitly changes them.
+- Do not invent requirements. If a required behavior is ambiguous, record the ambiguity and choose the least destructive implementation that preserves the contract.
+- Handle errors explicitly; do not hide failures behind broad exception swallowing.
+- Add/update tests for every behavior changed.
+IMPLEMENTATION
+1. Inspect relevant code and existing tests before editing.
+2. State the minimal change plan.
+3. Implement the task.
+4. Run targeted tests, then relevant regression tests.
+5. Run lint/type/build checks available in the repository.
+6. Report exact files changed, tests run/results, assumptions, risks and unresolved issues.
+DEFINITION OF DONE
+[DEFINITION OF DONE]
+RETURN
+A concise implementation report plus patch/commit-ready changes. If tests fail, do not claim completion.
+31. QA / Chief Review Prompt
+PROMPT 07 — QA and Cross-Review
+Act as APES Verification and Cross-Review agents for [ARTIFACT/BUILD]. Your role is to challenge completion claims.
+Verify:
+1. requirement coverage and traceability;
+2. internal and cross-artifact consistency;
+3. factual/source accuracy for evidence claims;
+4. numerical/formula consistency where applicable;
+5. tests and acceptance criteria;
+6. edge/error/empty states;
+7. security/privacy/dependency constraints;
+8. no-paid-runtime constraint;
+9. usability and decision-risk controls;
+10. documentation/versioning/readiness labels.
+Classify every finding: BLOCKER, MAJOR, MINOR, OBSERVATION. Provide evidence, affected requirement/artifact/task, corrective action and re-test instruction.
+Finish with exactly one gate recommendation: PASS, PASS WITH NON-BLOCKING ITEMS, FIX AND RE-REVIEW, or STOP/REDESIGN. Do not assign PRODUCTION_READY unless all release-critical evidence supports it.
+32. Release/Productization Prompt
+PROMPT 08 — Productization and Release
+Prepare [PROJECT NAME] for release from an approved release candidate.
+Produce/update: installer/package; version number; changelog; release notes; dependency/license inventory; configuration defaults; backup/migration notes; user guide; admin/developer notes as needed; demo dataset; demo script; screenshots/static sales assets; pricing/packaging hypothesis; acceptance report; known limitations; rollback/recovery instructions; archive/checksum manifest.
+Do not introduce new product scope during productization. Any late feature request becomes a new decision/task unless it fixes a release blocker. Verify that the shipped product can operate without mandatory paid APIs, paid hosting or paid runtime tools. Assign final readiness conservatively and create ART-430 Release Package.
+33. Closing / Debrief Prompt
+PROMPT 09 — Debrief and APES Evolution
+Run the APES post-pilot/release debrief for [PROJECT NAME]. Compare planned outcomes with observed outcomes and produce ART-500 Debrief & Learning Pack.
+Capture: what evidence proved/disproved; which design decisions worked; defects escaped gates; task estimates/dependencies that were wrong; prompts that caused ambiguity; tool limitations; user feedback; commercial signals; security/privacy issues; documentation gaps; reusable patterns; product changes; APES changes.
+For each proposed APES change include: triggering evidence, affected capability/prompt/gate, expected benefit, risk of generalizing from one pilot, test for the change, and proposed APES version. Do not generalize pilot-specific behavior into APES without justification.
+PART V — SEVEN-DAY ORCHESTRATION PLAN
+A design-centered, evidence-gated sprint for the TenderToFit pilot.
+34. Seven-Day Strategy
+The original seven-day plan was progressively refined. The final version does not equate “day” with a rigid quantity of code. Each day is a gate-oriented work package. If a mandatory gate fails, the correct action is to fix or rescope rather than mechanically advance to the next day.
+Day
+Focus
+Primary work
+Outputs
+Exit gate
+Day 1
+Discovery, governance and evidence
+Initialize APES; inspect TenderToFit/e-GP materials; research alternatives; build evidence/assumption/decision registers; define opportunity thesis.
+ART-010/020/030/040/050 drafts
+Evidence sufficient to justify target user/problem and proceed/pivot/stop.
+Day 2
+Workflow intelligence and product/UX design
+Freeze bidder workflow; pain/decision map; PRS; user journeys; screen/state model; design review.
+ART-100/110/120
+Every v1 requirement traces to evidence/decision; major flow ambiguities resolved.
+Day 3
+System design and engineering specification
+Architecture, schema, provenance, security, error handling, test strategy, repo skeleton design; smallest vertical slice definition.
+ART-200/210/220
+Technical design is internally consistent, offline/no-paid-runtime compliant and testable.
+Day 4
+Implementation packaging and Codex orchestration
+Task connectivity matrix; task contracts; Codex prompts; implement first vertical slice; per-task tests.
+ART-300/310 + code increments
+Critical-path tasks executable independently; first end-to-end slice passes tests.
+Day 5
+Core feature completion, scoring, reports and QA
+Complete ingestion/review/compliance/readiness/export flows; regression tests; formula validation; defect fixing.
+Integrated build + QA report
+Core workflows pass acceptance criteria; no blocker defects; outputs internally consistent.
+Day 6
+Productization and release candidate
+Installer/package; configuration; logging; docs; demo data; static commercial assets; release candidate RC1.
+RC1 + ART-420
+Clean install/use/uninstall or portable-run path verified; docs/demo match product; no mandatory paid dependency.
+Day 7
+Final QA, release and learning handoff
+Full regression/acceptance; fix blockers; version v1.0 if justified; archive; release notes; demo; debrief plan.
+ART-410/430 + debrief shell
+Release gate passes; otherwise remain RC with explicit blockers. Learning loop initialized.
+Day 1 — Discovery, Governance and Evidence
+Purpose: Prove what problem is being solved before product design is locked.
+Entry: Project intent; referenced TenderToFit/e-GP materials; market/country context.
+Execution: Initialize registries; analyze files; acquire public evidence; classify direct/partial/adjacent/official alternatives; build workflow/pain map; record assumptions; issue opportunity recommendation.
+Outputs: Governance baseline; evidence package; workflow intelligence; competitor/alternative matrix; proceed/pivot/stop draft.
+Exit gate: No downstream PRS work unless the target user, problem and core workflow are sufficiently evidenced or explicitly accepted as pilot hypotheses.
+Day 2 — Product and Experience Design
+Purpose: Turn evidence into a decision-centered product, not a feature dump.
+Entry: Approved evidence/opportunity artifacts.
+Execution: Define scope/non-goals; write testable requirements; map decisions to screens; design review/override flows; specify edge states; cross-review for traceability.
+Outputs: Product strategy; PRS; UX spec; acceptance criteria.
+Exit gate: Every core feature maps to evidence or an explicit strategic decision; blockers/uncertainty have visible handling.
+Day 3 — Architecture and Engineering Freeze
+Purpose: Create the controlled technical baseline required for safe AI coding.
+Entry: Approved PRS and UX spec.
+Execution: Specify components; data model; local storage; extraction pipeline; provenance; security; logging; error taxonomy; packaging; tests; repo/module boundaries; vertical slice.
+Outputs: Architecture/data/security specs; test strategy; repo plan.
+Exit gate: Architecture respects no-paid-runtime constraint and supports objective testing/traceability.
+Day 4 — Task Engineering and First Build Slice
+Purpose: Compile engineering specifications into bounded Codex work.
+Entry: Approved engineering artifacts.
+Execution: Build dependency graph; define task contracts; generate Codex prompts; implement project shell, database, document ingestion and minimal review UI as a vertical slice; run targeted tests.
+Outputs: Task connectivity matrix; prompt library; first executable slice.
+Exit gate: The slice loads a project/document and exposes extracted content/status with passing tests; task boundaries remain intact.
+Day 5 — Core Decision Support and Verification
+Purpose: Complete the bidder decision workflow and verify its logic.
+Entry: Working vertical slice.
+Execution: Implement requirement normalization, evidence matching/review, missing-document logic, readiness scoring, Word/Excel export, errors and regression tests; run formula/data consistency checks.
+Outputs: Feature-complete MVP candidate; reports; QA defect log.
+Exit gate: Core acceptance tests pass; mandatory blockers are represented correctly; exports match on-screen state.
+Day 6 — Productization and RC1
+Purpose: Turn the MVP candidate into something another person can install, understand and demonstrate.
+Entry: Feature-complete build with no blocker defects.
+Execution: Package installer/portable build; configuration; logs; sample tender/demo dataset; user guide; release notes; static brochure/landing files; licensing/dependency inventory; RC install test.
+Outputs: RC1; productization pack.
+Exit gate: A clean-machine test (or equivalent isolated environment) demonstrates the main workflow without paid services.
+Day 7 — Release Gate and Learning Setup
+Purpose: Decide whether the product deserves v1.0 status and capture learning.
+Entry: RC1 and productization pack.
+Execution: Full regression; acceptance review; fix release blockers; version/archive; produce known limitations and rollback info; run pilot demo; initialize debrief metrics.
+Outputs: v1.0 if justified, otherwise RC2 plan; release record; debrief shell.
+Exit gate: PRODUCTION_READY only if release-critical criteria pass. Otherwise remain REVIEW_READY/RC with explicit blockers.
+PART VI — TENDERTOFIT PILOT SPECIFICATION
+A Bangladesh-focused bidder-side decision-support workspace, not a replacement for e-GP.
+35. Pilot Positioning and Evidence Status
+USER-PROVIDED DOMAIN CONTEXT
+The owner reported that the Bangladesh e-GP application process is complex for many SMEs and procurement consultants and that prior TenderToFit work attempted to extract and translate older e-GP procedures. This is valuable primary domain context, but the referenced source files were not inspected during the captured discussion. File-based workflow extraction is therefore a Day 1 requirement, not a completed evidence claim.
+TenderToFit should complement the official e-GP platform rather than compete with or replicate it. The product’s role is to help a bidder understand a tender, decide readiness, assemble evidence, detect gaps and produce an auditable preparation workspace before or alongside official submission.
+36. Pilot User Hypotheses
+User
+Job-to-be-done
+Likely pain hypothesis
+Evidence status
+SME bidder
+Determine whether the firm can qualify and what must be prepared before submission.
+Procedures, requirements and evidence are distributed across tender documents and process rules; omissions can be costly.
+User-provided hypothesis; verify in files/research.
+Procurement consultant
+Review multiple clients/tenders consistently and communicate missing evidence.
+Manual checklists and repeated document comparison consume time and make review quality person-dependent.
+Hypothesis; verify through workflow/source evidence.
+Bid preparation staff
+Track documents, requirement status and deadlines.
+Evidence may be missing, expired, partial or hard to map to a tender clause.
+Hypothesis; verify.
+37. V1 Scope
+Create/open a local tender project.
+Import one or more tender PDFs and supporting documents.
+Extract text locally with a deterministic parser; use OCR fallback only where needed and available locally.
+Normalize candidate requirements into reviewable requirement records with source location/provenance.
+Let the user confirm, edit, merge, split or reject extracted requirements rather than treating extraction as infallible.
+Classify each requirement as mandatory/conditional/informational and record deadlines/evidence types where known.
+Map available bidder evidence/documents to requirements and flag missing, partial, expired or ambiguous evidence.
+Calculate an explainable readiness score while allowing mandatory blockers to override a high numeric score.
+Generate a compliance/readiness matrix and missing-evidence report.
+Export editable Word and Excel reports locally.
+Maintain local project data, provenance, audit notes, logs and export history.
+38. V1 Non-Goals
+No automatic submission into Bangladesh e-GP.
+No cloud collaboration or multi-tenant SaaS backend in v1.
+No automatic bid writing or legally binding interpretation of procurement rules.
+No requirement for a paid LLM/API to run the product.
+No ERP integration, mobile application or enterprise identity system in v1.
+No claim that automated extraction is authoritative; users must be able to inspect provenance and override results.
+39. Proposed Offline Technical Baseline
+This is an implementation baseline to be confirmed at the architecture gate. It favors low dependency risk and local operation over unnecessary agentic complexity.
+Layer
+Proposed component
+Reason
+Desktop UI
+PySide6 or another permissively usable desktop UI toolkit
+Local desktop UX; no mandatory server/hosting. License must be verified at implementation time.
+Core language
+Python 3.x
+Fast seven-day implementation, rich PDF/document ecosystem, easy packaging.
+Local database
+SQLite
+Zero-service local persistence, transactional, portable.
+PDF text extraction
+pypdf/pdfplumber/pdfminer.six class of libraries
+Local deterministic extraction; final library choice requires license/package validation.
+OCR fallback
+Tesseract OCR
+Local, no paid OCR API; use only when text layer is absent/insufficient.
+Requirement parsing
+Rules/heuristics + user review in v1
+Avoid mandatory local-LLM hardware/model dependency; preserve explainability.
+Word export
+python-docx
+Editable local .docx output.
+Excel export
+openpyxl
+Editable .xlsx compliance/readiness matrix.
+Packaging
+PyInstaller or equivalent
+Local executable/installer path; final licensing and antivirus behavior must be tested.
+Optional local AI
+Pluggable local model adapter only after core workflow works
+May improve extraction later, but must not be required for v1 operation.
+40. Core Data Model
+Entity
+Key fields
+Purpose
+Project
+id, name, authority, tender_ref, deadline, status, created_at
+Container for one bid-preparation effort.
+SourceDocument
+id, project_id, type, filename, hash, imported_at, extraction_status
+Tender/supporting source files with integrity metadata.
+SourceSegment
+id, document_id, page/section, text, coordinates/offset, confidence
+Traceable source location for extracted claims.
+Requirement
+id, project_id, text, category, mandatory, condition, due_date, source_segment_id, review_status
+Normalized tender requirement with provenance.
+EvidenceItem
+id, project_id, document_id, evidence_type, issuer, valid_from, valid_to, notes
+Bidder document/evidence inventory.
+RequirementEvidenceLink
+requirement_id, evidence_id, status, confidence, rationale, reviewer_note
+Maps evidence to a requirement and records review state.
+ComplianceCheck
+requirement_id, status, blocker, score_value, checked_at, checked_by
+Derived/confirmed readiness result.
+ExportRecord
+id, project_id, format, template_version, created_at, file_hash
+Audit trail for generated reports.
+DecisionNote
+id, project_id, related_object, note, decision, actor, timestamp
+User override/review trail.
+41. Explainable Readiness Scoring — Illustrative Baseline
+ILLUSTRATIVE FORMULA — NOT YET MARKET/DOMAIN VALIDATED
+For reviewed requirements i, assign weight w_i and status value s_i: Compliant = 1.0; Partial = 0.5; Missing/Non-compliant = 0.0; Not Applicable = excluded. Numeric readiness = 100 × Σ(w_i × s_i) / Σ(w_i). If any requirement marked “mandatory disqualifying blocker” is Missing/Non-compliant, the overall decision label becomes NOT READY regardless of numeric score. The score is a navigation aid, not a legal determination.
+The score must show its components. A user should be able to click a result and see which requirements and evidence items created it. Weighting defaults should be conservative and editable only through a governed configuration or user role, not hidden code.
+42. Worked Example — Illustrative Tender Review
+DATA STATUS
+The example below is fictional demonstration data created only to show how the workflow operates. It is not evidence about a real Bangladesh tender or e-GP rule.
+Req ID
+Illustrative requirement
+Mandatory
+Weight
+Evidence/status
+Result
+R-001
+Valid trade license covering the submission date.
+Yes
+10
+TradeLicense.pdf; expiry after tender deadline.
+Compliant (1.0)
+R-002
+Required tax-return evidence for the specified fiscal period.
+Yes / blocker
+10
+No matching document uploaded.
+Missing (0.0)
+R-003
+Evidence of three similar contracts within the defined period.
+Yes
+8
+Two qualifying contracts found; third not evidenced.
+Partial (0.5)
+R-004
+Company profile information.
+No
+2
+Profile.docx available.
+Compliant (1.0)
+Illustrative numeric calculation: 100 × [(10×1.0) + (10×0.0) + (8×0.5) + (2×1.0)] / (10+10+8+2) = 53.3%. Because R-002 is a mandatory blocker, the decision label is NOT READY even if subsequent non-blocking items raise the percentage. The product should show “what to fix next” rather than presenting the percentage as a pass probability.
+43. Core Screen / Decision Flow
+Step
+User question
+Primary screen/state
+System output
+1
+What tender am I preparing?
+Project setup/import
+Project metadata and source file inventory.
+2
+What does this tender require?
+Requirement review workspace
+Extracted/normalized requirements with page/section provenance.
+3
+Is the extraction correct?
+Review/edit/merge/split state
+Confirmed requirement set; uncertain items remain visibly unresolved.
+4
+What evidence do I already have?
+Evidence library/mapping
+Evidence inventory and candidate matches.
+5
+What is missing, partial or risky?
+Compliance matrix
+Status per requirement, blockers, expiry/deadline risk.
+6
+Should I proceed and what should I do next?
+Readiness dashboard
+Explainable readiness, blocker list, prioritized next actions.
+7
+What can I share/work from?
+Export center
+Editable Word/Excel matrix, missing-evidence report and audit notes.
+44. Acceptance Criteria — Pilot MVP
+A user can create a project and import a text-based tender PDF without network access.
+Every extracted requirement displayed to the user retains a source location sufficient to inspect the original context.
+The user can correct extraction results without editing a database directly.
+Supporting documents can be registered and mapped to requirements manually even if automated matching is unavailable.
+Mandatory blocker logic is deterministic and tested.
+Readiness score components reconcile exactly with requirement statuses and export outputs.
+Word and Excel exports open as editable files and match the reviewed project state.
+The application handles missing/corrupt/encrypted/scanned PDFs with explicit error states rather than silent failure.
+No core workflow requires a paid API, internet connection or paid hosting service.
+A clean/isolated installation or portable execution test can complete the main demo workflow.
+45. Competitive Research Strategy Matrix — To Be Populated from Evidence
+Alternative class
+What to investigate
+Design question for TenderToFit
+Official baseline
+Bangladesh e-GP functions, bidder obligations, official guidance, submission boundaries.
+What must TenderToFit complement and never pretend to replace?
+Direct tender/bid tools
+Requirement extraction, compliance matrices, bid/no-bid, document libraries, collaboration, reporting.
+Which bidder-side decisions are already solved well and where are gaps?
+Partial document/OCR tools
+PDF extraction, OCR, semantic search, document comparison.
+Which generic capabilities should be reused rather than rebuilt as product differentiation?
+Adjacent procurement suites
+Supplier/procurement management, sourcing, workflow, approvals.
+Which enterprise functions are irrelevant to the SME bidder pilot?
+Manual substitutes
+Excel checklists, Word templates, consultants, folders, email/WhatsApp.
+What makes current work slow/risky, and what must the new product preserve because it is flexible?
+Generic AI assistants
+Document Q&A, summarization, extraction.
+Where does a structured workflow/provenance product outperform a generic chat?
+46. Commercial Model — Validation Template
+No market-validated price was established in the discussion. Pricing must remain a hypothesis until competitor evidence and willingness-to-pay data are collected. The following model is therefore a reusable analytical template, not a recommended Bangladesh price.
+Variable
+Formula / input
+Illustrative demo value
+Status
+Unit price P
+Chosen price per license/period
+BDT 5,000
+Illustrative only
+Units N
+Paid licenses in period
+20
+Illustrative only
+Gross revenue
+P × N
+BDT 100,000
+Derived demo
+Variable delivery cost V
+Per-unit incremental cost
+BDT 0–low if local/offline distribution
+Hypothesis; payment/support costs excluded
+Fixed launch cost F
+Owner time, design, QA, promotion, packaging
+Enter actual
+Input required
+Contribution
+N × (P − V) − F
+Compute in code interpreter
+Do not claim until inputs exist
+Break-even units
+F / (P − V)
+Compute
+Requires actual F, P, V
+PART VII — TOOL-TO-ARTIFACT EXECUTION MAP
+Exactly which environment produces which artifact and what it must return.
+47. Final Tool Strategy
+TOOL RULE
+The product runtime must remain free of mandatory paid services. Owner-side engineering tools may be used to create artifacts, but the shipped application should remain runnable locally with open-source/no-incremental-cost components.
+Phase
+Primary tool/environment
+Exact artifact output
+Quality check
+Research/public evidence
+Browsing/search in ChatGPT when available
+Evidence Register entries; source URLs/metadata; competitor matrix; current official/public facts.
+Source date/relevance; no unsupported synthesis.
+Project source analysis
+ChatGPT file analysis
+Workflow map from TenderToFit/e-GP files; page/section-linked evidence; terminology table.
+Every extracted claim points back to file location; translation ambiguity flagged.
+Quantitative analysis
+Code Interpreter / Python
+Readiness formula tests; pricing scenarios; scoring reconciliation; CSV/XLSX validation; charts if needed.
+Reproducible calculations; inputs/assumptions explicit.
+Product/design specification
+ChatGPT normal/classic/high-reasoning mode
+Product strategy, PRS, UX spec, architecture decisions, task contracts, registers.
+Cross-artifact traceability and chief-review gate.
+Repository implementation
+Codex
+Code changes, tests, build scripts, packaging, static landing/brochure files where applicable.
+Task-scoped tests + regression + implementation report.
+Document/package QA
+ChatGPT + file/render tools
+Rendered/inspected docs; release checklist; artifact/version audit.
+No overflow/malformed pages; status and version consistency.
+Release
+Codex/local build tooling + ChatGPT governance
+Versioned local installer/package, checksums, changelog, user guide, demo kit.
+Clean-install/portable-run acceptance test.
+48. Outputs Required from Each Tool Call
+Tool
+Must return
+Browsing
+Source title/publisher, date where available, URL/reference, claim supported, evidence confidence, market relevance, and any contradiction.
+File analysis
+File identity, location/page/section, extracted text/meaning, interpretation, ambiguity, resulting workflow/requirement linkage.
+Code Interpreter
+Inputs, formulas/code logic, output tables, checks, error conditions, reproducible file where useful.
+ChatGPT specification
+Artifact ID/version/status, inputs, assumptions, decisions, content, quality gate and next permitted task.
+Codex
+Task ID, files inspected/changed, implementation summary, tests run/results, assumptions, unresolved issues and exact completion status.
+49. Implementation Guidance for ChatGPT + Codex
+1.  Keep one dedicated APES orchestrator conversation or project workspace as the governing context. Do not mix unrelated product execution into the same source-of-truth thread unless artifacts are explicitly separated.
+2.  Begin a new product with the self-contained Master Orchestrator, project intake and source files. The prompt must define APES terminology so a fresh model does not depend on previous chat memory.
+3.  Use ChatGPT to freeze evidence/design/architecture artifacts and generate bounded Codex task prompts.
+4.  Send Codex one task contract at a time or a small dependency-compatible batch. Avoid “build the whole app” prompts.
+5.  Return Codex implementation reports to the orchestrator. Update the Artifact Registry, Task Matrix, Decision Log and Issue Log after each meaningful increment.
+6.  Run chief review before new scope enters the build. Scope changes become decisions and new tasks; they do not silently rewrite requirements.
+7.  At release, export the durable artifacts (DOCX/Markdown/JSON/CSV as appropriate) so project knowledge does not exist only inside chat history.
+PART VIII — QUALITY ASSURANCE, READINESS AND RELEASE GOVERNANCE
+Conservative status assignment and explicit evidence for completion.
+50. QA Framework
+QA domain
+Mandatory checks
+Factual accuracy
+Public/domain claims trace to sources; user-provided facts are labeled; illustrative data are not presented as real.
+Internal consistency
+Same requirement, metric, status and terminology agree across PRS, UX, architecture, code and docs.
+Numerical consistency
+Scoring, pricing and report totals reconcile; formulas are testable and edge cases covered.
+Source traceability
+Requirement/decision links point to Evidence IDs, user facts or explicit assumptions.
+Assumptions
+Every material assumption is registered, owner/validation path identified, and no assumption silently becomes fact.
+Cross-document consistency
+Versions and scope are synchronized; superseded artifacts are clearly marked.
+Duplication/missing material
+No contradictory duplicate rules; required artifacts/gates present.
+Formatting/usability
+Documents render cleanly; UI/error states are usable; exports are editable and legible.
+Versioning
+Build, artifact and release versions are coherent and recorded.
+Terminology
+Glossary terms and status labels are applied consistently.
+Security/privacy
+Local data handling, logs, files, dependencies and exports are reviewed for risk.
+Release readiness
+All release-critical acceptance tests pass; known limitations documented; rollback/recovery path exists.
+51. Readiness Classification
+Status
+Meaning
+Minimum rule
+DRAFT_ONLY
+Incomplete working artifact; not suitable for downstream reliance.
+Open structural/content gaps or unreviewed assumptions materially affect use.
+REVIEW_READY
+Coherent artifact suitable for formal review/pilot planning.
+Required structure exists; material uncertainty is visible; review not yet fully passed.
+PRODUCTION_READY
+Approved for operational/product use within defined scope.
+Release-critical tests/gates passed; evidence/risks acceptable; known limitations documented.
+PUBLICATION_READY
+Approved for external/public release of the artifact itself.
+Production-quality content plus publication/citation/privacy/format review passed.
+52. Gate Checklist
+Gate
+Pass conditions
+G0 Governance
+Project ID/state/owner known; registries created; version baseline established.
+G1 Evidence
+Core problem/user/workflow has sufficient evidence or explicit pilot assumptions; source gaps are visible.
+G2 Opportunity
+Proceed/pivot/stop decision recorded with rationale, alternatives and confidence.
+G3 Design
+Requirements and UX trace to evidence/decisions; edge states and acceptance criteria are defined.
+G4 Engineering
+Architecture/data/security are consistent; tasks are bounded; no-paid-runtime constraint preserved.
+G5 Build
+Implemented behavior passes task and integration tests; no hidden scope drift.
+G6 Release Candidate
+Package/docs/demo exist; blocker defects resolved; isolated run/install verified.
+G7 Release
+Full acceptance/regression and release checklist pass; version/archive/rollback information complete.
+G8 Learning
+Debrief completed; lessons and APES/product changes recorded with evidence.
+53. TenderToFit QA Checklist
+PDF import: text-based, scanned, corrupt, encrypted, very large and unusual-layout cases handled explicitly.
+Provenance: every extracted requirement can be inspected in source context.
+Requirement review: edit/merge/split/reject operations preserve audit history.
+Evidence mapping: manual mapping works even when automation confidence is low.
+Validity logic: document dates/deadlines use explicit date rules and timezone/date parsing tests.
+Blocker logic: a missing mandatory disqualifier cannot be masked by aggregate scoring.
+Score reconciliation: UI score = exported score = recomputed score from requirement states.
+Word/Excel export: editable, opens cleanly, and includes project/version/timestamp/provenance fields.
+Persistence: close/reopen does not lose project state; backups/migrations are tested when introduced.
+Privacy: tender/supporting files stay local unless the user explicitly exports/shares them.
+Packaging: clean install/portable run and uninstall/cleanup behavior are known.
+No paid dependency: core workflow succeeds without internet or paid service credentials.
+54. Final Document Self-Review Result
+STATUS: REVIEW_READY
+This consolidated documentation is suitable as the governing review baseline and kickoff artifact. It is intentionally not labeled PRODUCTION_READY because empirical competitor research, file-level e-GP/TenderToFit analysis, full APES capability/task implementation, and TenderToFit code/pilot acceptance have not yet been completed. The document explicitly identifies those gaps instead of converting prior conversational claims into facts.
+PART IX — AUTOMATION, LEARNING AND APES EVOLUTION
+How the product engineering system becomes reusable and increasingly self-directed.
+55. Automation Model
+The long-term operating model is a production pipeline rather than a sequence of hand-written prompts. The state machine and artifact registry determine the next allowable work. Prompts are compiled from task contracts, and agent outputs update project state.
+Automation component
+Function
+Initial implementation form
+Artifact Lifecycle Manager
+Create IDs/versions/status, enforce required metadata and supersession.
+Structured register in Markdown/JSON/CSV; later automate.
+Dependency Engine
+Determine which tasks/artifacts are blocked/unlocked.
+Task Connectivity Matrix; later graph/state engine.
+Traceability Engine
+Link evidence -> decisions -> requirements -> tests -> code/release.
+Stable IDs and matrices; later machine-validated links.
+Quality Scoring Engine
+Score artifacts and prevent weak advancement.
+Prompted QA checklist + objective tests; later automated rules.
+Prompt Compiler
+Generate execution prompts from approved task contracts.
+Template + orchestrator; later programmatic compilation.
+Knowledge Capture Engine
+Promote verified lessons to durable system knowledge.
+Debrief + change proposals; later searchable knowledge base.
+Learning/Evolution Manager
+Version APES itself and avoid over-generalizing one pilot.
+APES change log + release gate.
+56. Integration with the Referenced Automation Project
+UNRESOLVED INPUT
+The conversation referenced an existing “automation project” whose orchestration process should be reused where appropriate, but no actual project files, architecture or workflow were retrieved in the captured discussion. Therefore this document defines an integration adapter point rather than claiming to reproduce that project. The next APES run should inspect the automation project and map its actual state, triggers, task routing and artifact persistence against the components above.
+Once inspected, reuse only the automation mechanisms that strengthen APES contracts. Do not import project-specific conventions blindly. The integration review should answer: how tasks are queued; how state is stored; how retries/branching occur; how tools/permissions are assigned; how outputs are persisted; how human approvals are represented; and how failures are recovered.
+57. APES Evolution Rules
+No new architecture layer is added unless a real pilot or implementation failure demonstrates a gap.
+Every APES change cites the triggering evidence/lesson and identifies affected capabilities, prompts, artifacts and gates.
+A change that solves only a TenderToFit-specific problem remains a pilot extension unless generalized evidence supports promotion into core APES.
+Prompt wording changes are versioned when they materially change agent behavior or output contracts.
+Quality gates may become stricter after defects escape; they should not become looser merely to make progress appear faster.
+Tool-specific dependencies stay in the implementation layer; the capability model should remain usable if ChatGPT, Codex or any specific model changes.
+58. Next Execution Sequence
+1.  Use this document as ART-000 APES Foundation Baseline V1.0 with status REVIEW_READY.
+2.  Start a dedicated APES orchestrator chat using PROMPT 00 and attach the TenderToFit/e-GP source materials plus any automation-project files that should influence orchestration.
+3.  Run C000 governance to create live project registers and assign actual artifact versions.
+4.  Run PROMPT 01 and PROMPT 01-F to produce the verified TenderToFit evidence/workflow/competitive package.
+5.  Make the formal proceed/pivot/stop decision for TenderToFit. If proceed/pivot, generate Product Strategy/PRS/UX through PROMPTS 02–03.
+6.  Generate architecture/data/security and task connectivity through PROMPTS 04–05.
+7.  Issue bounded Codex tasks through PROMPT 06, feeding each result back into QA and the artifact registry.
+8.  Use PROMPTS 07–09 for release gating, productization and learning.
+APPENDICES — REUSABLE REGISTERS, TEMPLATES AND CHECKLISTS
+Editable structures for live APES operation.
+Appendix A — Project Intake Form
+Field
+Entry
+Project name
+[PROJECT NAME]
+Owner/approver
+[OWNER]
+Country/market
+[COUNTRY]
+Problem statement
+[PROBLEM]
+Target user(s)
+[AUDIENCE]
+Desired outcome
+[OUTCOME]
+Deadline
+[DEADLINE]
+Available files/data
+[FILES]
+Runtime cost constraints
+[e.g., no paid APIs/hosting/tools]
+Security/privacy constraints
+[CONSTRAINTS]
+Success metrics
+[MEASURES]
+Known assumptions
+[ASSUMPTIONS]
+Known non-goals
+[NON-GOALS]
+Appendix B — Evidence Register
+Evidence ID
+Claim/observation
+Source/provenance
+Type
+Confidence
+Used by
+E-001
+Example: e-GP workflow step extracted from user file.
+[file, page/section]
+Verified file evidence
+High after review
+Workflow W-xx / Requirement R-xx
+E-002
+Example: SME users report difficulty mapping documents to requirements.
+[interview/source]
+Primary/secondary evidence
+[H/M/L]
+Opportunity/UX
+Appendix C — Source-of-Truth Register
+Domain
+Authoritative artifact/source
+Version
+Owner
+Supersedes
+Product requirements
+ART-110 PRS
+[v]
+AG-07
+[older artifact]
+UX
+ART-120 UX Spec
+[v]
+AG-08
+[older artifact]
+Architecture
+ART-200 Architecture
+[v]
+AG-09
+[older artifact]
+Data schema
+ART-210 Data Architecture
+[v]
+AG-10
+[older artifact]
+Appendix D — Assumption Register
+Assumption ID
+Statement
+Why needed
+Validation method
+Owner
+Status
+AS-001
+Example: bidder-side requirement mapping is a high-severity pain.
+Needed to prioritize v1.
+File analysis + interviews/research.
+AG-03
+OPEN
+AS-002
+Example: local/offline desktop delivery is acceptable to target users.
+Affects architecture/distribution.
+User validation + install pilot.
+AG-06
+OPEN
+Appendix E — Decision Log
+Decision ID
+Decision
+Alternatives
+Evidence
+Rationale
+Date/version
+D-001
+APES is primary system; TenderToFit is pilot.
+Build TenderToFit directly.
+Discussion design evolution.
+Creates reusable product engineering method.
+V1.0
+D-002
+Activity-based agents.
+Conventional job-title org chart.
+Automation/task-connectivity requirement.
+Improves machine allocation and contracts.
+V1.0
+D-003
+ChatGPT specifications + Codex implementation.
+Canvas-centric build.
+Later explicit workflow decision.
+Matches final intended interface.
+V1.0
+Appendix F — Issue Log
+Issue ID
+Description
+Severity
+Owner
+Resolution/next action
+Status
+I-001
+TenderToFit/e-GP source files referenced but not analyzed in captured discussion.
+MAJOR
+AG-01/05
+Attach/retrieve files and run PROMPT 01-F.
+OPEN
+I-002
+Automation project orchestration referenced but not inspected.
+MAJOR
+AG-00
+Inspect project artifacts and map reusable mechanisms.
+OPEN
+Appendix G — Risk Register
+Risk ID
+Risk
+Likelihood
+Impact
+Mitigation
+Trigger/owner
+RK-001
+Unverified workflow assumptions cause wrong product design.
+Medium
+High
+Evidence gate; provenance; user review.
+AG-02/16
+RK-002
+Automated extraction produces plausible but wrong requirement.
+High
+High
+Source provenance + mandatory human confirmation/uncertainty state.
+AG-08/15
+RK-003
+Packaging/dependency licenses conflict with commercial distribution.
+Medium
+High
+Dependency/license review before architecture lock and release.
+AG-11/18
+RK-004
+Seven-day deadline encourages scope creep or skipped QA.
+High
+High
+Gate-based scope; smallest vertical slice; non-goals.
+AG-00/16
+RK-005
+Offline product becomes hard to update/support.
+Medium
+Medium
+Versioned config/migration, logs, portable diagnostics, documented update path.
+AG-09/17
+Appendix H — Deliverables Matrix
+Deliverable
+Artifact ID
+Producer
+Reviewer
+Required before
+Status
+Evidence Package
+ART-020
+AG-01/02
+AG-16
+Opportunity/design
+Pending
+Workflow Intelligence
+ART-040
+AG-05
+AG-16
+PRS/UX
+Pending
+Product Strategy
+ART-100
+AG-06
+AG-16
+PRS
+Pending
+PRS
+ART-110
+AG-07
+AG-16
+Architecture/build
+Pending
+UX Spec
+ART-120
+AG-08
+AG-16
+Architecture/build
+Pending
+Architecture/Data/Security
+ART-200/210/220
+AG-09/10/11
+AG-16
+Task decomposition
+Pending
+Task Matrix/Prompts
+ART-300/310
+AG-12/13
+AG-16
+Implementation
+Pending
+Build
+ART-400
+AG-14
+AG-15
+RC
+Pending
+QA Report
+ART-410
+AG-15
+AG-16
+Release
+Pending
+Release Package
+ART-430
+AG-18
+AG-16
+Learning
+Pending
+Appendix I — Agent Responsibility Matrix
+Work product
+Responsible
+Accountable/gate
+Consulted inputs
+Informed
+Evidence Package
+AG-01/02
+AG-16
+Owner/domain sources
+AG-00, AG-03–08
+Workflow Intelligence
+AG-05
+AG-16
+AG-01/02, owner
+AG-06–10
+PRS
+AG-07
+AG-16
+AG-05/06/08
+AG-09–15
+Architecture
+AG-09/10/11
+AG-16
+AG-07/08
+AG-12–15
+Implementation tasks
+AG-12/13
+AG-16
+AG-09/10/11
+AG-14/15
+Code/build
+AG-14
+AG-15
+AG-12/13
+AG-00/16/18
+Release
+AG-18
+AG-16/owner
+AG-15/17
+All
+Appendix J — QA Checklist Template
+Check
+Pass/Fail
+Evidence/reference
+Finding/action
+Source-backed factual claims
+[ ]
+[Evidence IDs]
+[ ]
+Requirement traceability
+[ ]
+[Traceability matrix]
+[ ]
+Acceptance criteria coverage
+[ ]
+[Test IDs]
+[ ]
+Cross-artifact consistency
+[ ]
+[Artifacts/versions]
+[ ]
+Numerical/formula reconciliation
+[ ]
+[Calculation/test]
+[ ]
+Error/edge states
+[ ]
+[Test cases]
+[ ]
+Security/privacy/dependency review
+[ ]
+[Risk/scan]
+[ ]
+No-paid-runtime constraint
+[ ]
+[Offline test]
+[ ]
+Version/readiness correctness
+[ ]
+[Registry]
+[ ]
+Formatting/render/packaging
+[ ]
+[QA output]
+[ ]
+Appendix K — Version / Change Log
+Version
+Date
+Artifact/system
+Change
+Reason
+Approved by
+0.x
+[date]
+[artifact]
+[change]
+[reason]
+[reviewer]
+1.0
+11 Aug 2026
+APES Master Documentation
+Consolidated full discussion; applied final supersession rules; formalized prompts, capability/agent/artifact models, seven-day plan and TenderToFit pilot baseline.
+Create standalone governing document.
+Review pending owner
+Appendix L — Prompt Library Index
+Prompt
+Purpose
+Primary output
+PROMPT 00
+Self-contained APES Master Orchestrator.
+Governed project, artifact pipeline and next executable task.
+PROMPT 00-S
+Short launch form after the full method is understood.
+Same pipeline with compact instruction.
+PROMPT 01
+Evidence, workflow and competitive intelligence.
+ART-020/040/050.
+PROMPT 01-F
+TenderToFit/e-GP file analysis.
+Evidence-backed bidder workflow.
+PROMPT 02
+Product strategy and PRS.
+ART-100/110.
+PROMPT 03
+UX and decision-workflow design.
+ART-120.
+PROMPT 04
+Architecture, data and security.
+ART-200/210/220.
+PROMPT 05
+Task engineering and connectivity.
+ART-300.
+PROMPT 06
+Codex task implementation.
+Code/test increment.
+PROMPT 07
+QA and chief review.
+Gate decision + defect report.
+PROMPT 08
+Productization and release.
+ART-420/430.
+PROMPT 09
+Debrief and APES evolution.
+ART-500 + change proposals.
+Appendix M — Automation Roadmap
+Stage
+Automation maturity
+What becomes automatic
+Guardrail
+M0
+Manual artifact discipline
+IDs, registers, prompts maintained in documents/chat.
+Chief review controls transitions.
+M1
+Structured artifact store
+JSON/Markdown/CSV registries and task graph generated from templates.
+Schema validation; human/AI gate.
+M2
+State-aware prompt compilation
+Next task and prompt generated from dependencies/status.
+Only approved artifact versions may be consumed.
+M3
+Automated QA checks
+Traceability, version, test, formula and dependency checks run automatically where deterministic.
+Qualitative/domain review remains explicit.
+M4
+Multi-agent orchestration
+Agents run parallel tasks and reconcile handoffs.
+Permissions, retries, budgets and stop conditions.
+M5
+Learning APES
+Debrief data suggests capability/prompt/gate changes.
+No self-modification without versioned review/approval.
+Appendix N — Debrief Template
+Question
+Response
+What outcome was expected?
+[ ]
+What actually happened?
+[ ]
+Which evidence/assumptions were wrong or incomplete?
+[ ]
+Which design decisions worked or failed?
+[ ]
+Which defects escaped gates and why?
+[ ]
+Which task dependencies/prompts caused friction?
+[ ]
+What did users value or ignore?
+[ ]
+What commercial signals appeared?
+[ ]
+What should change in the product?
+[ ]
+What should change in APES?
+[ ]
+What should NOT be generalized from this pilot?
+[ ]
+Proposed next version / decision
+[ ]
+Appendix O — Release Checklist
+Approved PRS/UX/architecture versions referenced in release record.
+All blocker/major defects resolved or explicitly accepted through a decision record.
+Unit/integration/regression/acceptance tests recorded and passing for release-critical paths.
+Clean install or portable-run test completed.
+No mandatory paid runtime API/hosting/tool credential required.
+Dependency/license inventory reviewed.
+User guide, demo data, release notes and known limitations match the actual build.
+Data backup/migration/recovery behavior documented where applicable.
+Version, build hash/checksum, changelog and archive path recorded.
+Rollback/recovery instructions available.
+Readiness status conservatively assigned.
+Debrief/learning task scheduled as the next allowed state.
+Appendix P — Final Adopted Operating Rules
+Do the work, do not merely advise what could be done.
+Use a self-contained master prompt so a fresh chat understands the system from zero.
+Do not rely on prior chat memory for terms that can be defined in the artifact.
+Research and validate before locking product requirements.
+Design user decisions and workflow before optimizing implementation speed.
+Treat official/public platforms as boundary conditions; complement them unless evidence justifies another role.
+Use activity-based agents and explicit task connectivity.
+Keep durable project knowledge in versioned artifacts and registers.
+Generate Codex prompts from approved task contracts, not from vague feature descriptions.
+Require tests and review at each handoff; do not call a build complete if tests fail.
+Do not overstate readiness or market evidence.
+Keep the shipped product free of mandatory paid runtime APIs, hosting or tools.
+After the pilot, improve APES from evidence rather than adding speculative complexity.
+Closing Baseline
+This document is the consolidated V1.0 architectural and operating baseline created from the full design discussion. It is intended to be used directly as the kickoff reference for the next APES execution cycle. The immediate next work is not another conceptual layer: it is to initialize live governance, inspect the referenced TenderToFit/e-GP and automation-project materials, produce the verified evidence package, and allow those findings to drive the pilot design and implementation.

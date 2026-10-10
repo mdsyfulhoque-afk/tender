@@ -1,0 +1,87 @@
+{
+  "schema_version": "tenderos-documentation-output-hashes-v2",
+  "scope": "Current README, project source/feature documentation, user guide, final QA/security reports, and engineering evidence; excludes this hash ledger to avoid self-reference.",
+  "self_excluded": true,
+  "files": {
+    "README.md": {
+      "sha256": "9a9d8d695af8f6c1909eecad0dd581a808b758f3c8e00a3edafa50f05fb0312f",
+      "bytes": 5627
+    },
+    "project_knowledge/agent-workbench/FEATURE_REGISTER.md": {
+      "sha256": "750865eacd9afb6ba64c8d8b90f36121d4b0271db6bf42d3934485bbc06cb896",
+      "bytes": 12380
+    },
+    "project_knowledge/agent-workbench/IMPLEMENTED_INTERFACES.md": {
+      "sha256": "dfd7f0ca6b9c244658bfa206d93baeda36a78c6967227f2ad8c1b135f9846670",
+      "bytes": 5648
+    },
+    "project_knowledge/agent-workbench/PROMPT_CONTRACTS.md": {
+      "sha256": "bd8d5872f2f989e9c15b1937e2276b38804a7f5e3e8a7eaf82d51750a21b152e",
+      "bytes": 7279
+    },
+    "project_knowledge/agent-workbench/README.md": {
+      "sha256": "56af7ec8a2c78bce8850e52a8e3bace3d24074d3b3ef33a68ddf2505057e3e2c",
+      "bytes": 2918
+    },
+    "project_knowledge/agent-workbench/SOURCE_BOUNDARIES.md": {
+      "sha256": "2522849696c3ba7f48a7de410e0a78dfe43a17583bfd76ef3d2978f102bef95f",
+      "bytes": 5084
+    },
+    "project_knowledge/agent-workbench/TASK_CONTRACTS.json": {
+      "sha256": "27e298a237982b7ddbe0a19a3efe0d0848c7121d2f7f33b5b241f8630481d763",
+      "bytes": 26057
+    },
+    "project_knowledge/agent-workbench/USER_GUIDE.md": {
+      "sha256": "35a56aac939484630fa7959cb3fa690941edfa1c655c936e5f65fb07cf488385",
+      "bytes": 11008
+    },
+    "project_knowledge/agent-workbench/reviews/AGENT_RUNTIME_DESIGN.md": {
+      "sha256": "9524f44bf9ff5d89f5749bd7a5f86720ec36d88e734827724399176558ba3438",
+      "bytes": 35082
+    },
+    "project_knowledge/agent-workbench/reviews/APES_FEATURE_REVIEW.md": {
+      "sha256": "42acc811cd7cedff9b4f0770e76fdbafa58c7cc3c0b75f6986b157d24898b49a",
+      "bytes": 33963
+    },
+    "project_knowledge/agent-workbench/reviews/GOVERNANCE_FEATURE_REVIEW.md": {
+      "sha256": "1785f0c038b1023bf522e3cf579a279f501929d662adaf9c6ad4d678ba668d47",
+      "bytes": 29194
+    },
+    "project_knowledge/agent-workbench/source-manifest.json": {
+      "sha256": "3d16749f0e93c56098dc67368e132473473dc01f7d7c547b2d715212ab2cf80a",
+      "bytes": 4774
+    },
+    "project_knowledge/agent-workbench/sources/APES_TenderToFit_extracted.txt": {
+      "sha256": "c8fe62b2eacc632dcf3bad316b15aa28d271e3fcfa1d46bd5fe0d2c61c5dadd0",
+      "bytes": 90514
+    },
+    "project_knowledge/agent-workbench/sources/master-documentation-prompt.txt": {
+      "sha256": "100b92f4d78047cca4fcbd79e29ab438830e345d0e08c0216263b6ee906a71a8",
+      "bytes": 11577
+    },
+    "project_knowledge/agent-workbench/sources/privacy-engineering-essay.txt": {
+      "sha256": "dfa5ce9cac31d987d027147648aba3ed024de5c37c2b6a0426275cdb8f3c67b3",
+      "bytes": 26889
+    },
+    "verification/agent-workbench/ENGINEERING_EVIDENCE.md": {
+      "sha256": "9324174976aa09b0699bd8c6826b6d4296c88a0ef6365f9b0ddf46210a7f9d3b",
+      "bytes": 8724
+    },
+    "verification/agent-workbench/build-manifest.json": {
+      "sha256": "7dfbbc73c43403933f9edfb0c820e41898f999fd2e6462ea8349d95444fda35c",
+      "bytes": 9185
+    },
+    "verification/agent-workbench/qa/QA_REPORT.md": {
+      "sha256": "6a2dd82221deade407bf9da22bf9c629f4910843d2056085f9b9646c3453e0a7",
+      "bytes": 6755
+    },
+    "verification/agent-workbench/qa/SECURITY_REVIEW.md": {
+      "sha256": "e87badb3674290a0fb1a028b909f00bf29707a6d3232290ce1b1c881fe0da663",
+      "bytes": 12798
+    },
+    "verification/agent-workbench/source_traceability_receipt.json": {
+      "sha256": "72c616a46fd3d435500510497ba76fe0e9285504d53a6dff41d4413faacf1eab",
+      "bytes": 1498
+    }
+  }
+}

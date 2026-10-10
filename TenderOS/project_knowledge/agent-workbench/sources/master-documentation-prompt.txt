@@ -1,0 +1,484 @@
+# MASTER PROMPT — Convert This Entire Discussion into a Final DOCX
+
+Using the **entire discussion in this chat as the source material**, prepare one complete, polished, professional DOCX that consolidates everything we developed, decided, refined, corrected, and finalized during the conversation.
+
+## 1. Primary Objective
+
+Do not merely summarize the conversation.
+
+Transform the discussion into a **standalone final document** that someone could use without reading the chat history.
+
+The document must capture:
+
+- the original objective;
+- all important requirements;
+- all decisions and refinements;
+- all frameworks, methodologies, workflows, prompts, templates, examples, formulas, instructions, checklists, and operating rules developed during the discussion;
+- all corrections and later improvements that supersede earlier versions;
+- any pilot-run or implementation procedure;
+- expected outputs;
+- quality assurance requirements;
+- limitations and assumptions;
+- final reusable prompts or instructions;
+- implementation guidance;
+- appendices or reusable templates where useful.
+
+Treat later confirmed decisions as authoritative when they conflict with earlier discussion.
+
+---
+
+# 2. Reconstruct the Discussion Before Writing
+
+Before creating the DOCX:
+
+1. Review the **full conversation from beginning to end**.
+2. Identify:
+   - original problem;
+   - evolving requirements;
+   - user preferences;
+   - rejected or superseded ideas;
+   - accepted final decisions;
+   - examples created;
+   - reusable prompts;
+   - workflows;
+   - deliverables;
+   - QA requirements;
+   - unresolved issues.
+3. Build an internal hierarchy of what belongs in the final document.
+4. Remove conversational repetition, filler, acknowledgements, false starts, and duplicated material.
+5. Preserve substantive detail.
+6. Do not omit useful content merely because it appeared early in the discussion.
+7. If later discussion improves an earlier section, use the improved version rather than reproducing both unless the evolution itself is important.
+
+---
+
+# 3. Document Philosophy
+
+The final DOCX must be:
+
+- **self-contained**;
+- **implementation-ready**;
+- **professionally structured**;
+- **editable**;
+- **easy to navigate**;
+- **detailed enough to function as a manual, blueprint, handbook, specification, or operating document**;
+- written so that another AI, colleague, consultant, developer, analyst, researcher, or future version of me could understand and use it without needing the original chat.
+
+Do not produce a superficial meeting summary.
+
+Convert informal conversation into formal documentation.
+
+---
+
+# 4. Recommended Document Structure
+
+Adapt the structure to the actual discussion, but use something similar to the following where appropriate.
+
+## Cover Page
+
+Include:
+
+- project/document title;
+- descriptive subtitle;
+- version;
+- date;
+- document status;
+- optional author/owner/project name where known.
+
+---
+
+## Executive Purpose / Document Purpose
+
+Explain:
+
+- what the project/system/document is;
+- why it was developed;
+- what problem it solves;
+- what the final document contains;
+- how it should be used.
+
+Do not add an executive summary if the discussion explicitly established that one is unnecessary.
+
+---
+
+## Part I — Background and Objectives
+
+Capture:
+
+- context;
+- original problem;
+- goals;
+- scope;
+- intended users;
+- success criteria;
+- constraints;
+- important definitions.
+
+---
+
+## Part II — Final Framework / Architecture / Methodology
+
+Convert the discussion into a logical system.
+
+Where relevant include:
+
+- phases;
+- chapters;
+- modules;
+- workflows;
+- architecture;
+- governance;
+- agent structure;
+- analysis framework;
+- operating logic;
+- decision rules.
+
+For every major phase/module, include:
+
+### Purpose
+
+What this phase is intended to achieve.
+
+### Ready-to-Use Prompt or Instruction
+
+Provide the **actual reusable prompt**, not just a description of it.
+
+### Step-by-Step Method
+
+Explain exactly how the task should be performed.
+
+### Worked Example
+
+Use the examples created during the discussion. Expand them enough to show how the method operates in practice.
+
+### Expected Output
+
+Show the kind of artifact/result that should come from the step.
+
+### Quality Gate / Completion Criteria
+
+State what must be true before proceeding.
+
+---
+
+# 5. Preserve and Improve All Reusable Prompts
+
+Any prompts developed during the discussion must be included in full.
+
+For each important prompt:
+
+- give it a clear title;
+- present it in a visually distinct prompt box or shaded section;
+- retain placeholders such as:
+  - [PROJECT NAME]
+  - [INPUT]
+  - [AUDIENCE]
+  - [DEADLINE]
+  - [FILES]
+  - [COUNTRY]
+  - [OUTPUT FORMAT]
+- improve wording where needed for clarity;
+- remove duplication;
+- preserve the user's intended logic;
+- integrate later refinements;
+- make the prompt reusable outside this chat.
+
+Where appropriate include:
+
+1. **Full-control prompt**
+2. **Short launch prompt**
+3. **Pilot prompt**
+4. **QA prompt**
+5. **Closing/debrief prompt**
+
+---
+
+# 6. Worked Examples
+
+Do not merely say “for example.”
+
+Provide sufficiently detailed worked examples showing:
+
+- sample inputs;
+- how the framework processes them;
+- sample assumptions;
+- example tables;
+- example outputs;
+- example decisions;
+- example QA findings;
+- example handoffs;
+- example final result.
+
+If the discussion used a real-life context such as a Bangladesh project, research assignment, financial model, policy analysis, lecture, software system, SaaS application, startup, baseline survey, or feasibility study, preserve that context where appropriate.
+
+Clearly label:
+
+- **real evidence**;
+- **user-provided facts**;
+- **illustrative/demo data**;
+- **assumptions**.
+
+Never present invented demo data as verified real-world information.
+
+---
+
+# 7. Templates and Registers
+
+Where useful, create editable template tables for items developed in the discussion, such as:
+
+- Input Register
+- Evidence Register
+- Source-of-Truth Register
+- Assumption Register
+- Decision Log
+- Issue Log
+- Risk Register
+- Deliverables Matrix
+- Workflow Register
+- Agent Handoff Contract
+- RACI Matrix
+- QA Checklist
+- Version Log
+- Change Log
+- Debrief Template
+- Project Intake Form
+- Prompt Library Index
+- Automation Roadmap
+
+Each template should contain useful example rows where helpful.
+
+---
+
+# 8. Technical / Analytical Content
+
+If the discussion includes technical work, preserve it properly.
+
+For financial or economic models, include as applicable:
+
+- assumptions;
+- CAPEX;
+- OPEX;
+- revenues;
+- financing;
+- depreciation;
+- tax;
+- income statement;
+- cash flow statement;
+- balance sheet;
+- NPV;
+- IRR;
+- EIRR;
+- BCR;
+- payback;
+- DSCR;
+- sensitivity analysis;
+- scenario analysis;
+- counterfactual;
+- incremental costs and benefits;
+- transfer treatment;
+- shadow pricing;
+- economic conversion factors;
+- residual value;
+- externalities;
+- double-counting controls;
+- dashboard design.
+
+For software projects, include as applicable:
+
+- requirements;
+- architecture;
+- components;
+- database;
+- APIs;
+- roles/permissions;
+- workflows;
+- integrations;
+- security;
+- testing;
+- deployment;
+- monitoring;
+- versioning;
+- AI-agent logic.
+
+For research or policy projects, include as applicable:
+
+- research questions;
+- methodology;
+- sources;
+- evidence hierarchy;
+- analytical framework;
+- assumptions;
+- limitations;
+- citations;
+- QA.
+
+Use only items relevant to the discussion.
+
+---
+
+# 9. Quality Assurance
+
+Create a dedicated QA section.
+
+At minimum check:
+
+- factual accuracy;
+- internal consistency;
+- numerical consistency;
+- formula logic;
+- source traceability;
+- assumptions;
+- cross-document consistency;
+- duplication;
+- missing material;
+- formatting;
+- versioning;
+- terminology consistency;
+- whether later decisions supersede earlier ones.
+
+Where appropriate use readiness classifications such as:
+
+- DRAFT\_ONLY
+- REVIEW\_READY
+- PRODUCTION\_READY
+- PUBLICATION\_READY
+
+Do not assign a higher readiness status than the evidence supports.
+
+---
+
+# 10. Handling Inconsistencies in the Discussion
+
+If the conversation contains conflicting instructions:
+
+1. Prefer the **latest explicit user instruction**.
+2. Preserve any earlier instruction that remains compatible.
+3. Do not silently merge contradictory requirements.
+4. Where a conflict materially affects the final document, include a short note explaining the final adopted rule.
+5. Do not revive an idea the user explicitly rejected.
+
+---
+
+# 11. Writing Style
+
+Use professional handbook/manual/report language.
+
+Avoid:
+
+- chatty dialogue;
+- “you said / I said” narration;
+- excessive references to the conversation itself;
+- filler;
+- repeated explanations;
+- generic AI language;
+- unsupported claims;
+- unnecessary promotional wording.
+
+Prefer:
+
+- clear headings;
+- concise paragraphs;
+- structured tables;
+- numbered procedures;
+- implementation-oriented language;
+- explicit assumptions;
+- decision-ready wording.
+
+---
+
+# 12. DOCX Formatting Requirements
+
+Create an actual `.docx` file.
+
+Use professional formatting including:
+
+- cover page;
+- heading hierarchy;
+- consistent typography;
+- page numbers;
+- headers or footers where appropriate;
+- clean tables;
+- shaded prompt boxes;
+- bullet and numbered lists;
+- page breaks between major parts;
+- sufficient white space;
+- editable tables;
+- consistent margins;
+- professional styles.
+
+Create a table of contents if practical.
+
+Do not deliver only the text in chat.
+
+---
+
+# 13. File Naming
+
+Use a meaningful filename following this pattern:
+
+`[PROJECT_NAME]_Final_Master_Documentation_V1_0.docx`
+
+or, where more appropriate:
+
+`[PROJECT_NAME]_Pilot_Run_Manual_V1_0.docx`
+
+Choose the filename based on the nature of the discussion.
+
+---
+
+# 14. Final Self-Review Before Delivery
+
+Before giving me the file, perform a final review:
+
+### Content Review
+
+- Is every important part of the discussion represented?
+- Were final decisions prioritized over earlier drafts?
+- Are all reusable prompts included?
+- Are examples substantive?
+- Are templates usable?
+- Are assumptions clearly labeled?
+
+### Structural Review
+
+- Can someone understand the document without this chat?
+- Is the chapter sequence logical?
+- Are there unnecessary repetitions?
+- Are cross-references understandable?
+
+### Technical Review
+
+- Are formulas/concepts correct where applicable?
+- Are tables internally consistent?
+- Are all figures, examples and terminology aligned?
+
+### DOCX Review
+
+- Open/render the document.
+- Check page flow.
+- Check headings.
+- Check tables for overflow.
+- Check prompt boxes.
+- Check page numbers.
+- Check for blank or malformed pages.
+- Correct formatting problems before delivery.
+
+---
+
+# 15. Final Response
+
+When complete, give me:
+
+1. a concise statement that the final documentation has been prepared;
+2. the filename;
+3. a direct download link to the DOCX;
+4. a short description of what is included;
+5. the readiness status.
+
+Do not ask me to reconstruct the discussion manually if the current chat contains the needed context.
+
+Do not stop at an outline.
+
+Do not merely describe what you would put in the DOCX.
+
+**Create the full final DOCX.**

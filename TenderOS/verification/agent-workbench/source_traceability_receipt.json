@@ -1,0 +1,38 @@
+{
+  "schema_version": "tenderos-documentation-receipt-v1",
+  "task_id": "AW-T14",
+  "canonical_agent_id": "/root/source_traceability_build",
+  "runtime": "Codex collaboration",
+  "delegation_tool": "collaboration.spawn_agent",
+  "opaque_platform_run_id": null,
+  "exported_tool_trace_id": null,
+  "start_utc": null,
+  "end_utc": null,
+  "branch": "tenderos/agent-workbench",
+  "worktree": "/workspace/tenderos-agent-workbench",
+  "permissions": "New project_knowledge/agent-workbench and verification/agent-workbench documentation only",
+  "application_source_modified": false,
+  "tests_modified": false,
+  "tests_run": false,
+  "network_calls": 0,
+  "model_calls": 0,
+  "paid_mutations": 0,
+  "commits_made": 0,
+  "strict_runtime_evidence_gate": "INCOMPLETE",
+  "output_status": "SOURCE_AND_INTERFACE_DOCUMENTATION_COMPLETE_FINAL_QA_RECONCILIATION_PENDING",
+  "source_hashes_reference": "../../project_knowledge/agent-workbench/source-manifest.json",
+  "actual_tools_used": [
+    "functions.exec",
+    "tools.exec_command",
+    "tools.clock__curr_time",
+    "collaboration.send_message"
+  ],
+  "tool_logs_location": null,
+  "tool_logs_limitation": "Visible conversation tool calls exist; no exported tool-trace artifact exposed.",
+  "independent_reviewer_run_id": null,
+  "open_risks": [
+    "Guide/contracts require actual implementation reconciliation.",
+    "Opaque platform run and exported trace fields remain unavailable.",
+    "No hosted/model/market/financial outcome verification."
+  ]
+}
